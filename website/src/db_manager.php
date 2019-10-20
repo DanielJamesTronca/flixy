@@ -34,12 +34,24 @@ class DBManager
         return $this->conn;
     }
 
+    public function fetchObject($className, $id)
+    {
+        $result = $this->query("SELECT * FROM ".$className." WHERE id = ".$id.";", $className);
+        if (count($result) == 1)
+        {
+            return $result[0];
+        }
+        return null;
+    }
+
     public function query($queryString, $className)
     {
+        $results = [];
         $res = $this->conn->query($queryString);
         while ($row = $res->fetch_object($className)) {
-            
+            array_push($results, $row);
         }
+        return $results;
     }
     
     function __destruct() {
