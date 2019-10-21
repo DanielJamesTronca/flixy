@@ -76,7 +76,11 @@ class DBManager
         $results = [];
         $res = $this->conn->query($queryString);
         if ($res == false)
-            return $results;
+            return null;
+        if ($res === true || res === false)
+        {
+            return $res;
+        }
         while ($row = $res->fetch_object($className)) {
             array_push($results, $row);
         }
