@@ -17,6 +17,7 @@ class DBManager
         if ($this->conn->connect_errno) {
             die("Connection to db failed");
         }
+        $this->register("ccioc", "fiori", "ciccio", "frefre", "ewrfe@frff.vom");
     }
     
     public static function getInstance()
@@ -44,11 +45,41 @@ class DBManager
         return null;
     }
 
-    public function query($queryString, $className)
+    public function login($username, $password)
+    {
+        $hashedPassword = hash('sha256', $password);
+        $result = $this->query("SELECT * FROM Keychain WHERE Keychain.username ='{$username}' AND Keychain.password = '{$hashedPassword}';");
+        if (count($result) == 1)
+        {
+            // user credentials found
+            return true;
+        }
+        return false;
+    }
+
+    public function register($username, $password, $name, $surname, $email)
+    {
+        $hashedPassword = hash('sha256', $password);
+        $this->conn->begin_transaction();
+        $this->conn->query("INSERT INTO `User` (`name`, `surname`, `email`) VALUES ('{$name}', '{$surname}', '{$email}');");
+        $keyId = $this->conn->insert_id;
+        $this->conn->query("INSERT INTO `Keychain` (`user_id`, `username`, `password`) VALUES ({$keyId}, '{$username}', '{$password}');");
+        if ($this->conn->commit())
+            return true;
+        else {
+            $this->conn->rollback();
+            return false;
+        }
+    }
+
+    public function query($queryString, $className = "stdClass")
     {
         $results = [];
         $res = $this->conn->query($queryString);
+        if ($res == false)
+            return $results;
         while ($row = $res->fetch_object($className)) {
+            print_r($row);
             array_push($results, $row);
         }
         return $results;
