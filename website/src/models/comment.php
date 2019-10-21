@@ -38,7 +38,7 @@ class Comment extends Base
     public static function getCommentsFor($mediaId)
     {
         $dbman = DBManager::getInstance();
-        return $dbman->query("SELECT * FROM ".self::TABLE_NAME." WHERE ".self::TABLE_NAME.".".self::MEDIA_ID_KEY." = {$mediaId} ORDER BY ".self::TABLE_NAME.".".Base::CREATED_KEY." ASC;", Comment::class);
+        return $dbman->query("SELECT *, CONCAT(".User::TABLE_NAME.".".User::NAME_KEY.", ' ', ".User::TABLE_NAME.".".User::SURNAME_KEY.") as user_fullname FROM ".self::TABLE_NAME." JOIN ".User::TABLE_NAME." on ".Comment::TABLE_NAME.".".Comment::USER_ID_KEY." = ".User::TABLE_NAME.".".Base::ID_KEY." WHERE ".self::TABLE_NAME.".".self::MEDIA_ID_KEY." = {$mediaId} ORDER BY ".self::TABLE_NAME.".".Base::CREATED_KEY." ASC;", Comment::class);
     }
  }
 

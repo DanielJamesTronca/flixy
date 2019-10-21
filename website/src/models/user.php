@@ -10,6 +10,8 @@ class User extends Base
     const AVATAR_KEY = "avatar_url";
 
     var $name, $surname, $email, $avatarUrl;
+
+    const TABLE_NAME = "User";
  
     public function __set( $name, $value ) {
         switch ($name)
