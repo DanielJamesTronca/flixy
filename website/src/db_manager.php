@@ -17,7 +17,6 @@ class DBManager
         if ($this->conn->connect_errno) {
             die("Connection to db failed");
         }
-        $this->register("ccioc", "fiori", "ciccio", "frefre", "ewrfe@frff.vom");
     }
     
     public static function getInstance()
@@ -79,7 +78,6 @@ class DBManager
         if ($res == false)
             return $results;
         while ($row = $res->fetch_object($className)) {
-            print_r($row);
             array_push($results, $row);
         }
         return $results;

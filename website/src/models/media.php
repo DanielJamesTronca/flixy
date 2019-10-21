@@ -16,12 +16,22 @@ class Media extends Base
     const SEASONS_NUM_KEY  = "seasons";
     const TRAILER_KEY = "trailer_key";
     const DATE_KEY = "air_date";
+    const VOTES_TOTAL_KEY = "votes_count";
+    const VOTES_POSITIVE_KEY = "votes_positive";
 
-    var $title, $description, $coverUrl, $genreId, $genreName, $stars, $duration, $hasEpisodes, $numEpisodes, $numSeasons, $trailerUrl, $airDate;
+    const TABLE_NAME = "Media";
+
+    var $title, $votesTotal, $votesPositive, $description, $coverUrl, $genreId, $genreName, $stars, $duration, $hasEpisodes, $numEpisodes, $numSeasons, $trailerUrl, $airDate;
  
     public function __set( $name, $value ) {
         switch ($name)
         {
+            case self::VOTES_TOTAL_KEY: 
+                $this->votesTotal = $value;
+                break;
+            case self::VOTES_POSITIVE_KEY: 
+                $this->votesPositive = $value;
+                break;
             case self::NAME_KEY: 
                 $this->title = $value;
                 break;
@@ -62,6 +72,29 @@ class Media extends Base
                 parent::__set($name, $value);
                 break;
         }
+    }
+
+
+    public static function list($year = null, $genre = null, $order = null, $asc = "ASC")
+    {
+        $dbman = DBManager::getInstance();
+        $whereClause = "1 ";
+        if ($year != null)
+            $whereClause = $whereClause." AND YEAR(".self::DATE_KEY.") = {$year}";
+
+        if ($genre != null)
+            $whereClause = $whereClause." AND ".self::GENRE_ID_KEY." = {$genre}";
+
+        $orderClause = "";
+        if ($order != null)
+        {
+            $orderClause = " ORDER BY {$order} {$asc} ";
+        }
+
+        $queryString = "SELECT *, count(Vote.id) AS votes_count, sum(Vote.positive) as votes_positive, ".(Genre::TABLE_NAME).".name as genre_name FROM ".(self::TABLE_NAME)." LEFT JOIN Vote ON (".(self::TABLE_NAME).".id=Vote.media_id) LEFT JOIN ".(Genre::TABLE_NAME)." ON ".(Genre::TABLE_NAME).".id = ".(self::TABLE_NAME).".genre WHERE ".$whereClause." GROUP BY Media.id {$orderClause};";
+        echo $queryString;
+        $results = $dbman->query($queryString, "Media");
+        return $results;
     }
  }
 

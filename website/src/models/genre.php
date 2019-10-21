@@ -6,6 +6,8 @@ class Genre extends Base
 {
     const NAME_KEY = "name";
 
+    const TABLE_NAME = "Genre";
+
     var $name;
  
     public function __set( $name, $value ) {
