@@ -75,15 +75,18 @@ class Media extends Base
     }
 
 
-    public static function list($year = null, $genre = null, $order = null, $asc = "ASC")
+    public static function list($name=null, $year = null, $genre = null, $order = null, $asc = "ASC")
     {
         $dbman = DBManager::getInstance();
         $whereClause = "1 ";
         if ($year != null)
-            $whereClause = $whereClause." AND YEAR(".self::DATE_KEY.") = {$year}";
+            $whereClause = $whereClause." AND YEAR(".(self::TABLE_NAME).".".self::DATE_KEY.") = {$year}";
 
         if ($genre != null)
-            $whereClause = $whereClause." AND ".self::GENRE_ID_KEY." = {$genre}";
+            $whereClause = $whereClause." AND ".(self::TABLE_NAME).".".self::GENRE_ID_KEY." = {$genre}";
+
+        if ($name != null)
+            $whereClause = $whereClause." AND ".(self::TABLE_NAME).".".self::NAME_KEY." LIKE '%{$name}%'";
 
         $orderClause = "";
         if ($order != null)
@@ -92,7 +95,7 @@ class Media extends Base
         }
 
         $queryString = "SELECT *, count(Vote.id) AS votes_count, sum(Vote.positive) as votes_positive, ".(Genre::TABLE_NAME).".name as genre_name FROM ".(self::TABLE_NAME)." LEFT JOIN Vote ON (".(self::TABLE_NAME).".id=Vote.media_id) LEFT JOIN ".(Genre::TABLE_NAME)." ON ".(Genre::TABLE_NAME).".id = ".(self::TABLE_NAME).".genre WHERE ".$whereClause." GROUP BY Media.id {$orderClause};";
-        echo $queryString;
+
         $results = $dbman->query($queryString, "Media");
         return $results;
     }
