@@ -19,7 +19,7 @@ body{
 .header{
     display:flex;
     justify-content: center;
-    padding-top: 10em;
+    padding-top: 8em;
 }
 
 .primary-color {
@@ -56,14 +56,14 @@ body{
 }
 
 .button{
-  width: 248px;
-  height: 42px;
-  border-radius: 8px;
+  width: 15.5em;
+  height: 2.6em;
+  border-radius: .5em;
   background-color: #6f64f8;
 }
 
 .footer{
-  padding-top: 25em;
+  padding-top: 18em;
   padding-bottom: 2.5em;
 }
 
@@ -78,16 +78,16 @@ body{
 
 .group 			  { 
     position:relative; 
-    margin-bottom:45px; 
+    margin-bottom:2.8em; 
   }
   input 				{
-    font-size:18px;
-    padding:10px 10px 10px 5px;
+    font-size:1.125em;
+    padding:.3em .3em .3em .1em;
     display:block;
     width:31em;
     max-width:31em;
     border:none;
-    border-bottom:1px solid #757575;
+    border-bottom:.06em solid #757575;
     background-color: #0f1642;
     color: white
   }
@@ -96,12 +96,12 @@ body{
   /* LABEL ======================================= */
   label 				 {
     color:#999; 
-    font-size:18px;
+    font-size:1.125em;
     font-weight:normal;
     position:absolute;
     pointer-events:none;
-    left:5px;
-    top:10px;
+    left:.3em;
+    top:.6em;
     transition:0.2s ease all; 
     -moz-transition:0.2s ease all; 
     -webkit-transition:0.2s ease all;
@@ -109,18 +109,18 @@ body{
   
   /* active state */
   input:focus ~ label, input:valid ~ label 		{
-    top:-20px;
-    font-size:14px;
+    top:-1.25em;
+    font-size:.8em;
     color:#5264AE;
   }
   
   /* BOTTOM BARS ================================= */
-  .bar 	{ position:relative; display:block; width:35.8em; }
+  .bar 	{ position:relative; display:block; width:35.3em; }
   .bar:before, .bar:after 	{
     content:'';
-    height:2px; 
+    height:.1em; 
     width:0;
-    bottom:1px; 
+    bottom:.06em; 
     position:absolute;
     background:#5264AE; 
     transition:0.2s ease all; 
@@ -143,7 +143,7 @@ body{
   .highlight {
     position:absolute;
     height:60%; 
-    width:100px; 
+    width:6.25em; 
     top:25%; 
     left:0;
     pointer-events:none;
