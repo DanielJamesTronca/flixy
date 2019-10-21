@@ -9,6 +9,9 @@ class Comment extends Base
     const MEDIA_ID_KEY = "media_id";
     const USER_FULLNAME_KEY = "user_fullname";
 
+
+    const TABLE_NAME = "Comment";
+
     var $content, $userId, $mediaId, $userFullName;
  
     public function __set( $name, $value ) {
@@ -30,6 +33,12 @@ class Comment extends Base
                 parent::__set($name, $value);
                 break;
         }
+    }
+
+    public static function getCommentsFor($mediaId)
+    {
+        $dbman = DBManager::getInstance();
+        return $dbman->query("SELECT * FROM ".self::TABLE_NAME." WHERE ".self::TABLE_NAME.".".self::MEDIA_ID_KEY." = {$mediaId} ORDER BY ".self::TABLE_NAME.".".Base::CREATED_KEY." ASC;", Comment::class);
     }
  }
 

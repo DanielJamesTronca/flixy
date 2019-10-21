@@ -96,8 +96,14 @@ class Media extends Base
 
         $queryString = "SELECT *, count(Vote.id) AS votes_count, sum(Vote.positive) as votes_positive, ".(Genre::TABLE_NAME).".name as genre_name FROM ".(self::TABLE_NAME)." LEFT JOIN Vote ON (".(self::TABLE_NAME).".id=Vote.media_id) LEFT JOIN ".(Genre::TABLE_NAME)." ON ".(Genre::TABLE_NAME).".id = ".(self::TABLE_NAME).".genre WHERE ".$whereClause." GROUP BY Media.id {$orderClause};";
 
-        $results = $dbman->query($queryString, "Media");
+        $results = $dbman->query($queryString, Media::class);
         return $results;
+    }
+
+    public static function fetch($id)
+    {
+        $dbman = DBManager::getInstance();
+        return $dbman->fetchObject(Media::class, $id);
     }
  }
 
