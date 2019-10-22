@@ -7,8 +7,8 @@
 body{
     display: flex;
     justify-content: center;
-    background-color:#0f1642;
-    color: white;
+    background-color:#000000;
+    color: white; 
 }
 
 .content{
@@ -22,8 +22,11 @@ body{
     padding-top: 8em;
 }
 
-.primary-color {
-    color: #8b79f9;
+.primary-color-gradient-text {
+  background: -webkit-linear-gradient(#ff3434, #b70000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .form-title{
@@ -72,7 +75,11 @@ body{
   width: 15.5em;
   height: 2.6em;
   border-radius: .5em;
-  background-color: #6f64f8;
+}
+
+.primary-color-gradient-button{
+  background: rgb(183,0,0);
+  background: linear-gradient(90deg, rgba(183,0,0,1) 0%, rgba(255,52,52,1) 35%);
 }
 
 .footer{
@@ -113,7 +120,7 @@ body{
     max-width:31em;
     border:none;
     border-bottom:.06em solid #757575;
-    background-color: #0f1642;
+    background-color: #000000;
     color: white
   }
   input:focus 		{ outline:none; }
@@ -147,7 +154,7 @@ body{
     width:0;
     bottom:.06em; 
     position:absolute;
-    background:#6f64f8; 
+    background:#ff0000; 
     transition:0.2s ease all; 
     -moz-transition:0.2s ease all; 
     -webkit-transition:0.2s ease all;
@@ -184,15 +191,15 @@ body{
   
   /* ANIMATIONS ================ */
   @-webkit-keyframes inputHighlighter {
-      from { background:#5264AE; }
+      from { background:#ff0000; }
     to 	{ width:0; background:transparent; }
   }
   @-moz-keyframes inputHighlighter {
-      from { background:#5264AE; }
+      from { background:#ff0000; }
     to 	{ width:0; background:transparent; }
   }
   @keyframes inputHighlighter {
-      from { background:#5264AE; }
+      from { background:#ff0000; }
     to 	{ width:0; background:transparent; }
   }
 
