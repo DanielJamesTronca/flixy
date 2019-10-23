@@ -5,7 +5,7 @@ class DBManager
     private static $instance = null;
     private $conn;
     
-    private $host = "192.168.64.2";
+    private $host = "localhost";
     private $user = 'app';
     private $pass = 'appdbpasswd';
     private $database = 'flixy';
@@ -77,7 +77,7 @@ class DBManager
         $res = $this->conn->query($queryString);
         if ($res == false)
             return null;
-        if ($res === true || res === false)
+        if ($res === true || $res === false)
         {
             return $res;
         }
