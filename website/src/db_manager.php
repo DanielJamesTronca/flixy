@@ -62,7 +62,7 @@ class DBManager
         $this->conn->begin_transaction();
         $this->conn->query("INSERT INTO `User` (`name`, `surname`, `email`) VALUES ('{$name}', '{$surname}', '{$email}');");
         $keyId = $this->conn->insert_id;
-        $this->conn->query("INSERT INTO `Keychain` (`user_id`, `username`, `password`) VALUES ({$keyId}, '{$username}', '{$password}');");
+        $this->conn->query("INSERT INTO `Keychain` (`user_id`, `username`, `password`) VALUES ({$keyId}, '{$username}', '{$hashedPassword}');");
         if ($this->conn->commit())
             return true;
         else {
