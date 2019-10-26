@@ -12,7 +12,7 @@ $surname = "";
 $email = "";
 
 
-if ($_SERVER["REQUEST_METHOD"] == "post") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 	$username = $_POST["username"];
     $password = $_POST["password"];
@@ -38,30 +38,51 @@ if ($_SERVER["REQUEST_METHOD"] == "post") {
 function checkParameters($username, $password, $confirmationPassword, $name, $surname, $email, &$errorMessage) // controlla il formato dei dati e ritorna true se sono corretti, altrimenti ritorna false e setta le stringhe di errore nella variabile errormessage
 {
 	if (empty($username)) {
-		$errorMessage .= " L'username è richiesto! ";
+	  $errorMessage .= " L'username è richiesto! ";
 		return false;
-    } 
-    if (empty($name)) {
+  }
+  else if(!preg_match("/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/",$username)){
+    $errorMessage .= " Controlla l'username! Il campo non può essere composto da caratteri speciali. ";
+		return false;
+  } 
+  if (empty($name)) {
 		$errorMessage .= " Il nome è richiesto! ";
 		return false;
-    }
-    if (empty($surname)) {
+  }
+  else if(!preg_match("/^[a-zA-Z ]{1,16}$/",$name)){
+    $errorMessage .= " Controlla il Nome! Il campo dev'essere composto solamente da lettere. ";
+		return false;
+  }
+  if (empty($surname)) {
 		$errorMessage .= " Il cognome è richiesto! ";
 		return false;
-	} 
+  } 
+  else if(!preg_match("/^[a-zA-Z ]{1,16}$/",$surname)){
+    $errorMessage .= " Controlla il Cognome! Il campo dev'essere composto solamente da lettere. ";
+		return false;
+  }
 	if (empty($email)) {
 		$errorMessage .= " L'email è richiesta! ";
 		return false;
-	}
+  }
+  else if(!preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/",$email)){
+    $errorMessage .= " Controlla l'email! Il campo non rispetta la sintassi corretta. ";
+		return false;
+  }
 	if (empty($password)) {
 		$errorMessage .= " La password è richiesta! ";
 		return false;
-    }
-    if (empty($confirmationPassword)) {
+  }
+  else if(!preg_match("/^(?=.*[0-9])(?=.*[a-z])[a-zA-Z0-9!.@#$%^&*]{6,32}$/",$password)){
+    $errorMessage .= " Controlla la password! Dev'essere alfanumerica ed essere composta da almeno 6 caratteri. ";
+    return false;
+  }
+
+  if (empty($confirmationPassword)) {
 		$errorMessage .= " La password di conferma è richiesta! ";
-		return false;
-    } 
-    if ($confirmationPassword!=$password) {
+    return false;
+  }
+  else if($confirmationPassword!=$password){
 		$errorMessage .= " La password di conferma è diversa dalla password! ";
 		return false;
 	} 
@@ -168,7 +189,7 @@ function userRegisteredCorrectly()
     </div>
                 
     <div class="text-center padding-top-medium">
-      <p>Hai già un account? <a href="login.html" class="link"> Accedi </a> </p>
+      <p>Hai già un account? <a href="login.php" class="link"> Accedi </a> </p>
     </div>
 
     <div class="footer text-center">

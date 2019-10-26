@@ -8,7 +8,7 @@ include_once("../src/models/models.php");
 $errorMessage = "";
 $username = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "post") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	$username = $_POST["username"];
 	$password = $_POST["password"];
@@ -29,13 +29,21 @@ if ($_SERVER["REQUEST_METHOD"] == "post") {
 function checkParameters($username, $password, &$errorMessage) // controlla il formato dei dati e ritorna true se sono corretti, altrimenti ritorna false e setta le stringhe di errore nella variabile errormessage
 {
 	if (empty($username)) {
-		$errorMessage .= " L'username è richiesto! ";
+	  $errorMessage .= " L'username è richiesto! ";
 		return false;
-	} 
-	else if (empty($password)) {
+  }
+  else if(!preg_match("/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/",$username)){
+    $errorMessage .= " Controlla l'username! Il campo non può essere composto da caratteri speciali. ";
+		return false;
+  } 
+	if (empty($password)) {
 		$errorMessage .= " La password è richiesta! ";
 		return false;
-	}
+  }
+  else if(!preg_match("/^(?=.*[0-9])(?=.*[a-z])[a-zA-Z0-9!.@#$%^&*]{6,32}$/",$password)){
+    $errorMessage .= " Controlla la password! Dev'essere alfanumerica ed essere composta da almeno 6 caratteri. ";
+    return false;
+  }
 	return true;
 }
 
@@ -116,7 +124,7 @@ function userLoggedCorrectly()
     </div>
                 
     <div class="text-center padding-top-medium">
-      <p>Non hai un account? <a href="registrazione.html" class="link"> Registrati </a> </p>
+      <p>Non hai un account? <a href="registrazione.php" class="link"> Registrati </a> </p>
     </div>
 
     <div class="footer text-center">
