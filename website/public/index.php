@@ -3,6 +3,8 @@
 include_once("../src/db_manager.php");
 include_once("../src/models/models.php");
 
-print_r(User::getLoggedUser());
+$user = User::getLoggedUser();
+$user->name = "Test";
+print_r($user->saveUser());
 
 ?>
