@@ -21,7 +21,7 @@ class Media extends Base
 
     const TABLE_NAME = "Media";
 
-    var $title, $votesTotal, $votesPositive, $description, $coverUrl, $genreId, $genreName, $stars, $duration, $hasEpisodes, $numEpisodes, $numSeasons, $trailerUrl, $airDate;
+    var $title, $votesTotal, $votesPositive, $description, $coverUrl, $genreId, $genreName, $stars, $duration, $hasEpisodes, $numEpisodes, $numSeasons, $trailerUrl, $airDate, $isFavourite = false;
  
     public function __set( $name, $value ) {
         switch ($name)
@@ -97,7 +97,28 @@ class Media extends Base
         $queryString = "SELECT *, count(Vote.id) AS votes_count, sum(Vote.positive) as votes_positive, ".(Genre::TABLE_NAME).".name as genre_name FROM ".(self::TABLE_NAME)." LEFT JOIN Vote ON (".(self::TABLE_NAME).".id=Vote.media_id) LEFT JOIN ".(Genre::TABLE_NAME)." ON ".(Genre::TABLE_NAME).".id = ".(self::TABLE_NAME).".genre WHERE ".$whereClause." GROUP BY Media.id {$orderClause};";
 
         $results = $dbman->query($queryString, Media::class);
-        return $results;
+        return Media::setFavouritesFor($results);
+    }
+
+    public static function setFavouritesFor($medias)
+    {
+        $userId = 1;
+        if (true) // get user id
+        {
+            $dbman = DBManager::getInstance();
+            $queryString = "SELECT * FROM Favourite WHERE Favourite.user_id = {$userId}";
+            $favourites = $dbman->query($queryString);
+
+            foreach ($favourites as &$fav) {
+                foreach ($medias as &$media) {
+                    if ($media->id == $fav->media_id)
+                    {
+                        $media->isFavourite = true;
+                    }
+                } 
+            }
+        }
+        return $medias;
     }
 
     public static function fetch($id)

@@ -77,7 +77,7 @@ class DBManager
         $res = $this->conn->query($queryString);
         if ($res == false)
             return null;
-        if ($res === true || res === false)
+        if ($res === true || $res === false)
         {
             return $res;
         }
