@@ -121,6 +121,14 @@ class Media extends Base
         return $medias;
     }
 
+    public static function getUserFavourites($userId)
+    {
+        $dbman = DBManager::getInstance();
+        $queryString = "SELECT * FROM Favourite JOIN ".Media::TABLE_NAME." ON Favourite.media_id = ".Media::TABLE_NAME.".id WHERE Favourite.user_id = {$userId}";
+        $results = $dbman->query($queryString, Media::class);
+        return $results;
+    }
+
     public static function fetch($id)
     {
         $dbman = DBManager::getInstance();
