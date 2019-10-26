@@ -129,6 +129,24 @@ class Media extends Base
         return $results;
     }
 
+    public function setFavourite($activate)
+    {
+        $dbman = DBManager::getInstance();
+        // if (!userLogged) return; TODO
+        $userId = 1;
+        $mediaId = $this->id;
+        if ($activate)
+        {
+            // set as favourite
+        $result = $dbman->query("INSERT INTO Favourite(`user_id`, `media_id`) VALUES ({$userId}, {$mediaId})");
+            return $result;
+        } else {
+            // remove from favourite
+        $result = $dbman->query("DELETE FROM Favourite WHERE Favourite.user_id = {$userId} AND Favourite.media_id = {$mediaId}");
+            return $result;
+        }
+    }
+
     public static function fetch($id)
     {
         $dbman = DBManager::getInstance();
