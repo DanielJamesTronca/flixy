@@ -8,12 +8,12 @@ include_once("../src/models/models.php");
 $errorMessage = "";
 $username = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "post") {
 
 	$username = $_POST["username"];
 	$password = $_POST["password"];
 
-  if (checkParameters($username, $password, $errorMessage)) // se false, i dati sono nel formato corretto, provo ad autentificare l'utente
+  if (checkParameters($username, $password, $errorMessage)) // se true, i dati sono nel formato corretto, provo ad autentificare l'utente
   {
     $man = DBManager::getInstance();
     if ($man->login($username, $password)) // se loggato
@@ -91,9 +91,9 @@ function userLoggedCorrectly()
 
     <div class="padding-top-medium">
 
-        <form action="login.php" method="POST">
+        <form action="login.php" method="post" id="regForm" onsubmit="return validateFormLogin()">
             <div class="group">      
-              <input type="text" name="username" value="<?php echo $username;?>"/>
+              <input type="text" name="username" id="username" value="<?php echo $username;?>"/>
               <span class="highlight"></span>
               <span class="bar"></span>
               <label>Username</label>
@@ -101,7 +101,7 @@ function userLoggedCorrectly()
 
 
             <div class="group">      
-              <input type="password" name="password"/>
+              <input type="password" name="password" id="password"/>
               <span class="highlight"></span>
               <span class="bar"></span>
               <label>Password</label>

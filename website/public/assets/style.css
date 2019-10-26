@@ -19,7 +19,7 @@ body{
 .header{
     display:flex;
     justify-content: center;
-    padding-top: 8em;
+    padding-top: 7em;
 }
 
 .primary-color-gradient-text {
