@@ -111,9 +111,10 @@ function userRegisteredCorrectly()
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
 <head>
-<base target="_self" href="http://localhost/flixy/website/public/"> 
+<base target="_self" href="http://192.168.1.202/flixy/website/public/"> <!--da cambiare!!!! -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="assets/style.css"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <!-- per ottimizzazione visualizzazione smartphone -->
+<link rel="stylesheet" media="screen" type="text/css" href="assets/style.css"/>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="action.js"></script>
 
@@ -125,7 +126,7 @@ function userRegisteredCorrectly()
 <div class="content">
 
     <div class="header">
-        <img src="assets/images/icons/logo.png" alt="Flixy logo" class="logo"/> <h1 class="primary-color-gradient-text"> Flixy </h1>
+        <img src="assets/images/icons/logo.png" alt="logo" class="logo"/> <h1 class="primary-color-gradient-text"> Flixy </h1>
 
     </div>
              
