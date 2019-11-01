@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+
+<head>
+  <title>movie-card</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="title" content="Flixy - Homepage" />
+  <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="./assets/movie-card.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
+  <script src="./scripts/scripts.js" type="text/javascript"></script>
+</head>
+  <body>
+    <div class="movie-entry">
+      <img id="copertina" class="border-radius-medium copertina-size" src="./assets/images/test-image.jpg" alt="copertina"/>
+      <h3 id="title" class="text-color-white margin-left-small font-big">Title</h3>
+      <i id="link-to-book" class="fas fa-chevron-right text-color-white"></i>
+      <div class="rating margin-left-medium-small text-color-white">
+        <div class="score" class="font-medium-normal">
+          <span id="activeStars" class="stars-active">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </span>
+          <span class="stars-inactive">
+            <i class="fa fa-star-o"></i>
+            <i class="fa fa-star-o"></i>
+            <i class="fa fa-star-o"></i>
+            <i class="fa fa-star-o"></i>
+            <i class="fa fa-star-o"></i>
+          </span>
+        </div>
+      </div>
+      <span id="num-votes" class="text-align-center font-medium-small text-color-white"> </span>
+      <div id="thumbs" class="text-align-center text-color-white font-huge">
+        <i id="thumbs-up" class="far fa-thumbs-up"></i>
+        <i id="thumbs-down" class="far fa-thumbs-down"></i>
+      </div>
+      <div id="num-up-down" class="text-align-center text-color-white font-medium-small">
+        <span id="num-up">346</span>
+        <span id="num-down">153</span>
+      </div>
+      <div id="fav-section" class="text-align-center text-color-white">
+        <i id="fav-icon" class="fas fa-heart font-medium-big"></i>
+        <span id="fav-text" class="text-align-center font-smaller">Add to your favourites</span>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- This page is validated -->

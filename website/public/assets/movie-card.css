@@ -1,0 +1,293 @@
+* {
+    padding: 0em;
+    margin: 0em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.text-color-red {
+    color: red;
+  }
+  
+  .text-color-white {
+    color: white;
+  }
+  
+  .border-radius-small {
+    border-radius: 0.3em;
+  }
+  
+  .border-radius-medium {
+    border-radius: .5em;
+  }
+  
+  .logo-size {
+    width: 38px;
+    height: 27px;
+  }
+
+  .font-smaller {
+    font-size:0.625em;
+  }
+  
+  .font-small {
+    font-size: 0.75em;
+  }
+  
+  .font-medium-small {
+    font-size: 0.938em;
+  }
+  
+  .font-medium-normal {
+    font-size: 1em;
+  }
+
+  .font-medium-big {
+    font-size: 1.1em;
+  }
+
+  .font-big {
+    font-size: 1.5em;
+  }
+
+  .font-bigger {
+    font-size: 1.7em;
+  }
+  
+  .font-huge {
+    font-size: 2.2em;
+  }
+
+  .margin-right-small {
+    margin-right: 0.5em;
+  }
+  
+  .margin-right-medium {
+    margin-right: 1em;
+  }
+
+  .margin-right-medium-small {
+    margin-right: .7em;
+  }
+  
+  .margin-right-medium-big {
+    margin-right: 1.5em;
+  }
+  
+  .margin-right-big {
+    margin-right: 2em;
+  }
+  
+  .margin-right-bigger {
+    margin-right: 2.5em;
+  }
+
+  .margin-top-small {
+    margin-top: 0.5em;
+  }
+  
+  .margin-top-medium {
+    margin-top: 1em;
+  }
+
+  .margin-top-medium-small {
+    margin-top: .7em;
+  }
+  
+  .margin-top-medium-big {
+    margin-top: 1.5em;
+  }
+  
+  .margin-top-big {
+    margin-top: 2em;
+  }
+  
+  .margin-top-bigger {
+    margin-top: 2.5em;
+  }
+   
+
+  
+  .font-weight-bold {
+    font-weight: bold;
+  }
+  
+  .font-weight-medium {
+    font-weight: medium;
+  }
+  
+  .font-weight-light {
+    font-weight: 300;
+  }
+  
+  .margin-left-small {
+    margin-left: 0.5em;
+  }
+  
+  .margin-left-medium {
+    margin-left: 1em;
+  }
+
+  .margin-left-medium-small {
+    margin-left: .7em;
+  }
+  
+  .margin-left-medium-big {
+    margin-left: 1.5em;
+  }
+  
+  .margin-left-big {
+    margin-left: 2em;
+  }
+  
+  .margin-left-bigger {
+    margin-left: 2.5em;
+  }
+  
+  .black-bg {
+    background: black;
+  }
+  
+  .grey-bg {
+    background: #191919;
+  }
+  
+  .transparent-bg {
+    background: transparent;
+  }
+  
+  .text-align-left {
+    text-align: left;
+  }
+  
+  .text-align-center {
+    text-align: center;
+  }
+
+  body {
+    background-color: #191919;
+    height: auto;
+    width: auto;
+}
+
+    .score {
+    display: block;
+    overflow: hidden;
+    }
+  
+
+  
+.stars-active {
+    color: #FFBC0B;
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+  }
+  
+.stars-inactive {
+    color: grey;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+
+
+.rating {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    overflow: hidden;
+    height: 2em;
+    position: relative;
+  }
+
+
+
+#fav-icon {
+    transition: color .2s ease-in;
+    cursor: pointer;
+    margin-top: .2em;
+    transform: translateY(15%);
+}
+
+#fav-icon:hover {
+    color:red;
+}
+
+
+.movie-entry {
+    width: 15.063em;
+    height: 33.000em;
+    background: black;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    flex-grow: 0;
+    border-radius: .5em;
+}
+
+.copertina-size {
+    width: 15.063em;
+    height: 22.320em;
+}
+
+
+.movie-entry #link-to-book {
+    font-size: 1.5em;
+    margin-left: 6.0em;
+    transition: color .2s ease-in;
+    cursor: pointer;
+}
+
+.movie-entry #link-to-book:hover {
+    color: red;
+}
+
+.movie-entry #thumbs-up {
+    transition: color .2s ease-in;
+    cursor: pointer;
+}
+
+.movie-entry #thumbs i {
+    margin-left: .1em;
+    margin-right: .1em;
+    margin-top: .2em;
+}
+
+.movie-entry #thumbs i:hover {
+    color: red;
+}
+
+.movie-entry #thumbs-down {
+    transition: color .2s ease-in;
+    cursor: pointer;
+    transform: scale(-1, 1); /* Needed to rotate other thumb */
+}
+
+
+
+#title {
+    float:left;
+}
+.movie-entry #num-votes {
+    font-weight: bold;
+    width: 100%;
+    float:left;
+    margin-top: -.5em;
+}
+
+.movie-entry #num-up-down {
+    margin-top: .3em;
+}
+
+.movie-entry #num-up-down #num-up {
+    margin-right: .8em;
+}
+
+.movie-entry #num-up-down #num-down {
+    margin-left: .8em;
+}
