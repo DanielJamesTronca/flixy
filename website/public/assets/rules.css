@@ -394,3 +394,20 @@
     padding-bottom: 2.5em;
 }
 /* END PADDING BOTTOM SECTION */
+/* TEXT ALIGN */
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.text-align-justify {
+    text-align: justify;
+}
+/* END TEXT ALIGN */
