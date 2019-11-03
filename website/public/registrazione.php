@@ -111,7 +111,7 @@ function userRegisteredCorrectly()
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
 <head>
-<base target="_self" href="http://192.168.121.241/flixy/website/public/"> <!--da cambiare!!!! -->
+<base target="_self" href="http://localhost/flixy/website/public/"> <!--da cambiare!!!! -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <!-- per ottimizzazione visualizzazione smartphone -->
 <link rel="stylesheet" media="screen" type="text/css" href="assets/style.css"/>
