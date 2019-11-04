@@ -49,11 +49,36 @@
                     <p class="next-release-remaining-days"> 73 </p>
                     <p> giorni rimanenti <p>
                 </div>   
-            </div>
-            
-            
+            </div>  
         </div>
+        <div class="timeline">
+            <div class="timeline-container">
+                <div class="timeline-content">
+                    <div class="timeline-date">
+      	                <p>12 Agosto</p>
+                    </div>
+                    <div class="timeline-text">
+                        <h3> Stranger Things </h3>
+                        <p> Rilasciato episodio 3x04 </p>
+                        <p class="padding-top-0-5">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-content">
+                <div class="timeline-date">
+      	            <p>12 Agosto</p>
+                </div>
+                <div class="timeline-text">
+                    <h3> Stranger Things </h3>
+                    <p> Rilasciato episodio 3x04 </p>
+                    <p class="padding-top-0-5">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+                </div>
+            </div>  
+        </div>  
+
     </div>
 
 </body>
+
 
