@@ -21,25 +21,33 @@
                 <div>
                     <img src="assets/images/covers/casa.jpg" class="cover"/>
                 </div>
-                <div class="padding-1 text-align-center"> 
+                <div class="next-release-text-area padding-1 text-align-center"> 
                     <h4>La casa de papel</h4>
                     <h6>Stagione 3</h6>
+                    <p class="next-release-remaining-days"> 22 </p>
+                    <p> giorni rimanenti <p>
                 </div>    
             </div>
             <div class="next-release">
                 <div>
                     <img src="assets/images/covers/malef.jpg" class="cover"/>
                 </div>
-                <div class="padding-1 text-align-center">
+                <div class="next-release-text-area padding-1 text-align-center">
                     <h4>Maleficent</h4>
+                    <h6>Stagione 2</h6>
+                    <p class="next-release-remaining-days"> 8 </p>
+                    <p> giorni rimanenti <p>
                 </div>   
             </div>
             <div class="next-release">
                <div>
                     <img src="assets/images/covers/casa.jpg" class="cover"/>
                 </div>
-                <div class="padding-1 text-align-center">
+                <div class="next-release-text-area padding-1 text-align-center">
                     <h4>La casa de papel</h4>
+                    <h6>Stagione 4</h6>
+                    <p class="next-release-remaining-days"> 73 </p>
+                    <p> giorni rimanenti <p>
                 </div>   
             </div>
             

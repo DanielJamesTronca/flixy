@@ -20,6 +20,14 @@
     background: linear-gradient(243deg, #b70000 2%, #ff3434 97%);
 }
 
+.next-release-text-area{
+    width: 100%;
+    font-weight: bold;
+}
+
+.next-release-remaining-days{
+    font-size: 4em;
+}
 
 .cover{
     height: 100%;
