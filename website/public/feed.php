@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="content secondary-bg">
+    <div id="feed-content" class="secondary-bg">
         <h1 class="text-align-left padding-left-1-5 padding-top-1-5 font-weight-normal"> Your Feed </h1>  
         <div id="container-next-release" class="margin-top-1-5 margin-left-2-5">
             <div class="next-release">
@@ -25,7 +25,7 @@
                     <h4>La casa de papel</h4>
                     <h6>Stagione 3</h6>
                     <p class="next-release-remaining-days"> 22 </p>
-                    <p> giorni rimanenti <p>
+                    <p> giorni rimanenti </p>
                 </div>    
             </div>
             <div class="next-release">
@@ -36,7 +36,7 @@
                     <h4>Maleficent</h4>
                     <h6>Stagione 2</h6>
                     <p class="next-release-remaining-days"> 8 </p>
-                    <p> giorni rimanenti <p>
+                    <p> giorni rimanenti </p>
                 </div>   
             </div>
             <div class="next-release">
@@ -47,7 +47,7 @@
                     <h4>La casa de papel</h4>
                     <h6>Stagione 4</h6>
                     <p class="next-release-remaining-days"> 73 </p>
-                    <p> giorni rimanenti <p>
+                    <p> giorni rimanenti </p>
                 </div>   
             </div>  
         </div>

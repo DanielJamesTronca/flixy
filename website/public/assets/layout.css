@@ -16,11 +16,12 @@ body {
 }
 
 #content-container {
-  display: flex;
   flex-basis: 50%;
   flex-grow: 2;
   flex-shrink: 1;
-  flex-direction: row;
+  /* aggiunte le due proprietà sotto per problema con inclusione feed in layout */
+  display: flex; 
+  flex-direction: column;  
 }
 
 #aside1 {
@@ -29,6 +30,10 @@ body {
   flex-shrink: 1;
 }
 #content {
+  /* aggiunte le prime tre proprietà sotto per problema con inclusione feed in layout */
+  display:flex; 
+  flex-direction: column;
+  margin: 2em 6em;
   flex-basis: 0;
   flex-grow: 10;
   flex-shrink: 1;
@@ -331,6 +336,13 @@ body {
   #link-container {
     margin-left: 0;
   }
+    /* aggiunte le proprietà sotto per problema con inclusione feed in layout */
+  #content{
+    margin-top: 8em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 2em;
+  }
 }
 
 
@@ -356,6 +368,14 @@ body {
     display: inline-block;
     vertical-align: middle;
     height: 100%;   
+  }
+ 
+   /* aggiunte le proprietà sotto per problema con inclusione feed in layout */
+  #content{
+    margin-top: 8em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 2em;
   }
 
 }
