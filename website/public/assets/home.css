@@ -87,22 +87,63 @@ body {
 }
 
 
-#dropdown-select label {
+#dropdown-select a {
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
 }
 
+.year-dropdown {
+    position: absolute;
+    color: white;
+    margin-left: 2.5em;
+    margin-top: 1em;
+    list-style-type: none;
+    opacity: 100%;
+    transition: opacity .2s ease-in-out;
+    display: block;
+}
 
-select::-ms-expand {	display: none; }
+.year-dropdown li {
+    margin-left: -3em;
+    padding: 0.5em;
+    transition: background .2s ease-in-out;
+    border-radius: .3em;
+}
 
-#dropdown-select select {
-    border: none;
-    height: 100%;
-    -webkit-appearance: none;
-    appearance: none;
-    background:#191919;
+.year-dropdown li:hover {
+    background: red;
+}
+
+.genre-dropdown li {
+    margin-left: -1.5em;
+    padding: 0.5em;
+    transition: background .2s ease-in-out;
+    border-radius: .3em;
+}
+
+.genre-dropdown li:hover {
+    background: red;
+}
+
+.genre-dropdown {
+    position: absolute;
+    color: white;
+    margin-left: 3.2em;
+    margin-top: 1em;
+    list-style-type: none;
+    opacity: 100%;
+    transition: opacity .2s ease-in-out;
+    display: block;
+}
+
+.hidden {
+    opacity: 0%;
+}
+
+.visible {
+    opacity: 100%;
 }
 
 .menu-divider {
