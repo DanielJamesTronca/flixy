@@ -1,5 +1,6 @@
 
 // variables to use menu using keyboard
+
 const SPACEBAR_KEY_CODE = [0,32];
 const ENTER_KEY_CODE = 13;
 const DOWN_ARROW_KEY_CODE = 40;

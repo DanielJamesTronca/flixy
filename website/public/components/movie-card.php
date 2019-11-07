@@ -6,13 +6,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="title" content="Flixy - Homepage" />
   <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
-  <link rel="stylesheet" type="text/css" href="./assets/movie-card.css"/>
+  <link rel="stylesheet" type="text/css" href="../assets/movie-card.css"/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
-  <script src="./scripts/scripts.js" type="text/javascript"></script>
+  <script src="../scripts/movie-card.js" type="text/javascript"></script>
 </head>
   <body>
     <div class="movie-entry">
-      <img id="copertina" class="border-radius-medium copertina-size" src="./assets/images/test-image.jpg" alt="copertina"/>
+      <img id="copertina" class="border-radius-medium copertina-size" src="../assets/images/covers/malef.jpg" alt="copertina"/>
       <h3 id="title" class="text-color-white margin-left-small font-big">Title</h3>
       <i id="link-to-book" class="fas fa-chevron-right text-color-white"></i>
       <div class="rating margin-left-medium-small text-color-white">
