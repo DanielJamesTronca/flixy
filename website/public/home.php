@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+include_once("../src/db_manager.php");
+include_once("../src/models/models.php");
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 <head>
@@ -49,5 +57,7 @@
       </div>
   </body>
 </html>
+
+<!-- This page is validated -->
 
 <!-- This page is validated -->

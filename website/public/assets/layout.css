@@ -208,6 +208,12 @@ body {
   background: transparent;
   border: none;
   cursor: pointer;
+  color:white;
+}
+
+#search-icon {
+  color: white;
+  width: 27.19px;
 }
   
   

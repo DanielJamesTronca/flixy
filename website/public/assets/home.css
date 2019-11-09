@@ -75,67 +75,20 @@ body {
     align-items: center;
 }
 
-#dropdown-select i {
+#genre-select {
+    background: transparent;
+    border: none;
     color: white;
-    font-size: 0.938em;
-    transition: color .2s ease-in;
-    cursor: pointer;
 }
 
-#dropdown-select i:hover {
-    color: red;
+option {
+    background-color: black;
 }
 
-
-#dropdown-select a {
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
-}
-
-.year-dropdown {
-    position: absolute;
+#year-select {
+    background: transparent;
+    border: none;
     color: white;
-    margin-left: 2.5em;
-    margin-top: 1em;
-    list-style-type: none;
-    opacity: 100%;
-    transition: opacity .2s ease-in-out;
-    display: block;
-}
-
-.year-dropdown li {
-    margin-left: -3em;
-    padding: 0.5em;
-    transition: background .2s ease-in-out;
-    border-radius: .3em;
-}
-
-.year-dropdown li:hover {
-    background: red;
-}
-
-.genre-dropdown li {
-    margin-left: -1.5em;
-    padding: 0.5em;
-    transition: background .2s ease-in-out;
-    border-radius: .3em;
-}
-
-.genre-dropdown li:hover {
-    background: red;
-}
-
-.genre-dropdown {
-    position: absolute;
-    color: white;
-    margin-left: 3.2em;
-    margin-top: 1em;
-    list-style-type: none;
-    opacity: 100%;
-    transition: opacity .2s ease-in-out;
-    display: block;
 }
 
 .hidden {
@@ -145,6 +98,7 @@ body {
 .visible {
     opacity: 100%;
 }
+
 
 .menu-divider {
     border-left: 0.063em solid white; 
