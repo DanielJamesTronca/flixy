@@ -5,52 +5,51 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="./assets/layout.css"/>
 <link rel="stylesheet" type="text/css" href="./assets/rules.css"/>
 <link rel="stylesheet" type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body class="grey-bg text-align-center">
-    <div id="outer-container">
-        <header id="header-container" class="border-radius-small black-bg">
-            <div id="title-container">
+<body class="layout-body primary-bg text-align-center document-font flex-container flex-content-center flex-wrap flex-items-center">
+    <div id="outer-container" class="flex-container flex-content-center">
+        <header id="header-container" class="flex-container flex-items-center flex-content-start flex-wrap border-radius-0-3 secondary-bg margin-top-1 margin-left-1 margin-right-1">
+            <div id="title-container" class="full-height flex-container flex-items-center flex-align-items-center flex-content-center flex-grow-shrink">
                 <img id="logo" class="logo-size" src="./assets/images/icons/logo.png" alt="Flixy Logo"/>
-                <h1 id="title" class="font-big text-color-red font-weight-bold margin-left-small">Flixy</h1>
+                <h1 id="title" class="font-size-1-7 highlight-color font-weight-bold margin-left-0-5">Flixy</h1>
             </div>
-            <div id="nav-container">
-                <ul id="link-container" class="margin-left-bigger">
-                    <li class="link"><a href="#">Trending movies & shows</a></li>
-                    <li class="link"><a href="#">Your favourites</a></li>
-                    <li class="link"><a href="#">Feed</a></li>               
+            <div id="nav-container" class="full-height flex-grow-2 flex-container flex-align-items-center flex-content-center">
+                <ul id="link-container" class="margin-left-2 flex-container flex-align-items-center font-weight-bold font-size-0-938 border-radius-0-3">
+                    <li class="link margin-left-0-35 margin-right-0-35 padding-0-5 border-radius-0-3"><a href="#">Trending movies & shows</a></li>
+                    <li class="link margin-left-0-35 margin-right-0-35 padding-0-5 border-radius-0-3"><a href="#">Your favourites</a></li>
+                    <li class="link margin-left-0-35 margin-right-0-35 padding-0-5 border-radius-0-3"><a href="#">Feed</a></li>               
                 </ul>
             </div>
-            <div id="search-container" class="primary-color">
-                <form id="search-bar" class="black-bg" action="/action_page.php">
-                    <a id="search-button" class=" font-big text-color-white" type="submit">
-                        <i id="search-icon" class="margin-left-medium fas fa-search "></i>
+            <div id="search-container" class="primary-color flex-container flex-grow-shrink flex-align-items-center flex-content-center">
+                <form id="search-bar" class="secondary-bg" action="/action_page.php">
+                    <a id="search-button" class=" font-size-1-7 primary-color" type="submit">
+                        <i id="search-icon" class="margin-left-1 fas fa-search "></i>
                     </a>
-                    <input  id="text-input" class="transparent-bg margin-left-medium font-big text-color-white" type="text" placeholder="Search.." name="search">
+                    <input  id="text-input" class="transparent-bg margin-left-1 font-size-1-7 primary-color" type="text" placeholder="Search.." name="search">
                 </form>
             </div>
-            <div id="profile-container">
-                <ul id="profile-links">
-                    <li><a id="log-in" class="font-medium font-weight-normal" href="#">Log In</a></li>
-                    <li><a id="sign-up" class="font-small font-weight-light" href="#">Sign Up</a></li>
+            <div id="profile-container" class="flex-container flex-align-items-center flex-grow-shrink">
+                <ul id="profile-links" class="text-align-right">
+                    <li><a id="log-in" class="font-size-0-938 font-weight-normal" href="#">Log In</a></li>
+                    <li><a id="sign-up" class="font-size-0-75 font-weight-light" href="#">Sign Up</a></li>
                 </ul>
-                <img id="profile-pic" class="profile-pic-size margin-left-medium" src="./assets/images/avatars/default.png" />
+                <img id="profile-pic" class="profile-pic-size margin-left-1" src="./assets/images/avatars/default.png" />
             </div>
         </header>
     </div>
-    <div id="content-container">
-        <div id="aside1"></div>
-        <div id="content">
+    <div id="content-container" class="flex-container ">
+        <div id="aside1" class="flex-grow-shrink"></div>
+        <div id="content" class="flex-grow-bigger">
         </div>
-        <div id="aside3"></div>
+        <div id="aside3" class="flex-grow-shrink"></div>
     </div>
  
     
-    <footer class="footer ">
-        <div class="text-align-center font-medium font-weight-light text-color-white">
+    <footer class="footer flex-container flex-align-items-center flex-content-center">
+        <div class="text-align-center font-size-0-938 font-weight-light primary-color">
             <p>Flixy © Un prodotto UNIPD. 2019. All rights reserved.</p>
         </div>
     </footer>

@@ -36,7 +36,7 @@
       <span id="num-votes" class="text-align-center font-medium-small text-color-white"> </span>
       <div id="thumbs" class="text-align-center text-color-white font-huge">
         <a><i id="thumbs-up" class="far fa-thumbs-up"></i></a>
-        <a></a><i id="thumbs-down" class="far fa-thumbs-down"></i></a>
+        <a><i id="thumbs-down" class="far fa-thumbs-down"></i></a>
       </div>
       <div id="num-up-down" class="text-align-center text-color-white font-medium-small">
         <span id="num-up">346</span>
