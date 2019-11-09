@@ -33,7 +33,7 @@ body {
   /* aggiunte le prime tre proprietà sotto per problema con inclusione feed in layout */
   display:flex; 
   flex-direction: column;
-  margin: 2em 6em;
+  padding: 2em 10em;
   flex-basis: 0;
   flex-grow: 10;
   flex-shrink: 1;

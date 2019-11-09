@@ -67,7 +67,8 @@
 .timeline-container {
     padding: 1em 3em;
     position: relative;
-    width: 80%;
+    width: 90%;
+    display: flex;
 }
   
   /* The circles on the timeline */
@@ -95,12 +96,22 @@
 }
   
 .timeline-date{    
-      width:12%;
-      padding-right:1.5em;
+    width:12%;
+    padding-right:1.5em;
 }
   
 .timeline-text{
-      width:100%;   
+    width:100%;   
+}
+
+.timeline-image{
+    width: 7em;
+    height: 10em;
+}
+
+.timeline-video{
+    width: 12.2em;
+    height: 6.25em;
 }
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
