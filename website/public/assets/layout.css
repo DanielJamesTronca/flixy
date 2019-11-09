@@ -19,7 +19,7 @@ body {
   flex-basis: 50%;
   flex-grow: 2;
   flex-shrink: 1;
-  /* aggiunte le due proprietà sotto per problema con inclusione feed in layout */
+  /* aggiunte le due proprietà sotto per problema con inclusione feed in layout */ 
   display: flex; 
   flex-direction: column;  
 }
