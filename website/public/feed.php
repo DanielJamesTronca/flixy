@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
 <head>
-<base target="_self" href="http://localhost:8080/flixy/website/public/">  <!--da cambiare!!!! -->
+<base target="_self" href="http://localhost/flixy/website/public/">  <!--da cambiare!!!! -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <!-- per ottimizzazione visualizzazione smartphone -->
 <link rel="stylesheet" media="screen" type="text/css" href="assets/rules.css"/>
@@ -18,7 +18,7 @@
         <h1 class="text-align-left padding-left-1-5 padding-top-1-5 font-weight-normal"> Your Feed </h1>  
         <div id="container-next-release" class="margin-top-1-5 margin-left-2-5">
             <div class="next-release">
-                <div>
+                <div class="next-release-image-container">
                     <img src="assets/images/covers/casa.jpg" class="cover"/>
                 </div>
                 <div class="next-release-text-area padding-1 text-align-center"> 
@@ -29,7 +29,7 @@
                 </div>    
             </div>
             <div class="next-release">
-                <div>
+                <div class="next-release-image-container">
                     <img src="assets/images/covers/malef.jpg" class="cover"/>
                 </div>
                 <div class="next-release-text-area padding-1 text-align-center">
@@ -40,7 +40,7 @@
                 </div>   
             </div>
             <div class="next-release">
-               <div>
+               <div class="next-release-image-container">
                     <img src="assets/images/covers/casa.jpg" class="cover"/>
                 </div>
                 <div class="next-release-text-area padding-1 text-align-center">
