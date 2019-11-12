@@ -4,8 +4,6 @@ session_start();
 include_once("../src/db_manager.php");
 include_once("../src/models/models.php");
 ?>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 <head>
@@ -13,24 +11,24 @@ include_once("../src/models/models.php");
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="title" content="Flixy - Homepage" />
   <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
-  <link rel="stylesheet" type="text/css" href="./assets/home.css"/>
   <link rel="stylesheet" type="text/css" href="./assets/rules.css"/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
 </head>
-  <body class="document-font">
-      <div id="filters-menu">
-
-        <ul id="general-filters">
-          <li class="filter filters-text medium-margin-left">Latest</li>
-          <li class="filter filters-text medium-margin-left">Most votes</li>
+  <body class="document-font primary-bg layout-body">
+      <div id="filters-menu" class="full-width flex-container flex-content-center flex-align-items-center flex-wrap">
+        <ul id="general-filters" class="full-height text-align-center primary-color font-size-0-938 font-weight-bold flex-container flex-content-center flex-items-center flex-align-items-center">
+          <li class="filter border-radius-0-3 margin-left-1 padding-left-1-5 padding-right-1-5 padding-top-0-4 padding-bottom-0-4">
+            Latest
+          </li>
+          <li class="filter border-radius-0-3 margin-left-1 padding-left-1-5 padding-right-1-5 padding-top-0-4 padding-bottom-0-4">
+            Most votes
+          </li>
         </ul>
-
         <div class="menu-divider"></div>
-
-        <div id="dropdown-select" class="primary-color">
+        <div id="dropdown-select" class="full-height primary-color text-align-center flex-container flex-content-start flex-items-center flex-align-items-center">
           <div id="year-filter" class="margin-left-1">
             <label id="year-label" for="year-select" class="primary-color margin-left-1">Year</label>
-            <select id="year-select" class="margin-left-0-5">
+            <select id="year-select" class="custom-select margin-left-0-5 primary-color font-size-0-938 font-weight-bold">
               <option>op1</option>
               <option>op1</option>
               <option>op1</option>
@@ -40,7 +38,7 @@ include_once("../src/models/models.php");
           </div>
           <div id="genre-filter">  
             <label id="genre-label" for="genre-select" class="margin-left-1">Genre</label>
-            <select id="genre-select" class="margin-left-0-5">
+            <select id="genre-select" class="custom-select margin-left-0-5 primary-color font-size-0-938 font-weight-bold">
                 <option>op1</option>
                 <option>op1</option>
                 <option>op1</option>
@@ -49,15 +47,10 @@ include_once("../src/models/models.php");
             </select>
           </div>  
         </div>
-
-
-
-      <div id="movies-container">
+      <div id="movies-container" class="full-size flex-container flex-content-center flex-items-center flex-wrap">
       </div>
       </div>
   </body>
 </html>
-
-<!-- This page is validated -->
 
 <!-- This page is validated -->

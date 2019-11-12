@@ -619,6 +619,10 @@ option {
   #title-container {
     order: 0;
   }
+
+  #title {
+      text-decoration: none;
+  }
     
   #nav-container {
     order: 1;
@@ -658,16 +662,22 @@ option {
   
   .link {
     display: inline-block;
-    transition: background .2s ease-in;
+    
   }
-  
-  .link:hover {
-    background: red;
-  }
-  
-  #link-container a {
+
+  #link-container button {
     text-decoration: none;
     color: white;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    padding: 1em;
+    border-radius: 0.3em;
+    transition: background .2s ease-in;
+  }
+
+  #link-container button:hover {
+      background: red;
   }
   
   #profile-links {
