@@ -1,6 +1,6 @@
+/*
 window.onload = function() {
     var percentage = 0;
-    var activeStars = this.document.getElementsByClassName("stars-active");
     var thumbsUp = parseInt(this.document.getElementById('num-up').textContent, 10);
     var thumbsDown = parseInt(this.document.getElementById('num-down').textContent, 10);
     var total = thumbsUp + thumbsDown;
@@ -10,3 +10,5 @@ window.onload = function() {
     document.getElementById("activeStars").style.width = percentage + "%";
     this.document.getElementById("num-votes").innerHTML = total + " voti totali"; 
 }
+
+*/

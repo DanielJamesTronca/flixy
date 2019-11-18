@@ -1,3 +1,26 @@
+<?php
+include_once("../src/db_manager.php");
+include_once("../src/models/models.php");
+include_once("../src/session_manager.php");
+
+$userLogged = false;
+
+$logOut = SessionManager::logout();
+$registrazionePage = '"./registrazione.php"';
+$logOutAction = '$logOut';
+$signup = '<a id="sign-up" class="font-size-0-75 font-weight-light" href="./registrazione.php">';
+$logout = str_replace($registrazionePage, $logOutAction, $signup);
+
+
+if(SessionManager::isUserLogged()) {
+    $username = SessionManager::getUsername();
+    $userLogged = true;
+  }
+
+
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
@@ -33,8 +56,28 @@
             </div>
             <div id="profile-container" class="flex-container flex-align-items-center flex-grow-shrink">
                 <ul id="profile-links" class="text-align-right">
-                    <li><a id="log-in" class="font-size-0-938 font-weight-normal" href="#">Log In</a></li>
-                    <li><a id="sign-up" class="font-size-0-75 font-weight-light" href="#">Sign Up</a></li>
+                    <li>
+
+
+                        <a id="log-in" class="font-size-0-938 font-weight-normal" href="./login.php">
+                            <?php
+                                if($userLogged) {
+                                    echo "$username";
+                                } else {
+                                    echo "Log In";
+                                }
+                            ?>
+                        </a>
+                    </li>
+                    <li>
+                        <?php
+                            if($userLogged) {
+                                echo $logout.'Log out'.'</a>';
+                            } else {
+                                echo $signup.'Sign up'.'</a>';
+                            }
+                        ?>
+                    </li>
                 </ul>
                 <img id="profile-pic" class="profile-pic-size margin-left-1" src="./assets/images/avatars/default.png" />
             </div>
@@ -43,6 +86,9 @@
     <div id="content-container" class="flex-container ">
         <div id="aside1" class="flex-grow-shrink"></div>
         <div id="content" class="flex-grow-bigger">
+            <?php
+                include_once("./home.php");
+            ?>
         </div>
         <div id="aside3" class="flex-grow-shrink"></div>
     </div>

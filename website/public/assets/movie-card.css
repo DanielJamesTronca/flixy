@@ -169,39 +169,36 @@
     width: auto;
 }
 
-    .score {
-    display: block;
-    overflow: hidden;
-    }
-  
+.score {
+  display: flex;
+  overflow: hidden;
+  justify-content: space-between;
+  align-items:center;
+  width: 100%;
+
+}
+
 
   
 .stars-active {
     color: #FFBC0B;
-    position: relative;
     z-index: 10;
-    display: inline-block;
     overflow: hidden;
-    white-space: nowrap;
     text-align: left;
+
   }
   
-.stars-inactive {
-    color: grey;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-
-
 .rating {
     display: flex;
-    width: 100%;
-    justify-content: flex-start;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
     overflow: hidden;
     height: 2em;
     position: relative;
+    flex-direction: row;
+    margin-left: .6em;
+    margin-top: 1em;
   }
 
 
@@ -220,7 +217,7 @@
 
 .movie-entry {
     width: 15.063em;
-    height: 33.000em;
+    height: 35.000em;
     background: black;
     margin-top: 1em;
     margin-bottom: 1em;
@@ -235,10 +232,8 @@
     height: 22.320em;
 }
 
-
-.movie-entry #link-to-book {
+#link-to-book {
     font-size: 1.5em;
-    margin-left: 6.0em;
     transition: color .2s ease-in;
     cursor: pointer;
 }
@@ -268,10 +263,10 @@
     transform: scale(-1, 1); /* Needed to rotate other thumb */
 }
 
-
-
 #title {
-    float:left;
+    width: 100%;
+    height: 2em;
+    text-align: center;
 }
 .movie-entry #num-votes {
     font-weight: bold;

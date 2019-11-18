@@ -5,33 +5,34 @@
   <title>movie-card</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="title" content="Flixy - Homepage" />
+  <base target="_self" href="http://localhost/flixy/website/public/components">
   <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
-  <link rel="stylesheet" type="text/css" href="../assets/movie-card.css"/>
+<!-- <link rel="stylesheet" type="text/css" href="./assets/rules.css"/> -->
+  <link rel="stylesheet" type="text/css" href="./assets/movie-card.css"/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
-  <script src="../scripts/movie-card.js" type="text/javascript"></script>
+<!--<script src="./scripts/movie-card.js" type="text/javascript"></script> -->
 </head>
   <body>
     <div class="movie-entry">
-      <img id="copertina" class="border-radius-medium copertina-size" src="../assets/images/covers/malef.jpg" alt="copertina"/>
-      <h3 id="title" class="text-color-white margin-left-small font-big">Title</h3>
-      <i id="link-to-book" class="fas fa-chevron-right text-color-white"></i>
-      <div class="rating margin-left-medium-small text-color-white">
-        <div class="score" class="font-medium-normal">
+      <?php 
+        echo '<img id="copertina" class="border-radius-medium copertina-size" src=".'.$url.'" alt="copertina"/>';
+      ?>
+
+      <h3 id="title" class="text-color-white font-big">
+        <?php
+          echo $title; 
+        ?>
+      </h3>
+     
+      <div class="font-medium-normal rating margin-left-medium-small text-color-white">
           <span id="activeStars" class="stars-active">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
+            <?php
+                for($i=0;$i<$stars;$i++) {
+                  echo '<i class="fa fa-star"></i>';
+                }
+            ?>
           </span>
-          <span class="stars-inactive">
-            <i class="fa fa-star-o"></i>
-            <i class="fa fa-star-o"></i>
-            <i class="fa fa-star-o"></i>
-            <i class="fa fa-star-o"></i>
-            <i class="fa fa-star-o"></i>
-          </span>
-        </div>
+          <i id="link-to-book" class="fas fa-chevron-right text-color-white"></i>
       </div>
       <span id="num-votes" class="text-align-center font-medium-small text-color-white"> </span>
       <div id="thumbs" class="text-align-center text-color-white font-huge">
