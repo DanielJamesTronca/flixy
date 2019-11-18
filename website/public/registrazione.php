@@ -146,40 +146,40 @@ function userRegisteredCorrectly()
 
       <form action="registrazione.php" method="post" id="regForm" onsubmit="return validateFormRegistration()">
           <div class="group">      
-            <input type="text" name="username" id="username" value="<?php echo $username;?>"/>
-            <span class="highlight"></span>
-            <span class="bar"></span>
             <label>Username</label>
-          </div>
-          <div class="group">      
-            <input type="text" name="name" id="name" value="<?php echo $name;?>"/>
+            <input type="text" name="username" id="username" placeholder="Username" value="<?php echo $username;?>"/>
             <span class="highlight"></span>
             <span class="bar"></span>
-            <label>Nome</label>
           </div>
-          <div class="group">      
-            <input type="text" name="surname" id="surname" value="<?php echo $surname;?>"/>
+          <div class="group">  
+            <label>Nome</label>    
+            <input type="text" name="name" id="name" placeholder="Nome"value="<?php echo $name;?>"/>
             <span class="highlight"></span>
             <span class="bar"></span>
-            <label>Cognome</label>
           </div>
-          <div class="group">      
-            <input type="text" name="email" id="email" value="<?php echo $email;?>"/>
+          <div class="group">     
+            <label>Cognome</label> 
+            <input type="text" name="surname" id="surname" placeholder="Cognome" value="<?php echo $surname;?>"/>
             <span class="highlight"></span>
             <span class="bar"></span>
+          </div>
+          <div class="group">      
             <label>Email</label>
-          </div>
-          <div class="group">      
-            <input type="password" name="password" id="password"/>
+            <input type="text" name="email" id="email" placeholder="Email" value="<?php echo $email;?>"/>
             <span class="highlight"></span>
             <span class="bar"></span>
+          </div>
+          <div class="group">      
             <label>Password</label>
-          </div>
-          <div class="group">      
-            <input type="password" name="confirmationPassword" id="confirmationPassword"/>
+            <input type="password" name="password" id="password" placeholder="Password"/>
             <span class="highlight"></span>
             <span class="bar"></span>
+          </div>
+          <div class="group">      
             <label>Ripeti password</label>
+            <input type="password" name="confirmationPassword" id="confirmationPassword" placeholder="Ripeti Password"/>
+            <span class="highlight"></span>
+            <span class="bar"></span>
           </div>
           
           <div class="content-center">

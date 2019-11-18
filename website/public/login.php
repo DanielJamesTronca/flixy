@@ -100,22 +100,22 @@ function userLoggedCorrectly()
     </div>
 
 
-    <div class="padding-top-medium">
+    <div class="padding-top-medium" xml:lang="en-GB" lang="en-GB">
 
         <form action="login.php" method="post" id="regForm" onsubmit="return validateFormLogin()">
-            <div class="group">      
-              <input type="text" name="username" id="username" value="<?php echo $username;?>"/>
-              <span class="highlight"></span>
-              <span class="bar"></span>
+            <div class="group">     
               <label>Username</label>
+              <input type="text" name="username" id="username" placeholder="Username" value="<?php echo $username;?>"/>
+              <span class="highlight"></span>
+              <span class="bar"></span> 
             </div>
 
 
             <div class="group">      
-              <input type="password" name="password" id="password"/>
+              <label>Password</label>
+              <input type="password" name="password" id="password" placeholder="Password"/>
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label>Password</label>
             </div>
 
             

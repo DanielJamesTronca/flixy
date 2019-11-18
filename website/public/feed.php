@@ -19,10 +19,10 @@
         <div id="container-next-release" class="margin-left-2-5">
             <div class="next-release">
                 <div class="next-release-image-container">
-                    <img src="assets/images/covers/casa.jpg" class="cover"/>
+                    <img src="assets/images/covers/casa.jpg" class="cover" alt=""/>
                 </div>
                 <div class="next-release-text-area padding-1 text-align-center"> 
-                    <h4>La casa de papel</h4>
+                    <h4>La Casa di Carta</h4>
                     <h6>Stagione 3</h6>
                     <p class="next-release-remaining-days"> 22 </p>
                     <p> giorni rimanenti </p>
@@ -30,10 +30,10 @@
             </div>
             <div class="next-release">
                 <div class="next-release-image-container">
-                    <img src="assets/images/covers/malef.jpg" class="cover"/>
+                    <img src="assets/images/covers/malef.jpg" class="cover" alt=""/>
                 </div>
                 <div class="next-release-text-area padding-1 text-align-center">
-                    <h4>Maleficent</h4>
+                    <h4 xml:lang="en-GB" lang="en-GB">Maleficent</h4>
                     <h6>Stagione 2</h6>
                     <p class="next-release-remaining-days"> 8 </p>
                     <p> giorni rimanenti </p>
@@ -41,10 +41,10 @@
             </div>
             <div class="next-release">
                <div class="next-release-image-container">
-                    <img src="assets/images/covers/casa.jpg" class="cover"/>
+                    <img src="assets/images/covers/casa.jpg" class="cover" alt=""/>
                 </div>
                 <div class="next-release-text-area padding-1 text-align-center">
-                    <h4>La casa de papel</h4>
+                    <h4>La Casa di Carta</h4>
                     <h6>Stagione 4</h6>
                     <p class="next-release-remaining-days"> 73 </p>
                     <p> giorni rimanenti </p>
@@ -58,13 +58,13 @@
       	                <p>12 Agosto</p>
                     </div>
                     <div class="timeline-text">
-                        <h3> Stranger Things </h3>
+                        <h3 xml:lang="en-GB" lang="en-GB"> Stranger Things </h3>
                         <p> Rilasciato episodio 3x04 </p>
                         <p class="padding-top-0-5">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
                     </div>
                 </div>
                 <div class="content-justify-right padding-top-1 padding-left-2">
-                        <img src="assets/images/covers/casa.jpg" class="timeline-image"></img>
+                        <img src="assets/images/covers/casa.jpg" class="timeline-image" alt=""></img>
                 </div>
             </div>
             <div class="timeline-container">
@@ -73,13 +73,13 @@
       	                <p>12 Agosto</p>
                     </div>
                     <div class="timeline-text">
-                        <h3> Glass </h3>
+                        <h3 xml:lang="en-GB" lang="en-GB"> Glass </h3>
                         <p> Rilasciato episodio 3x04 </p>
                         <p class="padding-top-0-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar blandit purus vel bibendum. Nunc efficitur lorem euismod tincidunt eleifend. Quisque tristique, mi et vestibulum auctor, massa enim sagittis odio, non lacinia dolor nisi ut diam. Donec mauris magna, malesuada sed malesuada ut, aliquam vel ipsum. Fusce semper risus arcu, quis fermentum erat iaculis eget. Morbi viverra ipsum at porttitor faucibus. Cras blandit libero dapibus ultricies porttitor. mi et vestibulum auctor, massa enim sagittis odio, non lacinia dolor nisi ut diam. Donec mauris magna, malesuada sed malesuada ut,  mi et vestibulum auctor, massa enim sagittis odio, non lacinia dolor nisi ut diam. Donec mauris magna, malesuada sed malesuada ut,  mi et vestibulum auctor, massa enim sagittis odio, non lacinia dolor nisi ut diam. Donec mauris magna, malesuada sed malesuada ut.</p>
                     </div>
                 </div>
                 <div class="content-justify-right padding-top-1 padding-left-2">
-                        <img src="assets/images/covers/malef.jpg" class="timeline-image"></img>
+                        <img src="assets/images/covers/malef.jpg" class="timeline-image" alt=""></img>
                 </div>
             </div>  
             <div class="timeline-container">
@@ -88,13 +88,13 @@
       	                <p>12 Agosto</p>
                     </div>
                     <div class="timeline-text">
-                        <h3> Stranger Things </h3>
+                        <h3 xml:lang="en-GB" lang="en-GB"> Stranger Things </h3>
                         <p> Rilasciato episodio 3x04 </p>
                         <p class="padding-top-0-5">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
                     </div>
                 </div>
                 <div class="content-justify-right padding-top-1 padding-left-3">
-                    <object class="timeline-video" data="https://www.youtube.com/v/ZFlPFCd-K5k"> <!-- va aggiunto /v/ dopo .com e poi ID VIDEO -->
+                    <object class="timeline-video" data="https://www.youtube.com/v/ZFlPFCd-K5k" alt=""> <!-- va aggiunto /v/ dopo .com e poi ID VIDEO -->
                     </object>
                 </div>
             </div>  
@@ -104,13 +104,13 @@
       	                <p>12 Agosto</p>
                     </div>
                     <div class="timeline-text">
-                        <h3> Stranger Things </h3>
+                        <h3 xml:lang="en-GB" lang="en-GB"> Stranger Things </h3>
                         <p> Rilasciato episodio 3x04 </p>
                         <p class="padding-top-0-5">Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
                     </div>
                 </div>
                 <div class="content-justify-right padding-top-1 padding-left-2">
-                    <img src="assets/images/covers/casa.jpg" class="timeline-image"></img>
+                    <img src="assets/images/covers/casa.jpg" class="timeline-image" alt=""></img>
                 </div>
             </div>   
         </div>  
