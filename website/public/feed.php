@@ -15,8 +15,8 @@
 
 <body>
     <div id="feed-content" class="secondary-bg">
-        <h1 class="text-align-left padding-left-1-5 padding-top-1-5 font-weight-normal"> Your Feed </h1>  
-        <div id="container-next-release" class="margin-top-1-5 margin-left-2-5">
+        <h1 class="text-align-left padding-left-1-5 padding-right-1-5 padding-top-1-5 font-weight-normal"> Your Feed </h1>  
+        <div id="container-next-release" class="margin-left-2-5">
             <div class="next-release">
                 <div class="next-release-image-container">
                     <img src="assets/images/covers/casa.jpg" class="cover"/>
