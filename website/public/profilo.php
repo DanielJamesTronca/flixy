@@ -87,16 +87,12 @@ function userRegisteredCorrectly()
 
 // ----------------------------- FAVORUITES  ----------------------------- 
 
-function getFavourites($userID){
-  $man = DBManager::getInstance();
-  if ($man->login($username, $password)) // se loggato
-  {
-  
-  }
 
 
+$man = DBManager::getInstance();
+$favourites=$man->getUserFavourites(1);
 
-}
+
 
 
 ?>
@@ -175,9 +171,14 @@ function getFavourites($userID){
   </div>
     <div class="main">
       <h2>Your favourites</h2>
-    
-    
-      <p>Some text..</p>
+        <?php
+            for($x=0; $x<count($favourite); $x++){
+            $url = $favourite[$x]->cover_url;
+            $nome = $favourite[$x]->name;
+            $genere =$favourite[$x]->genre;
+            include('"./components/favourite_card.php"');
+        }
+        ?>
     </div>
 </div>
 

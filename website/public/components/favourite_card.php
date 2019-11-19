@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 <head>
@@ -22,11 +20,12 @@
     <div class="movie-entry">
 
       <div class="movie">
+      
+      <?php 
+        echo '<img id="copertina" class="border-radius-medium copertina-size" src=".'.$url.'" alt="copertina"/>';
+      ?>
 
-      <?php
-        echo '<img src="../images/' . $favourite['immagine'] . '" alt="immagine del ' . $favourite['nome'] . '"/>';
-        echo '<h1> '.$title.' </h1>';
-      ?>    
+      
 
 
 
@@ -34,7 +33,13 @@
 
       <div id="genere" class="text-color-white margin-top-small">
             <h1 id="text" class="margin-left-small font-medium-normal">Title</h1> 
+            <?php
+              echo $nome; 
+            ?>
             <h2 id="text" class="margin-left-medium-small font-small">Genere</h2>
+            <?php
+              echo $genere; 
+            ?>
       </div>
       
 
