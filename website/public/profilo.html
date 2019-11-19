@@ -6,58 +6,60 @@
   <title>Flixy - Profilo</title>
   <meta name="title" content="Flixy - Profilo" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel="stylesheet" type="text/css" href="./prova.css"/>
+  <link rel="stylesheet" type="text/css" href="./profilo.css"/>
 </head>
 
 
 
 <body>
 <!-- The flexible grid (content) -->
-<div class="row">
-  <div class="side">
+<div id="row" class="flex-container flex-nowrap">
+  <div id="side" class="secondary-bg flex-container flex-grow-shrink flex-content-center flex-align-items-center padding-2 padding-left-4-375">
     
         <!-- AVATAR -->
         <div id="avatar"></div>
-          <a href="registrazione.html" class="link"> Cambia immagine profilo </a> 
+          <a href="registrazione.html" id="link" class="margin-top-2 primary-color document-font font-size-0-938"> Cambia immagine profilo </a> 
        
         <!-- CAMPI -->
         <form action="">
-            <div class="group">      
-              <input type="text"/>
+            <div id="group" class="margin-top-3 margin-bottom-2-8">      
+              <input type="text" class="primary-color secondary-bg font-size-1-25 padding-bottomo-0-1" />
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label>Nome</label>
+              <label class="font-size-1-125 font-weight-normal ">Nome</label>
             </div>
-            <div class="group">      
-              <input type="text"/>
+            <div id="group" class="margin-top-3 margin-bottom-2-8">      
+              <input type="text" class="primary-color secondary-bg font-size-1-25 padding-bottomo-0-1" />
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label>Cognome</label>
+              <label class="font-size-1-125 font-weight-normal ">Cognome</label>
             </div>
-            <div class="group">      
-              <input type="text"/>
+            <div id="group" class="margin-top-3 margin-bottom-2-8">       
+              <input type="text" class="primary-color secondary-bg font-size-1-25 padding-bottomo-0-1" />
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label>Email</label>
+              <label class="font-size-1-125 font-weight-normal ">Email</label>
             </div>
-            <div class="group">      
-              <input type="text"/>
+            <div id="group" class="margin-top-3 margin-bottom-2-8">    
+              <input type="text" class="primary-color secondary-bg font-size-1-25 padding-bottomo-0-1" />
               <span class="highlight"></span>
               <span class="bar"></span>
-              <label>Username</label>
+              <label class="font-size-1-125 font-weight-normal ">Username</label>
             </div>
         </form>
 
         <!-- AGGIORNA PROFILO -->
-    <div class="content-center">
-      <input type="submit" value="Aggiorna profilo" class="button primary-color-gradient-button"/>
+    <div id="content-button" class="flex-container flex-content-center">
+      <input type="submit" value="Aggiorna profilo" class="button primary-color-gradient-button document-font primary-color font-weight-bold"/>
     </div>
     
 
 
   </div>
-    <div class="main">
-      <h2>Your favourites</h2>
+    <div id="main" class="secondary-bg flex-container flex-grow-2 padding-2">
+      <div id="tittle" class="primary-color document-font font-weight-normal font-size-1-1 ">
+        <h1>Your favourites</h1>
+      </div>
     
     </div>
 </div>
