@@ -4,10 +4,9 @@ include_once("../src/models/models.php");
 include_once("../src/session_manager.php");
 
 $dbMan = DBManager::getInstance();
-$movieList = $dbMan->query("SELECT * FROM Media");
 
 $yearList = $dbMan->query("SELECT DISTINCT YEAR(air_date) as anno FROM Media");
-$genreList = $dbMan->query("SELECT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");
+$genreList = $dbMan->query("SELECT DISTINCT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");
 
 $varGenre = "All";
 $varYear = "All";
@@ -46,6 +45,28 @@ function filterList($year, $genre) {
   return $result;
 }
 
+function fillYearSelect($yearList) {
+  for ($x = 0; $x < count($yearList); $x++) { 
+    echo '<option value="'.$yearList[$x]->anno.'">'.$yearList[$x]->anno.'</option>';
+  }
+}
+
+function fillGenreSelect($genreList) {
+  for ($x = 0; $x < count($genreList); $x++) { 
+    echo '<option value="'.$genreList[$x]->name.'">'.$genreList[$x]->name.'</option>';
+  }
+}
+
+function getMovieList($list) {
+  for ($x = 0; $x < count($list); $x++) {
+    $title = $list[$x]->name;
+    $url = $list[$x]->cover_url;
+    $stars = $list[$x]->stars;
+    include("./components/movie-card.php");
+  }
+}
+
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
@@ -59,7 +80,7 @@ function filterList($year, $genre) {
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
 </head>
   <body class="document-font primary-bg layout-body">
-      <div id="filters-menu" class="full-width flex-container flex-content-center flex-align-items-center flex-wrap">
+      <div id="filters-menu" class=" margin-top-2 full-width flex-container flex-content-center flex-align-items-center flex-wrap">
         <ul id="general-filters" class="full-height text-align-center primary-color font-size-0-938 font-weight-bold flex-container flex-content-center flex-items-center flex-align-items-center">
           <li class="filter border-radius-0-3 margin-left-1 padding-left-1-5 padding-right-1-5 padding-top-0-4 padding-bottom-0-4">
             Latest
@@ -74,11 +95,9 @@ function filterList($year, $genre) {
             <div id="year-filter" class="margin-left-1">
               <label id="year-label" for="year-select" class="primary-color margin-left-1">Year</label>
               <select name="year-select" id="year-select" class="custom-select margin-left-0-5 primary-color font-size-0-938 font-weight-bold">
-                <option value="All" selected="selected">All</option>
+                <option value="All">All</option>
                 <?php
-                  for ($x = 0; $x < count($yearList); $x++) { 
-                    echo '<option value="'.$yearList[$x]->anno.'">'.$yearList[$x]->anno.'</option>';
-                  }
+                  fillYearSelect($yearList);
                   if (isset($_POST["year-select"])) {
                     $varYear = $_POST['year-select'];   
                   } else {
@@ -92,11 +111,9 @@ function filterList($year, $genre) {
             <div id="genre-filter"> 
               <label id="genre-label" for="genre-select" class="margin-left-1">Genre</label>
               <select name="genre-select" id="genre-select" class="custom-select margin-left-0-5 primary-color font-size-0-938 font-weight-bold">
-                <option value="All" selected="selected">All</option>
-                  <?php
-                    for ($x = 0; $x < count($genreList); $x++) { 
-                      echo '<option value="'.$genreList[$x]->name.'">'.$genreList[$x]->name.'</option>';
-                    }
+                <option value="All">All</option>
+                  <?php    
+                    fillGenreSelect($genreList);
                     if (isset($_POST["genre-select"])){
                       $varGenre = $_POST['genre-select'];
                     } else {
@@ -106,24 +123,22 @@ function filterList($year, $genre) {
               </select>
             </div>
             
-            <input type="submit" name="submit" value="Get Selected Values" class="margin-left-1"/>
+            <button type="submit" name="submit"  class="margin-left-1-5 custom-button font-size-0-938 font-weight-bold padding-0-3 border-radius-0-3">Filter</button>
           </form>
           
           
         </div>
-      <div id="movies-container" class="full-size flex-container flex-content-center flex-items-center flex-wrap">
-        <?php          
-          console_log($varGenre);
-          console_log($varYear);
-          $result = filterList($varYear, $varGenre);
-          for ($x = 0; $x < count($result); $x++) {
-            $title = $result[$x]->name;
-            $url = $result[$x]->cover_url;
-            $stars = $result[$x]->stars;
-            include("./components/movie-card.php");
-          }
-        ?>
+      
       </div>
+      <div id="movies-container" class="full-size flex-container flex-content-center flex-items-center flex-wrap margin-top-2">
+        <?php 
+          if ($varSearch) {
+            $result = $varReturnSearch;
+          } else {
+            $result = filterList($varYear, $varGenre);
+          }
+          getMovieList($result);
+        ?>
       </div>
   </body>
 </html>

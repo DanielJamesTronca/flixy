@@ -10,13 +10,24 @@ $registrazionePage = '"./registrazione.php"';
 $logOutAction = '$logOut';
 $signup = '<a id="sign-up" class="font-size-0-75 font-weight-light" href="./registrazione.php">';
 $logout = str_replace($registrazionePage, $logOutAction, $signup);
+$dbMan = DBManager::getInstance();
 
+$varSearch = '';
+
+$movieList = $dbMan->query("SELECT * FROM Media");
 
 if(SessionManager::isUserLogged()) {
     $username = SessionManager::getUsername();
     $userLogged = true;
   }
 
+function research($input) {
+    $dbMan = DBManager::getInstance();
+    if ($input) {
+        $result = $dbMan->query("SELECT * FROM Media WHERE Media.name LIKE '$input'");
+    }
+    return $result;
+}
 
 
 ?>
@@ -35,9 +46,9 @@ if(SessionManager::isUserLogged()) {
 <body class="layout-body primary-bg text-align-center document-font flex-container flex-content-center flex-wrap flex-items-center">
     <div id="outer-container" class="flex-container flex-content-center">
         <header id="header-container" class="flex-container flex-items-center flex-content-start flex-wrap border-radius-0-3 secondary-bg margin-top-1 margin-left-1 margin-right-1">
-            <div id="title-container" class="full-height flex-container flex-items-center flex-align-items-center flex-content-center flex-grow-shrink">
+            <div id="title-container" class="full-height flex-container flex-items-center flex-align-items-center flex-content-center flex-grow-shrink text-align-center">
                 <img id="logo" class="logo-size" src="./assets/images/icons/logo.png" alt="Flixy Logo"/>
-                <a id="title" href="#" class="font-size-1-7 highlight-color font-weight-bold margin-left-0-5">Flixy</a>
+                <a id="titleLayout" href="#" class="font-size-1-7 highlight-color font-weight-bold margin-left-0-5">Flixy</a>
             </div>
             <div id="nav-container" class="full-height flex-grow-2 flex-container flex-align-items-center flex-content-center">
                 <ul id="link-container" class="margin-left-2 flex-container flex-align-items-center font-weight-bold font-size-0-938 border-radius-0-3">
@@ -47,18 +58,26 @@ if(SessionManager::isUserLogged()) {
                 </ul>
             </div>
             <div id="search-container" class="primary-color flex-container flex-grow-shrink flex-align-items-center flex-content-center">
-                <form id="search-bar" class="secondary-bg" action="/action_page.php">
+                <form id="search-bar" class="secondary-bg" action="" method="POST">
                     <a id="search-button" class=" font-size-1-7 primary-color" type="submit">
                         <i id="search-icon" class="margin-left-1 fas fa-search "></i>
                     </a>
-                    <input id="text-input" class="transparent-bg margin-left-1 font-size-1-7 primary-color" type="text" placeholder="Search.." name="search">
+                    <input name="search" id="text-input" class="transparent-bg margin-left-1 font-size-1-7 primary-color" type="text" placeholder="Search..">
+                    <?php
+                        if (isset($_POST["search"])) {
+                            $varSearch = $_POST["search"];
+                            $varReturnSearch = research('%'.$varSearch.'%');
+                        } else {
+                            $varSearch = '';
+                            $varReturnSearch = '';
+                        }
+                        
+                    ?>
                 </form>
             </div>
             <div id="profile-container" class="flex-container flex-align-items-center flex-grow-shrink">
                 <ul id="profile-links" class="text-align-right">
                     <li>
-
-
                         <a id="log-in" class="font-size-0-938 font-weight-normal" href="./login.php">
                             <?php
                                 if($userLogged) {
@@ -83,7 +102,8 @@ if(SessionManager::isUserLogged()) {
             </div>
         </header>
     </div>
-    <div id="content-container" class="flex-container ">
+    
+    <div id="content-container" class="flex-container padding-bottom-2-5 ">
         <div id="aside1" class="flex-grow-shrink"></div>
         <div id="content" class="flex-grow-bigger">
             <?php

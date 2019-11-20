@@ -249,6 +249,10 @@
     padding: 0 auto;
 }
 
+.padding-0-3 {
+    padding: 0.3em;
+}
+
 .padding-0-5 {
     padding: 0.5em;
 }
@@ -588,15 +592,17 @@ option {
 /* MERGE LAYOUT.CSS */
 
 .layout-body {
-    min-height: 100vh;
     flex-direction: column;
+    min-height: 100vh;
+    height: auto;
   }
   
   #content-container {
-    flex-basis: 50%;
     flex-grow: 2;
     flex-shrink: 1;
     flex-direction: row;
+    min-height: 100%;
+    order: 2;
   }
   
   .logo-size {
@@ -608,6 +614,7 @@ option {
     flex-basis: 100%;
     flex-grow: 0.1;
     flex-shrink: 1;
+    order: 1;
   }
   
   #header-container {
@@ -620,7 +627,7 @@ option {
     order: 0;
   }
 
-  #title {
+  #titleLayout {
       text-decoration: none;
   }
     
@@ -646,6 +653,18 @@ option {
     color:white;
   }
   
+  .custom-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color:white;
+    transition: background .2s ease-in-out;
+  }
+
+  .custom-button:hover  {
+      background: red;
+  }
+
   #search-icon {
     color: white;
     width: 27.19px;
@@ -701,6 +720,8 @@ option {
     flex-basis: 100%;
     flex-grow: .2;
     flex-shrink: 1;
+    order:3;
+    margin-top: 2em;
   }
     
   @media only screen and (max-width: 1000px) {
