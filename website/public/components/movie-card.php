@@ -8,44 +8,44 @@
   <base target="_self" href="http://localhost/flixy/website/public/components">
   <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
 <!-- <link rel="stylesheet" type="text/css" href="./assets/rules.css"/> -->
-  <link rel="stylesheet" type="text/css" href="./assets/movie-card.css"/>
+  <link rel="stylesheet" type="text/css" href="./assets/rules.css"/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
 <!--<script src="./scripts/movie-card.js" type="text/javascript"></script> -->
 </head>
-  <body>
-    <div class="movie-entry">
+  <body class="primary-bg">
+    <div class="movie-entry secondary-bg margin-right-0-6 margin-left-0-6 border-radius-0-5">
       <?php 
-        echo '<img id="copertina" class="border-radius-medium copertina-size" src=".'.$url.'" alt="copertina"/>';
+        echo '<img id="copertina" class="border-radius-0-5 copertina-size" src=".'.$url.'" alt="copertina"/>';
       ?>
 
-      <h3 id="title" class="text-color-white font-big">
+      <h3 id="title" class="full-width text-align-center primary-color font-size-1-5">
         <?php
           echo $title; 
         ?>
       </h3>
      
-      <div class="font-medium-normal rating margin-left-medium-small text-color-white">
-          <span id="activeStars" class="stars-active">
+      <div class="margin-left-0-6 margin-top-1 font-size-1 rating primary-color flex-container flex-content-space-between flex-align-items-center">
+          <span id="activeStars" class="stars-active text-align-left">
             <?php
                 for($i=0;$i<$stars;$i++) {
                   echo '<i class="fa fa-star"></i>';
                 }
             ?>
           </span>
-          <i id="link-to-book" class="fas fa-chevron-right text-color-white"></i>
+          <button><i id="link-to-book" class="fas fa-chevron-right primary-color font-size-1-5"></i></button>
       </div>
-      <span id="num-votes" class="text-align-center font-medium-small text-color-white"> </span>
-      <div id="thumbs" class="text-align-center text-color-white font-huge">
+      <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"> </span>
+      <div id="thumbs" class="text-align-center primary-color font-size-2-2">
         <a><i id="thumbs-up" class="far fa-thumbs-up"></i></a>
         <a><i id="thumbs-down" class="far fa-thumbs-down"></i></a>
       </div>
-      <div id="num-up-down" class="text-align-center text-color-white font-medium-small">
+      <div id="num-up-down" class="text-align-center primary-color font-size-0-938">
         <span id="num-up">346</span>
         <span id="num-down">153</span>
       </div>
-      <div id="fav-section" class="text-align-center text-color-white">
-        <a><i id="fav-icon" class="fas fa-heart font-medium-big"></i></a>
-        <span id="fav-text" class="text-align-center font-smaller">Add to your favourites</span>
+      <div id="fav-section" class="text-align-center primary-color">
+        <a><i id="fav-icon" class="fas fa-heart font-size-1-1"></i></a>
+        <span id="fav-text" class="text-align-center font-size-0-625">Add to your favourites</span>
       </div>
     </div>
   </body>
