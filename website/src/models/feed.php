@@ -4,6 +4,8 @@ include_once("base.php");
 
 class Feed extends Base 
 {
+    const TABLE_NAME = "Feed"; 
+
     const CONTENT_KEY = "content";
     const SUBTITLE_KEY = "subtitle";
     const AUTHOR_ID_KEY = "author_id";
@@ -34,6 +36,87 @@ class Feed extends Base
                 parent::__set($name, $value);
                 break;
         }
+    }
+
+    public static function getFeed($lastItemId = null)
+    {
+        $userId = 1;
+        $dbman = DBManager::getInstance();
+        $favs = Media::getUserFavourites($userId);
+
+        if (sizeof($favs) == 0) // no favs so no feed
+            return [];
+
+        $query = "SELECT * FROM ".Feed::TABLE_NAME." WHERE (1=1";
+        foreach ($favs as &$fav) {
+            $query .= " OR ".Feed::MEDIA_ID_KEY." = ".$fav->id." ";
+        }
+        $query .= ")";
+        if ($lastItemId != null)
+            $query .= " AND id < ".$lastItemId." ";
+        $query .= " ORDER BY ".Feed::EVENT_DATE_KEY." DESC";
+        echo $query;
+        return $dbman->query($query, Feed::class);
+    }
+
+    public static function getReleases() 
+    {
+        $userId = 1;
+        if (true) // get user id
+        {
+            $releases = [];
+            $favs = Media::getUserFavourites($userId);
+            foreach ($favs as &$fav) {
+                array_push($releases, new Release($fav));
+            }
+            return array_filter($releases, function($item) { return $item->valid; });
+        }
+        else 
+            return null;
+    }
+ }
+
+ class Release {
+     var $mediaName, $deadlineDate, $sutitle, $isMovie;
+     var $valid = false;
+
+     public function __construct($media)
+    {
+        $this->mediaName = $media->title;
+        $this->isMovie = !$media->hasEpisodes;
+        if ($this->isMovie)
+        {
+            if ($media->airDate > date("DATE_ISO8601"))
+            {
+                $this->deadlineDate = $media->airDate;
+                $this->sutitle = "Rilascio film";
+                $this->valid = true;
+            }
+        }
+        else 
+        {
+            // get episodes
+            $episodes = Episode::getEpisodesFor($media->id);
+            $nextEpisode = null;
+            foreach ($episodes as &$epi) {
+                if (!$epi->aired)
+                {
+                    if ($nextEpisode == null) {
+                        $nextEpisode = $epi;
+                    }
+                    else if ($nextEpisode->airDate > $epi->airDate) {
+                        $nextEpisode = $epi;
+                    }
+                }
+            }
+            if ($nextEpisode != null)
+            {
+                $this->valid = true;
+                $this->deadlineDate = $nextEpisode->airDate;
+                $this->sutitle = "Stagione ".$nextEpisode->seasonNum . " episodio ".$nextEpisode->episodeNum;
+            }
+        }
+        
     }
  }
 
