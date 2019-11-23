@@ -100,23 +100,20 @@ class Media extends Base
         return Media::setFavouritesFor($results);
     }
 
-    public static function setFavouritesFor($medias)
+    public static function setFavouritesFor($userId, $medias)
     {
-        $userId = 1;
-        if (true) // get user id
-        {
-            $dbman = DBManager::getInstance();
-            $queryString = "SELECT * FROM Favourite WHERE Favourite.user_id = {$userId}";
-            $favourites = $dbman->query($queryString);
 
-            foreach ($favourites as &$fav) {
-                foreach ($medias as &$media) {
-                    if ($media->id == $fav->media_id)
-                    {
-                        $media->isFavourite = true;
-                    }
-                } 
-            }
+        $dbman = DBManager::getInstance();
+        $queryString = "SELECT * FROM Favourite WHERE Favourite.user_id = {$userId}";
+        $favourites = $dbman->query($queryString);
+
+        foreach ($favourites as &$fav) {
+            foreach ($medias as &$media) {
+                if ($media->id == $fav->media_id)
+                {
+                    $media->isFavourite = true;
+                }
+            } 
         }
         return $medias;
     }
@@ -129,20 +126,18 @@ class Media extends Base
         return $results;
     }
 
-    public function setFavourite($activate)
+    public function setFavourite($userId, $activate)
     {
         $dbman = DBManager::getInstance();
-        // if (!userLogged) return; TODO
-        $userId = 1;
         $mediaId = $this->id;
         if ($activate)
         {
             // set as favourite
-        $result = $dbman->query("INSERT INTO Favourite(`user_id`, `media_id`) VALUES ({$userId}, {$mediaId})");
+            $result = $dbman->query("INSERT INTO Favourite(`user_id`, `media_id`) VALUES ({$userId}, {$mediaId})");
             return $result;
         } else {
             // remove from favourite
-        $result = $dbman->query("DELETE FROM Favourite WHERE Favourite.user_id = {$userId} AND Favourite.media_id = {$mediaId}");
+            $result = $dbman->query("DELETE FROM Favourite WHERE Favourite.user_id = {$userId} AND Favourite.media_id = {$mediaId}");
             return $result;
         }
     }

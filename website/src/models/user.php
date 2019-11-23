@@ -34,10 +34,8 @@ class User extends Base
         }
     }
 
-    public static function getLoggedUser()
+    public static function getLoggedUser($userId)
     {
-        // TODO: get userid if user logged
-        $userId = 1;
         $dbman = DBManager::getInstance();
         $result = $dbman->fetchObject(User::class, $userId);
         if ($result)

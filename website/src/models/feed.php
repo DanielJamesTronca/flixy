@@ -38,9 +38,8 @@ class Feed extends Base
         }
     }
 
-    public static function getFeed($lastItemId = null)
+    public static function getFeed($userId, $lastItemId = null)
     {
-        $userId = 1;
         $dbman = DBManager::getInstance();
         $favs = Media::getUserFavourites($userId);
 
@@ -59,20 +58,14 @@ class Feed extends Base
         return $dbman->query($query, Feed::class);
     }
 
-    public static function getReleases() 
+    public static function getReleases($userId) 
     {
-        $userId = 1;
-        if (true) // get user id
-        {
-            $releases = [];
-            $favs = Media::getUserFavourites($userId);
-            foreach ($favs as &$fav) {
-                array_push($releases, new Release($fav));
-            }
-            return array_filter($releases, function($item) { return $item->valid; });
+        $releases = [];
+        $favs = Media::getUserFavourites($userId);
+        foreach ($favs as &$fav) {
+            array_push($releases, new Release($fav));
         }
-        else 
-            return null;
+        return array_filter($releases, function($item) { return $item->valid; });
     }
  }
 
