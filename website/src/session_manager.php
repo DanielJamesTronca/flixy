@@ -11,7 +11,7 @@ class SessionManager
     {
     }
 
-    public static function starSessionForUser($userId, $username)
+    public static function startSessionForUser($userId, $username)
     {
         if (is_int($userId) && $userId >= 0 && is_string($username) && !empty($username))
         {
