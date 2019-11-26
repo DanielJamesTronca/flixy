@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$username = $_POST["username"];
 	$password = $_POST["password"];
 
-  if (checkParameters($username, $password, $errorMessage)) // se false, i dati sono nel formato corretto, provo ad autentificare l'utente
+  if (checkParameters($username, $password, $errorMessage)) // se true, i dati sono nel formato corretto, provo ad autentificare l'utente
   {
     $man = DBManager::getInstance();
     if ($man->login($username, $password)) // se loggato
@@ -29,13 +29,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function checkParameters($username, $password, &$errorMessage) // controlla il formato dei dati e ritorna true se sono corretti, altrimenti ritorna false e setta le stringhe di errore nella variabile errormessage
 {
 	if (empty($username)) {
-		$errorMessage .= " L'username è richiesto! ";
+	  $errorMessage .= " L'username è richiesto! ";
 		return false;
-	} 
-	else if (empty($password)) {
+  }
+  else if(!preg_match("/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/",$username)){
+    $errorMessage .= " Controlla l'username! Il campo non può essere composto da caratteri speciali. ";
+		return false;
+  } 
+	if (empty($password)) {
 		$errorMessage .= " La password è richiesta! ";
 		return false;
-	}
+  }
+  else if(!preg_match("/^(?=.*[0-9])(?=.*[a-z])[a-zA-Z0-9!.@#$%^&*]{6,32}$/",$password)){
+    $errorMessage .= " Controlla la password! Dev'essere alfanumerica ed essere composta da almeno 6 caratteri. ";
+    return false;
+  }
 	return true;
 }
 
@@ -58,9 +66,12 @@ function userLoggedCorrectly()
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
 <head>
-<base target="_self" href="http://localhost/flixy/website/public/">
+<base target="_self" href="http://localhost/flixy/website/public/">  <!--da cambiare!!!! -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="assets/style.css"/>
+
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <!-- per ottimizzazione visualizzazione smartphone -->
+<link rel="stylesheet" media="screen" type="text/css" href="assets/style.css"/>
+
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="action.js"></script>
 
@@ -72,7 +83,7 @@ function userLoggedCorrectly()
 <div class="content">
 
     <div class="header">
-        <img src="assets/images/icons/logo.png" alt="Flixy logo" class="logo"/> <h1 class="primary-color-gradient-text"> Flixy </h1>
+        <img src="assets/images/icons/logo.png" alt="logo" class="logo"/> <h1 class="primary-color-gradient-text"> Flixy </h1>
 
     </div>
              
@@ -91,9 +102,9 @@ function userLoggedCorrectly()
 
     <div class="padding-top-medium">
 
-        <form action="login.php" method="POST">
+        <form action="login.php" method="post" id="regForm" onsubmit="return validateFormLogin()">
             <div class="group">      
-              <input type="text" name="username" value="<?php echo $username;?>"/>
+              <input type="text" name="username" id="username" value="<?php echo $username;?>"/>
               <span class="highlight"></span>
               <span class="bar"></span>
               <label>Username</label>
@@ -101,7 +112,7 @@ function userLoggedCorrectly()
 
 
             <div class="group">      
-              <input type="password" name="password"/>
+              <input type="password" name="password" id="password"/>
               <span class="highlight"></span>
               <span class="bar"></span>
               <label>Password</label>
@@ -116,7 +127,7 @@ function userLoggedCorrectly()
     </div>
                 
     <div class="text-center padding-top-medium">
-      <p>Non hai un account? <a href="registrazione.html" class="link"> Registrati </a> </p>
+      <p>Non hai un account? <a href="registrazione.php" class="link"> Registrati </a> </p>
     </div>
 
     <div class="footer text-center">
