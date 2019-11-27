@@ -530,30 +530,33 @@
 
 
 
-
-
-
-
-
-
-
-
-
   /* Style the body */
   body {
     min-height: 100vh;
+    
   }
   
   /* Column container */
   #row {  
     flex-direction: row;
+    
   }
   
-  /* Create two unequal columns that sits next to each other */
-  /* Sidebar/left column */
+
   #side {
     flex-direction: column;
+    display:block;
+    padding: 2em;
+    padding-left: 1.5em;
+   
   }
+
+  #main{
+      padding: 2em; 
+      padding-left: 0.7em;
+  }
+
+
 
   #copertina {
       width: 25.5em;
@@ -562,12 +565,13 @@
       position: relative;
       border:0.125em solid white;
       border-radius: .5em;
+      
   }
 
   #column{
-    -webkit-column-count: 3; /* Old Chrome, Safari and Opera */
-    -moz-column-count: 3; /* Old Firefox */
-    column-count: 3;
+    -webkit-column-count: 2; /* Old Chrome, Safari and Opera */
+    -moz-column-count: 2; /* Old Firefox */
+    column-count: 2;
     float:left;
   }
   
@@ -576,10 +580,8 @@
     transition: color .2s ease-in;
     cursor: pointer;
     float: right;
-   
-   
-   
 }
+
     #fav-icon:hover {
         color:red;
     }
@@ -587,11 +589,43 @@
     #fav-icon:checked {
         color:red;
     }
+
+    #yt object{
+        width:549px;
+        height:303px;
+    }
+
   
   
 
-  
+    @media only screen and (max-width:875px){
+        #side{
+            display: flex;
+            flex-basis: 100%;
+            flex-grow: 0;
+            flex-shrink: 0;
+            padding-left: 0em;
+           
+        }
+
+        #main {
+            display: flex;
+            flex-basis: 100%;  
+          }
+    }
+
+
+    
+    
+    
+
+
+ 
+
   /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+
+/*
+  
   @media screen and (max-width: 700px) {
     #row {  
       display: flex;
@@ -614,7 +648,7 @@
     }
     
     
-    /* Main column */
+   
     #main {
       display: flex;
       flex-basis: 100%;
@@ -647,7 +681,7 @@
       
     }
     
-    /* Main column */
+    
     #main {
       display: flex;
       flex-basis: 100%;
@@ -657,4 +691,7 @@
     }
   
   }
+
+
+  */
   
