@@ -146,37 +146,37 @@ function userRegisteredCorrectly()
 
       <form action="registrazione.php" method="post" id="regForm" onsubmit="return validateFormRegistration()">
           <div class="group">      
-            <label>Username</label>
+            <label for="username">Username</label>
             <input type="text" name="username" id="username" placeholder="Username" value="<?php echo $username;?>"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group">  
-            <label>Nome</label>    
+            <label for="name">Nome</label>    
             <input type="text" name="name" id="name" placeholder="Nome"value="<?php echo $name;?>"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group">     
-            <label>Cognome</label> 
+            <label for="surname">Cognome</label> 
             <input type="text" name="surname" id="surname" placeholder="Cognome" value="<?php echo $surname;?>"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group">      
-            <label>Email</label>
+            <label for="email">Email</label>
             <input type="text" name="email" id="email" placeholder="Email" value="<?php echo $email;?>"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group">      
-            <label>Password</label>
+            <label for="password">Password</label>
             <input type="password" name="password" id="password" placeholder="Password"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group">      
-            <label>Ripeti password</label>
+            <label for=confirmationPassword>Ripeti password</label>
             <input type="password" name="confirmationPassword" id="confirmationPassword" placeholder="Ripeti Password"/>
             <span class="highlight"></span>
             <span class="bar"></span>
