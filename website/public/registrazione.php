@@ -176,7 +176,7 @@ function userRegisteredCorrectly()
             <span class="bar"></span>
           </div>
           <div class="group">      
-            <label for=confirmationPassword>Ripeti password</label>
+            <label for="confirmationPassword">Ripeti password</label>
             <input type="password" name="confirmationPassword" id="confirmationPassword" placeholder="Ripeti Password"/>
             <span class="highlight"></span>
             <span class="bar"></span>
