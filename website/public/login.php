@@ -105,7 +105,7 @@ function userLoggedCorrectly()
         <form action="login.php" method="post" id="regForm" onsubmit="return validateFormLogin()">
             <div class="group">     
               <label for="username">Username</label>
-              <input type="text" name="username" id="username" placeholder="Username" value="<?php echo $username;?>"/>
+              <input type="text" name="username" id="username" placeholder="Username" tabindex=0 value="<?php echo $username;?>"/>
               <span class="highlight"></span>
               <span class="bar"></span> 
             </div>
@@ -113,14 +113,14 @@ function userLoggedCorrectly()
 
             <div class="group">      
               <label for="password">Password</label>
-              <input type="password" name="password" id="password" placeholder="Password"/>
+              <input type="password" name="password" id="password" placeholder="Password" tabindex=0/>
               <span class="highlight"></span>
               <span class="bar"></span>
             </div>
 
             
             <div class="content-center">
-              <input type="submit" value="Login" class="button primary-color-gradient-button"/>
+              <input type="submit" value="Login" class="button primary-color-gradient-button" tabindex=0/>
             </div>
          
         </form>

@@ -1,10 +1,14 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
 <head>
+<base target="_self" href="http://localhost/flixy/website/public/"> <!--da cambiare!!!! -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="assets/style.css"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <!-- per ottimizzazione visualizzazione smartphone -->
+<link rel="stylesheet" media="screen" type="text/css" href="assets/style.css"/>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="action.js"></script>
 
 <title>Flixy - Registrazione</title>
 <meta name="title" content="Flixy - Registrazione" />
@@ -14,7 +18,7 @@
 <div class="content">
 
     <div class="header">
-        <img src="assets/images/icons/logo.png" alt="Flixy logo" class="logo"/> <h1 class="primary-color-gradient-text"> Flixy </h1>
+        <img src="assets/images/icons/logo.png" alt="logo" class="logo"/> <h1 class="primary-color-gradient-text"> Flixy </h1>
 
     </div>
              
@@ -23,51 +27,51 @@
         <p class="text-center padding-top-small">Creando un nuovo account potrai salvare i tuoi contenuti preferiti ed essere sempre aggiornato</p>
     </div>
 
-    <div class="margin-top-small hidden">
+    <div class='margin-top-small hidden'>
         <div class="error-message-box">
             <p class="bold">Credenziali invalide</p>
-            <p>Controlla le tue credenziali e riprova a fare l’accesso</p>
+            <p>Controlla le tue credenziali e riprova a fare l’accesso: {error-message} </p>
         </div>
     </div>
 
     <div class="padding-top-medium">
 
-      <form action="">
+      <form action="./php/check_registrazione.php" method="post" id="regForm" onsubmit="return validateFormRegistration()">
           <div class="group">      
-            <input type="text"/>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Username" value="'{username}'"/>
             <span class="highlight"></span>
             <span class="bar"></span>
-            <label>Username</label>
+          </div>
+          <div class="group">  
+            <label for="name">Nome</label>    
+            <input type="text" name="name" id="name" placeholder="Nome" value="'{name}'" />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          <div class="group">     
+            <label for="surname">Cognome</label> 
+            <input type="text" name="surname" id="surname" placeholder="Cognome" value="'{surname}'"/>
+            <span class="highlight"></span>
+            <span class="bar"></span>
           </div>
           <div class="group">      
-            <input type="text"/>
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" placeholder="Email" value="'{email}'"/>
             <span class="highlight"></span>
             <span class="bar"></span>
-            <label>Nome</label>
           </div>
           <div class="group">      
-            <input type="text"/>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Password"/>
             <span class="highlight"></span>
             <span class="bar"></span>
-            <label>Cognome</label>
           </div>
           <div class="group">      
-            <input type="text"/>
+            <label for="confirmationPassword">Ripeti password</label>
+            <input type="password" name="confirmationPassword" id="confirmationPassword" placeholder="Ripeti Password"/>
             <span class="highlight"></span>
             <span class="bar"></span>
-            <label>Email</label>
-          </div>
-          <div class="group">      
-            <input type="password"/>
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label>Password</label>
-          </div>
-          <div class="group">      
-            <input type="password"/>
-            <span class="highlight"></span>
-            <span class="bar"></span>
-            <label>Ripeti password</label>
           </div>
           
           <div class="content-center">
@@ -78,7 +82,7 @@
     </div>
                 
     <div class="text-center padding-top-medium">
-      <p>Hai già un account? <a href="login.html" class="link"> Accedi </a> </p>
+      <p>Hai già un account? <a href="./php/login.php" class="link"> Accedi </a> </p>
     </div>
 
     <div class="footer text-center">
