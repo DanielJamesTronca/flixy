@@ -81,16 +81,19 @@ function filterList($year, $genre) {
 
 function getMovieList($list) {
   $movieList = [];
-  $card = file_get_contents("../html/movie-card.html")
+  $starNumber = [];
   for ($x = 0; $x < count($list); $x++) {
     $title = $list[$x]->name;
     $url = $list[$x]->cover_url;
     $stars = $list[$x]->stars;
-    $card = str_replace("'{movieTitle}'", $title, $card);
-    $card = str_replace("'{coverUrl}'", $url, $card);
-    $card = str_replace("'{starRating}'", $stars, $card);
+    $card = file_get_contents("../html/movie-card.html")
+    $card = str_replace("{movieTitle}", $title, $card);
+    $card = str_replace("'{coverURL}'", $url, $card);
+    for($i=0;$i<$stars;$i++) {
+      array_push($starNumber, "<i class='fa fa-star'></i>");
+    }
+    $card = str_replace("{movieStars}", implode($starNumber), $card);
     array_push($movieList, $card);
-    //include("./components/movie-card.php");
   }
   return implode($movieList);
 }

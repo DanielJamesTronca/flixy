@@ -34,5 +34,5 @@ function research($input) {
 
 $homePage = include_once("./home.php");
 $output = str_replace("{homePage}", $homePage, $output);
-
+echo $output;
 ?>
