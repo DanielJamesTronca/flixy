@@ -34,15 +34,17 @@ class User extends Base
         }
     }
 
-    public static function getLoggedUser()
+    public static function getUser($userId)
     {
-        // TODO: get userid if user logged
-        $userId = 1;
         $dbman = DBManager::getInstance();
         $result = $dbman->fetchObject(User::class, $userId);
         if ($result)
         {
-            $result->username = "fakeusername"; //TODO: get from session
+            $resUsername = $dbman->query("SELECT username FROM Keychain WHERE user_id = ".$userId);
+            if (sizeof($resUsername) > 0)
+            {
+                $result->username = $resUsername[0]->username;
+            }
         }
         return $result;
     }
