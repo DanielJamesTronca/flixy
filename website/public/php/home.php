@@ -1,30 +1,12 @@
 <?php
-include_once("../src/db_manager.php");
-include_once("../src/models/models.php");
-include_once("../src/session_manager.php");
 
-$output = file_get_contents("../html/home.html");
+//$output = file_get_contents("../html/home.html");
 $dbMan = DBManager::getInstance();
-
-// Populate <select> year
-function fillYearSelect($yearList) {
-  $list = [];
-  for ($x = 0; $x < count($yearList); $x++) { 
-    $element = "'<option value="'.$yearList[$x]->anno.'">'.$yearList[$x]->anno.'</option>'";
-    array_push($list, $element);
-  }
-  return implode($list);
-}
-
-$queryYear = $dbMan->query("SELECT DISTINCT YEAR(air_date) as anno FROM Media");
-$yearList = fillYearSelect($queryYear);
-$output = str_replace("'{yearOption}'", $yearList, $output);
-
-
 function fillGenreSelect($genreList) {
   $list = [];
   for ($x = 0; $x < count($genreList); $x++) { 
-    $element = "'<option value="'.$genreList[$x]->name.'">'.$genreList[$x]->name.'</option>'";
+    $genre = $genreList[$x]->name;
+    $element = "<option value=".$genre.">".$genre."</option>";
     array_push($list, $element);
   }
   return implode($list);
@@ -32,9 +14,18 @@ function fillGenreSelect($genreList) {
 
 $queryGenre = $dbMan->query("SELECT DISTINCT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");
 $genreList = fillGenreSelect($queryGenre);
-$output = str_replace("'{genreOption}'", $genreList, $output);
+$output = str_replace("{genreOption}", $genreList, $output);
 
-// <form> logic
+function fillYearSelect($yearList) {
+  $list = [];
+  for ($x = 0; $x < count($yearList); $x++) { 
+    $year = $yearList[$x]->anno;
+    $element = "<option value=".$year.">".$year."</option>";
+    array_push($list, $element);
+  }
+  return implode($list);
+}
+
 $varGenre = "All";
 $varYear = "All";
 
@@ -86,14 +77,15 @@ function getMovieList($list) {
     $title = $list[$x]->name;
     $url = $list[$x]->cover_url;
     $stars = $list[$x]->stars;
-    $card = file_get_contents("../html/movie-card.html")
+    $card = file_get_contents("../html/movie-card.html");
     $card = str_replace("{movieTitle}", $title, $card);
-    $card = str_replace("'{coverURL}'", $url, $card);
+    $card = str_replace("{coverURL}", "../public".$url, $card);
     for($i=0;$i<$stars;$i++) {
       array_push($starNumber, "<i class='fa fa-star'></i>");
     }
     $card = str_replace("{movieStars}", implode($starNumber), $card);
     array_push($movieList, $card);
+    $starNumber = [];
   }
   return implode($movieList);
 }
@@ -105,7 +97,7 @@ if ($varSearch) {
 }
 
 $movieList = getMovieList($result);
-$output = str_replace("'{movieList}'", $movieList);
+$output = str_replace("{movieList}", $movieList, $output);
 
 function console_log( $data ){
   echo '<script>';
@@ -113,5 +105,8 @@ function console_log( $data ){
   echo '</script>';
 }
 
-echo $output;
+
+$queryYear = $dbMan->query("SELECT DISTINCT YEAR(air_date) as anno FROM Media");
+$yearList = fillYearSelect($queryYear);
+$output = str_replace("{yearOption}", $yearList, $output);
 ?>

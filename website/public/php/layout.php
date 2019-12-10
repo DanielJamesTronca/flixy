@@ -1,10 +1,12 @@
 <?php
-include_once("../src/db_manager.php");
-include_once("../src/models/models.php");
-include_once("../src/session_manager.php");
+include_once("../../src/db_manager.php");
+include_once("../../src/models/models.php");
+include_once("../../src/session_manager.php");
+
+
 
 $output = file_get_contents("../html/layout.html");
-
+$dbMan = DBManager::getInstance();
 
 
 // <form> logic
@@ -19,6 +21,10 @@ if (isset($_POST["search"])) {
 
 $userLogged = false;
 
+if($userLogged) {
+    $output = str_replace($registrazionePage, $logOutAction, $signup);
+}
+
 $registrazionePage = '"./registrazione.php"';
 $logOutAction = '$logOut';
 $signup = '<a id="sign-up" class="font-size-0-75 font-weight-light" href="./registrazione.php">';
@@ -32,7 +38,10 @@ function research($input) {
     return $result;
 }
 
-$homePage = include_once("./home.php");
+$homePage = file_get_contents("../html/home.html");
 $output = str_replace("{homePage}", $homePage, $output);
+
+include_once("./home.php");
+
 echo $output;
 ?>
