@@ -7,9 +7,7 @@
   <meta name="title" content="Flixy - Homepage" />
   <base target="_self" href="http://localhost/flixy/website/public/html">
   <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
-<!-- <link rel="stylesheet" type="text/css" href="./assets/rules.css"/> -->
   <link rel="stylesheet" type="text/css" href="../assets/rules.css"/>
-<!--<script src="./scripts/movie-card.js" type="text/javascript"></script> -->
 </head>
   <body class="primary-bg">
     <div class="movie-entry secondary-bg margin-right-0-6 margin-left-0-6 border-radius-0-5">
@@ -30,12 +28,14 @@
         <a><i id="thumbs-down" class="far fa-thumbs-down"></i></a>
       </div>
       <div id="num-up-down" class="text-align-center primary-color font-size-0-938">
-        <span id="num-up">346</span>
-        <span id="num-down">153</span>
+        <span id="num-up">{likes}</span>
+        <span id="num-down">{dislikes}</span>
       </div>
       <div id="fav-section" class="text-align-center primary-color">
-        <a><i id="fav-icon" class="fas fa-heart font-size-1-1"></i></a>
-        <span id="fav-text" class="text-align-center font-size-0-625">Add to your favourites</span>
+        <a>
+          <i id="fav-icon" class="fas fa-heart font-size-1-1"></i>
+          <span id="fav-text" class="text-align-center font-size-0-625">Add to your favourites</span>
+        </a>
       </div>
     </div>
   </body>
