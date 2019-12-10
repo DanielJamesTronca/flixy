@@ -19,29 +19,30 @@
 
   <div id="side" class="flex-container flex-grow-shrink flex-content-center flex-align-items-center secondary-bg ">
 <!-- COPERTINA MOVIE -->
-        <div id="copertina"> </div>
+        <div id="copertina"> 
+                <img id="copertina" class="border-radius-0-5 copertina-size" src="{cover_url}" alt="copertina"/>';
+        </div>
   </div>
 
 <!-- MAIN CONTENT -->
     <div id="main" class="flex-container flex-wrap secondary-bg flex-grow-2">
         <div id="info" class="primary-color margin-top-0-5">
-            <h1 id="text" class=" font-size-2-2">Title</h1>
+            <h1 id="text" class=" margin-left-0-15 document-font font-size-2-2">{title}</h1>
             
             <div id="fav-section" class="primary-color">
                     <a><i id="fav-icon" class="fas fa-heart font-size-2-2 margin-right-2-5"></i></a>
                 </div>
 
             <div id="column"> 
-                <h2 class="margin-left-0-5 font-size-0-938">Genere</h2>
-                <h2 class="margin-left-0-5 font-size-0-938">Durata</h2>
-                <h2 class="margin-left-0-5 font-size-0-938">Episodes</h2>
-                <h2 class="margin-left-0-5 font-size-0-938">Seasons</h2>
+                <h2 class="margin-left-0-5 document-font font-size-0-938">Genere: {genre}</h2>
+                <h2 class="margin-left-0-5 document-font font-size-0-938">Durata: {duration}</h2>
+                <h2 class="margin-left-0-5 document-font font-size-0-938">Episodes: {episode}</h2>
+                <h2 class="margin-left-0-5 document-font font-size-0-938">Seasons: {season}</h2>
             </div>
 
-            <p class="margin-left-0-5 margin-top-3"> 
-                Nell'aprile del 1912, l'allora diciassettenne Rose DeWitt Bukater si imbarca sul Titanic a Southampton assieme alla madre Ruth e al fidanzato Caledon "Cal" Hockley, un uomo arrogante e pieno di pregiudizi. Rose ha accettato il fidanzamento solo dietro pressione della madre per salvare la famiglia dalla bancarotta in quanto il padre è morto lasciando dei debiti irrisolti. La sera del secondo giorno di navigazione, provata dalla pesantezza e dalle responsabilità che la sua condizione impone, Rose tenta il suicidio scavalcando il parapetto della poppa del transatlantico, ma viene dissuasa da Jack Dawson, un giovane e squattrinato artista giramondo che ha vinto il biglietto per il Titanic giocando a poker. Per ringraziarlo simbolicamente del salvataggio, Cal invita Jack a cenare al loro tavolo per la sera seguente. Scosso dal comportamento della promessa sposa, Cal mostra a Rose il regalo di fidanzamento ufficiale, un diamante blu chiamato "il Cuore dell'Oceano", in 56 carati, realizzato dal diamante appartenuto a Luigi XVI. Il giorno seguente, Rose decide di trascorrere un po' di tempo insieme a Jack invitandolo a passeggiare sul ponte di prima classe; la ragazza rimane affascinata dalle esperienze di vita che Jack le racconta mostrandole i disegni del suo album che porta sempre con sé. Tra i due si instaura una complicità che nei giorni successivi si trasforma in un'amicizia sempre più profonda, fino a sfociare nell'amore.
-
-                Dopo aver cenato nella Sala da Pranzo insieme ad alcuni tra gli uomini e le donne più rinomati della nave, Jack apprende la realtà che l'alta società esprime, una vita immersa nella ricchezza e nello sfarzo, concentrata sul profitto e sulla politica, concetti che mal si adattano con la vita del giovane. Grazie all'aiuto di Molly Brown, che lo aveva aiutato a procurarsi un abito per la sera, Jack riesce a invitare Rose a trascorrere segretamente il resto della serata con lui nella Sala da Ballo della terza classe. Lovejoy, il maggiordomo e uomo di fiducia di Cal, li segue e li spia durante la festa. La mattina seguente Cal affronta Rose e le impone prepotentemente di esserle fedele, per poi lasciarla in lacrime. Ruth, già resasi conto dell'attrazione della figlia verso Jack, impone a Rose di non frequentare più il giovane e di pensare alla vita di miseria che le attenderebbe qualora il matrimonio con Cal andasse a monte. Rose, inizialmente, si sottomette al volere della madre, ma dopo aver rivissuto l'infelicità che il suo mondo altolocato offre, comprende di dover seguire i propri sentimenti e ritrova Jack: i due si dichiarano reciproco amore sulla prua del Titanic al tramonto del 14 aprile.</p>
+            <p class="margin-left-0-5 margin-top-4 document-font text-align-justify font-size-0-8"> 
+                {description}
+            </p>
       </div>  
     </div> 
 </div>
@@ -49,7 +50,7 @@
 <div id="trailer" class="flex-container flex-grow-shrink flex-content-center flex-align-items-center">
     <div id="yt" class="padding-2" >     
         <h1 class="primary-color font-size-2-2 text-align-center ">Trailer</h1> 
-        <object width="540" height="303" data="https://www.youtube.com/embed/yL1f8yNxGBk"></object>
+            <object width="540" height="303" data="{trailer_url}"></object>
     </div>
 </div>
 
