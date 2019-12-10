@@ -12,11 +12,11 @@ function generate_feed_timeline($userId){
         if(isset($arrayFeed)){
             $stringToReturn = "";
             for ($i = 0; $i < sizeof($arrayFeed); $i++){
-                $title = "La Casa Di Carta"; //da convertire in $arrayFeed[$i]->title appena viene risolta la mancanza del titolo nell'oggetto
+                $mediaObj = Media::fetch($arrayFeed[$i]->mediaId);
+                $title = $mediaObj->title; //da convertire in $arrayFeed[$i]->title appena viene risolta la mancanza del titolo nell'oggetto
                 $subtitle = $arrayFeed[$i]->subtitle;
                 $content = $arrayFeed[$i]->content;
-                $cover = 'assets/images/covers/casa.jpg'; //da sostituire con $arrayFeed[$i]->cover_url
-                $media = get_media($arrayFeed, $i);
+                $media = get_media($arrayFeed, $i, $mediaObj);
                 $element = "<div class='timeline-container'>
                                 <div class='timeline-content'>
                                     <div class='timeline-date'>
@@ -37,8 +37,8 @@ function generate_feed_timeline($userId){
 }
 
 //se disponibile ritorna il link del trailer altrimenti ritorna foto di copertina
-function get_media($array, $index){
-    $video = 'https://www.youtube.com/embed/yL1f8yNxGBk'; //da sostituire con $array[$index]->trailer_key
+function get_media($array, $index, $mediaObj){
+    $video = $array[$index]->videoUrl; 
                 if (isset($video)){ 
                     $media ="<div class='content-justify-right padding-top-1 padding-left-3'>
                                 <object class='timeline-video' data=$video alt='trailer'> 
@@ -46,6 +46,7 @@ function get_media($array, $index){
                             </div>";
                 }
                 else{
+                    $cover = $mediaObj->coverUrl; 
                     $media = "<div class='content-justify-right padding-top-1 padding-left-2'>
                                 <img src=$cover class='timeline-image' alt='cover image'></img>
                             </div>";
