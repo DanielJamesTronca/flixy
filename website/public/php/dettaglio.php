@@ -5,6 +5,7 @@ include_once("../../src/session_manager.php");
 
 $output = file_get_contents("../html/dettaglio.html");
 
+$output = file_get_contents("../html/dettaglio.html");
 
 $title="";
 $genre="None";
@@ -182,6 +183,20 @@ console_log($movieList);
 */
 
 
+
+?>
+
+
+/*
+$duration=$lista[1];
+$cover_url=$lista[2];
+$description=$lista[3];
+$episode=$lista[4];
+$season=$lista[5];
+$trailer_url=$lista[6];
+*/
+
+echo $output;
 
 ?>
 
