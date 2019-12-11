@@ -11,8 +11,9 @@ class Feed extends Base
     const AUTHOR_ID_KEY = "author_id";
     const MEDIA_ID_KEY = "media_id";
     const EVENT_DATE_KEY = "event_date";
+    const VIDEO_URL_KEY = "video_url";
 
-    var $content, $subtitle, $authorId, $mediaId, $eventDate;
+    var $content, $subtitle, $authorId, $mediaId, $eventDate, $videoUrl;
  
     public function __set( $name, $value ) {
         switch ($name)
@@ -32,6 +33,9 @@ class Feed extends Base
             case self::EVENT_DATE_KEY: 
                 $this->eventDate = $value;
                 break;
+            case self::VIDEO_URL_KEY: 
+                    $this->videoUrl = $value;
+                    break;
             default: 
                 parent::__set($name, $value);
                 break;
@@ -54,7 +58,6 @@ class Feed extends Base
         if ($lastItemId != null)
             $query .= " AND id < ".$lastItemId." ";
         $query .= " ORDER BY ".Feed::EVENT_DATE_KEY." DESC";
-        echo $query;
         return $dbman->query($query, Feed::class);
     }
 
@@ -70,12 +73,13 @@ class Feed extends Base
  }
 
  class Release {
-     var $mediaName, $deadlineDate, $sutitle, $isMovie;
+     var $mediaName, $deadlineDate, $sutitle, $isMovie, $coverUrl;
      var $valid = false;
 
      public function __construct($media)
     {
         $this->mediaName = $media->title;
+        $this->coverUrl = $media->coverUrl;
         $this->isMovie = !$media->hasEpisodes;
         if ($this->isMovie)
         {
