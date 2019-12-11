@@ -3,10 +3,37 @@ include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 include_once("../../src/session_manager.php");
 
-
-
 $output = file_get_contents("../html/layout.html");
 $dbMan = DBManager::getInstance();
+
+$username = "";
+$profile = "profile".$username;
+
+if (SessionManager::isUserLogged()) {
+    $username = SessionManager::getUsername();
+}
+
+if ($username != "") {
+    $output = str_replace("{link_to_profile_or_log_in}", $profile, $output);
+    $output = str_replace("{login_O_username}", $username, $output);
+    $output = str_replace("{link_to_log_out_or_register}", "Logout", $output);
+    $output = str_replace("{logout_O_registrazione}", "Logout", $output);
+} else {
+    $output = str_replace("{link_to_profile_or_log_in}", "./login.php", $output);
+    $output = str_replace("{login_O_username}", "Log in", $output);
+    $output = str_replace("{link_to_log_out_or_register}", "./registrazione.php", $output);
+    $output = str_replace("{logout_O_registrazione}", "Registrati", $output);
+    $output = str_replace("{profile_photo_url}", "../public/assets/images/avatars/default.png", $output);
+}
+
+
+
+
+
+
+
+
+
 
 
 // <form> logic
@@ -16,13 +43,6 @@ if (isset($_POST["search"])) {
 } else {
     $varSearch = '';
     $varReturnSearch = '';
-}
-
-
-$userLogged = false;
-
-if($userLogged) {
-    $output = str_replace($registrazionePage, $logOutAction, $signup);
 }
 
 $registrazionePage = '"./registrazione.php"';
