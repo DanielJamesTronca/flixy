@@ -77,9 +77,11 @@ function getMovieList($list) {
     $title = $list[$x]->name;
     $url = $list[$x]->cover_url;
     $stars = $list[$x]->stars;
+    $id = $list[$x]->id;
     $card = file_get_contents("../html/movie-card.html");
     $card = str_replace("{movieTitle}", $title, $card);
     $card = str_replace("{coverURL}", "../public".$url, $card);
+    $card = str_replace("{linkDettaglioMovie}", "./dettaglio.php?id='".$id."'", $card);
     for($i=0;$i<$stars;$i++) {
       array_push($starNumber, "<i class='fa fa-star'></i>");
     }
