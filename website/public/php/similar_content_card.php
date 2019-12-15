@@ -3,7 +3,7 @@ include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 include_once("../../src/session_manager.php");
 
-$card = file_get_contents("../html/favourite_card.html");
+$card = file_get_contents("../html/similar_content_card.html");
 
 
 
