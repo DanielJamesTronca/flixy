@@ -5,6 +5,11 @@ include_once("../../src/session_manager.php");
 
 $output = file_get_contents("../html/dettaglio.html");
 
+$output = file_get_contents("../html/dettaglio.html");
+
+$output = file_get_contents("../html/dettaglio.html");
+
+$output = file_get_contents("../html/dettaglio.html");
 
 $title="";
 $genre="None";
@@ -120,6 +125,18 @@ $output = str_replace("{movieList}", getMovieList($IDK), $output);
 console_log($output);
 
 
+$output=str_replace("{title}", $title,$output);
+$output=str_replace("{duration}", $duration,$output);
+$output=str_replace("{description}", $description,$output);
+$output=str_replace("{episode}", $episode,$output);
+$output=str_replace("{season}", $season,$output);
+$output=str_replace("{cover_url}", "../../public".$cover_url,$output);
+$output=str_replace("{genre}", $genre,$output);
+$output=str_replace("{trailer_url}",$trailer_url,$output);
+
+
+echo $output;
+
 
 $output=str_replace("{title}", $title,$output);
 $output=str_replace("{duration}", $duration,$output);
@@ -135,6 +152,68 @@ echo $output;
 
 
 
+
+
+
+
+
+
+
+
+/*
+function filterList($genre){
+    $dbMan = DBManager::getInstance();
+    $result = [];
+
+}
+
+function getIdGenre($genre) {
+    $dbMan = DBManager::getInstance();
+    $result = $dbMan->query("SELECT id FROM Genre WHERE Genre.name = '$genre'");
+    return (int)$result[0]->id;
+  }
+
+
+
+  function filterList($genre) {
+    $dbMan = DBManager::getInstance();
+    $result = [];
+    $genreId = -1;
+    if ($genre != "All") {
+      $genreId = getIdGenre($genre);
+    }
+    if ($genre != "All") {
+        $result = $dbMan->query("SELECT id FROM Media WHERE genre=$genreId");
+    }
+    return $result; 
+}
+
+
+
+
+function getMovieList($list) {
+    $movieList = [];
+    for ($x = 0; $x < count($list); $x++) {
+      $title = $list[$x]->name;
+      $url = $list[$x]->cover_url;
+      $card = file_get_contents("../html/favourite_card.html");
+      $card = str_replace("{movieTitle}", $title, $card);
+      $card = str_replace("{coverURL}", "../public".$url, $card);
+      array_push($movieList, $card);
+    }
+    return implode($movieList);
+  }
+
+$movieList = getMovieList($result);
+$output = str_replace("{movieList}", $movieList, $output);
+
+console_log($movieList);
+
+*/
+
+
+
+?>
 
 
 

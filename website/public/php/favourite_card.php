@@ -6,11 +6,16 @@ include_once("../../src/session_manager.php");
 $card = file_get_contents("../html/favourite_card.html");
 
 
+$title="";
+$genre="None";
+$cover_url="None";
 
 $title="";
 $genre="None";
 $cover_url="None";
 
+$dbMan = DBManager::getInstance();
+$genreList = $dbMan->query("SELECT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");
 
 $dbMan = DBManager::getInstance();
 $genreList = $dbMan->query("SELECT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");
