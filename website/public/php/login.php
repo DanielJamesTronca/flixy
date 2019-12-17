@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include_once("../src/db_manager.php");
-include_once("../src/models/models.php");
+include_once("../../src/db_manager.php");
+include_once("../../src/models/models.php");
 
 // define variables and set to empty values
 $errorMessage = "";

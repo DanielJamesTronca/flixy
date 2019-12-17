@@ -538,20 +538,11 @@
 
 
 
-
-
-  /* Style the body */
-  body {
-    min-height: 100vh;
-    
-  }
-  
   /* Column container */
   #row {  
     flex-direction: row;
   }
   
-
   #side {
     flex-direction: column;
     padding-top:2em;
@@ -564,19 +555,14 @@
     flex-basis: 0;
     flex-shrink: 1;
     flex-grow: 3;
-
   }
-
-
 
   #copertina {
       width: 25.5em;
       height: 34em;
       background-size: cover;
-      position: relative;
-      border:0.125em solid white;
+      border:0.1em solid white;
       border-radius: .5em;
-      
   }
 
   #column{
@@ -586,25 +572,27 @@
     float:left;
   }
   
+  #fav-icon{
+      transition: color .2s ease-in;
+      cursor: pointer;
+      float: right; 
+  }
 
-  #fav-icon {
-    transition: color .2s ease-in;
-    cursor: pointer;
-    float: right;
-}
+  #fav-icon:hover{
+      color: red;
+  }
 
-    #fav-icon:hover {
-        color:red;
-    }
+  #fav-icon:checked{
+      color: red;
+  }
 
-    #fav-icon:checked {
-        color:red;
-    }
 
     #yt object{
-        width:549px;
-        height:303px;
-    }
+width:549px;
+height:303px;
+}
+
+
 
     input{
         font-size:1.125em;
@@ -618,21 +606,7 @@
       }
       input:focus 		{ outline:none; }
       
-      /* LABEL ======================================= */
-      label 				 { 
-        font-size:0.8em;
-        font-weight:normal;
-        position:absolute;
-        left:.3em;
-        bottom: 1.8em;
-      }
-      
-      /* active state */
-      input:focus ~ label, input:valid ~ label 		{
-        top:-1.25em;
-        font-size:.8em;
-        color:white;
-      }
+
     .bar { position:relative; display:block; width:100%; }
     .bar:before, .bar:after{
     content:'';
@@ -658,26 +632,28 @@
   }
 
       
-#similar{
+#lista-card{
     flex-direction: row;
     justify-content: flex-start;
 }
 
-    @media only screen and (max-width:875px){
-        #side{
-            display: flex;
-            flex-basis: 100%;
-            flex-grow: 0;
-            flex-shrink: 0;
-            padding-left: 0em;
-           
-        }
 
-        #main {
-            display: flex;
-            flex-basis: 100%;  
-          }
+
+
+@media only screen and (max-width:875px){
+    #side{
+        display: flex;
+        flex-basis: 100%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        padding-left: 0em;
     }
+
+    #main {
+        display: flex;
+        flex-basis: 100%;  
+     }
+}
 
 
     
