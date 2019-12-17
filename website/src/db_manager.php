@@ -1,6 +1,5 @@
-<?php 
-
-class DBManager 
+<?php
+class DBManager
 { 
     private static $instance = null;
     private $conn;

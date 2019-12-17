@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+<head>
+  <title>Flixy - Homepage</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <base target="_self" href="http://localhost/flixy/website/public/html">
+  <meta name="title" content="Flixy - Homepage" />
+  <link rel="stylesheet" type="text/css" href="../public/assets/rules.css"/>
+</head>
+  <body class="document-font primary-bg layout-body">
+      <div id="filters-menu" class=" margin-top-2 full-width flex-container flex-content-center flex-align-items-center flex-wrap">
+        <form name="gen-filters" method="POST">
+          <ul id="general-filters" class="full-height text-align-center primary-color  flex-container flex-content-center flex-items-center flex-align-items-center">
+            <li class="margin-left-1">
+              <button class="font-size-0-938 font-weight-bold custom-button padding-left-1-5 padding-right-1-5 padding-top-0-4 padding-bottom-0-4 border-radius-0-3 ">Latest</button> 
+            </li>
+            <li class="margin-left-1">
+              <button class="font-size-0-938 font-weight-bold custom-button padding-left-1-5 padding-right-1-5 padding-top-0-4 padding-bottom-0-4 border-radius-0-3 ">Most votes</button> 
+            </li>
+          </ul>
+        </form>
+
+        <div class="menu-divider margin-left-1"></div>
+        <div id="dropdown-select" class="full-height primary-color text-align-center flex-container flex-content-start flex-items-center flex-align-items-center">
+          <form name="year" action="" method="POST" class="flex-container flex-content-start flex-items-center flex-align-items-center">
+            
+            <div id="year-filter" class="margin-left-1">
+              <label id="year-label" for="year-select" class="primary-color margin-left-1">Year</label>
+              <select name="year-select" id="year-select" class="custom-select margin-left-0-5 primary-color font-size-0-938 font-weight-bold">
+                <option value="All">All</option>
+                {yearOption}
+              </select>
+            </div>
+            
+            <div id="genre-filter"> 
+              <label id="genre-label" for="genre-select" class="margin-left-1">Genre</label>
+              <select name="genre-select" id="genre-select" class="custom-select margin-left-0-5 primary-color font-size-0-938 font-weight-bold">
+                <option value="All">All</option>
+                {genreOption}
+              </select>
+            </div>
+            
+            <button type="submit" name="submit"  class="margin-left-1-5 custom-button font-size-0-938 font-weight-bold padding-0-3 border-radius-0-3">Filter</button>
+          </form>
+        </div>
+      </div>
+      <div id="movies-container" class="full-size flex-container flex-content-center flex-items-center flex-wrap margin-top-2">
+        {movieList}
+      </div>
+  </body>
+</html>

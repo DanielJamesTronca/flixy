@@ -1,10 +1,67 @@
 <?php
-session_start();
+include_once("../../src/db_manager.php");
+include_once("../../src/models/models.php");
+include_once("../../src/session_manager.php");
 
 $output = file_get_contents("../html/layout.html");
+$dbMan = DBManager::getInstance();
 
-//inclusione del feed
-$output = str_replace("{feed}",file_get_contents("../html/feed.html"),$output);
+$username = "";
+$profile = "profile".$username;
+
+if (SessionManager::isUserLogged()) {
+    $username = SessionManager::getUsername();
+}
+
+if ($username != "") {
+    $output = str_replace("{link_to_profile_or_log_in}", $profile, $output);
+    $output = str_replace("{login_O_username}", $username, $output);
+    $output = str_replace("{link_to_log_out_or_register}", "Logout", $output);
+    $output = str_replace("{logout_O_registrazione}", "Logout", $output);
+} else {
+    $output = str_replace("{link_to_profile_or_log_in}", "./login.php", $output);
+    $output = str_replace("{login_O_username}", "Log in", $output);
+    $output = str_replace("{link_to_log_out_or_register}", "./registrazione.php", $output);
+    $output = str_replace("{logout_O_registrazione}", "Registrati", $output);
+    $output = str_replace("{profile_photo_url}", "../public/assets/images/avatars/default.png", $output);
+}
+
+
+
+
+
+
+
+
+
+
+
+// <form> logic
+if (isset($_POST["search"])) {
+    $varSearch = $_POST["search"];
+    $varReturnSearch = research('%'.$varSearch.'%');
+} else {
+    $varSearch = '';
+    $varReturnSearch = '';
+}
+
+$registrazionePage = '"./registrazione.php"';
+$logOutAction = '$logOut';
+$signup = '<a id="sign-up" class="font-size-0-75 font-weight-light" href="./registrazione.php">';
+$logout = str_replace($registrazionePage, $logOutAction, $signup);
+
+function research($input) {
+    $dbMan = DBManager::getInstance();
+    if ($input) {
+        $result = $dbMan->query("SELECT * FROM Media WHERE Media.name LIKE '$input'");
+    }
+    return $result;
+}
+
+$homePage = file_get_contents("../html/home.html");
+$output = str_replace("{homePage}", $homePage, $output);
+
+include_once("./home.php");
+
 echo $output;
-
 ?>
