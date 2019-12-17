@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+
+<head>
+<base target="_self" href="http://localhost/flixy/website/public/">  <!--da cambiare!!!! -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <!-- per ottimizzazione visualizzazione smartphone -->
+<link rel="stylesheet" media="screen" type="text/css" href="assets/rules.css"/>
+<link rel="stylesheet" media="screen" type="text/css" href="assets/feed.css"/>
+<script type="text/javascript" src="action.js"></script>
+<title>Flixy - Feed</title>
+<meta name="title" content="Flixy - Login" />
+</head>
+
+<body>
+    <div id="feed-content" class="secondary-bg">
+        <h1 class="text-align-left padding-left-1-5 padding-right-1-5 padding-top-1-5 font-weight-normal"> Your Feed </h1>  
+        <div id="container-next-release" class="margin-left-2-5">
+            <div class="next-release">
+                <div class="next-release-image-container">
+                    <img src="assets/images/covers/casa.jpg" class="cover" alt=""/>
+                </div>
+                <div class="next-release-text-area padding-1 text-align-center"> 
+                    <h4>La Casa di Carta</h4>
+                    <h6>Stagione 3</h6>
+                    <p class="next-release-remaining-days"> 22 </p>
+                    <p> giorni rimanenti </p>
+                </div>    
+            </div>
+            <div class="next-release">
+                <div class="next-release-image-container">
+                    <img src="assets/images/covers/malef.jpg" class="cover" alt=""/>
+                </div>
+                <div class="next-release-text-area padding-1 text-align-center">
+                    <h4 xml:lang="en-GB" lang="en-GB">Maleficent</h4>
+                    <h6>Stagione 2</h6>
+                    <p class="next-release-remaining-days"> 8 </p>
+                    <p> giorni rimanenti </p>
+                </div>   
+            </div>
+            <div class="next-release">
+               <div class="next-release-image-container">
+                    <img src="assets/images/covers/casa.jpg" class="cover" alt=""/>
+                </div>
+                <div class="next-release-text-area padding-1 text-align-center">
+                    <h4>La Casa di Carta</h4>
+                    <h6>Stagione 4</h6>
+                    <p class="next-release-remaining-days"> 73 </p>
+                    <p> giorni rimanenti </p>
+                </div>   
+            </div>  
+        </div>
+        <div class="timeline">
+            {feed-timeline}
+        </div>  
+
+    </div>
+
+</body>
+
+
