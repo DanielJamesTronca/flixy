@@ -13,7 +13,7 @@ function generate_feed_timeline($userId){
             $stringToReturn = "";
             for ($i = 0; $i < sizeof($arrayFeed); $i++){
                 $mediaObj = Media::fetch($arrayFeed[$i]->mediaId);
-                $title = $mediaObj->title; //da convertire in $arrayFeed[$i]->title appena viene risolta la mancanza del titolo nell'oggetto
+                $title = $mediaObj->title;
                 $subtitle = $arrayFeed[$i]->subtitle;
                 $content = $arrayFeed[$i]->content;
                 $media = get_media($arrayFeed, $i, $mediaObj);
