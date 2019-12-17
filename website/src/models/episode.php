@@ -4,6 +4,7 @@ include_once("base.php");
 
 class Episode extends Base 
 {
+    const TABLE_NAME = "Episode";
     const TITLE_KEY = "title";
     const DESCRIPTION_KEY = "description";
     const PROMO_KEY = "promo_url";
@@ -12,7 +13,7 @@ class Episode extends Base
     const NUMBER_KEY = "number";
     const AIR_DATE_KEY = "air_date";
 
-    var $title, $description, $promoUrl, $mediaId, $seasonNum, $episodeNum, $airDate;
+    var $title, $description, $promoUrl, $mediaId, $seasonNum, $episodeNum, $airDate, $aired;
  
     public function __set( $name, $value ) {
         switch ($name)
@@ -37,11 +38,19 @@ class Episode extends Base
                 break;
             case self::AIR_DATE_KEY: 
                 $this->airDate = $value;
+                $this->aired = $this->airDate < date("Y-m-d");
+                
                 break;
             default: 
                 parent::__set($name, $value);
                 break;
         }
+    }
+
+    public static function getEpisodesFor($mediaId)
+    {
+        $dbman = DBManager::getInstance();
+        return $dbman->query("SELECT * FROM ".Episode::TABLE_NAME." WHERE ".Episode::MEDIA_ID_KEY." = ".$mediaId, Episode::class);
     }
  }
 
