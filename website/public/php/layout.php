@@ -26,16 +26,6 @@ if ($username != "") {
     $output = str_replace("{profile_photo_url}", "../public/assets/images/avatars/default.png", $output);
 }
 
-
-
-
-
-
-
-
-
-
-
 // <form> logic
 if (isset($_POST["search"])) {
     $varSearch = $_POST["search"];
@@ -59,7 +49,6 @@ function research($input) {
 }
 
 $homePage = file_get_contents("../html/home.html");
-$output = str_replace("{homePage}", $homePage, $output);
 
 include_once("./home.php");
 

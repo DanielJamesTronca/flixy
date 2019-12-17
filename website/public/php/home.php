@@ -1,6 +1,7 @@
 <?php
 
 //$output = file_get_contents("../html/home.html");
+// sostituire funzioni filter list con media::list
 $dbMan = DBManager::getInstance();
 function fillGenreSelect($genreList) {
   $list = [];
@@ -50,7 +51,7 @@ function getIdGenre($genre) {
 }
 
 function filterList($year, $genre) {
-  $dbMan = DBManager::getInstance();
+  // $dbMan = DBManager::getInstance();
   $result = [];
   $genreId = -1;
   if ($genre != "All") {
@@ -58,13 +59,18 @@ function filterList($year, $genre) {
   }
 
   if ($year != "All" && $genre != "All") {
-    $result = $dbMan->query("SELECT * FROM Media WHERE genre=$genreId AND YEAR(air_date)=$year");
+
+    $result = Media::list(null, null, $year, $genre, null, "ASC");
+    //$dbMan->query("SELECT * FROM Media WHERE genre=$genreId AND YEAR(air_date)=$year");
   } else if ($year != "All") {
-    $result = $dbMan->query("SELECT * FROM Media WHERE YEAR(air_date)=$year");
+    $result = Media::list(null, null, $year, null, null, "ASC");
+    //$dbMan->query("SELECT * FROM Media WHERE YEAR(air_date)=$year");
   } else if ($genre != "All") {
-    $result = $dbMan->query("SELECT * FROM Media WHERE genre=$genreId");
+    $result = Media::list(null, null, null, $genre, null, "ASC");
+    //$dbMan->query("SELECT * FROM Media WHERE genre=$genreId");
   } else {
-    $result = $dbMan->query("SELECT * FROM Media");
+    $result = Media::list(null, null,null,null, null, "ASC"); 
+    //$dbMan->query("SELECT * FROM Media");
   }
   
   return $result;
