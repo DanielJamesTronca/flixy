@@ -19,6 +19,11 @@ function generate_feed_next_releases($userId){
             $isMovie = $release->isMovie;
             $coverImage = $release->coverUrl;
             $deadlineDate = $release->deadlineDate;
+            $dteStart = new DateTime($deadlineDate);
+            $dteEnd = new DateTime(date("Y-m-d"));
+            $dteDiff  = $dteStart->diff($dteEnd);
+            $dteDiff = $dteDiff->format("%D");
+           
             $element = "<div class='next-release'>
                             <div class='next-release-image-container'>
                                 <img src=$coverImage class='cover' alt='immagine copertina'/>
@@ -26,7 +31,7 @@ function generate_feed_next_releases($userId){
                             <div class='next-release-text-area padding-1 text-align-center'> 
                                 <h4>$title</h4>
                                 <h6>$subtitle</h6>
-                                <p class='next-release-remaining-days'> 22 </p>
+                                <p class='next-release-remaining-days'> $dteDiff </p>
                                 <p> giorni rimanenti </p>
                             </div>    
                         </div>";
@@ -54,7 +59,7 @@ function generate_feed_timeline($userId){
                 $mesi = array(1=>'Gennaio', 'Febbraio', 'Marzo', 'Aprile',
                 'Maggio', 'Giugno', 'Luglio', 'Agosto',
                 'Settembre', 'Ottobre', 'Novembre','Dicembre');
-                
+
                 $media = get_media($item, $mediaObj);
                 $element = "<div class='timeline-container'>
                                 <div class='timeline-content'>
