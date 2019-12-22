@@ -14,7 +14,7 @@ class Media extends Base
     const HAS_EPISODES_KEY = "hasEpisodes";
     const EPISODES_NUM_KEY = "episodes";
     const SEASONS_NUM_KEY  = "seasons";
-    const TRAILER_KEY = "trailer_key";
+    const TRAILER_KEY = "trailer_url";
     const DATE_KEY = "air_date";
     const VOTES_TOTAL_KEY = "votes_count";
     const VOTES_POSITIVE_KEY = "votes_positive";
@@ -74,6 +74,13 @@ class Media extends Base
         }
     }
 
+    public function saveInDB() {
+        $dbman = DBManager::getInstance();
+        $insertQuery = "INSERT INTO ".(self::TABLE_NAME)." (".(self::NAME_KEY).", ".(self::DESCRIPTION_KEY).", ".(self::COVER_KEY).", ".(self::GENRE_ID_KEY).", ".(self::STARS_KEY).", ".(self::DURATION_KEY).", ".(self::HAS_EPISODES_KEY).", ".(self::EPISODES_NUM_KEY).", ".(self::SEASONS_NUM_KEY).", ".(self::TRAILER_KEY).", ".(self::DATE_KEY).") ";
+        $insertQuery .= "VALUES ('".$this->title."', '".$this->description."', '".$this->coverUrl."', ".$this->genreId.", ".$this->stars.", ".$this->duration.", ".$this->hasEpisodes.", ".$this->numEpisodes.", ".$this->numSeasons.", '".$this->trailerUrl."', '".$this->airDate."');";
+    
+        return $dbman->query($insertQuery);
+    }
 
     public static function list($name=null, $year = null, $genre = null, $order = null, $asc = "ASC")
     {

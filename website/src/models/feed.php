@@ -42,6 +42,14 @@ class Feed extends Base
         }
     }
 
+    public function saveInDB() {
+        $dbman = DBManager::getInstance();
+        $insertQuery = "INSERT INTO ".(self::TABLE_NAME)." (".(self::CONTENT_KEY).", ".(self::SUBTITLE_KEY).", ".(self::AUTHOR_ID_KEY).", ".(self::MEDIA_ID_KEY).", ".(self::EVENT_DATE_KEY).", ".(self::VIDEO_URL_KEY).") ";
+        $insertQuery .= "VALUES ('".$this->content."', '".$this->subtitle."', ".$this->authorId.", ".$this->mediaId.", '".$this->eventDate."', '".$this->videoUrl."');";
+
+        return $dbman->query($insertQuery);
+    }
+
     public static function getFeed($userId, $lastItemId = null)
     {
         $dbman = DBManager::getInstance();
