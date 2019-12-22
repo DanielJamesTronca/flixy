@@ -26,7 +26,6 @@ $episode->seasonNum = $_POST["seasonNum"];
 $episode->episodeNum = $_POST["episodeNum"];
 $episode->airDate = $_POST["airDate"];
 
-
 $episode->saveInDB();
 echo "TODO: redirect based on result";
 
