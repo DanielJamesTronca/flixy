@@ -5,10 +5,10 @@ include_once("../../src/session_manager.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 
-// if (!SessionManager::isUserLogged()) {
-//     echo "Error, no user logged";
-//     return;
-// }
+if (!SessionManager::isUserLogged()) {
+    echo "Error, no user logged";
+    return;
+}
 
 // parametri in input: content, subtitle, mediaid, videoUrl, eventDate
 
