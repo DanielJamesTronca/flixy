@@ -95,8 +95,9 @@ function get_media($feedObj){
 function is_future_date($dateToCheck){
     $dteStart = new DateTime($dateToCheck);
     $dteEnd = new DateTime(date("Y-m-d"));
-    $dteDiff  = $dteStart->diff($dteEnd);
-    if ($dteDiff->format("%D")!=0){
+    $dteDiff  = date_diff($dteStart,$dteEnd);
+    $diffInDays = (int)$dteDiff->format("%r%a"); //%r da il segno(+,-), %a i giorni
+    if ($diffInDays<0){
         return true;
     }
     else{
@@ -107,8 +108,8 @@ function is_future_date($dateToCheck){
 function get_remaining_days($date){
     $dteStart = new DateTime($date);
     $dteEnd = new DateTime(date("Y-m-d"));
-    $dteDiff  = $dteStart->diff($dteEnd);
-    return $dteDiff->format("%d");
+    $dteDiff  = date_diff($dteStart,$dteEnd);
+    return $dteDiff->days;
 }
 
 
@@ -124,6 +125,9 @@ function get_merged_array_date_ordered($array1, $array2){
         }
         if($a instanceof Release && $b instanceof Feed){
             return ($b->eventDate <=> $a->deadlineDate);
+        }
+        if($a instanceof Release && $b instanceof Release){
+            return ($b->deadlineDate <=> $a->deadlineDate);
         }
     });
     return $mergedArray;

@@ -68,7 +68,7 @@ class Feed extends Base
         foreach ($favs as &$fav) {
             array_push($releases, new Release($fav));
         }
-        return array_filter($releases, function($item) { return $item->valid; });
+        return $releases;
     }
  }
 
@@ -83,12 +83,11 @@ class Feed extends Base
         $this->isMovie = !$media->hasEpisodes;
         if ($this->isMovie)
         {
-            if ($media->airDate > date("DATE_ISO8601"))
-            {
+            
                 $this->deadlineDate = $media->airDate;
                 $this->sutitle = "Rilascio film";
                 $this->valid = true;
-            }
+        
         }
         else 
         {

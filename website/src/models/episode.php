@@ -39,7 +39,6 @@ class Episode extends Base
             case self::AIR_DATE_KEY: 
                 $this->airDate = $value;
                 $this->aired = $this->airDate < date("Y-m-d");
-                
                 break;
             default: 
                 parent::__set($name, $value);
