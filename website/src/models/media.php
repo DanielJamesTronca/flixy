@@ -82,6 +82,13 @@ class Media extends Base
         return $dbman->query($insertQuery);
     }
 
+    public function updateInDB() {
+        $dbman = DBManager::getInstance();
+        $insertQuery = "UPDATE ".(self::TABLE_NAME)." SET  ".(self::NAME_KEY)."='".$this->title."', ".(self::DESCRIPTION_KEY)."='".$this->description."', ".(self::COVER_KEY)."='".$this->coverUrl."', ".(self::GENRE_ID_KEY)."=".$this->genreId.", ".(self::STARS_KEY)."=".$this->stars.", ".(self::DURATION_KEY)."=".$this->duration.", ".(self::HAS_EPISODES_KEY)."=".$this->hasEpisodes.", ".(self::EPISODES_NUM_KEY)."=".$this->numEpisodes.", ".(self::SEASONS_NUM_KEY)."=".$this->numSeasons.", ".(self::TRAILER_KEY)."='".$this->trailerUrl."', ".(self::DATE_KEY).")='".$this->airDate."' ";
+        $insertQuery .= " WHERE id="+$this->id;
+        return $dbman->query($insertQuery);
+    }
+
     public static function list($name=null, $year = null, $genre = null, $order = null, $asc = "ASC")
     {
         $dbman = DBManager::getInstance();

@@ -17,6 +17,11 @@ if (!isset($_POST["title"]) || !isset($_POST["description"]) || !isset($_POST["g
     return;
 }
 
+$id = null;
+if (isset($_POST["id"])) {
+    $id = $_POST["id"];
+}
+
 $media = new Media();
 $media->title = $_POST["title"];
 $media->description = $_POST["description"];
@@ -31,19 +36,26 @@ $media->airDate = $_POST["airDate"];
 
 // good to go on these parameters, now check image upload
 $target_dir = "/assets/images/covers/";
-if (!isset($_FILES["cover"])) {
-    echo "Error, no image selected";
-    return;
-}
-$upload_result = Utils::uploadImage($target_dir, $_FILES["cover"], "..");
-if ($upload_result["success"] === false) {
-    echo $upload_result["error"];
-    return;
+if (isset($_FILES["cover"])) {
+    $upload_result = Utils::uploadImage($target_dir, $_FILES["cover"], "..");
+    if ($upload_result["success"] === false) {
+        echo $upload_result["error"];
+        return;
+    }
+    $media->coverUrl = $upload_result["url"];
+} else if (isset($_POST["coverUrl"])) {
+    $media->coverUrl = $_POST["coverUrl"];
 }
 
-$media->coverUrl = $upload_result["url"];
+if ($id == null) {
+    // create new
+    $media->saveInDB();
+} else {
+    // update
+    $media->id = $id;
+    $media->updateInDB();
+}
 
-$media->saveInDB();
 echo "TODO: redirect based on result";
 
 ?>

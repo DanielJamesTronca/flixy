@@ -5,10 +5,10 @@ include_once("../../src/session_manager.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 
-// if (!SessionManager::isUserLogged()) {
-//     echo "Error, no user logged";
-//     return;
-// }
+if (!SessionManager::isUserLogged() && !SessionManager::userCanPublish()) {
+    echo "Error, no user logged";
+    return;
+}
 
 if (!isset($_POST["object"]) || !isset($_POST["id"])) {
     echo "Error, Missing parameters";
