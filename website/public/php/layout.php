@@ -3,6 +3,12 @@ include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 include_once("../../src/session_manager.php");
 
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+  }
+
 $output = file_get_contents("../html/layout.html");
 $dbMan = DBManager::getInstance();
 
@@ -48,7 +54,7 @@ $logOutAction = '$logOut';
 $signup = '<a id="sign-up" class="font-size-0-75 font-weight-light" href="./php/registrazione.php">';
 $logout = str_replace($registrazionePage, $logOutAction, $signup);
 
-
+$output = str_replace("{linkToFeed}", "./php/layout.php?page=feed", $output);
 
 switch ($_GET['page']) {
     case 'home':

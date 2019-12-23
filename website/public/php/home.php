@@ -1,8 +1,4 @@
 <?php
-
-//$dbMan = DBManager::getInstance();
-
-
 // ============= Populate genre and airDate <select>
 function fillGenreSelect($genreList) {
   $list = [];
@@ -55,18 +51,18 @@ function filterList($year, $genre) {
   $result = [];
   $genreId = -1;
   if ($genre != "All") {
-    $genreId = Genre::getIdGenre($genre);
+    $genreId = Genre::getIdGenre($genre)[0]->id;
   }
   if ($year != "All" && $genre != "All") {
-    $result = Media::list(null, null, $year, $genre, null, "ASC");
+    $result = Media::list(null, null, $year, $genreId, null, "ASC");
   } else if ($year != "All") {
     $result = Media::list(null, null, $year, null, null, "ASC");
   } else if ($genre != "All") {
-    $result = Media::list(null, null, null, $genre, null, "ASC");
+    $result = Media::list(null, null, null, $genreId, null, "ASC");
+    console_log($genreId);
   } else {
     $result = Media::list(null, null,null,null, null, "ASC"); 
   }
-  console_log($result);
   return $result;
 }
 
@@ -103,12 +99,4 @@ if ($varSearch) {
 
 $movieList = getMovieList($result);
 $output = str_replace("{movieList}", $movieList, $output);
-
-function console_log( $data ){
-  echo '<script>';
-  echo 'console.log('. json_encode( $data ) .')';
-  echo '</script>';
-}
-
-
 ?>
