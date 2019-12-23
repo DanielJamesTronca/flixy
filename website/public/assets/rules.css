@@ -846,8 +846,6 @@ option {
 .movie-entry {
     width: 15.063em;
     height: 35.000em;
-    margin-top: 0em;
-    margin-bottom: 0em;
     flex-grow: 0;
 }
 
@@ -857,10 +855,13 @@ option {
 }
 
 .stars-active {
-    color: #FFBC0B;
     z-index: 10;
     overflow: hidden;
   }
+
+.stars-active i {
+    color: #FFBC0B;
+}
   
 .rating {
     width: 90%;
