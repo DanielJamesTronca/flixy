@@ -62,7 +62,7 @@
 }
 
 .font-size-1-125 {
-    font-size: 1.125;
+    font-size: 1.125em;
 }
 
 .font-size-1-5 {
@@ -943,3 +943,9 @@ option {
 .movie-entry #num-up-down #num-down {
     margin-left: .8em;
 }
+
+/* START MERGE INSERT-FORM.CSS */
+.insert-form-container{
+    width:90%;
+}
+/* END MERGE INSERT-FORM.CSS */
