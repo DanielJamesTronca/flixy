@@ -1,39 +1,18 @@
 <?php
-$output = file_get_contents("../html/registrazione.html");
-if(!isset($_SESSION))
-  session_start();
-if(isset($_SESSION['registration']) && !$_SESSION['registration']) {
-    $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small'>",$output);
-    $output = str_replace("{error-message}",$_SESSION['error-message'],$output);
-    session_destroy();
+include_once("../../src/db_manager.php");
+include_once("../../src/models/models.php");
+include_once("../../src/session_manager.php");
+
+$output = file_get_contents("../html/profilo.html");
+
+
+$dbMan = DBManager::getInstance();
+
+if(SessionManager::isUserLogged()){
+$userId=session_manager::getUerId();
+
+
+
+
 }
-/* controlla se sono impostate le variabili di sessione con i rispettivi valori 
- per ri-assegnare i rispettivi valori al campo value dell'input della form 
- (evitando il re-inserimento per l'utente)
- */
-if (isset($_SESSION['username'])){
-    $output = str_replace("'{username}'",$_SESSION['username'],$output);
-}
-else{
-    $output = str_replace("'{username}'","",$output);
-}
-if (isset($_SESSION['name'])){
-    $output = str_replace("'{name}'",$_SESSION['name'],$output);
-}
-else{
-    $output = str_replace("'{name}'","",$output);
-}
-if (isset($_SESSION['surname'])){
-    $output = str_replace("'{surname}'",$_SESSION['surname'],$output);
-}
-else{
-    $output = str_replace("'{surname}'","",$output);
-}
-if (isset($_SESSION['email'])){
-    $output = str_replace("'{email}'",$_SESSION['email'],$output);
-}
-else{
-    $output = str_replace("'{email}'","",$output);
-}
-echo $output;
-?>
+
