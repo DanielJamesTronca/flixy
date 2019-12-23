@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+
+<head>
+<base target="_self" href="http://localhost/flixy/website/public/"/> <!--da cambiare!!!! -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/> <!-- per ottimizzazione visualizzazione smartphone -->
+<link rel="stylesheet" media="screen" type="text/css" href="assets/style.css"/>
+<link rel="stylesheet" media="screen" type="text/css" href="assets/rules.css"/>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="action.js"></script>
+
+<title>Flixy - Inserisci media</title>
+<meta name="title" content="Flixy - Inserimento episodio" />
+</head>
+<body>
+
+<div class="insert-form-container">
+             
+    <div class="form-title">
+        <h1 class=""> Aggiungi Media </h1>
+    </div>
+
+    <div class='margin-top-small hidden'>
+        <div class="error-message-box">
+            <p class="bold">Dati invalidi</p>
+            <p>Controlla i dati inseriti e riprova: {error-message} </p>
+        </div>
+    </div>
+
+    <div class="padding-top-medium">
+
+      <form action="./php/check_registrazione.php" method="post" id="regForm" onsubmit="return validateFormRegistration()">
+          <div class="group-insert">  
+            <label for="title-media" class="label-form">Titolo</label>    
+            <input type="text" name="title-media" id="title-media" value="'{title-media}'" />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          <div class="group-insert">     
+            <label for="description" class="label-form">Descrizione</label> 
+            <input type="text" name="description" id="description" value="'{description}'"/>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          <div id="media-comboBox-container">
+            <div class="group-insert">       
+              <label for="genre-select" class="primary-color label-form">Genere</label>
+              <select name="genre-select" id="genre-select" class="custom-select primary-color font-size-1-125">
+                <option value="All">All</option>
+                {seasonOption}
+              </select>
+            </div>
+            <div class="group-insert"> 
+              <label for="duration-select" class="primary-color label-form">Durata</label>
+              <select name="duration-select" id="duration-select" class="custom-select primary-color font-size-1-125">
+                <option value="All">All</option>
+                {episodeOption}
+              </select>
+            </div>
+            <div class="group-insert">       
+              <label for="rating-select" class="primary-color label-form">Valutazione</label>
+              <select name="rating-select" id="rating-select" class="custom-select primary-color font-size-1-125">
+                <option value="All">All</option>
+                {seasonOption}
+              </select>
+            </div>
+            <div class="group-insert"> 
+              <label for="num-episodes-select" class="primary-color label-form">Episodi per stagione</label>
+              <select name="num-episodes-select" id="num-episodes-select" class="custom-select primary-color font-size-1-125">
+                <option value="All">All</option>
+                {episodeOption}
+              </select>
+            </div>
+            <div class="group-insert"> 
+              <label for="num-seasons-select" class="primary-color label-form">Numero stagioni</label>
+              <select name="num-seasons-select" id="num-seasons-select" class="custom-select primary-color font-size-1-125">
+                <option value="All">All</option>
+                {episodeOption}
+              </select>
+            </div>
+          </div>
+          <div class="group-insert">      
+            <label for="url-trailer" class="label-form">URL trailer</label>
+            <input type="text" name="url-trailer" id="url-trailer" value="'{url-trailer}'"/>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          <div class="group-insert">      
+            <label for="date" class="label-form">Data di rilascio</label>
+            <input type="text" name="date" id="date" value="'{date}'"/>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          
+          <div class="flex-container flex-content-end">
+            <input type="reset" value="Reset" class="button-small-form primary-color-gradient-button-reset"/>
+            <input type="submit" value="Invia" class="button-small-form margin-left-0-7 primary-color-gradient-button"/>
+          </div>
+          
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -154,6 +154,10 @@
 .margin-left-2-5 {
     margin-left: 2.5em;
 }
+
+.margin-left-3 {
+    margin-left: 3em;
+}
 /* END MARGIN LEFT SECTION */
 /* MARGIN RIGHT SECTION */
 
@@ -474,6 +478,11 @@
 .flex-content-start {
     justify-content: flex-start;
 }
+
+.flex-content-end {
+    justify-content: flex-end;
+}
+
 
 .flex-content-space-between {
     justify-content: space-between;
@@ -945,7 +954,42 @@ option {
 }
 
 /* START MERGE INSERT-FORM.CSS */
+
+.group-insert 	{ 
+    position:relative; 
+    margin-bottom:2.2em;    
+}
+
 .insert-form-container{
     width:90%;
+}
+
+#media-comboBox-container{
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+    max-width:80%;
+}
+
+.label-form { 
+    font-size:0.8em;
+    font-weight:normal;
+    left:.3em;
+    bottom: 1.8em;
+}
+
+.single-label-form { 
+    font-size:0.8em;
+    font-weight:normal;
+    left:.3em;
+    bottom: 1.8em;
+    position: absolute;
+}
+
+@media (max-width: 768px) { 
+    #media-comboBox-container{
+        flex-direction: column;
+      
+    }
 }
 /* END MERGE INSERT-FORM.CSS */

@@ -10,68 +10,74 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="action.js"></script>
 
-<title>Flixy - Inserisci Notizia</title>
-<meta name="title" content="Flixy - Inserimento notizie" />
+<title>Flixy - Inserisci Episodio</title>
+<meta name="title" content="Flixy - Inserimento episodio" />
 </head>
 <body>
 
 <div class="insert-form-container">
              
     <div class="form-title">
-        <h1 class=""> Aggiungi o Modifica Notizia </h1>
+        <h1 class=""> Aggiungi Episodio di {nomeSerie} </h1>
     </div>
 
     <div class='margin-top-small hidden'>
-      <div class="error-message-box">
-          <p class="bold">Dati invalidi</p>
-          <p>Controlla i dati inseriti e riprova: {error-message} </p>
-      </div>
+        <div class="error-message-box">
+            <p class="bold">Dati invalidi</p>
+            <p>Controlla i dati inseriti e riprova: {error-message} </p>
+        </div>
     </div>
 
     <div class="padding-top-medium">
 
       <form action="./php/check_registrazione.php" method="post" id="regForm" onsubmit="return validateFormRegistration()">
-          <div class="group-insert">      
-            <label for="media-select" class="single-label-form">Media</label>
-            <select name="media-select" id="media-select" class="custom-select primary-color font-size-1-125">
-                <option value="All">All</option>
-                <option>Oranda</option>
-                <option>Ranchu</option>
-                <option>Ryukin</option>
-              <!--{mediaOption} da inserire in maniera da creare tutte le option della select, controlla sia valido in xhtml-->  
-            </select>
-          </div>
           <div class="group-insert">  
-            <label for="subtitle" class="label-form">Sottotitolo</label>    
-            <input type="text" name="subtitle" id="subtitle" value="'{subtitle}'" />
+            <label for="title-episode" class="label-form">Titolo</label>    
+            <input type="text" name="title-episode" id="title-episode" value="'{title-episode}'" />
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group-insert">     
-            <label for="content" class="label-form">Contenuto</label> 
-            <input type="text" name="content" id="content" value="'{content}'"/>
+            <label for="description" class="label-form">Descrizione</label> 
+            <input type="text" name="description" id="description" value="'{description}'"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group-insert">      
-            <label for="url-video" class="label-form">URL video</label>
-            <input type="text" name="url-video" id="url-video" value="'{url-video}'"/>
+            <label for="url-promo" class="label-form">URL video</label>
+            <input type="text" name="url-promo" id="url-promo" value="'{url-promo}'"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group-insert">      
-            <label for="date" class="label-form">Data</label>
+            <label for="date" class="label-form">Data di rilascio</label>
             <input type="text" name="date" id="date" value="'{date}'"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
-          
+
+          <div class="flex-container flex-content-start">
+            <div class="group-insert">       
+            <label for="season-select" class="primary-color label-form">Stagione</label>
+              <select name="season-select" id="season-select" class="custom-select primary-color font-size-1-125">
+                <option value="All">All</option>
+                {seasonOption}
+              </select>
+            </div>
+            <div class="group-insert"> 
+              <label for="episode-select" class="primary-color label-form margin-left-2-5">Episodio</label>
+              <select name="episode-select" id="episode-select" class="custom-select primary-color font-size-1-125">
+                <option value="All">All</option>
+                {episodeOption}
+              </select>
+            </div>
+          </div>
+  
           <div class="flex-container flex-content-end">
             <input type="reset" value="Reset" class="button-small-form primary-color-gradient-button-reset"/>
             <input type="submit" value="Invia" class="button-small-form margin-left-0-7 primary-color-gradient-button"/>
           </div>
-          
-        </form>
+      </form>
     </div>
 </div>
 
