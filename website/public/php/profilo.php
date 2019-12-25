@@ -5,14 +5,125 @@ include_once("../../src/session_manager.php");
 
 $output = file_get_contents("../html/profilo.html");
 
+<<<<<<< Updated upstream
 
 $dbMan = DBManager::getInstance();
 
 if(SessionManager::isUserLogged()){
 $userId=session_manager::getUerId();
-
-
-
-
+=======
+function console_log ( $data)
+{
+echo '<script>';
+echo 'console.log(' .json_encode($data).')';
+echo '</script>';
 }
+
+$name="";
+$surName="";
+$userName="";
+$email="";
+$avatarUrl="";
+
+$dbMan = DBManager::getInstance();
+
+//if(SessionManager::isUserLogged()){
+    //$userId = SessionManager::getUserId();
+   
+    $userId=2;
+
+    $user=User::getUser($userId);
+
+    
+
+    $name=$user->name;
+
+    $surName=$user->surname;
+    $userName=$user->username;
+    $avatarUrl=$user->avatarUrl;
+    $email=$user->email;
+      
+    $favoruites=Media::getUserFavourites($userId);
+    console_log($favoruites);
+
+    function getFavouriteList($favoruites) {
+        $favouriteList = [];
+        for ($x = 0; $x < count($favoruites); $x++) {
+          $titolo = $favoruites[$x]->title;
+          $url = $favoruites[$x]->coverUrl;
+          $genre = $favoruites[$x]->genreName;
+         
+          
+          $card = file_get_contents("../html/favourite_card.html");
+          $card = str_replace("{favouriteTitle}", $titolo, $card);
+          $card = str_replace("{favouriteGenre}", $genre, $card);
+
+          $card = str_replace("{favouriteCover}", "../".$url, $card);
+
+      
+         
+          array_push($favouriteList, $card);
+        }
+        return implode($favouriteList);
+      }
+
+
+$output = str_replace("{favouriteList}", getFavouriteList($favoruites), $output);
+
+
+/*
+
+    foreach ($fav as $favoruites) {
+        $title_card=$favoruites->title;
+        $cover_card=$favoruites->coverUrl;
+        $genre_card=$favourites->genre; 
+    }
+*/
+    
+//}
+
+$output=str_replace("{name}", $name,$output);
+$output=str_replace("{surname}", $surName,$output);
+$output=str_replace("{avatar_url}", "../../public".$avatarUrl,$output);
+
+
+$output=str_replace("{email}", $email,$output);
+$output=str_replace("{username}",$userName,$output);
+
+
+
+
+
+echo $output;
+
+?>
+
+
+<!--
+<form method="POST" action="../profile_edit.php">
+<input name="name">
+<input name="surname">
+<input name="email">
+<input type="file" name="avatar">
+
+
+
+    
+<form action="POST" action "../edit_fav.php">
+<input hidden name="redirect" type="text">
+<inpute name="isFavourite" type="checkbox">
+<input hidden name="mediaId" type="text">
+
+-->
+
+
+>>>>>>> Stashed changes
+
+
+
+
+<<<<<<< Updated upstream
+}
+=======
+>>>>>>> Stashed changes
 

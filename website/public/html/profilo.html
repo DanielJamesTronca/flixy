@@ -19,32 +19,40 @@
   <div id="side" class="flex-container flex-grow-shrink flex-align-items-center padding-2 ">
     
         <!-- AVATAR -->
+<<<<<<< Updated upstream
         <div id="avatar"></div>
           <a href="#" id="link" class="margin-bottom-2 margin-top-2 primary-color font-size-0-938"> Cambia immagine profilo </a> 
+=======
+        <div>
+          <img id="avatar" src={avatar_url} alt="Immagine profilo"/>
+        </div>
+        <a href="#" id="link" class="margin-bottom-2 margin-top-2 primary-color font-size-0-938"> Cambia immagine profilo </a> 
+
+>>>>>>> Stashed changes
        
         <!-- CAMPI -->
         <form action="./php/check_registrazione.php" method="post" id="regForm" onsubmit="return validateFormRegistration()">
           <div class="group">  
             <div class="group">  
               <label for="name">Nome</label>    
-              <input type="text" name="name" id="name" placeholder="Nome" value="'{name}'" />
+              <input type="text" name="name" id="name" placeholder="Nome" value="{name}" />
               <span class="highlight"></span>
               <span class="bar"></span>
             </div>    
             <div class="group">     
               <label for="surname">Cognome</label> 
-              <input type="text" name="surname" id="surname" placeholder="Cognome" value="'{surname}'"/>
+              <input type="text" name="surname" id="surname" placeholder="Cognome" value="{surname}"/>
               <span class="highlight"></span>
               <span class="bar"></span>
             </div>
             <div class="group">      
               <label for="email">Email</label>
-              <input type="text" name="email" id="email" placeholder="Email" value="'{email}'"/>
+              <input type="text" name="email" id="email" placeholder="Email" value="{email}"/>
               <span class="highlight"></span>
               <span class="bar"></span>
             </div>
             <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="Username" value="'{username}'"/>
+            <input type="text" name="username" id="username" placeholder="Username" value="{username}"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
@@ -58,13 +66,29 @@
 
 
   </div>
+<<<<<<< Updated upstream
     <div id="main" class="flex-container flex-grow-2 padding-2">
       <div id="tittle" class="primary-color document-font font-size-1-1 ">
         <h1>Your favourites</h1>
       </div>
     
+=======
+
+  <div id="main" class="flex-container flex-wrap secondary-bg ">
+ 
+  <div id="similar" class="padding-left-2">    <!-- MAYBE NEED A FIX -->
+    <h1 class="primary-color font-size-2-2 text-align-left contenuti_simili">Your Favourites</h1>
+    <div class=" flex-container flex-grow-shrink flex-content-start flex-wrap padding-left-2 ">
+        {favouriteList}
+>>>>>>> Stashed changes
     </div>
+  </div>
+      
+  </div>
+
+
 </div>
+
 
 
 </body>

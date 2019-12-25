@@ -63,5 +63,7 @@ $output = str_replace("{homePage}", $homePage, $output);
 
 include_once("./home.php");
 
+
+
 echo $output;
 ?>

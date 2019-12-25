@@ -539,6 +539,15 @@
 
 
 
+<<<<<<< Updated upstream
+=======
+.colonna{
+    -webkit-column-count: 2; /* Old Chrome, Safari and Opera */
+    -moz-column-count: 2; /* Old Firefox */
+    column-count: 2;
+    
+  }
+>>>>>>> Stashed changes
 
 .movie-entry {
     width: 11.25em;
@@ -558,10 +567,27 @@
     border-radius: .5em;
 }
 
+<<<<<<< Updated upstream
 .testo {
     float: left;
 }
 
+=======
+
+.ara{
+    flex-grow: 1; /* each flex-item grows and takes 1/3 of the parent's width */
+    text-align: center;
+}
+
+
+#fav-section{
+   margin-top: auto;
+}
+
+
+
+
+>>>>>>> Stashed changes
 #fav-icon{
     color: red;
 }
