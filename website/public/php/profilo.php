@@ -5,13 +5,6 @@ include_once("../../src/session_manager.php");
 
 $output = file_get_contents("../html/profilo.html");
 
-<<<<<<< Updated upstream
-
-$dbMan = DBManager::getInstance();
-
-if(SessionManager::isUserLogged()){
-$userId=session_manager::getUerId();
-=======
 function console_log ( $data)
 {
 echo '<script>';
@@ -117,13 +110,8 @@ echo $output;
 -->
 
 
->>>>>>> Stashed changes
 
 
 
 
-<<<<<<< Updated upstream
-}
-=======
->>>>>>> Stashed changes
 

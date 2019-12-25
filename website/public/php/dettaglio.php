@@ -90,17 +90,10 @@ $actualGenre = $dbMan->query("SELECT * FROM Media WHERE id='$movieId'");
 $actualGenre_aux= $actualGenre[0]->genre;
 $realGenre= $dbMan->query("SELECT * FROM Media WHERE genre='$actualGenre_aux'");
 console_log($realGenre);
-<<<<<<< Updated upstream
 
 
 
 
-=======
-
-
-
-
->>>>>>> Stashed changes
 function getMovieList($realGenre) {
   $movieList = [];
   for ($x = 0; $x < count($realGenre); $x++) {
