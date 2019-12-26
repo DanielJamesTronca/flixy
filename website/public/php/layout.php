@@ -3,6 +3,12 @@ include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 include_once("../../src/session_manager.php");
 
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+  }
+
 $output = file_get_contents("../html/layout.html");
 $dbMan = DBManager::getInstance();
 
@@ -27,6 +33,11 @@ if ($username != "") {
 }
 
 
+function research($input) {
+    if ($input) {
+        return Media::list(null, $input, null, null, null, "ASC");
+    }
+}
 
 
 // <form> logic
@@ -43,25 +54,33 @@ $logOutAction = '$logOut';
 $signup = '<a id="sign-up" class="font-size-0-75 font-weight-light" href="./php/registrazione.php">';
 $logout = str_replace($registrazionePage, $logOutAction, $signup);
 
-function research($input) {
-    $dbMan = DBManager::getInstance();
-    if ($input) {
-        $result = $dbMan->query("SELECT * FROM Media WHERE Media.name LIKE '$input'");
-    }
-    return $result;
+$output = str_replace("{linkToFeed}", "./php/layout.php?page=feed", $output);
+
+switch ($_GET['page']) {
+    case 'home':
+        $homepage = file_get_contents("../html/home.html");
+        $output = str_replace("{content}", $homepage, $output);
+        include_once("./home.php");
+    break;
+
+    case 'feed':
+        $feed = file_get_contents("../html/feed.html");
+        $output = str_replace("{content}", $feed, $output);
+        include_once("./feed.php");
+    break;
+
+    case 'profilo':
+        $profilo = file_get_contents("../html/profilo.html");
+        $output = str_replace("{content}", $profilo, $output);
+        include_once("./profilo.php");
+    break;
+
+    case 'dettaglio':
+        $dettaglio = file_get_contents("../html/dettaglio.html");
+        $output = str_replace("{content}", $dettaglio, $output);
+        include_once("./dettaglio.php");
+    break;
 }
-
-
-$homePage = file_get_contents("../html/home.html");
-$output = str_replace("{homePage}", $homePage, $output);
-include_once("./home.php"); 
-
-/* inclusione feed
-$feed = file_get_contents("../html/feed.html");
-$output = str_replace("{link}", $feed, $output);
-include_once("./feed.php");
-TOGLIERE echo $output
-*/
 
 echo $output;
 ?>
