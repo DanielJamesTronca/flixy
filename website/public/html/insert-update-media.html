@@ -33,15 +33,19 @@
       <form action="./php/check_registrazione.php" method="post" id="regForm" onsubmit="return validateFormRegistration()">
         <div class="group-insert">  
           <label for="title-media" class="label-form">Titolo</label>    
-          <input type="text" name="title-media" id="title-media" value="'{title-media}'" />
+          <input type="text" name="title-media" id="title-media" />
           <span class="highlight"></span>
           <span class="bar"></span>
         </div>
         <div class="group-insert">     
-          <label for="description" class="label-form">Descrizione</label> 
-          <input type="text" name="description" id="description" value="'{description}'"/>
-          <span class="highlight"></span>
-          <span class="bar"></span>
+          <label for="description-media" class="label-form">Descrizione</label> 
+          <textarea class="textarea-description font-size-1-125" id="description-media"></textarea>
+        </div>
+        <div class="switch-field">
+            <input type="radio" id="radio-one" name="switch-one" value="yes" checked/>
+            <label for="radio-one" class="switch-label">Film</label>
+            <input type="radio" id="radio-two" name="switch-one" value="no" />
+            <label for="radio-two" class="switch-label">Serie tv</label>
         </div>
         <div id="media-comboBox-container">
           <div class="group-insert">       
@@ -53,9 +57,9 @@
           </div>
           <div class="group-insert"> 
             <label for="duration" class="primary-color label-form">Durata in minuti</label>
-            <input type="text" class="small-input-text" name="duration" id="duration" value="'{duration}'"/>
+            <input type="text" class="small-input-text" name="duration" id="duration"/>
             <span class="highlight"></span>
-            <span class="bar"></span>
+            <span class="bar small-input-text-bar"></span>
           </div>
           <div class="group-insert">       
             <label for="rating-select" class="primary-color label-form">Valutazione</label>
@@ -85,7 +89,7 @@
         </div>
         <div class="group-insert">     
           <label for="url-trailer" class="label-form">URL trailer</label> 
-          <input type="text" name="url-trailer" id="url-trailer" value="'{urltrailer}'"/> <!-- non mettere "-" a value o sintetizzatore vocale si bugga-->
+          <input type="text" name="url-trailer" id="url-trailer"/> <!-- non mettere un value con all'interno "-" o sintetizzatore vocale si bugga-->
           <span class="highlight"></span>
           <span class="bar"></span>
         </div>
@@ -150,12 +154,12 @@
               <div class="group-insert">       
                 <label for="year-select" class="primary-color label-form">Anno</label>
                 <select name="year-select" id="year-select" class="custom-select primary-color font-size-1-125 fit-content-width">
-                  <option value="All">All</option>
+                  <option value="2020">2020</option>
                   {seasonOption}
                 </select>
               </div>
-            </fieldset>
             </div>
+          </fieldset>
         
         <div class="insert-form-button padding-top-1-5">
           <input type="reset" value="Reset" class="button-small-form primary-color-gradient-button-reset"/>

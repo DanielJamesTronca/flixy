@@ -962,6 +962,7 @@ option {
     display: flex;
     flex-direction: column;    
     margin-bottom: 2.2em;
+
 }
 
 .insert-form-container{
@@ -1005,18 +1006,79 @@ option {
     position: absolute;
 }
 
+
 fieldset{
-    max-width:40%;
+    width:20em;
     border: .04em groove;
 }
 
+.textarea-description{
+    width: 100%;
+    height:8em;
+    background-color: #000000;
+}
+
+
 .small-input-text{
     width:6em; /* width dovrebbe essere grande quando la scritta*/
+}
+
+.small-input-text-bar{
+    width:6.8em;
 }
 .insert-form-button{
     display:flex;
     justify-content: flex-end;
 }
+
+.switch-field {
+    display: flex;
+    margin-bottom: 36px;
+    overflow: hidden;
+}
+
+.switch-field input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+
+.switch-field label {
+    background-color: #191919;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1;
+    text-align: center;
+    padding: 8px 16px;
+    margin-right: -1px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+    cursor: pointer;
+}
+
+.switch-field input:checked + label {
+    background-color: #ff0000;
+   
+}
+
+.switch-field label:first-of-type {
+    border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+    border-radius: 0 4px 4px 0;
+}
+
+.switch-label{
+    width:10em;
+}
+
 
 @media (max-width: 768px) { 
     #media-comboBox-container{
@@ -1027,7 +1089,7 @@ fieldset{
         flex-direction:column;
     }
     fieldset{
-        max-width:100%;
+        max-width:60%;
     }
     
     .insert-form-button{

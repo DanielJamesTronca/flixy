@@ -38,10 +38,8 @@
             <span class="bar"></span>
           </div>
           <div class="group-insert">     
-            <label for="description" class="label-form">Descrizione</label> 
-            <input type="text" name="description" id="description" value="'{description}'"/>
-            <span class="highlight"></span>
-            <span class="bar"></span>
+            <label for="description-episode" class="label-form">Descrizione</label> 
+            <textarea class="textarea-description font-size-1-125" id="description-episode"></textarea>
           </div>
           <div class="group-insert">      
             <label for="url-promo" class="label-form">URL video</label>
@@ -49,14 +47,74 @@
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
-          <div class="group-insert">      
-            <label for="date" class="label-form">Data di rilascio</label>
-            <input type="text" name="date" id="date" value="'{date}'"/>
-            <span class="highlight"></span>
-            <span class="bar"></span>
-          </div>
-
-          <div id="episode-comboBox-container">
+          <fieldset>
+            <legend>Data di rilascio</legend>
+              <div class="container-comboBox-data">
+                <div class="group-insert">       
+                  <label for="day-select" class="primary-color label-form">Giorno</label>
+                  <select name="day-select" id="day-select" class="custom-select primary-color font-size-1-125 fit-content-width">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    {seasonOption}
+                  </select>
+                </div>
+                <div class="group-insert"> 
+                  <label for="month-select" class="primary-color label-form">Mese</label>
+                  <select name="month-select" id="month-select" class="custom-select primary-color font-size-1-125 fit-content-width">
+                    <option value="Gennaio">Gennaio</option>
+                    <option value="Febbraio">2</option>
+                    <option value="Marzo">3</option>
+                    <option value="Aprile">4</option>
+                    <option value="Maggio">5</option>
+                    <option value="Giugno">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    {episodeOption}
+                  </select>
+                </div>
+                <div class="group-insert">       
+                  <label for="year-select" class="primary-color label-form">Anno</label>
+                  <select name="year-select" id="year-select" class="custom-select primary-color font-size-1-125 fit-content-width">
+                    <option value="2020">2020</option>
+                    {seasonOption}
+                  </select>
+                </div>
+              </div>
+          </fieldset>
+          <div id="episode-comboBox-container" class="padding-top-1-5">
             <div class="group-insert">       
             <label for="season-select" class="primary-color label-form">Stagione</label>
               <select name="season-select" id="season-select" class="custom-select primary-color font-size-1-125 fit-content-width">
@@ -73,7 +131,7 @@
             </div>
           </div>
   
-          <div class="insert-form-button">
+          <div class="insert-form-button padding-top-1">
             <input type="reset" value="Reset" class="button-small-form primary-color-gradient-button-reset"/>
             <input type="submit" value="Invia" class="button-small-form margin-left-0-7 primary-color-gradient-button"/>
           </div>
