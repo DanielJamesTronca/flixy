@@ -1076,9 +1076,9 @@ fieldset{
 }
 
 .switch-label{
-    width:10em;
+    width:8em;
+    font-size: 1em !important;
 }
-
 
 @media (max-width: 768px) { 
     #media-comboBox-container{
