@@ -56,24 +56,24 @@
             <span class="bar"></span>
           </div>
 
-          <div class="flex-container flex-content-start">
+          <div id="episode-comboBox-container">
             <div class="group-insert">       
             <label for="season-select" class="primary-color label-form">Stagione</label>
-              <select name="season-select" id="season-select" class="custom-select primary-color font-size-1-125">
+              <select name="season-select" id="season-select" class="custom-select primary-color font-size-1-125 fit-content-width">
                 <option value="All">All</option>
                 {seasonOption}
               </select>
             </div>
-            <div class="group-insert"> 
-              <label for="episode-select" class="primary-color label-form margin-left-2-5">Episodio</label>
-              <select name="episode-select" id="episode-select" class="custom-select primary-color font-size-1-125">
+            <div class="group-insert margin-left-2-5"> 
+              <label for="episode-select" class="primary-color label-form">Episodio</label>
+              <select name="episode-select" id="episode-select" class="custom-select primary-color font-size-1-125 fit-content-width">
                 <option value="All">All</option>
                 {episodeOption}
               </select>
             </div>
           </div>
   
-          <div class="flex-container flex-content-end">
+          <div class="insert-form-button">
             <input type="reset" value="Reset" class="button-small-form primary-color-gradient-button-reset"/>
             <input type="submit" value="Invia" class="button-small-form margin-left-0-7 primary-color-gradient-button"/>
           </div>

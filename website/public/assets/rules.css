@@ -561,6 +561,9 @@
     width: 100%;
 }
 
+.fit-content-width{
+    width: fit-content;
+}
 /* MERGED HOME.CSS TO RULES.CSS */
 #filters-menu {
     height: 2.6em;
@@ -935,7 +938,6 @@ option {
 }
 
 
-
 #title {
     width: 100%;
     height: 2em;
@@ -956,8 +958,10 @@ option {
 /* START MERGE INSERT-FORM.CSS */
 
 .group-insert 	{ 
-    position:relative; 
-    margin-bottom:2.2em;    
+    position: relative;
+    display: flex;
+    flex-direction: column;    
+    margin-bottom: 2.2em;
 }
 
 .insert-form-container{
@@ -969,6 +973,21 @@ option {
     justify-content: space-between;
     flex-direction: row;
     max-width:80%;
+}
+
+#episode-comboBox-container{
+    display:flex;
+    flex-direction: row;
+    width:10%;
+}
+
+.container-comboBox-data{
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+    max-width:95%;
+    margin-top: .5em;
+    margin-left: .5em;
 }
 
 .label-form { 
@@ -986,10 +1005,33 @@ option {
     position: absolute;
 }
 
+fieldset{
+    max-width:40%;
+    border: .04em groove;
+}
+
+.small-input-text{
+    width:6em; /* width dovrebbe essere grande quando la scritta*/
+}
+.insert-form-button{
+    display:flex;
+    justify-content: flex-end;
+}
+
 @media (max-width: 768px) { 
     #media-comboBox-container{
         flex-direction: column;
       
+    }
+    .container-comboBox-data{
+        flex-direction:column;
+    }
+    fieldset{
+        max-width:100%;
+    }
+    
+    .insert-form-button{
+        justify-content: center;
     }
 }
 /* END MERGE INSERT-FORM.CSS */
