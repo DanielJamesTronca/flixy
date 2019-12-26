@@ -14,7 +14,7 @@ class Media extends Base
     const HAS_EPISODES_KEY = "hasEpisodes";
     const EPISODES_NUM_KEY = "episodes";
     const SEASONS_NUM_KEY  = "seasons";
-    const TRAILER_KEY = "trailer_key";
+    const TRAILER_KEY = "trailer_url";
     const DATE_KEY = "air_date";
     const VOTES_TOTAL_KEY = "votes_count";
     const VOTES_POSITIVE_KEY = "votes_positive";
@@ -74,6 +74,20 @@ class Media extends Base
         }
     }
 
+    public function saveInDB() {
+        $dbman = DBManager::getInstance();
+        $insertQuery = "INSERT INTO ".(self::TABLE_NAME)." (".(self::NAME_KEY).", ".(self::DESCRIPTION_KEY).", ".(self::COVER_KEY).", ".(self::GENRE_ID_KEY).", ".(self::STARS_KEY).", ".(self::DURATION_KEY).", ".(self::HAS_EPISODES_KEY).", ".(self::EPISODES_NUM_KEY).", ".(self::SEASONS_NUM_KEY).", ".(self::TRAILER_KEY).", ".(self::DATE_KEY).") ";
+        $insertQuery .= "VALUES ('".$this->title."', '".$this->description."', '".$this->coverUrl."', ".$this->genreId.", ".$this->stars.", ".$this->duration.", ".$this->hasEpisodes.", ".$this->numEpisodes.", ".$this->numSeasons.", '".$this->trailerUrl."', '".$this->airDate."');";
+    
+        return $dbman->query($insertQuery);
+    }
+
+    public function updateInDB() {
+        $dbman = DBManager::getInstance();
+        $insertQuery = "UPDATE ".(self::TABLE_NAME)." SET  ".(self::NAME_KEY)."='".$this->title."', ".(self::DESCRIPTION_KEY)."='".$this->description."', ".(self::COVER_KEY)."='".$this->coverUrl."', ".(self::GENRE_ID_KEY)."=".$this->genreId.", ".(self::STARS_KEY)."=".$this->stars.", ".(self::DURATION_KEY)."=".$this->duration.", ".(self::HAS_EPISODES_KEY)."=".$this->hasEpisodes.", ".(self::EPISODES_NUM_KEY)."=".$this->numEpisodes.", ".(self::SEASONS_NUM_KEY)."=".$this->numSeasons.", ".(self::TRAILER_KEY)."='".$this->trailerUrl."', ".(self::DATE_KEY).")='".$this->airDate."' ";
+        $insertQuery .= " WHERE id="+$this->id;
+        return $dbman->query($insertQuery);
+    }
 
     public static function list($userId=null, $name=null, $year = null, $genre = null, $order = null, $asc = "ASC")
     {
