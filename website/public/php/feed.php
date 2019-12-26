@@ -1,5 +1,5 @@
 <?php
-/*
+
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 
@@ -192,5 +192,5 @@ function get_past_releases($arrayReleases){
     }
     return $arrayPastRelease;
 }
-*/
+
 ?>

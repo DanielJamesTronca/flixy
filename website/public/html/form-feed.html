@@ -30,14 +30,14 @@
 
     <div class="padding-top-medium">
 
-      <form action="./php/check_registrazione.php" method="post" id="regForm" onsubmit="return validateFormRegistration()">
+      <form action="./php/check_form_feed.php" method="post" id="newsForm" onsubmit="return validateFormRegistration()">
           <div class="group-insert">      
-            <label for="media-select" class="single-label-form">Media</label>
-            <select name="media-select" id="media-select" class="custom-select primary-color font-size-1-125 fit-content-width">
-                <option value="All">All</option>
-                <option>Oranda</option>
-                <option>Ranchu</option>
-                <option>Ryukin</option>
+            <label for="mediaid" class="single-label-form">Media</label>
+            <select name="mediaid" id="mediaid" class="custom-select primary-color font-size-1-125 fit-content-width" value="mediaid">
+              <option>{mediaid}</option>  
+              <option value="1">Oranda</option> 
+              <option value="2">Ranchu</option>
+              <option>Ryukin</option>
               <!--{mediaOption} da inserire in maniera da creare tutte le option della select, controlla sia valido in xhtml-->  
             </select>
           </div>
@@ -49,11 +49,11 @@
           </div>
           <div class="group-insert">     
             <label for="content" class="label-form">Contenuto</label> 
-            <textarea class="textarea-description font-size-1-125" id="description"></textarea>
+            <textarea class="textarea-description font-size-1-125" id="content" name="content">{content}</textarea>
           </div>
           <div class="group-insert">      
-            <label for="url-video" class="label-form">URL video</label>
-            <input type="text" name="url-video" id="url-video" value="'{url-video}'"/>
+            <label for="videoUrl" class="label-form">URL video</label>
+            <input type="text" name="videoUrl" id="videoUrl" value="'{videoUrl}'"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
