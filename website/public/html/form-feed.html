@@ -33,12 +33,8 @@
       <form action="./php/check_form_feed.php" method="post" id="newsForm" onsubmit="return validateFormRegistration()">
           <div class="group-insert">      
             <label for="mediaid" class="single-label-form">Media</label>
-            <select name="mediaid" id="mediaid" class="custom-select primary-color font-size-1-125 fit-content-width" value="mediaid">
-              <option>{mediaid}</option>  
-              <option value="1">Oranda</option> 
-              <option value="2">Ranchu</option>
-              <option>Ryukin</option>
-              <!--{mediaOption} da inserire in maniera da creare tutte le option della select, controlla sia valido in xhtml-->  
+            <select name="mediaid" id="mediaid" class="custom-select primary-color font-size-1-125 fit-content-width">
+              {mediaid}
             </select>
           </div>
           <div class="group-insert">  
@@ -125,8 +121,7 @@
               </div>
             </fieldset>
           
-          <div class="insert-form-button padding-top-1-5">
-            <input type="reset" value="Reset" class="button-small-form primary-color-gradient-button-reset"/>
+          <div class="insert-form-button padding-top-1-5 padding-bottom-1">
             <input type="submit" value="Invia" class="button-small-form margin-left-0-7 primary-color-gradient-button"/>
           </div>
           

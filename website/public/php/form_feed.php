@@ -2,7 +2,6 @@
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 $output = file_get_contents("../html/form-feed.html");
-
 if(!isset($_SESSION))
 session_start();
 
@@ -13,10 +12,10 @@ if(isset($_SESSION['error-message-news'])) {
     session_destroy();
 }
 if (isset($_SESSION['mediaid'])){
-    $output = str_replace("{mediaid}",$_SESSION['mediaid'],$output);
+    $output = str_replace("{mediaid}",restore_list_title_media(),$output);
 }
 else{
-    $output = str_replace("{mediaid}","",$output); //va aggiunta lista di tutti i media al posto di ""
+    $output = str_replace("{mediaid}",get_list_title_media(),$output); 
 }
 if (isset($_SESSION['content'])){
     $output = str_replace("{content}",$_SESSION['content'],$output);
@@ -45,8 +44,32 @@ else{
 /*END restore form parameters if available */
 
 
-function get_list_media($userId){
+function get_list_title_media(){
+    $options = "";
+    $media_list = Media::list();
+    foreach ($media_list as $media){
+        $options.= "<option value=$media->id>$media->title</option>";
+    }
+    return $options;
+}
+
+function restore_list_title_media(){
+    $options = "";
+    $temp = "";
+    $media_list = Media::list();
+    foreach ($media_list as $media){
+        if ($media->id == $_SESSION['mediaid']){
+            $options = "<option value=$media->id>$media->title</option>";
+        }
+        else{
+            $temp.= "<option value=$media->id>$media->title</option>";
+        }
+        $options .= $temp;
+    }
+    return $options;
     
 }
+
+
 echo $output;
 ?>

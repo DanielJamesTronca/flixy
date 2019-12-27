@@ -1027,6 +1027,11 @@ fieldset{
 .small-input-text-bar{
     width:6.8em;
 }
+
+.button-small-form{
+    width: 13em;
+}
+
 .insert-form-button{
     display:flex;
     justify-content: flex-end;
