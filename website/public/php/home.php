@@ -1,7 +1,5 @@
 <?php
-
-//$output = file_get_contents("../html/home.html");
-$dbMan = DBManager::getInstance();
+// ============= Populate genre and airDate <select>
 function fillGenreSelect($genreList) {
   $list = [];
   for ($x = 0; $x < count($genreList); $x++) { 
@@ -11,10 +9,6 @@ function fillGenreSelect($genreList) {
   }
   return implode($list);
 }
-
-$queryGenre = $dbMan->query("SELECT DISTINCT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");
-$genreList = fillGenreSelect($queryGenre);
-$output = str_replace("{genreOption}", $genreList, $output);
 
 function fillYearSelect($yearList) {
   $list = [];
@@ -26,6 +20,15 @@ function fillYearSelect($yearList) {
   return implode($list);
 }
 
+$genreList = fillGenreSelect(Genre::getGenreList());
+$yearList = fillYearSelect(Media::getAirDateList());
+
+$output = str_replace("{genreOption}", $genreList, $output);
+$output = str_replace("{yearOption}", $yearList, $output);
+
+// =============
+
+// ============= Check POST for active filters
 $varGenre = "All";
 $varYear = "All";
 
@@ -41,53 +44,49 @@ if (isset($_POST["genre-select"])){
   $varGenre = "All";
 }
 
+// =============
 
-// Populate movie List
-function getIdGenre($genre) {
-  $dbMan = DBManager::getInstance();
-  $result = $dbMan->query("SELECT id FROM Genre WHERE Genre.name = '$genre'");
-  return (int)$result[0]->id;
-}
-
+// ============= 
 function filterList($year, $genre) {
-  $dbMan = DBManager::getInstance();
   $result = [];
   $genreId = -1;
   if ($genre != "All") {
-    $genreId = getIdGenre($genre);
+    $genreId = Genre::getIdGenre($genre)[0]->id;
   }
-
   if ($year != "All" && $genre != "All") {
-    $result = $dbMan->query("SELECT * FROM Media WHERE genre=$genreId AND YEAR(air_date)=$year");
+    $result = Media::list(null, null, $year, $genreId, null, "ASC");
   } else if ($year != "All") {
-    $result = $dbMan->query("SELECT * FROM Media WHERE YEAR(air_date)=$year");
+    $result = Media::list(null, null, $year, null, null, "ASC");
   } else if ($genre != "All") {
-    $result = $dbMan->query("SELECT * FROM Media WHERE genre=$genreId");
+    $result = Media::list(null, null, null, $genreId, null, "ASC");
+    console_log($genreId);
   } else {
-    $result = $dbMan->query("SELECT * FROM Media");
+    $result = Media::list(null, null,null,null, null, "ASC"); 
   }
-  
   return $result;
+}
+
+// =============
+
+
+// =============
+function replaceContentsMovieCard($card, $title, $coverUrl, $stars, $id) {
+  $starNumber = [];
+  $card = str_replace("{movieTitle}", $title, $card);
+  $card = str_replace("{coverURL}", "../public".$coverUrl, $card);
+  $card = str_replace("{linkDettaglioMovie}", "./php/layout.php?page=dettaglio&movieId=".$id, $card);
+  for($i=0;$i<$stars;$i++) {
+    array_push($starNumber, "<i class='fa fa-star'></i>");
+  }
+  $card = str_replace("{movieStars}", implode($starNumber), $card);
+  return $card;
 }
 
 function getMovieList($list) {
   $movieList = [];
-  $starNumber = [];
   for ($x = 0; $x < count($list); $x++) {
-    $title = $list[$x]->name;
-    $url = $list[$x]->cover_url;
-    $stars = $list[$x]->stars;
-    $id = $list[$x]->id;
-    $card = file_get_contents("../html/movie-card.html");
-    $card = str_replace("{movieTitle}", $title, $card);
-    $card = str_replace("{coverURL}", "../public".$url, $card);
-    $card = str_replace("{linkDettaglioMovie}", "./dettaglio.php?id='".$id."'", $card);
-    for($i=0;$i<$stars;$i++) {
-      array_push($starNumber, "<i class='fa fa-star'></i>");
-    }
-    $card = str_replace("{movieStars}", implode($starNumber), $card);
+    $card = replaceContentsMovieCard(file_get_contents("../html/movie-card.html"), $list[$x]->title, $list[$x]->coverUrl, $list[$x]->stars, $list[$x]->id);
     array_push($movieList, $card);
-    $starNumber = [];
   }
   return implode($movieList);
 }
@@ -100,15 +99,4 @@ if ($varSearch) {
 
 $movieList = getMovieList($result);
 $output = str_replace("{movieList}", $movieList, $output);
-
-function console_log( $data ){
-  echo '<script>';
-  echo 'console.log('. json_encode( $data ) .')';
-  echo '</script>';
-}
-
-
-$queryYear = $dbMan->query("SELECT DISTINCT YEAR(air_date) as anno FROM Media");
-$yearList = fillYearSelect($queryYear);
-$output = str_replace("{yearOption}", $yearList, $output);
 ?>
