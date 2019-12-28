@@ -34,7 +34,7 @@ class Genre extends Base
 
     public function getGenreList() {
         $dbMan = DBManager::getInstance();
-        return $dbMan->query("SELECT DISTINCT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");;
+        return $dbMan->query("SELECT DISTINCT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");
     }
  }
 
