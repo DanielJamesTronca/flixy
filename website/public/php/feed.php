@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?php
 /*
 include_once("../../src/db_manager.php");
@@ -194,3 +195,5 @@ function get_past_releases($arrayReleases){
 }
 */
 ?>
+=======
+>>>>>>> Stashed changes

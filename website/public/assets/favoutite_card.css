@@ -536,6 +536,7 @@
 
 
 
+<<<<<<< Updated upstream
 
 
 
@@ -543,6 +544,11 @@
 .movie-entry {
     width: 11.25em;
     height: 19.1875em;
+=======
+.movie-entry {
+    width: 11.25em;
+    height: 20.1875em;
+>>>>>>> Stashed changes
     background: black;
     margin-top: 1em;
     margin-bottom: 1em;
@@ -560,6 +566,7 @@
 
 
 .ara{
+<<<<<<< Updated upstream
     flex-grow: 1; /* each flex-item grows and takes 1/3 of the parent's width */
     text-align: center;
 }
@@ -567,11 +574,26 @@
 
 #fav-section{
    margin-top: auto;
+=======
+  display: inline-block;
+}
+
+.informazioni{
+    vertical-align: middle;
+>>>>>>> Stashed changes
 }
 
 
 
 
+<<<<<<< Updated upstream
+=======
+#fav-section{
+   display: inline-block;
+   margin-left: 10px;
+}
+
+>>>>>>> Stashed changes
 #fav-icon{
     color: red;
 }

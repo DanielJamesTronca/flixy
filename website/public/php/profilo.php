@@ -39,17 +39,65 @@ $dbMan = DBManager::getInstance();
     $favoruites=Media::getUserFavourites($userId);
     console_log($favoruites);
 
+<<<<<<< Updated upstream
     function getFavouriteList($favoruites) {
         $favouriteList = [];
         for ($x = 0; $x < count($favoruites); $x++) {
           $titolo = $favoruites[$x]->title;
           $url = $favoruites[$x]->coverUrl;
           $genre = $favoruites[$x]->genreName;
+=======
+
+    //$patatine= $favoruites[0]->genreId;
+    //console_log($patatine);
+/*
+
+    function addGenre($favourites){
+      for ($x = 0; $x < count($favoruites); $x++) {
+        $patatine= $favoruites[$x]->genreId;
+        getNameGenre($patatine);
+
+      }
+
+
+
+
+    }
+    */
+
+
+
+    
+
+
+
+    function getFavouriteList($favoruites) {
+        $favouriteList = [];
+        $y=0;
+
+          for ($x = 0; $x < count($favoruites); $x++) {
+          $titolo = $favoruites[$x]->title;
+          $url = $favoruites[$x]->coverUrl;
+          $genre_card=$favoruites[$x]->genreId;
+          
+          $aloah=Genre::getNameGenre($genre_card);
+          console_log($aloah);
+
+          $finally_genre=$aloah[$y]->name;
+
+           
+>>>>>>> Stashed changes
          
           
           $card = file_get_contents("../html/favourite_card.html");
           $card = str_replace("{favouriteTitle}", $titolo, $card);
+<<<<<<< Updated upstream
           $card = str_replace("{favouriteGenre}", $genre, $card);
+=======
+          $card = str_replace("{favouriteGenre}",$finally_genre , $card);
+
+         
+>>>>>>> Stashed changes
 
           $card = str_replace("{favouriteCover}", "../".$url, $card);
 
@@ -93,11 +141,14 @@ echo $output;
 
 
 <!--
+<<<<<<< Updated upstream
 <form method="POST" action="../profile_edit.php">
 <input name="name">
 <input name="surname">
 <input name="email">
 <input type="file" name="avatar">
+=======
+>>>>>>> Stashed changes
 
 
 

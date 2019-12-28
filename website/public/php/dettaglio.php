@@ -79,9 +79,8 @@ if($episode==null && $season==null){
 }
 
 
-
-/*
 $dbMan = DBManager::getInstance();
+<<<<<<< Updated upstream
 $IDK = $dbMan->query("SELECT * FROM Media WHERE genre='2'");
 */
 
@@ -99,10 +98,34 @@ function getMovieList($realGenre) {
   for ($x = 0; $x < count($realGenre); $x++) {
     $titolo = $realGenre[$x]->name;
     $url = $realGenre[$x]->cover_url;
+=======
+$actualGenre = $dbMan->query("SELECT * FROM Media WHERE id='$movieId'");
+$actualGenre_aux= $actualGenre[0]->genre;
+$realGenre= $dbMan->query("SELECT * FROM Media WHERE genre='$actualGenre_aux'");
+console_log($realGenre);
+
+$genre_variable= $dbMan->query("SELECT name FROM Genre WHERE id='$actualGenre_aux'");
+
+
+
+function getMovieList($realGenre, $genre_variable) {
+  $movieList = [];
+  $y=0;
+
+  for ($x = 0; $x < count($realGenre); $x++) {
+    $titolo = $realGenre[$x]->name;
+    $url = $realGenre[$x]->cover_url;
+    $genre_card=$genre_variable[$y]->name;
+    console_log($genre_card);
+>>>>>>> Stashed changes
 
     
     $card = file_get_contents("../html/similar_content_card.html");
     $card = str_replace("{movieTitle}", $titolo, $card);
+<<<<<<< Updated upstream
+=======
+    $card = str_replace("{movieGenre}", $genre_card, $card);
+>>>>>>> Stashed changes
 
     $card = str_replace("{movieCover}", "../".$url, $card);
     array_push($movieList, $card);
@@ -111,6 +134,7 @@ function getMovieList($realGenre) {
 }
 
 
+<<<<<<< Updated upstream
 /*
 $dbMan = DBManager::getInstance();
 $genreList_card = $dbMan->query("SELECT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = '$actualGenre_aux'");
@@ -142,6 +166,9 @@ $output = str_replace("{movieList}", displayGenre($genreList_card), $output);
 $output = str_replace("{movieList}", getMovieList($realGenre), $output);
 
 
+=======
+$output = str_replace("{movieList}", getMovieList($realGenre, $genre_variable), $output);
+>>>>>>> Stashed changes
 
 $output=str_replace("{title}", $title,$output);
 $output=str_replace("{duration}", $duration,$output);

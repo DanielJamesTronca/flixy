@@ -82,5 +82,15 @@ switch ($_GET['page']) {
     break;
 }
 
+<<<<<<< Updated upstream
+=======
+$homePage = file_get_contents("../html/home.html");
+$output = str_replace("{homePage}", $homePage, $output);
+
+include_once("./home.php");
+
+
+
+>>>>>>> Stashed changes
 echo $output;
 ?>
