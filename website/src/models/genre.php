@@ -26,6 +26,11 @@ class Genre extends Base
         $dbMan = DBManager::getInstance();
         return $dbMan->query("SELECT id FROM Genre WHERE Genre.name = '$name'");
     }
+    
+    public function getNameGenre($id) {
+        $dbMan = DBManager::getInstance();
+        return $dbMan->query("SELECT name FROM Genre WHERE Genre.id = '$id'");
+    }
 
     public function getGenreList() {
         $dbMan = DBManager::getInstance();
