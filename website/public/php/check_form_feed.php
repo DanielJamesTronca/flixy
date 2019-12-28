@@ -5,23 +5,26 @@ include_once("../../src/session_manager.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 
-$_SESSION['error-message-news'] = "";
+$_SESSION['error-message-feed'] = "";
 $_SESSION['content'] = $_POST["content"];
 $_SESSION['subtitle'] = $_POST["subtitle"];
 $_SESSION['eventDate'] = $_POST["eventDate"];
 $_SESSION['videoUrl'] = $_POST["videoUrl"];
 $_SESSION['mediaid'] = $_POST["mediaid"];
+$_SESSION['nomeSerie'] = $_GET["nomeSerie"];
 
 if (!SessionManager::isUserLogged()) {
-    $_SESSION['error-message'] = "Devi prima autenticarti.";
+    $_SESSION['error-message-feed'] = "Devi prima autenticarti.";
     header("Location: ../php/form_feed.php");
+    return;
 }
 
 // parametri in input: content, subtitle, mediaid, videoUrl, eventDate
 
 if (!isset($_POST["content"]) || !isset($_POST["subtitle"]) || !isset($_POST["mediaid"]) || !isset($_POST["videoUrl"]) || !isset($_POST["eventDate"])) {
-    $_SESSION['error-message-news'] = "Parametri mancanti.";
+    $_SESSION['error-message-feed'] = "Parametri mancanti.";
     header("Location: ../php/form_feed.php");
+    return;
 }
 
 $episode = new Feed();

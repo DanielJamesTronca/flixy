@@ -6,9 +6,9 @@ if(!isset($_SESSION))
 session_start();
 
 /* START restore form parameters if available */
-if(isset($_SESSION['error-message-news'])) {
+if(isset($_SESSION['error-message-feed'])) {
     $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small'>",$output);
-    $output = str_replace("{error-message}",$_SESSION['error-message-news'],$output);
+    $output = str_replace("{error-message}",$_SESSION['error-message-feed'],$output);
     session_destroy();
 }
 if (isset($_SESSION['mediaid'])){
@@ -69,7 +69,6 @@ function restore_list_title_media(){
     return $options;
     
 }
-
 
 echo $output;
 ?>
