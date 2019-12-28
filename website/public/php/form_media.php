@@ -1,61 +1,117 @@
 <?php
 
-include_once("../../src/controllers/utils.php");
-include_once("../../src/session_manager.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
+$output = file_get_contents("../html/form-media.html");
 
-if (!SessionManager::isUserLogged()) {
-    echo "Error, no user logged";
-    return;
+if(!isset($_SESSION))
+session_start();
+
+/* START show error message if set */
+if(isset($_SESSION['error-message-media'])) {
+    $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small'>",$output);
+    $output = str_replace("{error-message}",$_SESSION['error-message-media'],$output);
+    session_destroy();
 }
+/* END show error message if set */
 
-// parametri in input: title, description, cover file, genreid, duration, stars, hasEpisodes, numEpisodes, numSeasons,trailerUrl, airDate
+restore_parameters($output);
 
-if (!isset($_POST["title"]) || !isset($_POST["description"]) || !isset($_POST["genreid"]) || !isset($_POST["stars"]) || !isset($_POST["duration"]) || !isset($_POST["hasEpisodes"]) || !isset($_POST["numEpisodes"]) || !isset($_POST["numSeasons"]) || !isset($_POST["airDate"]) ) {
-    echo "Error, Missing parameters";
-    return;
-}
 
-$id = null;
-if (isset($_POST["id"])) {
-    $id = $_POST["id"];
-}
 
-$media = new Media();
-$media->title = $_POST["title"];
-$media->description = $_POST["description"];
-$media->genreId = $_POST["genreid"];
-$media->stars = $_POST["stars"];
-$media->duration = $_POST["duration"];
-$media->hasEpisodes = $_POST["hasEpisodes"];
-$media->numEpisodes = $_POST["numEpisodes"];
-$media->numSeasons = $_POST["numSeasons"];
-$media->trailerUrl = $_POST["trailerUrl"];
-$media->airDate = $_POST["airDate"];
-
-// good to go on these parameters, now check image upload
-$target_dir = "/assets/images/covers/";
-if (isset($_FILES["cover"])) {
-    $upload_result = Utils::uploadImage($target_dir, $_FILES["cover"], "..");
-    if ($upload_result["success"] === false) {
-        echo $upload_result["error"];
-        return;
+function restore_parameters(&$output){
+    /* START restore form parameters if available */
+    if (isset($_SESSION['title'])){
+        $output = str_replace("'{title}'",$_SESSION['title'],$output);  
     }
-    $media->coverUrl = $upload_result["url"];
-} else if (isset($_POST["coverUrl"])) {
-    $media->coverUrl = $_POST["coverUrl"];
+    else{
+        $output = str_replace("'{title}'","",$output); 
+    }
+    if (isset($_SESSION['description'])){
+        $output = str_replace("{description}",$_SESSION['description'],$output);
+    }
+    else{
+        $output = str_replace("{description}","",$output);
+    }
+    if (isset($_SESSION['genreid'])){
+        $output = str_replace("{genreid}",restore_list_genres(),$output);
+    }
+    else{
+        $output = str_replace("{genreid}",get_list_genres(),$output);
+    }
+    if (isset($_SESSION['stars'])){
+        $output = str_replace("'{stars}'",$_SESSION['stars'],$output);
+    }
+    else{
+        $output = str_replace("'{stars}'","",$output); 
+    }
+    if (isset($_SESSION['duration'])){
+        $output = str_replace("'{duration}'",$_SESSION['duration'],$output);
+    }
+    else{
+        $output = str_replace("'{duration}'","",$output);
+    }
+    if (isset($_SESSION['episodeNum'])){
+        $output = str_replace("'{hasEpisodes}'",$_SESSION['hasEpisodes'],$output);
+    }
+    else{
+        $output = str_replace("'{hasEpisodes}'","",$output); 
+    }
+    if (isset($_SESSION['numEpisodes'])){
+        $output = str_replace("'{numEpisodes}'",$_SESSION['numEpisodes'],$output);
+    }
+    else{
+        $output = str_replace("'{numEpisodes}'","",$output); 
+    }
+    if (isset($_SESSION['numSeason'])){
+        $output = str_replace("'{numSeason}'",$_SESSION['numSeason'],$output);
+    }
+    else{
+        $output = str_replace("'{numSeason}'","",$output);
+    }
+    if (isset($_SESSION['trailerUrl'])){
+        $output = str_replace("'{trailerUrl}'",$_SESSION['trailerUrl'],$output);
+    }
+    else{
+        $output = str_replace("'{trailerUrl}'","",$output); 
+    }
+    if (isset($_SESSION['airDate'])){
+        $output = str_replace("'{airDate}'",$_SESSION['airDate'],$output);
+    }
+    else{
+        $output = str_replace("'{airDate}'","",$output);
+    }
+    /*END restore form parameters if available */
 }
 
-if ($id == null) {
-    // create new
-    $media->saveInDB();
-} else {
-    // update
-    $media->id = $id;
-    $media->updateInDB();
+function get_list_genres(){
+    $genresOptions = "";
+    $genreList = Genre::getGenreList();
+    foreach ($genreList as $index=>$genre){
+        $genreList = Genre::getIdGenre($genre->name);
+        $id = $genreList[0]->id;
+        $genresOptions.= "<option value=$id>$genre->name</option>";
+    }
+    return $genresOptions;
 }
 
-echo "TODO: redirect based on result";
+function restore_list_genres(){
+    $options = "";
+    $temp = "";
+    $genre_list = genre::getGenreList();
+    foreach ($genre_list as $genre){
+        $genreList = Genre::getIdGenre($genre->name);
+        $id = $genreList[0]->id;
+        if ($id == $_SESSION['genreid']){
+            $options = "<option value=$id>$genre->name</option>";
+        }
+        else{
+            $temp.= "<option value=$id>$genre->name</option>";
+        }
+        $options .= $temp;
+    }
+    return $options;
+}
 
+echo $output;
 ?>

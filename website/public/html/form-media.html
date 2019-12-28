@@ -18,11 +18,11 @@
   <div class="insert-form-container">
     
     <div class="form-title">
-      <h1 class=""> Aggiungi Media </h1>
+      <h1 class=""> Aggiungi/Modifica Media </h1>
     </div>
     
     <div class='margin-top-small hidden'>
-      <div class="error-message-box">
+      <div class="error-message-box-insert-form">
         <p class="bold">Dati invalidi</p>
         <p>Controlla i dati inseriti e riprova: {error-message} </p>
       </div>
@@ -30,66 +30,63 @@
     
     <div class="padding-top-medium">
       
-      <form action="./php/check_registrazione.php" method="post" id="regForm" onsubmit="return validateFormRegistration()">
+      <form action="./php/check_form_media.php" method="post" id="regForm" onsubmit="return validateFormRegistration()">
         <div class="group-insert">  
-          <label for="title-media" class="label-form">Titolo</label>    
-          <input type="text" name="title-media" id="title-media" />
+          <label for="mediaTitle" class="label-form">Titolo</label>    
+          <input type="text" name="mediaTitle" id="mediaTitle" value="'{title}'"/>
           <span class="highlight"></span>
           <span class="bar"></span>
         </div>
         <div class="group-insert">     
-          <label for="description-media" class="label-form">Descrizione</label> 
-          <textarea class="textarea-description font-size-1-125" id="description-media"></textarea>
+          <label for="description" class="label-form">Descrizione</label> 
+          <textarea class="textarea-description font-size-1-125" name="description" id="description">{description}</textarea>
         </div>
         <div class="switch-field">
             <input type="radio" id="radio-one" name="switch-one" value="yes" checked="checked"/>
-            <label for="radio-one" class="switch-label">Film</label>
+            <label for="radio-one" class="switch-label">Serie tv</label>
             <input type="radio" id="radio-two" name="switch-one" value="no" />
-            <label for="radio-two" class="switch-label">Serie tv</label>
+            <label for="radio-two" class="switch-label">Film</label>
         </div>
         <div id="media-comboBox-container">
           <div class="group-insert">       
-            <label for="genre-select" class="primary-color label-form">Genere</label>
-            <select name="genre-select" id="genre-select" class="custom-select primary-color font-size-1-125 fit-content-width">
-              <option value="All">All</option>
-              {seasonOption}
+            <label for="genreid" class="primary-color label-form">Genere</label>
+            <select name="genreid" id="genreid" class="custom-select primary-color font-size-1-125 fit-content-width">
+              {genreid}
             </select>
           </div>
           <div class="group-insert"> 
             <label for="duration" class="primary-color label-form">Durata in minuti</label>
-            <input type="text" class="small-input-text" name="duration" id="duration"/>
+            <input type="text" class="small-input-text" name="duration" id="duration" value="'{duration}'"/>
             <span class="highlight"></span>
             <span class="bar small-input-text-bar"></span>
           </div>
           <div class="group-insert">       
-            <label for="rating-select" class="primary-color label-form">Valutazione</label>
-            <select name="rating-select" id="rating-select" class="custom-select primary-color font-size-1-125 fit-content-width">
+            <label for="stars" class="primary-color label-form">Valutazione</label>
+            <select name="stars" id="stars" class="custom-select primary-color font-size-1-125 fit-content-width">
               <option value="1">1 (min)</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5 (max)</option>
-              {seasonOption}
+              {stars}
             </select>
           </div>
           <div class="group-insert"> 
-            <label for="num-episodes-select" class="primary-color label-form">Episodi per stagione</label>
-            <select name="num-episodes-select" id="num-episodes-select" class="custom-select primary-color font-size-1-125 fit-content-width">
-              <option value="All">All</option>
-              {episodeOption}
-            </select>
+            <label for="numSeason" class="primary-color label-form">Numero stagione</label>
+            <input type="text" class="small-input-text" name="numSeason" id="numSeason" value="'{numSeason}'"/>
+            <span class="highlight"></span>
+            <span class="bar small-input-text-bar"></span>
           </div>
           <div class="group-insert"> 
-            <label for="num-seasons-select" class="primary-color label-form">Numero stagioni</label>
-            <select name="num-seasons-select" id="num-seasons-select" class="custom-select primary-color font-size-1-125 fit-content-width">
-              <option value="All">All</option>
-              {episodeOption}
-            </select>
+            <label for="numEpisodes" class="primary-color label-form">Episodi stagione</label>
+            <input type="text" class="small-input-text" name="numEpisodes" id="numEpisodes" value="'{numEpisodes}'"/>
+            <span class="highlight"></span>
+            <span class="bar small-input-text-bar"></span>
           </div>
         </div>
         <div class="group-insert">     
-          <label for="url-trailer" class="label-form">URL trailer</label> 
-          <input type="text" name="url-trailer" id="url-trailer"/> <!-- non mettere un value con all'interno "-" o sintetizzatore vocale si bugga-->
+          <label for="trailerUrl" class="label-form">URL trailer</label> 
+          <input type="text" name="trailerUrl" id="trailerUrl" value="'{trailerUrl}'"/> <!-- non mettere un value con all'interno "-" o sintetizzatore vocale si bugga-->
           <span class="highlight"></span>
           <span class="bar"></span>
         </div>
@@ -130,32 +127,32 @@
                   <option value="29">29</option>
                   <option value="30">30</option>
                   <option value="31">31</option>
-                  {seasonOption}
+                  {dayOption}
                 </select>
               </div>
               <div class="group-insert"> 
                 <label for="month-select" class="primary-color label-form">Mese</label>
                 <select name="month-select" id="month-select" class="custom-select primary-color font-size-1-125 fit-content-width">
-                  <option value="Gennaio">Gennaio</option>
-                  <option value="Febbraio">2</option>
-                  <option value="Marzo">3</option>
-                  <option value="Aprile">4</option>
-                  <option value="Maggio">5</option>
-                  <option value="Giugno">6</option>
+                  <option value="1">Gennaio</option>
+                  <option value="2">Febbraio</option>
+                  <option value="3">Marzo</option>
+                  <option value="4">Aprile</option>
+                  <option value="5">Maggio</option>
+                  <option value="6">Giugno</option>
                   <option value="7">7</option>
                   <option value="8">8</option>
                   <option value="9">9</option>
                   <option value="10">10</option>
                   <option value="11">11</option>
                   <option value="12">12</option>
-                  {episodeOption}
+                  {monthOption}
                 </select>
               </div>
               <div class="group-insert">       
                 <label for="year-select" class="primary-color label-form">Anno</label>
                 <select name="year-select" id="year-select" class="custom-select primary-color font-size-1-125 fit-content-width">
                   <option value="2020">2020</option>
-                  {seasonOption}
+                  {yearOption}
                 </select>
               </div>
             </div>
