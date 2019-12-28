@@ -80,25 +80,6 @@ if($episode==null && $season==null){
 
 
 $dbMan = DBManager::getInstance();
-<<<<<<< Updated upstream
-$IDK = $dbMan->query("SELECT * FROM Media WHERE genre='2'");
-*/
-
-$dbMan = DBManager::getInstance();
-$actualGenre = $dbMan->query("SELECT * FROM Media WHERE id='$movieId'");
-$actualGenre_aux= $actualGenre[0]->genre;
-$realGenre= $dbMan->query("SELECT * FROM Media WHERE genre='$actualGenre_aux'");
-console_log($realGenre);
-
-
-
-
-function getMovieList($realGenre) {
-  $movieList = [];
-  for ($x = 0; $x < count($realGenre); $x++) {
-    $titolo = $realGenre[$x]->name;
-    $url = $realGenre[$x]->cover_url;
-=======
 $actualGenre = $dbMan->query("SELECT * FROM Media WHERE id='$movieId'");
 $actualGenre_aux= $actualGenre[0]->genre;
 $realGenre= $dbMan->query("SELECT * FROM Media WHERE genre='$actualGenre_aux'");
@@ -117,15 +98,11 @@ function getMovieList($realGenre, $genre_variable) {
     $url = $realGenre[$x]->cover_url;
     $genre_card=$genre_variable[$y]->name;
     console_log($genre_card);
->>>>>>> Stashed changes
 
     
     $card = file_get_contents("../html/similar_content_card.html");
     $card = str_replace("{movieTitle}", $titolo, $card);
-<<<<<<< Updated upstream
-=======
     $card = str_replace("{movieGenre}", $genre_card, $card);
->>>>>>> Stashed changes
 
     $card = str_replace("{movieCover}", "../".$url, $card);
     array_push($movieList, $card);
@@ -134,41 +111,7 @@ function getMovieList($realGenre, $genre_variable) {
 }
 
 
-<<<<<<< Updated upstream
-/*
-$dbMan = DBManager::getInstance();
-$genreList_card = $dbMan->query("SELECT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = '$actualGenre_aux'");
-console_log($genreList);
-
-function displayGenre($genreList_card){
-  $movieList_card = [];
-  for ($x = 0; $x < count($genreList_card); $x++) {
-    $genre2=$genreList_card[$x]->name;
-
-    
-    $card = file_get_contents("../html/similar_content_card.html");
-    $card = str_replace("{movieGenre}", $genre2, $card);
-    array_push($movieList_card, $card);
-  }
-  return implode($movieList_card);
-}
- 
-$output = str_replace("{movieList}", displayGenre($genreList_card), $output);
-*/
-
-
-
-
-
-
-
-
-$output = str_replace("{movieList}", getMovieList($realGenre), $output);
-
-
-=======
 $output = str_replace("{movieList}", getMovieList($realGenre, $genre_variable), $output);
->>>>>>> Stashed changes
 
 $output=str_replace("{title}", $title,$output);
 $output=str_replace("{duration}", $duration,$output);

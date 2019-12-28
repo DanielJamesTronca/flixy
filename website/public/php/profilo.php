@@ -39,14 +39,6 @@ $dbMan = DBManager::getInstance();
     $favoruites=Media::getUserFavourites($userId);
     console_log($favoruites);
 
-<<<<<<< Updated upstream
-    function getFavouriteList($favoruites) {
-        $favouriteList = [];
-        for ($x = 0; $x < count($favoruites); $x++) {
-          $titolo = $favoruites[$x]->title;
-          $url = $favoruites[$x]->coverUrl;
-          $genre = $favoruites[$x]->genreName;
-=======
 
     //$patatine= $favoruites[0]->genreId;
     //console_log($patatine);
@@ -86,18 +78,13 @@ $dbMan = DBManager::getInstance();
           $finally_genre=$aloah[$y]->name;
 
            
->>>>>>> Stashed changes
          
           
           $card = file_get_contents("../html/favourite_card.html");
           $card = str_replace("{favouriteTitle}", $titolo, $card);
-<<<<<<< Updated upstream
-          $card = str_replace("{favouriteGenre}", $genre, $card);
-=======
           $card = str_replace("{favouriteGenre}",$finally_genre , $card);
 
          
->>>>>>> Stashed changes
 
           $card = str_replace("{favouriteCover}", "../".$url, $card);
 
@@ -141,14 +128,6 @@ echo $output;
 
 
 <!--
-<<<<<<< Updated upstream
-<form method="POST" action="../profile_edit.php">
-<input name="name">
-<input name="surname">
-<input name="email">
-<input type="file" name="avatar">
-=======
->>>>>>> Stashed changes
 
 
 
