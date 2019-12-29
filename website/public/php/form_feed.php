@@ -1,6 +1,7 @@
 <?php
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
+
 $output = file_get_contents("../html/form-feed.html");
 if(!isset($_SESSION))
 session_start();
@@ -64,20 +65,21 @@ function get_list_title_media(){
 
 function restore_list_title_media(){
     $options = "";
-    $temp = "";
+    $toRestore = "";
     $media_list = Media::list();
     foreach ($media_list as $media){
         if ($media->id == $_SESSION['mediaid']){
-            $options = "<option value=$media->id>$media->title</option>";
+            $toRestore = "<option value=$media->id>$media->title</option>";
         }
         else{
-            $temp.= "<option value=$media->id>$media->title</option>";
+            $options.= "<option value=$media->id>$media->title</option>";
         }
-        $options .= $temp;
     }
-    return $options;
-    
+    $toRestore .= $options;
+
+    return $toRestore;
 }
+
 
 echo $output;
 ?>

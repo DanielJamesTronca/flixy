@@ -45,7 +45,7 @@ $media->duration = $_POST["duration"];
 $media->hasEpisodes = $_POST["hasEpisodes"];
 $media->numEpisodes = $_POST["numEpisodes"];
 $media->numSeasons = $_POST["numSeason"];
-$media->trailerUrl = $_POST["trailerUrl"];
+$media->trailerUrl = Utils::convert_url_to_embedded($_POST["trailerUrl"]);
 $media->airDate = $_POST["airDate"];
 
 // good to go on these parameters, now check image upload

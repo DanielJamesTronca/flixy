@@ -50,6 +50,12 @@ class Utils {
             }
         }
     }
+
+    public static function convert_url_to_embedded($url){
+        $search = '#(.*?)(?:href="https?://)?(?:www\.)?(?:youtu\.be/|youtube\.com(?:/embed/|/v/|/watch?.*?v=))([\w\-]{10,12}).*#x';
+        $replace = 'https://www.youtube.com/embed/$2';
+        return preg_replace($search,$replace,$url);
+    }
 }
 
 ?>

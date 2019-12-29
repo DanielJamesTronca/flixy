@@ -39,10 +39,10 @@
           </div>
           <div class="group-insert">     
             <label for="description" class="label-form">Descrizione</label> 
-            <textarea class="textarea-description font-size-1-125" name="description" id="description">{description}</textarea>
+            <textarea rows="10" cols="100" class="textarea-description font-size-1-125" name="description" id="description">{description}</textarea>
           </div>
           <div class="group-insert">      
-            <label for="promoUrl" class="label-form">URL video</label>
+            <label for="promoUrl" class="label-form">URL video (YouTube)</label>
             <input type="text" name="promoUrl" id="promoUrl" value="'{promoUrl}'"/>
             <span class="highlight"></span>
             <span class="bar"></span>
@@ -121,7 +121,6 @@
             <div class="group-insert margin-left-2-5"> 
               <label for="episodeNum" class="primary-color label-form">Episodio</label>
               <select name="episodeNum" id="episodeNum" class="custom-select primary-color font-size-1-125 fit-content-width">
-                <option value="All">All</option>
                 {episodeNum}
               </select>
             </div>

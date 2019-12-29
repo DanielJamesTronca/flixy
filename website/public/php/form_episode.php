@@ -1,4 +1,5 @@
 <?php
+
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 $output = file_get_contents("../html/form-episode.html");
@@ -18,8 +19,6 @@ if(isset($_SESSION['error-message-episode'])) {
 /* END show error message if set */
 
 restore_parameters($output);
-
-
 
 
 function restore_parameters(&$output){
@@ -49,16 +48,16 @@ function restore_parameters(&$output){
         $output = str_replace("'{mediaid}'","",$output); 
     }
     if (isset($_SESSION['seasonNum'])){
-        $output = str_replace("'{seasonNum}'",$_SESSION['seasonNum'],$output);
+        $output = str_replace("{seasonNum}",restore_seasons(),$output);
     }
     else{
-        $output = str_replace("'{seasonNum}'","",$output);
+        $output = str_replace("{seasonNum}",get_seasons(),$output);
     }
     if (isset($_SESSION['episodeNum'])){
-        $output = str_replace("'{episodeNum}'",$_SESSION['episodeNum'],$output);
+        $output = str_replace("{episodeNum}",restore_id_episodes(),$output);
     }
     else{
-        $output = str_replace("'{episodeNum}'","",$output); 
+        $output = str_replace("{episodeNum}",get_id_episodes(),$output); 
     }
     if (isset($_SESSION['airDate'])){
         $output = str_replace("'{airDate}'",$_SESSION['airDate'],$output);
@@ -70,19 +69,95 @@ function restore_parameters(&$output){
 }
 
 
-
 function get_media_name(&$output){
     /* START get and set episode name */
-    if(isset($_GET['mediaName'])){
-        $mediaName = $_GET['mediaName'];
+    if(isset($_GET['mediaid'])){
+        $mediaid = $_GET['mediaid'];
+        $mediaName = Media::getMediaName($mediaid)[0]->name;
     }
     else{
+        $mediaid = NULL;
         $mediaName = "";
     }
-    $pathGET = "./php/check_form_episode.php?mediaName=".$mediaName;
+    $pathGET = "./php/check_form_episode.php?mediaid=".$mediaid;
     $output = str_replace("./php/check_form_episode.php",$pathGET,$output);
-    $output = str_replace("{mediaName}",$mediaName,$output); 
+    $output = str_replace("{mediaName}",$mediaName,$output);
     /* END get and set episode name */
+}
+
+function get_seasons(){
+    $options="";
+    $mediaList = Media::list();
+    if(isset($_GET['mediaid'])){
+        $numSeasons = $mediaList[$_GET['mediaid']-1]->numSeasons;
+        for ($i=1; $i<=$numSeasons; $i++){
+            $options.= "<option value=$i>$i</option>"; 
+        }
+    }
+    return $options;
+}
+
+function restore_seasons(){
+    $options = "";
+    $toRestore = "";
+    $mediaList = Media::list();
+    if(isset($_GET['mediaid'])){
+        $numSeasons = $mediaList[$_GET['mediaid']-1]->numSeasons;
+        for ($i=1; $i<=$numSeasons; $i++){
+            if ($i == $_SESSION['seasonNum']){
+                $toRestore = "<option value=$i>$i</option>";
+            }
+            else{
+                $options.= "<option value=$i>$i</option>";
+            }
+        }
+        $toRestore .= $options;
+    }
+    return $toRestore;
+}
+
+
+function get_id_episodes(){
+    $options = "";
+    $mediaList = Media::list();
+    if(isset($_GET['mediaid'])){
+        $numEpisodes = $mediaList[$_GET['mediaid']-1]->numEpisodes;
+        for ($i=1; $i<=$numEpisodes; $i++){
+            /*if(!in_array($i,get_id_episodes_already_defined())) */
+                $options.= "<option value=$i>$i</option>";
+        }
+    }
+    return $options;
+}
+
+function get_id_episodes_already_defined(){
+    $idDefinedEpisodes = [];
+    if(isset($_GET['mediaid'])){
+        $listEpisodes = Episode::getEpisodesFor($_GET['mediaid']);
+        foreach($listEpisodes as $index=>$episode){
+            $idDefinedEpisodes[$index] = $episode->id;
+        }
+    }
+    return $idDefinedEpisodes;
+}
+
+function restore_id_episodes(){
+    $options = "";
+    $toRestore = "";
+    $mediaList = Media::list();
+    if(isset($_GET['mediaid'])){
+        $numEpisodes = $mediaList[$_GET['mediaid']-1]->numEpisodes;
+        for ($i=1; $i<=$numEpisodes; $i++){
+            if($i == $_SESSION['episodeNum']){
+                $toRestore.= "<option value=$i>$i</option>";
+            }
+            else{
+                $options.= "<option value=$i>$i</option>";
+            }
+        }
+        $toRestore .= $options;
+    }
+    return $toRestore;
 }
 
 echo $output;

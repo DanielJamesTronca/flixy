@@ -33,7 +33,7 @@ $episode->subtitle = $_POST["subtitle"];
 $episode->mediaId = $_POST["mediaid"];
 $episode->authorId = SessionManager::getUserId();
 $episode->eventDate = $_POST["eventDate"];
-$episode->videoUrl = $_POST["videoUrl"];
+$episode->videoUrl = Utils::convert_url_to_embedded($_POST["videoUrl"]);
 
 
 $episode->saveInDB();

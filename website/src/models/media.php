@@ -141,6 +141,7 @@ class Media extends Base
         return $results;
     }
 
+
     public function setFavourite($userId, $activate)
     {
         $dbman = DBManager::getInstance();
@@ -166,6 +167,11 @@ class Media extends Base
     public static function getAirDateList() {
         $dbman = DBManager::getInstance();
         return $dbman->query("SELECT DISTINCT YEAR(air_date) as anno FROM Media");
+    }
+
+    public static function getMediaName($id){
+        $dbman = DBManager::getInstance();
+        return $dbman->query("SELECT name FROM Media WHERE Media.id = {$id}");
     }
  }
 
