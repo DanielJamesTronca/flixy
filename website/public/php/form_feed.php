@@ -8,7 +8,7 @@ session_start();
 
 /* START show error message if set */
 if(isset($_SESSION['error-message-feed'])) {
-    $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small'>",$output);
+    $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message-feed'],$output);
     session_destroy();
 }
@@ -20,7 +20,7 @@ function restore_parameters(&$output){
 /* START restore form parameters if available */
 
     if (isset($_SESSION['mediaid'])){
-        $output = str_replace("{mediaid}",restore_list_title_media(),$output);
+        $output = str_replace("{mediaid}",restore_list_title_media($_SESSION['mediaid']),$output);
     }
     else{
         $output = str_replace("{mediaid}",get_list_title_media(),$output); 
@@ -53,7 +53,6 @@ function restore_parameters(&$output){
 }
 
 
-
 function get_list_title_media(){
     $options = "";
     $media_list = Media::list();
@@ -63,19 +62,20 @@ function get_list_title_media(){
     return $options;
 }
 
-function restore_list_title_media(){
+function restore_list_title_media($valueToRestore){
     $options = "";
     $toRestore = "";
     $media_list = Media::list();
     foreach ($media_list as $media){
-        if ($media->id == $_SESSION['mediaid']){
-            $toRestore = "<option value=$media->id>$media->title</option>";
+        if ($media->id == $valueToRestore){
+            $toRestore = "<option value=$media->id>$media->title</option><optgroup class='secondary-bg' label='--------'>";
         }
         else{
             $options.= "<option value=$media->id>$media->title</option>";
         }
     }
     $toRestore .= $options;
+    $toRestore .= "</optgroup>";
 
     return $toRestore;
 }

@@ -11,7 +11,6 @@ $_SESSION['subtitle'] = $_POST["subtitle"];
 $_SESSION['eventDate'] = $_POST["eventDate"];
 $_SESSION['videoUrl'] = $_POST["videoUrl"];
 $_SESSION['mediaid'] = $_POST["mediaid"];
-$_SESSION['nomeSerie'] = $_GET["nomeSerie"];
 
 if (!SessionManager::isUserLogged()) {
     $_SESSION['error-message-feed'] = "Devi prima autenticarti.";
@@ -33,7 +32,7 @@ $episode->subtitle = $_POST["subtitle"];
 $episode->mediaId = $_POST["mediaid"];
 $episode->authorId = SessionManager::getUserId();
 $episode->eventDate = $_POST["eventDate"];
-$episode->videoUrl = Utils::convert_url_to_embedded($_POST["videoUrl"]);
+$episode->videoUrl = Utils::convert_url_to_embed($_POST["videoUrl"]);
 
 
 $episode->saveInDB();

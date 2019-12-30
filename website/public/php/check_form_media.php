@@ -11,23 +11,32 @@ $_SESSION['description'] = $_POST["description"];
 $_SESSION['genreid'] = $_POST["genreid"];
 $_SESSION['stars'] = $_POST["stars"];
 $_SESSION['duration'] = $_POST["duration"];
-$_SESSION['hasEpisodes'] = $_GET["hasEpisodes"];
+$_SESSION['hasEpisodes'] = $_POST["hasEpisodes"];
 $_SESSION['numEpisodes'] = $_POST["numEpisodes"];
-$_SESSION['numSeason'] = $_POST["numSeason"];
+$_SESSION['numSeasons'] = $_POST["numSeasons"];
 $_SESSION['trailerUrl'] = $_POST["trailerUrl"];
 $_SESSION['airDate'] = $_POST["airDate"];
+$_SESSION['nomeSerie'] = $_GET["nomeSerie"];
+
+$mediaid = $_GET['mediaid'];
 
 if (!SessionManager::isUserLogged()) {
     $_SESSION['error-message-media'] = "Devi prima autenticarti.";
-    header("Location: ../php/form_media.php");
+    if(isset($_GET['mediaid']))
+        header("Location: ../php/form_media.php?mediaid=$mediaid");
+    else
+        header("Location: ../php/form_media.php");
     return;
 }
 
 // parametri in input: content, subtitle, mediaid, videoUrl, eventDate
 
-if (!isset($_POST["mediaTitle"]) || !isset($_POST["description"]) || !isset($_POST["genreid"]) || !isset($_POST["stars"]) || !isset($_POST["duration"]) || !isset($_POST["hasEpisodes"]) || !isset($_POST["numEpisodes"]) || !isset($_POST["numSeason"]) || !isset($_POST["trailerUrl"]) || !isset($_POST["airDate"])) {
+if (!isset($_POST["mediaTitle"]) || !isset($_POST["description"]) || !isset($_POST["genreid"]) || !isset($_POST["stars"]) || !isset($_POST["duration"]) || !isset($_POST["hasEpisodes"]) || !isset($_POST["numEpisodes"]) || !isset($_POST["numSeasons"]) || !isset($_POST["trailerUrl"]) || !isset($_POST["airDate"])) {
     $_SESSION['error-message-media'] = "Parametri mancanti.";
-    header("Location: ../php/form_media.php");
+    if(isset($_GET['mediaid']))
+        header("Location: ../php/form_media.php?mediaid=$mediaid");
+    else
+        header("Location: ../php/form_media.php");
     return;
 }
 
@@ -44,8 +53,8 @@ $media->stars = $_POST["stars"];
 $media->duration = $_POST["duration"];
 $media->hasEpisodes = $_POST["hasEpisodes"];
 $media->numEpisodes = $_POST["numEpisodes"];
-$media->numSeasons = $_POST["numSeason"];
-$media->trailerUrl = Utils::convert_url_to_embedded($_POST["trailerUrl"]);
+$media->numSeasons = $_POST["numSeasons"];
+$media->trailerUrl = Utils::convert_url_to_embed($_POST["trailerUrl"]);
 $media->airDate = $_POST["airDate"];
 
 // good to go on these parameters, now check image upload

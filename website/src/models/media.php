@@ -169,10 +169,6 @@ class Media extends Base
         return $dbman->query("SELECT DISTINCT YEAR(air_date) as anno FROM Media");
     }
 
-    public static function getMediaName($id){
-        $dbman = DBManager::getInstance();
-        return $dbman->query("SELECT name FROM Media WHERE Media.id = {$id}");
-    }
  }
 
 ?>

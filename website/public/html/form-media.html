@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
   <script type="text/javascript" src="action.js"></script>
   
-  <title>Flixy - Inserisci media</title>
+  <title>{headTitle}</title>
   <meta name="title" content="Flixy - Inserimento episodio" />
 </head>
 <body>
@@ -18,7 +18,7 @@
   <div class="insert-form-container">
     
     <div class="form-title">
-      <h1 class=""> Aggiungi/Modifica Media </h1>
+      <h1 class=""> {pageTitle} </h1>
     </div>
     
     <div class='margin-top-small hidden'>
@@ -42,10 +42,10 @@
           <textarea rows="10" cols="100" class="textarea-description font-size-1-125" name="description" id="description">{description}</textarea>
         </div>
         <div class="switch-field">
-            <input type="radio" id="radio-one" name="switch-one" value="yes" checked="checked"/>
-            <label for="radio-one" class="switch-label">Serie tv</label>
-            <input type="radio" id="radio-two" name="switch-one" value="no" />
-            <label for="radio-two" class="switch-label">Film</label>
+            <input type="radio" id='radioTvSeries' checked='checked' name="switch-one" value="yes"/>
+            <label for="radioTvSeries" class="switch-label">Serie tv</label>
+            <input type="radio" id='radioFilm' name="switch-one" value="no" />
+            <label for="radioFilm" class="switch-label">Film</label>
         </div>
         <div id="media-comboBox-container">
           <div class="group-insert">       
@@ -63,17 +63,12 @@
           <div class="group-insert">       
             <label for="stars" class="primary-color label-form">Valutazione</label>
             <select name="stars" id="stars" class="custom-select primary-color font-size-1-125 fit-content-width">
-              <option value="1">1 (min)</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 (max)</option>
               {stars}
             </select>
           </div>
           <div class="group-insert"> 
-            <label for="numSeason" class="primary-color label-form">Numero stagione</label>
-            <input type="text" class="small-input-text" name="numSeason" id="numSeason" value="'{numSeason}'"/>
+            <label for="numSeasons" class="primary-color label-form">Numero stagioni</label>
+            <input type="text" class="small-input-text" name="numSeasons" id="numSeasons" value="'{numSeasons}'"/>
             <span class="highlight"></span>
             <span class="bar small-input-text-bar"></span>
           </div>
@@ -91,7 +86,7 @@
           <span class="bar"></span>
         </div>
         <fieldset>
-          <legend>Data di rilascio</legend>
+          <legend>Data originale di rilascio</legend>
             <div class="container-comboBox-data">
               <div class="group-insert">       
                 <label for="day-select" class="primary-color label-form">Giorno</label>

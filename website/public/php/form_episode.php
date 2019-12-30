@@ -12,7 +12,7 @@ get_media_name($output);
 
 /* START show error message if set */
 if(isset($_SESSION['error-message-episode'])) {
-    $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small'>",$output);
+    $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message-episode'],$output);
     session_destroy();
 }
@@ -41,20 +41,14 @@ function restore_parameters(&$output){
     else{
         $output = str_replace("'{promoUrl}'","",$output);
     }
-    if (isset($_SESSION['mediaid'])){
-        $output = str_replace("'{mediaid}'",$_SESSION['mediaid'],$output);
-    }
-    else{
-        $output = str_replace("'{mediaid}'","",$output); 
-    }
     if (isset($_SESSION['seasonNum'])){
-        $output = str_replace("{seasonNum}",restore_seasons(),$output);
+        $output = str_replace("{seasonNum}",restore_seasons($_SESSION['seasonNum']),$output);
     }
     else{
         $output = str_replace("{seasonNum}",get_seasons(),$output);
     }
     if (isset($_SESSION['episodeNum'])){
-        $output = str_replace("{episodeNum}",restore_id_episodes(),$output);
+        $output = str_replace("{episodeNum}",restore_id_episodes($_SESSION['episodeNum']),$output);
     }
     else{
         $output = str_replace("{episodeNum}",get_id_episodes(),$output); 
@@ -73,7 +67,7 @@ function get_media_name(&$output){
     /* START get and set episode name */
     if(isset($_GET['mediaid'])){
         $mediaid = $_GET['mediaid'];
-        $mediaName = Media::getMediaName($mediaid)[0]->name;
+        $mediaName = Media::fetch($mediaid)->title;
     }
     else{
         $mediaid = NULL;
@@ -97,21 +91,22 @@ function get_seasons(){
     return $options;
 }
 
-function restore_seasons(){
+function restore_seasons($valueToRestore){
     $options = "";
     $toRestore = "";
     $mediaList = Media::list();
     if(isset($_GET['mediaid'])){
         $numSeasons = $mediaList[$_GET['mediaid']-1]->numSeasons;
         for ($i=1; $i<=$numSeasons; $i++){
-            if ($i == $_SESSION['seasonNum']){
-                $toRestore = "<option value=$i>$i</option>";
+            if ($i == $valueToRestore){
+                $toRestore = "<option value=$i>$i</option><optgroup class='secondary-bg' label='--------'>";
             }
             else{
                 $options.= "<option value=$i>$i</option>";
             }
         }
         $toRestore .= $options;
+        $toRestore .= "</optgroup>";
     }
     return $toRestore;
 }
@@ -141,24 +136,26 @@ function get_id_episodes_already_defined(){
     return $idDefinedEpisodes;
 }
 
-function restore_id_episodes(){
+function restore_id_episodes($valueToRestore){
     $options = "";
     $toRestore = "";
     $mediaList = Media::list();
     if(isset($_GET['mediaid'])){
         $numEpisodes = $mediaList[$_GET['mediaid']-1]->numEpisodes;
         for ($i=1; $i<=$numEpisodes; $i++){
-            if($i == $_SESSION['episodeNum']){
-                $toRestore.= "<option value=$i>$i</option>";
+            if($i == $valueToRestore){
+                $toRestore.= "<option value=$i>$i</option><optgroup class='secondary-bg' label='--------'>";
             }
             else{
                 $options.= "<option value=$i>$i</option>";
             }
         }
         $toRestore .= $options;
+        $toRestore .= "</optgroup>";
     }
     return $toRestore;
 }
+
 
 echo $output;
 ?>
