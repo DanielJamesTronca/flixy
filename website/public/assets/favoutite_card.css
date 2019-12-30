@@ -557,11 +557,10 @@
 
 .ara{
   display: inline-block;
+    width: 77%;
 }
 
-.informazioni{
-    vertical-align: middle;
-}
+
 
 
 
@@ -569,10 +568,15 @@
 #fav-section{
    display: inline-block;
    margin-left: 10px;
+   position: fixed;
+   margin-top: 1em;
+
 }
 
 #fav-icon{
     color: red;
+    
+    
 }
 
 #fav-icon:hover{
