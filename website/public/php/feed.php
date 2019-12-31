@@ -20,7 +20,7 @@ function generate_feed_next_releases($userId){
                 $remainingDays = get_remaining_days($release->deadlineDate);
                 $element = "<div class='next-release'>
                                 <div class='next-release-image-container'>
-                                    <img src=$coverImage class='cover' alt='immagine copertina'/>
+                                    <img src='$coverImage' class='cover' alt='immagine copertina'/>
                                 </div>
                                 <div class='next-release-text-area padding-1 text-align-center'> 
                                     <h4>$title</h4>
@@ -71,7 +71,7 @@ function get_media($feedObj){
         $video = $feedObj->videoUrl; 
                     if (isset($video)){ 
                         $media ="<div class='content-justify-right padding-top-1 padding-left-3'>
-                                    <object class='timeline-video' data=$video alt='trailer'> 
+                                    <object class='timeline-video' data='$video'>trailer 
                                     </object>
                                 </div>";
                     }
@@ -79,14 +79,14 @@ function get_media($feedObj){
                         $mediaObj = Media::fetch($feedObj->mediaId);
                         $cover = $mediaObj->coverUrl; 
                         $media = "<div class='content-justify-right padding-top-1 padding-left-2'>
-                                    <img src=$cover class='timeline-image' alt='immagine copertina'></img>
+                                    <img class='timeline-image' alt='immagine copertina' src='$cover'></img>
                                 </div>";
                     }
     }
     else{
         $cover = $feedObj->coverUrl; 
         $media = "<div class='content-justify-right padding-top-1 padding-left-2'>
-                    <img src=$cover class='timeline-image' alt='immagine copertina'></img>
+                    <img class='timeline-image' alt='immagine copertina' src='$cover'></img>
                 </div>";
     }
     return $media;

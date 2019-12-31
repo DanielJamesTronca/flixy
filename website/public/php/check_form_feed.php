@@ -20,8 +20,8 @@ if (!SessionManager::isUserLogged()) {
 
 // parametri in input: content, subtitle, mediaid, videoUrl, eventDate
 
-if (!isset($_POST["content"]) || !isset($_POST["subtitle"]) || !isset($_POST["mediaid"]) || !isset($_POST["videoUrl"]) || !isset($_POST["eventDate"])) {
-    $_SESSION['error-message-feed'] = "Parametri mancanti.";
+if (!isset($_POST["content"]) || !isset($_POST["subtitle"]) || !isset($_POST["mediaid"]) || (isset($_POST["videoUrl"]) && !Utils::isValidUrl($_POST["videoUrl"])) || !isset($_POST["eventDate"])) {
+    $_SESSION['error-message-feed'] = "Parametri mancanti: si prega di compilare tutti i campi.";
     header("Location: ../php/form_feed.php");
     return;
 }
@@ -32,7 +32,8 @@ $episode->subtitle = $_POST["subtitle"];
 $episode->mediaId = $_POST["mediaid"];
 $episode->authorId = SessionManager::getUserId();
 $episode->eventDate = $_POST["eventDate"];
-$episode->videoUrl = Utils::convert_url_to_embed($_POST["videoUrl"]);
+if (isset($_POST["videoUrl"]))
+    $episode->videoUrl = Utils::convert_url_to_embed($_POST["videoUrl"]);
 
 
 $episode->saveInDB();

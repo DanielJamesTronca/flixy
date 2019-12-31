@@ -120,7 +120,7 @@ function get_list_genres(){
     foreach ($genreList as $genre){
         $genreList = Genre::getIdGenre($genre->name);
         $id = $genreList[0]->id;
-        $genresOptions.= "<option value=$id>$genre->name</option>";
+        $genresOptions.= "<option value='$id'>$genre->name</option>";
     }
     return $genresOptions;
 }
@@ -133,10 +133,10 @@ function restore_list_genres($valueToRestore){
         $genreList = Genre::getIdGenre($genre->name);
         $id = $genreList[0]->id;
         if ($id == $valueToRestore){
-            $toRestore = "<option value=$id>$genre->name</option><optgroup class='secondary-bg' label='--------'>";
+            $toRestore = "<option value='$id'>$genre->name</option><optgroup class='secondary-bg' label='--------'>";
         }
         else{
-            $options.= "<option value=$id>$genre->name</option>";
+            $options.= "<option value='$id'>$genre->name</option>";
         }
     }
     $toRestore .= $options;
@@ -173,19 +173,19 @@ function restore_rating($valueToRestore){
     for ($i=1; $i<=5; $i++){
         if ($i == $valueToRestore){
             if($i==1)
-                $toRestore = "<option value=$i>$i (min)</option><optgroup class='secondary-bg' label='--------'>";
+                $toRestore = "<option value='$i'>$i (min)</option><optgroup class='secondary-bg' label='--------'>";
             else if ($i==5)
-                $toRestore = "<option value=$i>$i (max)</option><optgroup class='secondary-bg' label='--------'>";
+                $toRestore = "<option value='$i'>$i (max)</option><optgroup class='secondary-bg' label='--------'>";
             else
-                $toRestore = "<option value=$i>$i</option><optgroup class='secondary-bg' label='--------'>";
+                $toRestore = "<option value='$i'>$i</option><optgroup class='secondary-bg' label='--------'>";
         }
         else{
             if($i==1)
-                $options .= "<option value=$i>$i (min)</option>";
+                $options .= "<option value='$i'>$i (min)</option>";
             else if ($i==5)
-                $options .= "<option value=$i>$i (max)</option>";
+                $options .= "<option value='$i'>$i (max)</option>";
             else
-                $options .= "<option value=$i>$i</option>";
+                $options .= "<option value='$i'>$i</option>";
         }
     }
     $toRestore .= $options;

@@ -8,7 +8,7 @@
 <link rel="stylesheet" media="screen" type="text/css" href="assets/style.css"/>
 <link rel="stylesheet" media="screen" type="text/css" href="assets/rules.css"/>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="action.js"></script>
+<script type="text/javascript" src="./scripts/formCheck.js"></script>
 
 <title>Flixy - Inserisci Notizia</title>
 <meta name="title" content="Flixy - Inserimento notizie" />
@@ -30,7 +30,7 @@
 
     <div class="padding-top-medium">
 
-      <form action="./php/check_form_feed.php" method="post" id="newsForm" onsubmit="return validateFormRegistration()">
+      <form action="./php/check_form_feed.php" method="post" id="newsForm" onsubmit="return isValidFormFeed()">
           <div class="group-insert">      
             <label for="mediaid" class="single-label-form">Media</label>
             <select name="mediaid" id="mediaid" class="custom-select primary-color font-size-1-125 fit-content-width">

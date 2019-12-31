@@ -31,8 +31,8 @@ if (!SessionManager::isUserLogged()) {
 
 // parametri in input: content, subtitle, mediaid, videoUrl, eventDate
 
-if (!isset($_POST["mediaTitle"]) || !isset($_POST["description"]) || !isset($_POST["genreid"]) || !isset($_POST["stars"]) || !isset($_POST["duration"]) || !isset($_POST["hasEpisodes"]) || !isset($_POST["numEpisodes"]) || !isset($_POST["numSeasons"]) || !isset($_POST["trailerUrl"]) || !isset($_POST["airDate"])) {
-    $_SESSION['error-message-media'] = "Parametri mancanti.";
+if (!isset($_POST["mediaTitle"]) || !isset($_POST["description"]) || !isset($_POST["genreid"]) || !isset($_POST["stars"]) || !isset($_POST["duration"]) || !isset($_POST["hasEpisodes"]) || !isset($_POST["numEpisodes"]) || !isset($_POST["numSeasons"]) || (isset($_POST["trailerUrl"]) && !Utils::isValidUrl($_POST["trailerUrl"])) || !isset($_POST["airDate"])) {
+    $_SESSION['error-message-media'] = "Parametri mancanti: si prega di compilare tutti i campi.";
     if(isset($_GET['mediaid']))
         header("Location: ../php/form_media.php?mediaid=$mediaid");
     else
@@ -41,21 +41,23 @@ if (!isset($_POST["mediaTitle"]) || !isset($_POST["description"]) || !isset($_PO
 }
 
 $id = null;
-if (isset($_POST["id"])) {
-    $id = $_POST["id"];
+if (isset($_GET["mediaid"])) {
+    $id = $_GET["mediaid"];
 }
 
 $media = new Media();
 $media->title = $_POST["mediaTitle"];
 $media->description = $_POST["description"];
-$media->genreId = $_POST["genreid"];
+$media->genreId = $_POST["genreid"]; 
 $media->stars = $_POST["stars"];
 $media->duration = $_POST["duration"];
 $media->hasEpisodes = $_POST["hasEpisodes"];
 $media->numEpisodes = $_POST["numEpisodes"];
 $media->numSeasons = $_POST["numSeasons"];
-$media->trailerUrl = Utils::convert_url_to_embed($_POST["trailerUrl"]);
 $media->airDate = $_POST["airDate"];
+if (isset($_POST["trailerUrl"]))
+    $media->trailerUrl = Utils::convert_url_to_embed($_POST["trailerUrl"]);
+
 
 // good to go on these parameters, now check image upload
 $target_dir = "/assets/images/covers/";

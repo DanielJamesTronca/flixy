@@ -56,6 +56,15 @@ class Utils {
         $replace = 'https://www.youtube.com/embed/$2';
         return preg_replace($search,$replace,$url);
     }
+
+    public static function isValidUrl($url){
+        $regex = '#(.*?)(?:href="https?://)?(?:www\.)?(?:youtu\.be/|youtube\.com(?:/embed/|/v/|/watch?.*?v=))([\w\-]{10,12}).*#x';
+        if(!preg_match($regex,$url))
+            return false;
+        else
+            return true;
+    }
 }
+
 
 ?>

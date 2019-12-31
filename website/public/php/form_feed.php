@@ -57,7 +57,7 @@ function get_list_title_media(){
     $options = "";
     $media_list = Media::list();
     foreach ($media_list as $media){
-        $options.= "<option value=$media->id>$media->title</option>";
+        $options.= "<option value='$media->id'>$media->title</option>";
     }
     return $options;
 }
@@ -68,10 +68,10 @@ function restore_list_title_media($valueToRestore){
     $media_list = Media::list();
     foreach ($media_list as $media){
         if ($media->id == $valueToRestore){
-            $toRestore = "<option value=$media->id>$media->title</option><optgroup class='secondary-bg' label='--------'>";
+            $toRestore = "<option value='$media->id'>$media->title</option><optgroup class='secondary-bg' label='--------'>";
         }
         else{
-            $options.= "<option value=$media->id>$media->title</option>";
+            $options.= "<option value='$media->id'>$media->title</option>";
         }
     }
     $toRestore .= $options;

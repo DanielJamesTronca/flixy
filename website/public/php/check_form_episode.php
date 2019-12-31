@@ -26,8 +26,8 @@ if (!SessionManager::isUserLogged()) {
 
 // parametri in input: title, description, promoUrl, mediaid, seasonNum, episodeNum, airDate
 
-if (!isset($_POST["titleEpisode"]) || !isset($_POST["description"]) || !isset($_POST["promoUrl"]) || !isset($_GET["mediaid"]) || !isset($_POST["seasonNum"]) || !isset($_POST["episodeNum"]) || !isset($_POST["airDate"]) ) {
-    $_SESSION['error-message-episode'] = "Parametri mancanti.";
+if (!isset($_POST["titleEpisode"]) || !isset($_POST["description"]) || (isset($_POST["promoUrl"]) && !Utils::isValidUrl($_POST["promoUrl"])) || !isset($_GET["mediaid"]) || !isset($_POST["seasonNum"]) || !isset($_POST["episodeNum"]) || !isset($_POST["airDate"]) ) {
+    $_SESSION['error-message-episode'] = "Parametri mancanti: si prega di compilare tutti i campi.";
     header("Location: ../php/form_episode.php?mediaid=$mediaid");
     return;
 }
@@ -35,11 +35,12 @@ if (!isset($_POST["titleEpisode"]) || !isset($_POST["description"]) || !isset($_
 $episode = new Episode();
 $episode->title = $_POST["titleEpisode"];
 $episode->description = $_POST["description"];
-$episode->promoUrl = Utils::convert_url_to_embed($_POST["promoUrl"]);
 $episode->mediaId = $_GET["mediaid"];
 $episode->seasonNum = $_POST["seasonNum"];
 $episode->episodeNum = $_POST["episodeNum"];
 $episode->airDate = $_POST["airDate"];
+if (isset($_POST["promoUrl"]))
+    $episode->promoUrl = Utils::convert_url_to_embed($_POST["promoUrl"]);
 
 $episode->saveInDB();
 echo "TODO: redirect based on result";

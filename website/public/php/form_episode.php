@@ -1,5 +1,5 @@
 <?php
-
+include_once("../../src/controllers/utils.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 $output = file_get_contents("../html/form-episode.html");
@@ -85,7 +85,7 @@ function get_seasons(){
     if(isset($_GET['mediaid'])){
         $numSeasons = $mediaList[$_GET['mediaid']-1]->numSeasons;
         for ($i=1; $i<=$numSeasons; $i++){
-            $options.= "<option value=$i>$i</option>"; 
+            $options.= "<option value='$i'>$i</option>"; 
         }
     }
     return $options;
@@ -99,10 +99,10 @@ function restore_seasons($valueToRestore){
         $numSeasons = $mediaList[$_GET['mediaid']-1]->numSeasons;
         for ($i=1; $i<=$numSeasons; $i++){
             if ($i == $valueToRestore){
-                $toRestore = "<option value=$i>$i</option><optgroup class='secondary-bg' label='--------'>";
+                $toRestore = "<option value='$i'>$i</option><optgroup class='secondary-bg' label='--------'>";
             }
             else{
-                $options.= "<option value=$i>$i</option>";
+                $options.= "<option value='$i'>$i</option>";
             }
         }
         $toRestore .= $options;
@@ -119,7 +119,7 @@ function get_id_episodes(){
         $numEpisodes = $mediaList[$_GET['mediaid']-1]->numEpisodes;
         for ($i=1; $i<=$numEpisodes; $i++){
             /*if(!in_array($i,get_id_episodes_already_defined())) */
-                $options.= "<option value=$i>$i</option>";
+                $options.= "<option value='$i'>$i</option>";
         }
     }
     return $options;
@@ -144,10 +144,10 @@ function restore_id_episodes($valueToRestore){
         $numEpisodes = $mediaList[$_GET['mediaid']-1]->numEpisodes;
         for ($i=1; $i<=$numEpisodes; $i++){
             if($i == $valueToRestore){
-                $toRestore.= "<option value=$i>$i</option><optgroup class='secondary-bg' label='--------'>";
+                $toRestore.= "<option value='$i'>$i</option><optgroup class='secondary-bg' label='--------'>";
             }
             else{
-                $options.= "<option value=$i>$i</option>";
+                $options.= "<option value='$i'>$i</option>";
             }
         }
         $toRestore .= $options;
@@ -155,7 +155,6 @@ function restore_id_episodes($valueToRestore){
     }
     return $toRestore;
 }
-
 
 echo $output;
 ?>
