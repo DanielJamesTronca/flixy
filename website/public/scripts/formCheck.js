@@ -1,6 +1,5 @@
 const RE_NUMERIC = /^[1-9][0-9]{0,3}$/;
 const RE_YOUTUBE =  /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})?$/;
-const RE_YOUTUBE2 = /^#(.*?)(?:href="https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch?.*?v=))([\w\-]{10,12}).*#x/ ;
 var errorMessage = ""; //gestita da createErrorMessage
 
 /* 
