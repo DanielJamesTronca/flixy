@@ -1,6 +1,6 @@
 
 <?php
-
+include_once("../../src/controllers/utils.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 $output = file_get_contents("../html/form-media.html");
@@ -43,7 +43,10 @@ function restore_parameters(&$output){
         $output = str_replace("'{numEpisodes}'",$media->numEpisodes,$output);
         $output = str_replace("'{numSeasons}'",$media->numSeasons,$output);
         $output = str_replace("'{trailerUrl}'",$media->trailerUrl,$output);
-        $output = str_replace("'{airDate}'",$media->airDate,$output);
+        $output = str_replace("{dayOption}",utils::restoreOptionsDay(utils::getDayFromData($media->airDate)),$output);
+        $output = str_replace("{monthOption}",utils::restoreOptionsMonth(utils::getMonthFromData($media->airDate)),$output);
+        $output = str_replace("{yearOption}",utils::restoreOptionsYear(utils::getYearFromData($media->airDate)),$output);
+
         set_path_with_mediaid($output);
     }
     else{
@@ -104,11 +107,23 @@ function restore_parameters(&$output){
         else{
             $output = str_replace("'{trailerUrl}'","",$output); 
         }
-        if (isset($_SESSION['airDate'])){
-            $output = str_replace("'{airDate}'",$_SESSION['airDate'],$output);
+        if (isset($_SESSION['day'])){
+            $output = str_replace("{dayOption}",utils::restoreOptionsDay($_SESSION['day']),$output);
         }
         else{
-            $output = str_replace("'{airDate}'","",$output);
+            $output = str_replace("{dayOption}",utils::generateOptionsDay(),$output);
+        }
+        if (isset($_SESSION['month'])){
+            $output = str_replace("{monthOption}",utils::restoreOptionsMonth($_SESSION['month']),$output);
+        }
+        else{
+            $output = str_replace("{monthOption}",utils::generateOptionsMonth(),$output);
+        }
+        if (isset($_SESSION['year'])){
+            $output = str_replace("{yearOption}",utils::restoreOptionsYear($_SESSION['year']),$output);
+        }
+        else{
+            $output = str_replace("{yearOption}",utils::generateOptionsYear(),$output);
         }
     }
     /*END restore form parameters if available */

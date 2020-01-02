@@ -1,4 +1,5 @@
 <?php
+include_once("../../src/controllers/utils.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 
@@ -37,11 +38,23 @@ function restore_parameters(&$output){
     else{
         $output = str_replace("'{subtitle}'","",$output);
     }
-    if (isset($_SESSION['username'])){
-        $output = str_replace("'{eventDate}'",$_SESSION['eventDate'],$output); //va assemblata data con funzione
+    if (isset($_SESSION['day'])){
+        $output = str_replace("{dayOption}",utils::restoreOptionsDay($_SESSION['day']),$output);
     }
     else{
-        $output = str_replace("'{eventDate}'","",$output); 
+        $output = str_replace("{dayOption}",utils::generateOptionsDay(),$output);
+    }
+    if (isset($_SESSION['month'])){
+        $output = str_replace("{monthOption}",utils::restoreOptionsMonth($_SESSION['month']),$output);
+    }
+    else{
+        $output = str_replace("{monthOption}",utils::generateOptionsMonth(),$output);
+    }
+    if (isset($_SESSION['year'])){
+        $output = str_replace("{yearOption}",utils::restoreOptionsYear($_SESSION['year']),$output);
+    }
+    else{
+        $output = str_replace("{yearOption}",utils::generateOptionsYear(),$output);
     }
     if (isset($_SESSION['videoUrl'])){
         $output = str_replace("'{videoUrl}'",$_SESSION['videoUrl'],$output);

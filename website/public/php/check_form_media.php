@@ -15,13 +15,15 @@ $_SESSION['hasEpisodes'] = $_POST["hasEpisodes"];
 $_SESSION['numEpisodes'] = $_POST["numEpisodes"];
 $_SESSION['numSeasons'] = $_POST["numSeasons"];
 $_SESSION['trailerUrl'] = $_POST["trailerUrl"];
-$_SESSION['airDate'] = $_POST["airDate"];
+$_SESSION['day'] = $_POST["day"];
+$_SESSION['month'] = $_POST["month"];
+$_SESSION['year'] = $_POST["year"];
 $_SESSION['nomeSerie'] = $_GET["nomeSerie"];
 
 $mediaid = $_GET['mediaid'];
 
 if (!SessionManager::isUserLogged()) {
-    $_SESSION['error-message-media'] = "Devi prima autenticarti.";
+    $_SESSION['error-message-media'] = "devi prima autenticarti.";
     if(isset($_GET['mediaid']))
         header("Location: ../php/form_media.php?mediaid=$mediaid");
     else
@@ -29,10 +31,9 @@ if (!SessionManager::isUserLogged()) {
     return;
 }
 
-// parametri in input: content, subtitle, mediaid, videoUrl, eventDate
-
-if (!isset($_POST["mediaTitle"]) || !isset($_POST["description"]) || !isset($_POST["genreid"]) || !isset($_POST["stars"]) || !isset($_POST["duration"]) || !isset($_POST["hasEpisodes"]) || !isset($_POST["numEpisodes"]) || !isset($_POST["numSeasons"]) || (isset($_POST["trailerUrl"]) && !Utils::isValidUrl($_POST["trailerUrl"])) || !isset($_POST["airDate"])) {
-    $_SESSION['error-message-media'] = "Parametri mancanti: si prega di compilare tutti i campi.";
+/* START check if all parameters are ok */
+if (!isset($_POST["mediaTitle"]) || !isset($_POST["description"]) || !isset($_POST["genreid"]) || !isset($_POST["stars"]) || !isset($_POST["duration"]) || !isset($_POST["hasEpisodes"]) || !isset($_POST["numEpisodes"]) || !isset($_POST["numSeasons"]) || (isset($_POST["trailerUrl"]) && !Utils::isValidUrl($_POST["trailerUrl"]))) {
+    $_SESSION['error-message-media'] = "si prega di compilare tutti i campi.";
     if(isset($_GET['mediaid']))
         header("Location: ../php/form_media.php?mediaid=$mediaid");
     else
@@ -40,6 +41,27 @@ if (!isset($_POST["mediaTitle"]) || !isset($_POST["description"]) || !isset($_PO
     return;
 }
 
+if ($_POST["trailerUrl"]!="" && !Utils::isValidUrl($_POST["trailerUrl"])) {
+    $_SESSION['error-message-media'] = "si prega di inserire un link video valido. Il parametro è opzionale.";
+    if(isset($_GET['mediaid']))
+        header("Location: ../php/form_media.php?mediaid=$mediaid");
+    else
+        header("Location: ../php/form_media.php");
+    return;
+}
+
+if(!utils::isValidDate($_POST["day"],$_POST["month"],$_POST["year"])){
+    $_SESSION['error-message-media'] = "si prega di inserire una data di rilascio valida.";
+    if(isset($_GET['mediaid']))
+        header("Location: ../php/form_media.php?mediaid=$mediaid");
+    else
+        header("Location: ../php/form_media.php");
+    return;
+}
+/* END check if all parameters are ok */
+
+
+// good to go on these parameters, now upload them to db
 $id = null;
 if (isset($_GET["mediaid"])) {
     $id = $_GET["mediaid"];
@@ -54,7 +76,7 @@ $media->duration = $_POST["duration"];
 $media->hasEpisodes = $_POST["hasEpisodes"];
 $media->numEpisodes = $_POST["numEpisodes"];
 $media->numSeasons = $_POST["numSeasons"];
-$media->airDate = $_POST["airDate"];
+$media->airDate = utils::createDate($_POST["day"],$_POST["month"],$_POST["year"]);
 if (isset($_POST["trailerUrl"]))
     $media->trailerUrl = Utils::convert_url_to_embed($_POST["trailerUrl"]);
 
