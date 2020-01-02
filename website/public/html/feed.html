@@ -8,21 +8,22 @@
 <link rel="stylesheet" media="screen" type="text/css" href="assets/rules.css"/>
 <link rel="stylesheet" media="screen" type="text/css" href="assets/feed.css"/>
 <title>Flixy - Feed</title>
-<meta name="title" content="Flixy - Login" />
+<meta name="title" content="Flixy - Feed" />
 </head>
 
 <body>
     <div id="feed-content" class="secondary-bg">
-        <h1 class="text-align-left padding-left-1-5 padding-right-1-5 padding-top-1-5 font-weight-normal"> Your Feed </h1>  
+        <div class="flex-container flex-content-space-between text-align-left padding-left-1-5 padding-right-1-5 padding-top-1-5">
+            <h1> Your Feed </h1>  
+            <button type="button" id="add-news-button" onclick="window.location.href = './php/form_feed.php'">Aggiungi notizia</button>
+        </div>
         <div id="container-next-release" class="margin-left-2-5">
             {feed-next-releases}
         </div>
         <div class="timeline">
             {feed-timeline}
         </div>  
-
     </div>
-
 </body>
 
 

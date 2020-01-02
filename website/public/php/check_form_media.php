@@ -11,14 +11,13 @@ $_SESSION['description'] = $_POST["description"];
 $_SESSION['genreid'] = $_POST["genreid"];
 $_SESSION['stars'] = $_POST["stars"];
 $_SESSION['duration'] = $_POST["duration"];
-$_SESSION['hasEpisodes'] = $_POST["hasEpisodes"];
+$_SESSION['hasEpisodes'] = $_POST["switch-one"];
 $_SESSION['numEpisodes'] = $_POST["numEpisodes"];
 $_SESSION['numSeasons'] = $_POST["numSeasons"];
 $_SESSION['trailerUrl'] = $_POST["trailerUrl"];
 $_SESSION['day'] = $_POST["day"];
 $_SESSION['month'] = $_POST["month"];
 $_SESSION['year'] = $_POST["year"];
-$_SESSION['nomeSerie'] = $_GET["nomeSerie"];
 
 $mediaid = $_GET['mediaid'];
 

@@ -1096,6 +1096,17 @@ fieldset{
     margin: 0 auto;
 }
 
+#add-news-button{
+    background-color: #ff0000;
+    width: 206px;
+    height: 40px;
+    border-radius: 3.2px;
+    border:none;
+    font-weight: bold;
+}
+
+
+
 @media (max-width: 768px) { 
     #media-comboBox-container{
         flex-direction: column;

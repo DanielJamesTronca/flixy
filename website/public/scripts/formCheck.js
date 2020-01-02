@@ -97,10 +97,16 @@ function isValidFormMedia(){
     var numSeasons = document.getElementById("numSeasons");
     var numEpisodes = document.getElementById("numEpisodes");
     var trailerUrl = document.getElementById("trailerUrl");
-    return !isEmptyInput([mediaTitle,description,duration,stars,numSeasons,numEpisodes],"media") 
-            && isNumericInput([duration,numSeasons,numEpisodes],"media")
-            && isValidUrl(trailerUrl); 
-
+    if (document.getElementById("radioTvSeries").checked){
+        return !isEmptyInput([mediaTitle,description,duration,stars,numSeasons,numEpisodes],"media") 
+                && isNumericInput([duration,numSeasons,numEpisodes],"media")
+                && isValidUrl(trailerUrl); 
+    }
+    else{
+        return !isEmptyInput([mediaTitle,description,duration,stars],"media") 
+                && isNumericInput([duration],"media")
+                && isValidUrl(trailerUrl); 
+    }
 }
 
 /*
@@ -164,16 +170,18 @@ function showEpisodesInput($toShow){
     // This will disable all the children of the div
     var seasonsNum = document.getElementById("seasonsNum");
     var episodesNum = document.getElementById("episodesNum");
+    var numSeasons = document.getElementById("numSeasons");
+    var numEpisodes = document.getElementById("numEpisodes");
     if (!$toShow){
-        seasonsNum.className = "hidden";
-        seasonsNum.tabIndex = -1;
-        episodesNum.className = "hidden";
-        episodesNum.tabIndex = -1;
+        seasonsNum.className = "group-insert hidden";
+        numSeasons.tabIndex = -1;
+        episodesNum.className = "group-insert hidden";
+        numEpisodes.tabIndex = -1;
     }
     else{
         seasonsNum.className = "group-insert";
-        seasonsNum.tabIndex = -1;
+        numSeasons.tabIndex = 0;
         episodesNum.className = "group-insert";
-        episodesNum.tabIndex = 0;
+        numEpisodes.tabIndex = 0;
     }
 }

@@ -142,5 +142,9 @@
     .timeline-date{
         padding-bottom: 0.5em;
     }
+    .timeline-video{
+        width: 4em;
+        height: 4em;
+    }
 }
 /* END TIMELINE */
