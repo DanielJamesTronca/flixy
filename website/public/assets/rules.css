@@ -521,9 +521,18 @@
     opacity: 100%;
 }
 
+.generalFiltersLink {
+    transition: background .2s ease-in-out;
+}
+
+.generalFiltersLink:hover {
+    background: red;
+}
+
 .custom-link {
     text-decoration: none;
     color: white;
+    
 }
 
 .custom-select {
