@@ -66,7 +66,7 @@
 }
 
 .font-size-1-125 {
-    font-size: 1.125;
+    font-size: 1.125em;
 }
 
 .font-size-1-5 {
@@ -535,52 +535,34 @@
 
 
 
+#row2 {  
+    flex-direction: row;
+  }
+  
+  #side2 {
+    flex-direction: column;
+    padding-top:2em;
+    padding-left: 2em;
+    margin-right:2em;
+      }
 
-.movie-entry {
-    width: 11.25em;
-    height: 20.1875em;
-    background: black;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-left: 1.5em;
-    margin-right: 0.5em;
-    flex-grow: 0;
-    border-radius: .5em;
+  #main2{
+    padding-top:2em;
+    flex-basis: 0;
+    flex-shrink: 1;
+    flex-grow: 3;
+  }
+
+
+#avatar_comment{
+    height: 2.85em;
+    width: 2.85em;
 }
 
-.copertina-size {
-    width: 11.25em;
-    height: 15.71875em;
-    border-radius: .5em;
-}
 
-
-.ara{
-  display: inline-block;
-    width: 77%;
-}
-
-
-
-
-
-
-#fav-section{
-   display: inline-block;
-   margin-left: 10px;
-   position: fixed;
-   margin-top: 1em;
-
-}
-
-#fav-icon{
-    color: red;
-    
-    
-}
-
-#fav-icon:hover{
-    color: white;
+.commento{
+    clear: both;
+    width: 100%;
 }
 
 

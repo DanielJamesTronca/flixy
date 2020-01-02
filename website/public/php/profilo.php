@@ -40,29 +40,6 @@ $dbMan = DBManager::getInstance();
     console_log($favoruites);
 
 
-    //$patatine= $favoruites[0]->genreId;
-    //console_log($patatine);
-/*
-
-    function addGenre($favourites){
-      for ($x = 0; $x < count($favoruites); $x++) {
-        $patatine= $favoruites[$x]->genreId;
-        getNameGenre($patatine);
-
-      }
-
-
-
-
-    }
-    */
-
-
-
-    
-
-
-
     function getFavouriteList($favoruites) {
         $favouriteList = [];
         $y=0;
@@ -96,19 +73,13 @@ $dbMan = DBManager::getInstance();
       }
 
 
+
+
+      
+
 $output = str_replace("{favouriteList}", getFavouriteList($favoruites), $output);
 
 
-/*
-
-    foreach ($fav as $favoruites) {
-        $title_card=$favoruites->title;
-        $cover_card=$favoruites->coverUrl;
-        $genre_card=$favourites->genre; 
-    }
-*/
-    
-//}
 
 $output=str_replace("{name}", $name,$output);
 $output=str_replace("{surname}", $surName,$output);
@@ -127,17 +98,7 @@ echo $output;
 ?>
 
 
-<!--
 
-
-
-    
-<form action="POST" action "../edit_fav.php">
-<input hidden name="redirect" type="text">
-<inpute name="isFavourite" type="checkbox">
-<input hidden name="mediaId" type="text">
-
--->
 
 
 

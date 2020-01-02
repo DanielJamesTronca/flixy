@@ -582,6 +582,7 @@ body {
     width: 15.5em;
     height: 2.6em;
     border-radius: .5em;
+    cursor: pointer;
   }
   
   .primary-color-gradient-button{

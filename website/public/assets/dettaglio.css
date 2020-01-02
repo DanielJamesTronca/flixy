@@ -576,6 +576,7 @@
       transition: color .2s ease-in;
       cursor: pointer;
       float: right; 
+     
   }
 
   #fav-icon:hover{
@@ -588,17 +589,15 @@
 
 
     #yt object{
-width:549px;
-height:303px;
+        width:549px;
+        height:303px;
+    }
+
+
+
+#votes{
+    float: left;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -606,13 +605,15 @@ height:303px;
         font-size:1.125em;
         padding-bottom:.1em;
         display:block;
-        min-width: 100vh;
+        width: 30vh;
         border:none;
         border-bottom:.06em solid #757575;
         background-color: #000000;
         color: white
       }
-      input:focus 		{ outline:none; }
+      input:focus{ 
+          outline:none; 
+        }
       
 
     .bar { position:relative; display:block; width:100%; }
@@ -640,6 +641,22 @@ height:303px;
   }
 
       
+
+  .button{
+    width: 15.5em;
+    height: 2.6em;
+    border-radius: .5em;
+    cursor: pointer;
+  }
+  
+  .primary-color-gradient-button{
+    background: rgb(183,0,0);
+    background: linear-gradient(90deg, rgba(183,0,0,1) 0%, rgba(255,52,52,1) 35%);
+  }
+
+
+
+  
 #lista-card{
     flex-direction: row;
     justify-content: flex-start;
@@ -647,8 +664,49 @@ height:303px;
 
 
 
+.thumbs-up {
+    transition: color .2s ease-in;
+    cursor: pointer;
+}
+
+.thumbs-down {
+    transition: color .2s ease-in;
+    cursor: pointer;
+    transform: scale(-1, 1); /* Needed to rotate other thumb */
+}
+
+#thumbs i {
+    margin-left: .1em;
+    margin-right: .1em;
+    margin-top: .2em;
+}
+
+#thumbs i:hover {
+    color: red;
+}
+
+
+
+#title {
+    width: 100%;
+    height: 2em;
+}
+
+
+#threebuton{
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+.bottone{
+    display:inline-block;
+    padding: .8em;
+}
+
+
 
 @media only screen and (max-width:875px){
+   
     #side{
         display: flex;
         flex-basis: 100%;
@@ -662,91 +720,79 @@ height:303px;
         flex-basis: 100%;  
      }
 }
+@media only screen and (max-width: 768px) {
+      
+    #side{
+        display: flex;
+        flex-basis: 100%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
 
-
-
-
-.contenuti_simili{
-    display: inline;
+        overflow-x: hidden;
+    }
 }
 
- 
-    
-    
 
-
- 
-
-  /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
-
-/*
+@media only screen and (max-width: 456px) {
   
-  @media screen and (max-width: 700px) {
-    #row {  
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: column;
-      min-height: 100%;
-      
+    #side{
+        display: flex;
+        flex-basis: 100%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        overflow-x: hidden;
     }
-    
-    #side {
-      display: flex;
-      flex-basis: 100%;
-      flex-grow: 0;
-      flex-shrink: 0;
-      flex-direction: column;
-      background-color:black;
-      justify-content: center;
-      align-items: center;
-      
-    }
-    
-    
+
+    #main {
+        display: flex;
+        flex-basis: 100%;  
+        padding-left: 2em; 
+        overflow-x: hidden;
+     }
+
    
-    #main {
-      display: flex;
-      flex-basis: 100%;
-      flex-grow: 0;
-      flex-shrink: 0;
-      background-color: black;
+
+    #yt object{
+        width:100%;
+        height:auto;
+        padding-left: 0;
     }
-  }
-  
-  
-  
-  @media only screen and (max-width: 456px) {
-  
-    #row {  
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: column;
-      min-height: 100%;
-    }
-    
-    #side {
-      display: flex;
-      flex-basis: 100%;
-      flex-grow: 0;
-      flex-shrink: 0;
-      flex-direction: column;
-      background-color:black;
-      justify-content: center;
-      align-items: center;
-      
-    }
-    
-    
-    #main {
-      display: flex;
-      flex-basis: 100%;
-      flex-grow: 0;
-      flex-shrink: 0;
-      background-color: black;
-    }
-  
-  }
 
 
-  */
-  
+    
+
+
+    #copertina {
+        width: 18.5em;
+        height: 27em;
+    }
+
+     .contenuti_simili{
+        text-align: center;
+        justify-content: center;
+     }
+
+     .descrivendo{
+         padding-right: 2em;
+         padding-top: 2em;
+     }
+
+     #fav-icon{
+        float:left;
+     }
+
+     #column{
+         clear:both;
+     }
+
+     .mobile_only{
+         display: flex;
+     }
+
+}

@@ -46,6 +46,17 @@ class Comment extends Base
         $dbman = DBManager::getInstance();
         return $dbman->query("INSERT INTO ".self::TABLE_NAME." (`".self::CONTENT_KEY."`, `".self::USER_ID_KEY."`, `".self::MEDIA_ID_KEY."`) VALUES ('{$content}', {$userId}, {$mediaId})");
     }
+
+    public static function getAvatar($id)
+    {
+        $dbman = DBManager::getInstance();
+        return $dbman->query("SELECT avatar_url FROM User WHERE User.id='$id'");
+    }
+
  }
 
 ?>
+
+
+
+

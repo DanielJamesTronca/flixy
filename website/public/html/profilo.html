@@ -10,17 +10,14 @@
 </head>
 
 
-
-
-
 <body class="document-font secondary-bg">
-<!-- The flexible grid (content) -->
+
 <div id="row" class="flex-container flex-wrap">
   <div id="side" class="flex-container flex-grow-shrink flex-align-items-center padding-2 ">
     
         <!-- AVATAR -->
         <div>
-          <img id="avatar" src={avatar_url} alt="Immagine profilo"/>
+          <img id="avatar" src="{avatar_url}" alt="Immagine profilo"/>
         </div>
         <a href="#" id="link" class="margin-bottom-2 margin-top-2 primary-color font-size-0-938"> Cambia immagine profilo </a> 
 
@@ -29,25 +26,25 @@
         <form action="../profile_edit.php" method="post">
           <div class="group">  
             <div class="group">  
-              <label for="name">Nome</label>    
-              <input type="text" name="name" id="name" placeholder="Nome" value="{name}" />
+              <label for="name" class="primary-color">Nome</label>    
+              <input type="text" name="name" id="name" value="{name}" />
               <span class="highlight"></span>
               <span class="bar"></span>
             </div>    
             <div class="group">     
-              <label for="surname">Surname</label> 
-              <input type="text" name="surname" id="surname" placeholder="Cognome" value="{surname}"/>
+              <label for="surname" class="primary-color">Surname</label> 
+              <input type="text" name="surname" id="surname" value="{surname}"/>
               <span class="highlight"></span>
               <span class="bar"></span>
             </div>
             <div class="group">      
-              <label for="email">Email</label>
-              <input type="text" name="email" id="email" placeholder="Email" value="{email}"/>
+              <label for="email" class="primary-color">Email</label>
+              <input type="text" name="email" id="email" value="{email}"/>
               <span class="highlight"></span>
               <span class="bar"></span>
             </div>
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="Username" value="{username}"/>
+            <label for="username" class="primary-color">Username</label>
+            <input type="text" name="username" id="username" value="{username}"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>

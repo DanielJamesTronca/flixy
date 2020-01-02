@@ -33,6 +33,8 @@ $dbMan = DBManager::getInstance();
 $genreList = $dbMan->query("SELECT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");
 
 
+
+
 function loadInfo($id){
     $dbMan = DBManager::getInstance();
 
@@ -83,10 +85,8 @@ $dbMan = DBManager::getInstance();
 $actualGenre = $dbMan->query("SELECT * FROM Media WHERE id='$movieId'");
 $actualGenre_aux= $actualGenre[0]->genre;
 $realGenre= $dbMan->query("SELECT * FROM Media WHERE genre='$actualGenre_aux'");
-console_log($realGenre);
 
 $genre_variable= $dbMan->query("SELECT name FROM Genre WHERE id='$actualGenre_aux'");
-
 
 
 function getMovieList($realGenre, $genre_variable) {
@@ -97,7 +97,6 @@ function getMovieList($realGenre, $genre_variable) {
     $titolo = $realGenre[$x]->name;
     $url = $realGenre[$x]->cover_url;
     $genre_card=$genre_variable[$y]->name;
-    console_log($genre_card);
 
     
     $card = file_get_contents("../html/similar_content_card.html");
@@ -109,6 +108,65 @@ function getMovieList($realGenre, $genre_variable) {
   }
   return implode($movieList);
 }
+
+
+
+$figaro=Comment::getCommentsFor($movieId);
+console_log($figaro);
+
+
+$lola=Comment::getAvatar(2);
+console_log($lola);
+
+function getCommentList($figaro) {
+  $commentList = [];
+ 
+
+  for ($x = 0; $x < count($figaro); $x++) {
+    $y=0;
+
+
+    $contenuto = $figaro[$x]->content;
+    $nome_commento=$figaro[$x]->userFullName;
+
+    $id_to_url=$figaro[$x]->userId;
+    
+    $lolito=Comment::getAvatar($id_to_url);
+
+    $finally_url=$lolito[$y]->avatar_url;
+    
+    
+    $commento = file_get_contents("../html/comment.html");
+    $commento = str_replace("{nome_commento}", $nome_commento, $commento);
+    $commento = str_replace("{contenuto_commento}", $contenuto, $commento);
+
+    $commento = str_replace("{avatar_url_commento}", "../".$finally_url, $commento);
+    array_push($commentList, $commento);
+  }
+  return implode($commentList);
+}
+
+
+/*
+$stars=Media
+function getMovieStar($stars) {
+  $starNumber = [];
+
+  for($i=0;$i<$stars;$i++) {
+    array_push($starNumber, "<i class='fa fa-star'></i>");
+  }
+  $card = str_replace("{movieStars}", implode($starNumber), $stelline);
+  return $stelline;
+}
+*/
+
+
+
+
+
+
+
+$output = str_replace("{commentList}", getCommentList($figaro), $output);
 
 
 $output = str_replace("{movieList}", getMovieList($realGenre, $genre_variable), $output);
