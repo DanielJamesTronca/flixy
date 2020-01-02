@@ -27,12 +27,14 @@ function restore_parameters(&$output){
             $output = str_replace("{pageTitle}","Modifica Film",$output);
             $output = str_replace("id='radioTvSeries' checked='checked'","id='radioTvSeries' tabindex='-1' disabled='disabled'",$output); //disabilita switch serie tv
             $output = str_replace("id='radioFilm'","id='radioFilm' checked='checked' tabindex='-1'",$output); //seleziona switch film, tabindex=-1 perchè ha solo una funzione grafica
+            $output = str_replace("{episodesAttributes}","",$output);
         }
         else{
             $output = str_replace("{headTitle}","Flixy - Modifica serie",$output);
             $output = str_replace("{pageTitle}","Modifica Serie TV",$output);
             $output = str_replace("id='radioFilm'","id='radioFilm' tabindex='-1' disabled='disabled'",$output); //disabilita switch film
             $output = str_replace("id='radioTvSeries'","id='radioTvSeries' tabindex='-1'",$output); //tabindex=-1 perchè ha solo una funzione grafica
+            $output = str_replace("{episodesAttributes}",generate_Episodes_Attributes(),$output);
         }
         $output = str_replace("'{title}'",$media->title,$output);
         $output = str_replace("{description}",$media->description,$output);
@@ -52,6 +54,7 @@ function restore_parameters(&$output){
     else{
         $output = str_replace("{headTitle}","Flixy - Inserisci media",$output);
         $output = str_replace("{pageTitle}","Aggiungi Media",$output);
+        $output = str_replace("{episodesAttributes}",generate_Episodes_Attributes(),$output);
     
         if (isset($_SESSION['title'])){
             $output = str_replace("'{title}'",$_SESSION['title'],$output);  
@@ -210,6 +213,22 @@ function restore_rating($valueToRestore){
 
 function isFilm(){
     return !(Media::fetch($_GET['mediaid'])->hasEpisodes);
+}
+
+function generate_Episodes_Attributes(){
+    return
+    "<div class='group-insert' id='seasonsNum'> 
+        <label for='numSeasons' class='primary-color label-form'>Numero stagioni</label>
+        <input type='text' class='small-input-text' name='numSeasons' id='numSeasons' value=''{numSeasons}''/>
+        <span class='highlight'></span>
+        <span class='bar small-input-text-bar'></span>
+    </div>
+    <div class='group-insert' id='episodesNum'> 
+        <label for='numEpisodes' class='primary-color label-form'>Episodi stagione</label>
+        <input type='text' class='small-input-text' name='numEpisodes' id='numEpisodes' value=''{numEpisodes}''/>
+        <span class='highlight'></span>
+        <span class='bar small-input-text-bar'></span>
+    </div>";
 }
 
 echo $output;

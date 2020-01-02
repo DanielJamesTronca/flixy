@@ -159,3 +159,21 @@ function createNaNErrorMessage(item,type){
     }
 
 }
+
+function showEpisodesInput($toShow){
+    // This will disable all the children of the div
+    var seasonsNum = document.getElementById("seasonsNum");
+    var episodesNum = document.getElementById("episodesNum");
+    if (!$toShow){
+        seasonsNum.className = "hidden";
+        seasonsNum.tabIndex = -1;
+        episodesNum.className = "hidden";
+        episodesNum.tabIndex = -1;
+    }
+    else{
+        seasonsNum.className = "group-insert";
+        seasonsNum.tabIndex = -1;
+        episodesNum.className = "group-insert";
+        episodesNum.tabIndex = 0;
+    }
+}
