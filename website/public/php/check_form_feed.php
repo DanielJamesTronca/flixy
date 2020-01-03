@@ -53,6 +53,7 @@ if (isset($_POST["videoUrl"]))
 
 
 $episode->saveInDB();
+Utils::unsetAll(array('error-message-feed','content','subtitle','eventDate','videoUrl','mediaid','day','month','year'));
 echo "TODO: redirect based on result";
 
 ?>

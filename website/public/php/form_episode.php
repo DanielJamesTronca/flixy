@@ -9,11 +9,11 @@ get_media_name($output);
 if(isset($_SESSION['error-message-episode'])) {
     $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message-episode'],$output);
+    restore_parameters($output);
+    Utils::unsetAll(array('error-message-episode','title','description','promoUrl','seasonNum','episodeNum','day','month','year'));
 }
 /* END show error message if set */
-
 restore_parameters($output);
-
 
 function restore_parameters(&$output){
     /* START restore form parameters if available */

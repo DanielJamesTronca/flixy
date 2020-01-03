@@ -11,16 +11,8 @@ session_start();
 if(isset($_SESSION['error-message-feed'])) {
     $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message-feed'],$output);
-    Utils::unsetAll(array($_SESSION['error-message-feed'],
-                        $_SESSION['content'],
-                        $_SESSION['subtitle'],
-                        $_SESSION['eventDate'],
-                        $_SESSION['videoUrl'],
-                        $_SESSION['mediaid'],
-                        $_SESSION['day'],
-                        $_SESSION['month'],
-                        $_SESSION['year'])
-                        );
+    restore_parameters($output);
+    Utils::unsetAll(array('error-message-feed','content','subtitle','eventDate','videoUrl','mediaid','day','month','year'));
 
 }
 /* END show error message if set */

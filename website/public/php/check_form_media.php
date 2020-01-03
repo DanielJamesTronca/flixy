@@ -36,7 +36,7 @@ if (!SessionManager::isUserLogged()) {
 
 /* START check if all parameters are ok */
 if (!isset($_POST["mediaTitle"]) || !isset($_POST["description"]) || !isset($_POST["genreid"]) || !isset($_POST["stars"]) || !isset($_POST["duration"]) 
-     || !isset($_SESSION["hasEpisodes"]) || ($_SESSION["hasEpisodes"] == 'true' && (!isset($_POST["numSeasons"]) || !isset($_POST["numEpisodes"])))) {
+     || !isset($_SESSION["hasEpisodes"]) || (isTvSeries() && (!isset($_POST["numSeasons"]) || !isset($_POST["numEpisodes"])))) {
          
     $_SESSION['error-message-media'] = "si prega di compilare tutti i campi.";
     if(isset($_GET['mediaid']))
@@ -74,9 +74,11 @@ $media->description = $_POST["description"];
 $media->genreId = $_POST["genreid"]; 
 $media->stars = $_POST["stars"];
 $media->duration = $_POST["duration"];
-$media->hasEpisodes = $_SESSION["hasEpisodes"];
-$media->numEpisodes = $_POST["numEpisodes"];
-$media->numSeasons = $_POST["numSeasons"];
+$media->hasEpisodes = isTvSeries() ? 1 : 0;
+if (isTvSeries()){
+    $media->numEpisodes = $_POST["numEpisodes"];
+    $media->numSeasons = $_POST["numSeasons"];
+}
 $media->airDate = Utils::createDate($_POST["day"],$_POST["month"],$_POST["year"]);
 if (isset($_POST["trailerUrl"]))
     $media->trailerUrl = Utils::convert_url_to_embed($_POST["trailerUrl"]);
@@ -97,12 +99,23 @@ if ($id == null) {
     // create new
     $media->saveInDB();
     header("Location: ".SessionManager::BASE_URL."home");
+    
 } else {
     // update
     $media->id = $id;
     $media->updateInDB();
     header("Location: ".SessionManager::BASE_URL."dettaglio&movieId=".$id);
+    
 }
+
 Utils::unsetAll(array('error-message-media','title','description','genreid','stars','duration','hasEpisodes','numEpisodes','numSeasons','trailerUrl','day','month','year'));
+return;
+
+function isTvSeries(){
+    if ($_SESSION["hasEpisodes"] == 'true')
+        return true;
+    else
+        return false;
+}
 
 ?>
