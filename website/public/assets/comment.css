@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
-*{
-    margin: 0em;
+* {
     padding: 0em;
-    font-family: 'Montserrat', sans-serif;
-    color: white; 
+    margin: 0em;
 }
 
 /* COLOR SECTION */
@@ -16,6 +14,12 @@
     color: #ff0000;
 }
 /* END COLOR SECTION */
+
+/* FONT */
+.document-font {
+    font-family: 'Montserrat', sans-serif;
+}
+/* END FONT SECTION */
 
 /* BG SECTION */
 .primary-bg {
@@ -62,7 +66,7 @@
 }
 
 .font-size-1-125 {
-    font-size: 1.125;
+    font-size: 1.125em;
 }
 
 .font-size-1-5 {
@@ -123,16 +127,17 @@
 }
 /* END ALL MARGIN SECTION */
 /* MARGIN LEFT SECTION */
+.margin-left-0-15{
+    margin-left: 0.15em;
+
+}
+
 .margin-left-0-35 {
     margin-left: 0.35em;
 }
 
 .margin-left-0-5 {
     margin-left: 0.5em;
-}
-
-.margin-left-0-6 {
-    margin-left: 0.6em;
 }
 
 .margin-left-0-7 {
@@ -163,10 +168,6 @@
 
 .margin-right-0-5 {
     margin-right: 0.5em;
-}
-
-.margin-right-0-6 {
-    margin-right: 0.6em;
 }
 
 .margin-right-0-7 {
@@ -210,12 +211,16 @@
     margin-top: 2em;
 }
 
+.margin-top-2-5 {
+    margin-top: 2.5em;
+}
+
 .margin-top-3 {
     margin-top: 3em;
 }
 
-.margin-top-2-5 {
-    margin-top: 2.5em;
+.margin-top-4{
+    margin-top: 4em;
 }
 /* END MARGIN TOP SECTION */
 /* MARGIN BOTTOM SECTION */
@@ -251,10 +256,6 @@
 /* ALL PADDING SECTION */
 .padding-0 {
     padding: 0 auto;
-}
-
-.padding-0-3 {
-    padding: 0.3em;
 }
 
 .padding-0-5 {
@@ -456,13 +457,6 @@
 /* END TEXT ALIGN */
 /* FLEX CONTAINER */
 
-.content-justify-left{
-    justify-content: left;
-}
-.content-justify-right{
-    justify-content: right;
-}
-
 .flex-container {
     display: flex;
 }
@@ -473,10 +467,6 @@
 
 .flex-content-start {
     justify-content: flex-start;
-}
-
-.flex-content-space-between {
-    justify-content: space-between;
 }
 
 .flex-items-center {
@@ -521,11 +511,6 @@
     opacity: 100%;
 }
 
-.custom-link {
-    text-decoration: none;
-    color: white;
-}
-
 .custom-select {
     background: transparent;
     border: none;
@@ -533,10 +518,6 @@
 
 .border-radius-0-3 {
     border-radius: 0.3em;
-}
-
-.border-radius-0-5 {
-    border-radius: 0.5em;
 }
 
 .full-size {
@@ -552,395 +533,40 @@
     width: 100%;
 }
 
-/* MERGED HOME.CSS TO RULES.CSS */
-#filters-menu {
-    height: 2.6em;
-}
-
-#general-filters {
-    flex-basis: 20em;
-    flex-shrink: 1;
-    flex-grow: 0;
-}
-
-.filter {
-    display: block;
-    transition: background-color .2s ease-in;
-    cursor: pointer;
-}
-
-.filter:hover {
-    background-color: #ff0000;
-}
-
-#dropdown-select {
-    flex-basis: 18.750em;
-    flex-shrink: 0;
-    flex-grow: 1;
-}
-
-li {
-    list-style-type: none;
-}
-
-option {
-    background-color: black;
-}
-
-.menu-divider {
-    border-left: 0.063em solid white; 
-    border-right: 0.063em solid white; 
-    height: 80%;
-}
 
 
-@media only screen and (max-width: 624px) {
-    .menu-divider {
-        display: none;
-    }
-    #menu {
-        flex-grow: 1;
-    }
-    #general-filters {
-        flex-basis: 0;
-        flex-grow: 1;
-        flex-shrink: 1;
-     }
-    #dropdown-select {
-        flex-basis: 100%;
-        justify-content: center;
-    }
-    #movies-container {
-        margin-top: 2em;
-    }
-}
-
-/* END MERGE HOME.CSS*/
-
-/* MERGE LAYOUT.CSS */
-
-.layout-body {
+#row2 {  
+    flex-direction: row;
+  }
+  
+  #side2 {
     flex-direction: column;
-    min-height: 100vh;
-    height: auto;
-  }
-  
-  #content-container {
-    flex-grow: 2;
+    padding-top:2em;
+    padding-left: 2em;
+    margin-right:2em;
+      }
+
+  #main2{
+    padding-top:2em;
+    flex-basis: 0;
     flex-shrink: 1;
-    flex-direction: row;
-    min-height: 100%;
-    order: 2;
-  }
-  
-  .logo-size {
-    width: 38px;
-    height: 27px;
-  }
-  
-  #outer-container {
-    flex-basis: 100%;
-    flex-grow: 0.1;
-    flex-shrink: 1;
-    order: 1;
-  }
-  
-  #header-container {
-    position: relative;
-    height: 4.5em;
-    flex-basis: 100%;
-  }
-    
-  #title-container {
-    order: 0;
+    flex-grow: 3;
   }
 
-  #titleLayout {
-      text-decoration: none;
-  }
-    
-  #nav-container {
-    order: 1;
-  }
-    
-  #search-container {
-    order: 2;
-  }
-    
-  #text-input {
-    height: 100%;
-    width: 60%;
-    cursor: pointer;
-    border: none;
-  }
-    
-  #search-button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color:white;
-  }
-  
-  .custom-button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color:white;
-    transition: background .2s ease-in-out;
-  }
 
-  .custom-button:hover  {
-      background: red;
-  }
-
-  .custom-button-no-hover {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color:white;
-  }
-
-  #search-icon {
-    color: white;
-    width: 27.19px;
-  }
-    
-    
-  #profile-container {
-    order: 3;
-  }
-    
-  #link-container {
-    list-style-type: none;
-  }
-  
-  .link {
-    display: inline-block;
-    
-  }
-
-  #link-container li a {
-    text-decoration: none;
-    color: white;
-    border: none;
-    cursor: pointer;
-    background: transparent;
-    padding: .5em;
-    border-radius: 0.3em;
-    transition: background .2s ease-in;
-  }
-
-  #link-container li a:hover {
-      background: red;
-  }
-  
-  #profile-links {
-    width: 50%;
-    list-style-type: none;
-  }
-  
-  #profile-links a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  .profile-pic-size {
-    height: 34px;
-    width: 34px;
-  }
-  
-  
-  
-  .footer {    
-    flex-basis: 100%;
-    flex-grow: .2;
-    flex-shrink: 1;
-    order:3;
-    margin-top: 2em;
-  }
-    
-  @media only screen and (max-width: 1000px) {
-    #logo {
-      margin-left: .5em;
-    }
-    
-    #outer-container {
-      flex-grow: .7;
-    }
-  
-    #search-bar {
-      height: 2.6em;
-      border-radius: .3em;
-    }
-  
-    #link-container li {
-      background: black; 
-    }
-  
-    #title-container {
-      flex-shrink: 1;
-      flex-grow: 1;
-      flex-basis: 0;
-    }
-  
-    #search-container {
-      flex-basis: 100%;
-      order: 4;
-      margin-top: 1em;
-      align-items: center;
-      justify-items: center;
-      justify-content: center;
-    }
-  
-    #profile-container {
-      flex-shrink: 1;
-      flex-grow: 1;
-      flex-basis: 0;
-    }
-  
-    #nav-container {
-      flex-basis: 100%;
-      justify-content: center;
-      justify-items: center;
-      order:5;
-    }
-  
-    #profile-links {
-      margin-left: 2em;
-    }
-  
-    #link-container {
-      margin-left: 0;
-    }
-  }
-  
-  
-  @media only screen and (max-width: 456px) {
-    #link-container li {
-      height: 4em;
-      margin-top: 2em;
-      display: inline-block;
-      vertical-align: middle;
-    }
-  
-    #outer-container {
-      flex-grow: .8;
-    }
-  
-    #link-container li a {
-      display: inline-block;  
-      vertical-align: middle;   
-    }
-    
-    #link-container li:before {
-      content: '';
-      display: inline-block;
-      vertical-align: middle;
-      height: 100%;   
-    }
-  
-  }
-/* END MERGE LAYOUT.CSS */  
-/* START MERGE MOVIE-CARD.CSS */
-
-.movie-entry {
-    width: 15.063em;
-    height: 35.000em;
-    flex-grow: 0;
-}
-
-.copertina-size {
-    width: 15.063em;
-    height: 22.320em;
-}
-
-.stars-active {
-    z-index: 10;
-    overflow: hidden;
-  }
-
-.stars-active i {
-    color: #FFBC0B;
-}
-  
-.rating {
-    width: 90%;
-    overflow: hidden;
-    height: 2em;
-    position: relative;
-    flex-direction: row;
-  }
-
-  #link-to-book {
-    transition: color .2s ease-in;
-    cursor: pointer;
-}
-
-#num-votes {
-    float:left;
-    margin-top: -.5em;
-}
-
-#fav-icon:hover {
-    color:red;
+#avatar_comment{
+    height: 2.85em;
+    width: 2.85em;
 }
 
 
-#link-to-book:hover {
-    color: red;
-}
-
-
-#fav-icon {
-    transition: color .2s ease-in;
-    cursor: pointer;
-    margin-top: .2em;
-    /*transform: translateY(15%);*/
-}
-
-
-
-/* END MERGE MOVIE-CARD.CSS*/
-
-
-
-
-#thumbs-up {
-    transition: color .2s ease-in;
-    cursor: pointer;
-}
-
-#thumbs-down {
-    transition: color .2s ease-in;
-    cursor: pointer;
-    transform: scale(-1, 1); /* Needed to rotate other thumb */
-}
-
-#thumbs i {
-    margin-left: .1em;
-    margin-right: .1em;
-    margin-top: .2em;
-}
-
-#thumbs i:hover {
-    color: red;
-}
-
-
-
-#title {
+.commento{
+    clear: both;
     width: 100%;
-    height: 2em;
 }
 
-.movie-entry #num-up-down {
-    margin-top: .3em;
-}
 
-.movie-entry #num-up-down #num-up {
-    margin-right: .8em;
-}
 
-.movie-entry #num-up-down #num-down {
-    margin-left: .8em;
-}
+
+
+

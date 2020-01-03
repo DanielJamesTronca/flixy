@@ -33,6 +33,8 @@ $dbMan = DBManager::getInstance();
 $genreList = $dbMan->query("SELECT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");
 
 
+
+
 function loadInfo($id){
     $dbMan = DBManager::getInstance();
 
@@ -49,7 +51,7 @@ function loadInfo($id){
 
     $arr=array($title,$duration, $cover_url, $description, $episode, $season, $trailer_url);
     return $arr;
-   
+
 }
 
 
@@ -79,30 +81,27 @@ if($episode==null && $season==null){
 }
 
 
-
-/*
-$dbMan = DBManager::getInstance();
-$IDK = $dbMan->query("SELECT * FROM Media WHERE genre='2'");
-*/
-
 $dbMan = DBManager::getInstance();
 $actualGenre = $dbMan->query("SELECT * FROM Media WHERE id='$movieId'");
 $actualGenre_aux= $actualGenre[0]->genre;
 $realGenre= $dbMan->query("SELECT * FROM Media WHERE genre='$actualGenre_aux'");
-console_log($realGenre);
+
+$genre_variable= $dbMan->query("SELECT name FROM Genre WHERE id='$actualGenre_aux'");
 
 
-
-
-function getMovieList($realGenre) {
+function getMovieList($realGenre, $genre_variable) {
   $movieList = [];
+  $y=0;
+
   for ($x = 0; $x < count($realGenre); $x++) {
     $titolo = $realGenre[$x]->name;
     $url = $realGenre[$x]->cover_url;
+    $genre_card=$genre_variable[$y]->name;
 
     
     $card = file_get_contents("../html/similar_content_card.html");
     $card = str_replace("{movieTitle}", $titolo, $card);
+    $card = str_replace("{movieGenre}", $genre_card, $card);
 
     $card = str_replace("{movieCover}", "../".$url, $card);
     array_push($movieList, $card);
@@ -111,25 +110,54 @@ function getMovieList($realGenre) {
 }
 
 
-/*
-$dbMan = DBManager::getInstance();
-$genreList_card = $dbMan->query("SELECT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = '$actualGenre_aux'");
-console_log($genreList);
 
-function displayGenre($genreList_card){
-  $movieList_card = [];
-  for ($x = 0; $x < count($genreList_card); $x++) {
-    $genre2=$genreList_card[$x]->name;
+$figaro=Comment::getCommentsFor($movieId);
+console_log($figaro);
 
-    
-    $card = file_get_contents("../html/similar_content_card.html");
-    $card = str_replace("{movieGenre}", $genre2, $card);
-    array_push($movieList_card, $card);
-  }
-  return implode($movieList_card);
-}
+
+$lola=Comment::getAvatar(2);
+console_log($lola);
+
+function getCommentList($figaro) {
+  $commentList = [];
  
-$output = str_replace("{movieList}", displayGenre($genreList_card), $output);
+
+  for ($x = 0; $x < count($figaro); $x++) {
+    $y=0;
+
+
+    $contenuto = $figaro[$x]->content;
+    $nome_commento=$figaro[$x]->userFullName;
+
+    $id_to_url=$figaro[$x]->userId;
+    
+    $lolito=Comment::getAvatar($id_to_url);
+
+    $finally_url=$lolito[$y]->avatar_url;
+    
+    
+    $commento = file_get_contents("../html/comment.html");
+    $commento = str_replace("{nome_commento}", $nome_commento, $commento);
+    $commento = str_replace("{contenuto_commento}", $contenuto, $commento);
+
+    $commento = str_replace("{avatar_url_commento}", "../".$finally_url, $commento);
+    array_push($commentList, $commento);
+  }
+  return implode($commentList);
+}
+
+
+/*
+$stars=Media
+function getMovieStar($stars) {
+  $starNumber = [];
+
+  for($i=0;$i<$stars;$i++) {
+    array_push($starNumber, "<i class='fa fa-star'></i>");
+  }
+  $card = str_replace("{movieStars}", implode($starNumber), $stelline);
+  return $stelline;
+}
 */
 
 
@@ -138,10 +166,10 @@ $output = str_replace("{movieList}", displayGenre($genreList_card), $output);
 
 
 
+$output = str_replace("{commentList}", getCommentList($figaro), $output);
 
-$output = str_replace("{movieList}", getMovieList($realGenre), $output);
 
-
+$output = str_replace("{movieList}", getMovieList($realGenre, $genre_variable), $output);
 
 $output=str_replace("{title}", $title,$output);
 $output=str_replace("{duration}", $duration,$output);

@@ -1,39 +1,108 @@
 <?php
-$output = file_get_contents("../html/registrazione.html");
-if(!isset($_SESSION))
-  session_start();
-if(isset($_SESSION['registration']) && !$_SESSION['registration']) {
-    $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small'>",$output);
-    $output = str_replace("{error-message}",$_SESSION['error-message'],$output);
-    session_destroy();
+include_once("../../src/db_manager.php");
+include_once("../../src/models/models.php");
+include_once("../../src/session_manager.php");
+
+$output = file_get_contents("../html/profilo.html");
+
+function console_log ( $data)
+{
+echo '<script>';
+echo 'console.log(' .json_encode($data).')';
+echo '</script>';
 }
-/* controlla se sono impostate le variabili di sessione con i rispettivi valori 
- per ri-assegnare i rispettivi valori al campo value dell'input della form 
- (evitando il re-inserimento per l'utente)
- */
-if (isset($_SESSION['username'])){
-    $output = str_replace("'{username}'",$_SESSION['username'],$output);
-}
-else{
-    $output = str_replace("'{username}'","",$output);
-}
-if (isset($_SESSION['name'])){
-    $output = str_replace("'{name}'",$_SESSION['name'],$output);
-}
-else{
-    $output = str_replace("'{name}'","",$output);
-}
-if (isset($_SESSION['surname'])){
-    $output = str_replace("'{surname}'",$_SESSION['surname'],$output);
-}
-else{
-    $output = str_replace("'{surname}'","",$output);
-}
-if (isset($_SESSION['email'])){
-    $output = str_replace("'{email}'",$_SESSION['email'],$output);
-}
-else{
-    $output = str_replace("'{email}'","",$output);
-}
+
+$name="";
+$surName="";
+$userName="";
+$email="";
+$avatarUrl="";
+
+$dbMan = DBManager::getInstance();
+
+//if(SessionManager::isUserLogged()){
+    //$userId = SessionManager::getUserId();
+   
+    $userId=2;
+
+    $user=User::getUser($userId);
+
+    
+
+    $name=$user->name;
+
+    $surName=$user->surname;
+    $userName=$user->username;
+    $avatarUrl=$user->avatarUrl;
+    $email=$user->email;
+      
+    $favoruites=Media::getUserFavourites($userId);
+    console_log($favoruites);
+
+
+    function getFavouriteList($favoruites) {
+        $favouriteList = [];
+        $y=0;
+
+          for ($x = 0; $x < count($favoruites); $x++) {
+          $titolo = $favoruites[$x]->title;
+          $url = $favoruites[$x]->coverUrl;
+          $genre_card=$favoruites[$x]->genreId;
+          
+          $aloah=Genre::getNameGenre($genre_card);
+          console_log($aloah);
+
+          $finally_genre=$aloah[$y]->name;
+
+           
+         
+          
+          $card = file_get_contents("../html/favourite_card.html");
+          $card = str_replace("{favouriteTitle}", $titolo, $card);
+          $card = str_replace("{favouriteGenre}",$finally_genre , $card);
+
+         
+
+          $card = str_replace("{favouriteCover}", "../".$url, $card);
+
+      
+         
+          array_push($favouriteList, $card);
+        }
+        return implode($favouriteList);
+      }
+
+
+
+
+      
+
+$output = str_replace("{favouriteList}", getFavouriteList($favoruites), $output);
+
+
+
+$output=str_replace("{name}", $name,$output);
+$output=str_replace("{surname}", $surName,$output);
+$output=str_replace("{avatar_url}", "../../public".$avatarUrl,$output);
+
+
+$output=str_replace("{email}", $email,$output);
+$output=str_replace("{username}",$userName,$output);
+
+
+
+
+
 echo $output;
+
 ?>
+
+
+
+
+
+
+
+
+
+

@@ -8,18 +8,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="../assets/dettaglio.css" />
 
-
     <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
 
 </head>
 
 
 
-<body class="secondary-bg">
+<body class="document-font secondary-bg">
 
     <!-- FLEXIBLE GRID -->
     <div id="row" class="flex-container flex-wrap ">
-        <div id="side" class="flex-container flex-grow-shrink secondary-bg ">
+        <div id="side" class="flex-container flex-grow-shrink ">
             <!-- COPERTINA MOVIE -->
             <div>
                 <img id="copertina" class="border-radius-0-5" src="{cover_url}" alt="copertina" />
@@ -31,8 +30,17 @@
             <div id="info" class="primary-color">
                 <h1 id="text" class="document-font font-size-2-2">{title}</h1>
 
+                <!--
+                <div class="margin-left-0-6 font-size-1 rating primary-color flex-container flex-content-space-between flex-align-items-center">
+                    <span id="activeStars" class="stars-active text-align-left">
+                      {movieStars}
+                    </span>
+                </div>
+                -->
+
                 <div id="fav-section" class="primary-color">
                     <a><i id="fav-icon" class="fas fa-heart font-size-2-2 margin-right-1-5"></i></a>
+
                 </div>
 
                 <div id="column">
@@ -42,47 +50,93 @@
                     <h2 class="document-font font-size-0-938">{serieTvSeason} {season}</h2>
                 </div>
 
-                <p class="margin-top-4 document-font text-align-justify font-size-0-8">
+                <p class="margin-top-4 document-font text-align-justify font-size-0-8 descrivendo">
                     {description}
                 </p>
+
+                <div id="votes">
+                    <span id="num-votes"
+                        class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"> </span>
+                    <div id="thumbs" class="text-align-center primary-color font-size-2-2">
+                        <a href="" class="custom-link "><i id="thumbs-up"
+                                class="primary-color far fa-thumbs-up"></i></a>
+                        <a href="" class="custom-link "><i id="thumbs-down"
+                                class="primary-color far fa-thumbs-down"></i></a>
+                    </div>
+                    <div id="num-up-down" class="text-align-center primary-color font-size-0-938">
+                        <span id="num-up">{likes}</span>
+                        <span id="num-down">{dislikes}</span>
+                    </div>
+                </div>
+
+
             </div>
+
+
         </div>
     </div>
 
-    <div id="trailer" class="flex-container flex-grow-shrink flex-content-center flex-align-items-center">
-        <div id="yt" class="margin-top-2">
-            <h1 class="primary-color font-size-2-2 text-align-center">Trailer</h1>
-            <object width="540" height="303" data="{trailer_url}"></object>
+
+    <div id="three_buttons" class=" margin-top-2 text-align-center">
+        <form action="" method="post">
+            <div class="bottone">
+                <input type="submit" value="Modifica" class="button primary-color-gradient-button"/>
+              </div>
+              <div class="bottone">
+                <input type="submit" value="Aggiungi episodio" class="button primary-color-gradient-button"/>
+              </div>
+              <div class="bottone">
+                <input type="submit" value="Elimina" class="button primary-color-gradient-button"/>
+              </div>
+        </form>
+
+    </div>
+
+
+
+    <div id="trailer" class="flex-container flex-grow-shrink flex-content-start flex-align-items-center">
+        <div id="yt" class="padding-left-2 margin-top-2">
+            <h1 class="primary-color font-size-2-2 text-align-left">Trailer</h1>
+            <object class="video_yt padding-left-2" data="{trailer_url}"></object>
         </div>
     </div>
 
-    <h1 class="primary-color padding-left-1 font-size-2-2 text-align-left ">Contenuti simili</h1>
 
-    <div id="similar" class="flex-container flex-grow-shrink flex-content-start flex-wrap">
 
-        {movieList}
-        
+    <div id="similar" class="margin-top-2 text-align-left padding-left-2">
+       
+        <!-- MAYBE NEED A FIX -->
+        <h1 class="primary-color font-size-2-2 text-align-left">Contenuti simili</h1>
+        <div class="flex-container flex-grow-shrink flex-content-start flex-wrap ">
+            {movieList}
+        </div>
+      
+
     </div>
 
 
 
-    <div id="comment-section" class="flex-container flex-content-start flex-align-items-left">
-        <div id="commentiamo" class="padding-left-2">
-            <h1 class="primary-color font-size-2-2 text-align-left padding-bottom-0-4">Commenti </h1>
+    <div id="comment-section" class="flex-container flex-content-start flex-align-items-left padding-left-2 margin-top-2">
+        <div id="commentiamo">
+            <h1 class="primary-color font-size-2-2 padding-bottom-0-4">Commenti </h1>
 
-            <form action="./php/check_registrazione.php" method="post" id="regForm"
-                onsubmit="return validateFormRegistration()">
-                <input type="text" name="commento" id="commento" placeholder="Inserisci qui il tuo commento"
-                    value="'{COMMENTS VALUE}'" />
-                <span class="highlight"></span>
-                <span class="bar"></span>
+            <form action="" method="post">
+                <!-- onsubmit? -->
+                <div class="group padding-left-2">
+                    <label for="" class="primary-color">Inserisci il tuo commento qui</label>
+                    <input type="text" name="commento" id="commento" />
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                </div>
             </form>
-
         </div>
-
-
-
     </div>
+
+    <div class="comment_list padding-left-2">
+        {commentList}
+    </div>
+
+
 
 
 </body>
