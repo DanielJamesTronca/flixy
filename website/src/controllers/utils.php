@@ -17,7 +17,7 @@ class Utils {
         return $randomString; 
     }
 
-    public static function uploadImage($target_dir, $imageReq) {
+    public static function uploadImage($target_dir, $imageReq, $prepath = "") {
         $target_file = $target_dir . Utils::randomString(10);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($imageReq["name"],PATHINFO_EXTENSION));
@@ -43,7 +43,7 @@ class Utils {
         if ($uploadOk == 0) {
             return ["success" => false, "error" => "Error, your file was not uploaded."];
         } else {
-            if (move_uploaded_file($imageReq["tmp_name"], $target_file)) {
+            if (move_uploaded_file($imageReq["tmp_name"], $prepath.$target_file)) {
                 return ["success" => true, "url" => $target_file];
             } else {
                 return ["success" => false, "error" => "Sorry, there was an error uploading your file."];

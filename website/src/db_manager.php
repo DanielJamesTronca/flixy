@@ -4,7 +4,7 @@ class DBManager
     private static $instance = null;
     private $conn;
     
-    private $host = "localhost";
+    private $host = "192.168.64.2";
     private $user = 'app';
     private $pass = 'appdbpasswd';
     private $database = 'flixy';
@@ -41,6 +41,12 @@ class DBManager
             return $result[0];
         }
         return null;
+    }
+
+    public function deleteObject($id, $className)
+    {
+        $result = $this->query("DELETE FROM ".$className." WHERE id=".$id);
+        return $result;
     }
 
     public function login($username, $password)

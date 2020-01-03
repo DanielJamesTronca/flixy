@@ -46,6 +46,14 @@ class Episode extends Base
         }
     }
 
+    public function saveInDB() {
+        $dbman = DBManager::getInstance();
+        $insertQuery = "INSERT INTO ".(self::TABLE_NAME)." (".(self::TITLE_KEY).", ".(self::DESCRIPTION_KEY).", ".(self::PROMO_KEY).", ".(self::MEDIA_ID_KEY).", ".(self::SEASON_KEY).", ".(self::NUMBER_KEY).", ".(self::AIR_DATE_KEY).") ";
+        $insertQuery .= "VALUES ('".$this->title."', '".$this->description."', '".$this->promoUrl."', ".$this->mediaId.", ".$this->seasonNum.", ".$this->episodeNum.", '".$this->airDate."');";
+
+        return $dbman->query($insertQuery);
+    }
+
     public static function getEpisodesFor($mediaId)
     {
         $dbman = DBManager::getInstance();
