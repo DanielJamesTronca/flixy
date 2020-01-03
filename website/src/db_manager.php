@@ -52,11 +52,11 @@ class DBManager
     public function login($username, $password)
     {
         $hashedPassword = hash('sha256', $password);
-        $result = $this->query("SELECT * FROM Keychain WHERE Keychain.username ='{$username}' AND Keychain.password = '{$hashedPassword}';");
+        $result = $this->query("SELECT Keychain.user_id FROM Keychain WHERE Keychain.username ='{$username}' AND Keychain.password = '{$hashedPassword}';");
         if (count($result) == 1)
         {
             // user credentials found
-            return true;
+            return $result[0]->user_id;
         }
         return false;
     }

@@ -86,7 +86,6 @@ class Media extends Base
         $dbman = DBManager::getInstance();
         $insertQuery = "UPDATE ".(self::TABLE_NAME)." SET  ".(self::NAME_KEY)."='".$this->title."', ".(self::DESCRIPTION_KEY)."='".$this->description."', ".(self::COVER_KEY)."='".$this->coverUrl."', ".(self::GENRE_ID_KEY)."=".$this->genreId.", ".(self::STARS_KEY)."=".$this->stars.", ".(self::DURATION_KEY)."=".$this->duration.", ".(self::HAS_EPISODES_KEY)."=".$this->hasEpisodes.", ".(self::EPISODES_NUM_KEY)."=".$this->numEpisodes.", ".(self::SEASONS_NUM_KEY)."=".$this->numSeasons.", ".(self::TRAILER_KEY)."='".$this->trailerUrl."', ".(self::DATE_KEY)."='".$this->airDate."' ";
         $insertQuery .= " WHERE id=".$this->id;
-        print_r($insertQuery);
         return $dbman->query($insertQuery);
     }
 
@@ -109,8 +108,7 @@ class Media extends Base
             $orderClause = " ORDER BY {$order} {$asc} ";
         }
 
-        $queryString = "SELECT *, count(Vote.id) AS votes_count, sum(Vote.positive) as votes_positive, ".(Genre::TABLE_NAME).".name as genre_name FROM ".(self::TABLE_NAME)." LEFT JOIN Vote ON (".(self::TABLE_NAME).".id=Vote.media_id) LEFT JOIN ".(Genre::TABLE_NAME)." ON ".(Genre::TABLE_NAME).".id = ".(self::TABLE_NAME).".genre WHERE ".$whereClause." GROUP BY Media.id {$orderClause};";
-
+        $queryString = "SELECT Media.id, Media.name, Media.description, Media.cover_url, Media.genre, Media.stars, Media.hasEpisodes, Media.episodes, Media.seasons, Media.trailer_url, Media.created_at, Media.updated_at, Media.air_date, count(Vote.id) AS votes_count, sum(Vote.positive) as votes_positive, ".(Genre::TABLE_NAME).".name as genre_name FROM ".(self::TABLE_NAME)." LEFT JOIN Vote ON (".(self::TABLE_NAME).".id=Vote.media_id) LEFT JOIN ".(Genre::TABLE_NAME)." ON ".(Genre::TABLE_NAME).".id = ".(self::TABLE_NAME).".genre WHERE ".$whereClause." GROUP BY Media.id {$orderClause};";
         $results = $dbman->query($queryString, Media::class);
         return Media::setFavouritesFor($userId, $results);
     }
@@ -129,7 +127,7 @@ class Media extends Base
                 {
                     $media->isFavourite = true;
                 }
-            } 
+            }
         }
         return $medias;
     }
