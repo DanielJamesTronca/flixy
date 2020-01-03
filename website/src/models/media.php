@@ -141,6 +141,7 @@ class Media extends Base
         return $results;
     }
 
+
     public function setFavourite($userId, $activate)
     {
         $dbman = DBManager::getInstance();
@@ -167,6 +168,7 @@ class Media extends Base
         $dbman = DBManager::getInstance();
         return $dbman->query("SELECT DISTINCT YEAR(air_date) as anno FROM Media");
     }
+
  }
 
 ?>

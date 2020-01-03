@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+
+<head>
+<base target="_self" href="http://localhost/flixy/website/public/"/> <!--da cambiare!!!! -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/> <!-- per ottimizzazione visualizzazione smartphone -->
+<link rel="stylesheet" media="screen" type="text/css" href="assets/style.css"/>
+<link rel="stylesheet" media="screen" type="text/css" href="assets/rules.css"/>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="./scripts/formCheck.js"></script>
+
+<title>Flixy - Inserisci Notizia</title>
+<meta name="title" content="Flixy - Inserimento notizie" />
+</head>
+<body>
+
+<div class="insert-form-container">
+             
+    <div class="form-title">
+        <h1 class=""> Aggiungi Notizia </h1>
+    </div>
+
+    <div class='margin-top-small hidden'>
+      <div class="error-message-box-insert-form">
+          <p class="bold">Dati invalidi</p>
+          <p>Controlla i dati inseriti e riprova: {error-message} </p>
+      </div>
+    </div>
+
+    <div class="padding-top-medium">
+
+      <form action="./php/check_form_feed.php" method="post" id="newsForm" onsubmit="return isValidFormFeed()">
+          <div class="group-insert">      
+            <label for="mediaid" class="single-label-form">Media</label>
+            <select name="mediaid" id="mediaid" class="custom-select primary-color font-size-1-125 fit-content-width">
+              {mediaid}
+            </select>
+          </div>
+          <div class="group-insert">  
+            <label for="subtitle" class="label-form">Sottotitolo</label>    
+            <input type="text" name="subtitle" id="subtitle" value="'{subtitle}'" />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          <div class="group-insert">     
+            <label for="content" class="label-form">Contenuto</label> 
+            <textarea rows="10" cols="100" class="textarea-description font-size-1-125" id="content" name="content">{content}</textarea>
+          </div>
+          <div class="group-insert">      
+            <label for="videoUrl" class="label-form">URL video (YouTube)</label>
+            <input type="text" name="videoUrl" id="videoUrl" value="'{videoUrl}'"/>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          <fieldset>
+            <legend>Data di rilascio</legend>
+              <div class="container-comboBox-data">
+                <div class="group-insert">       
+                  <label for="day" class="primary-color label-form">Giorno</label>
+                  <select name="day" id="day" class="custom-select primary-color font-size-1-125 fit-content-width">
+                    {dayOption}
+                  </select>
+                </div>
+                <div class="group-insert"> 
+                  <label for="month" class="primary-color label-form">Mese</label>
+                  <select name="month" id="month" class="custom-select primary-color font-size-1-125 fit-content-width">
+                    {monthOption}
+                  </select>
+                </div>
+                <div class="group-insert">       
+                  <label for="year" class="primary-color label-form">Anno</label>
+                  <select name="year" id="year" class="custom-select primary-color font-size-1-125 fit-content-width">
+                    {yearOption}
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+          
+          <div class="insert-form-button padding-top-1-5 padding-bottom-1">
+            <input type="submit" value="Invia" class="button-small-form margin-left-0-7 primary-color-gradient-button"/>
+          </div>
+          
+        </form>
+    </div>
+</div>
+</body>
+</html>

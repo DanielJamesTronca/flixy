@@ -62,7 +62,7 @@
 }
 
 .font-size-1-125 {
-    font-size: 1.125;
+    font-size: 1.125em;
 }
 
 .font-size-1-5 {
@@ -153,6 +153,10 @@
 
 .margin-left-2-5 {
     margin-left: 2.5em;
+}
+
+.margin-left-3 {
+    margin-left: 3em;
 }
 /* END MARGIN LEFT SECTION */
 /* MARGIN RIGHT SECTION */
@@ -475,6 +479,11 @@
     justify-content: flex-start;
 }
 
+.flex-content-end {
+    justify-content: flex-end;
+}
+
+
 .flex-content-space-between {
     justify-content: space-between;
 }
@@ -552,6 +561,9 @@
     width: 100%;
 }
 
+.fit-content-width{
+    width: fit-content;
+}
 /* MERGED HOME.CSS TO RULES.CSS */
 #filters-menu {
     height: 2.6em;
@@ -927,7 +939,6 @@ option {
 }
 
 
-
 #title {
     width: 100%;
     height: 2em;
@@ -944,3 +955,172 @@ option {
 .movie-entry #num-up-down #num-down {
     margin-left: .8em;
 }
+
+/* START MERGE INSERT-FORM.CSS */
+
+.group-insert 	{ 
+    position: relative;
+    display: flex;
+    flex-direction: column;    
+    margin-bottom: 2.2em;
+
+}
+
+.insert-form-container{
+    width:90%;
+}
+
+#media-comboBox-container{
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+    max-width:80%;
+}
+
+#episode-comboBox-container{
+    display:flex;
+    flex-direction: row;
+    width:10%;
+}
+
+.container-comboBox-data{
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+    max-width:95%;
+    margin-top: .5em;
+    margin-left: .5em;
+}
+
+.label-form { 
+    font-size:0.8em;
+    font-weight:normal;
+    left:.3em;
+    bottom: 1.8em;
+}
+
+.single-label-form { 
+    font-size:0.8em;
+    font-weight:normal;
+    left:.3em;
+    bottom: 1.8em;
+    position: absolute;
+}
+
+
+fieldset{
+    width:20em;
+    border: .04em groove;
+}
+
+.textarea-description{
+    width: 100%;
+    height:8em;
+    background-color: #000000;
+}
+
+
+.small-input-text{
+    width:6em; /* width dovrebbe essere grande quando la scritta*/
+}
+
+.small-input-text-bar{
+    width:6.8em;
+}
+
+.button-small-form{
+    width: 13em;
+}
+
+.insert-form-button{
+    display:flex;
+    justify-content: flex-end;
+}
+
+.switch-field {
+    display: flex;
+    margin-bottom: 36px;
+    overflow: hidden;
+}
+
+.switch-field input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 0.065em;
+    width: 0.065em;
+    border: 0;
+    overflow: hidden;
+}
+
+.switch-field label {
+    background-color: #191919;
+    line-height: 1;
+    text-align: center;
+    padding: .5em 1em;
+    margin-right: -0.065em;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0.065em 0.13em rgba(0, 0, 0, 0.3), 0 0.065em rgba(255, 255, 255, 0.1);
+    transition: all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+    cursor: pointer;
+}
+
+.switch-field input:checked + label {
+    background-color: #ff0000;
+    font-weight: bold;
+   
+}
+
+.switch-field label:first-of-type {
+    border-radius: .25em 0 0 .25em;
+}
+
+.switch-field label:last-of-type {
+    border-radius: 0 .25em .25em 0;
+}
+
+.switch-label{
+    width:8em;
+    font-size: 1em !important;
+}
+
+.error-message-box-insert-form {
+    width: fit-content;
+    border-radius: 1em;
+    background-color: #910223;
+    display:flex;
+    flex-direction: column;
+    padding: 1em;
+    margin: 0 auto;
+}
+
+#add-news-button{
+    background-color: #ff0000;
+    width: 206px;
+    height: 40px;
+    border-radius: 3.2px;
+    border:none;
+    font-weight: bold;
+}
+
+
+
+@media (max-width: 768px) { 
+    #media-comboBox-container{
+        flex-direction: column;
+      
+    }
+    .container-comboBox-data{
+        flex-direction:column;
+    }
+    fieldset{
+        max-width:60%;
+    }
+    
+    .insert-form-button{
+        justify-content: center;
+    }
+}
+/* END MERGE INSERT-FORM.CSS */

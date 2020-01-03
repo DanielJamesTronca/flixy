@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
 <head>
-<base target="_self" href="http://localhost/flixy/website/public/">  <!--da cambiare!!!! -->
+<base target="_self" href="http://localhost/flixy/website/public/"/>  <!--da cambiare!!!! -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <!-- per ottimizzazione visualizzazione smartphone -->
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/> <!-- per ottimizzazione visualizzazione smartphone -->
 <link rel="stylesheet" media="screen" type="text/css" href="./assets/style.css"/>
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="action.js"></script>
+<script type="text/javascript" src="./scripts/action.js"></script>
 
 <title>Flixy - Login</title>
 <meta name="title" content="Flixy - Login" />
@@ -40,23 +40,23 @@
 
         <form action="./php/check_login.php" method="post" id="regForm" onsubmit="return validateFormLogin()">
             <div class="group">     
-              <label for="username">Username</label>
-              <input type="text" name="username" id="username" placeholder="Username" value="'{username}'" tabindex=0 /> 
+              <label for="username" class="label-log-reg">Username</label>
+              <input type="text" name="username" id="username" value="'{username}'" tabindex="0" /> 
               <span class="highlight"></span>
               <span class="bar"></span> 
             </div>
 
 
             <div class="group">      
-              <label for="password">Password</label>
-              <input type="password" name="password" id="password" placeholder="Password" tabindex=0/>
+              <label for="password" class="label-log-reg">Password</label>
+              <input type="password" name="password" id="password" tabindex="0"/>
               <span class="highlight"></span>
               <span class="bar"></span>
             </div>
 
             
             <div class="content-center">
-              <input type="submit" value="Login" class="button primary-color-gradient-button" tabindex=0/>
+              <input type="submit" value="Login" class="button primary-color-gradient-button" tabindex="0"/>
             </div>
          
         </form>
@@ -66,7 +66,7 @@
       <p>Non hai un account? <a href="./php/registrazione.php" class="link"> Registrati </a> </p>
     </div>
 
-    <div class="footer text-center">
+    <div class="footer-form text-center">
       <p>Flixy © Un prodotto UNIPD. 2019. All rights reserved.</p>
     </div>
 </div>
