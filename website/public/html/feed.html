@@ -2,28 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
 <head>
-<base target="_self" href="http://localhost/flixy/website/public/">  <!--da cambiare!!!! -->
+<base target="_self" href="http://localhost/flixy/website/public/"/>  <!--da cambiare!!!! -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <!-- per ottimizzazione visualizzazione smartphone -->
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/> <!-- per ottimizzazione visualizzazione smartphone -->
 <link rel="stylesheet" media="screen" type="text/css" href="assets/rules.css"/>
 <link rel="stylesheet" media="screen" type="text/css" href="assets/feed.css"/>
-<script type="text/javascript" src="action.js"></script>
 <title>Flixy - Feed</title>
-<meta name="title" content="Flixy - Login" />
+<meta name="title" content="Flixy - Feed" />
 </head>
 
 <body>
     <div id="feed-content" class="secondary-bg">
-        <h1 class="text-align-left padding-left-1-5 padding-right-1-5 padding-top-1-5 font-weight-normal"> Your Feed </h1>  
+        <div class="flex-container flex-content-space-between text-align-left padding-left-1-5 padding-right-1-5 padding-top-1-5">
+            <h1> Your Feed </h1>  
+            <button type="button" id="add-news-button" onclick="window.location.href = './php/form_feed.php'">Aggiungi notizia</button>
+        </div>
         <div id="container-next-release" class="margin-left-2-5">
             {feed-next-releases}
         </div>
         <div class="timeline">
             {feed-timeline}
         </div>  
-
     </div>
-
 </body>
 
 
+</html>

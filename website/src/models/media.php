@@ -89,7 +89,7 @@ class Media extends Base
         return $dbman->query($insertQuery);
     }
 
-    public static function list($name=null, $year = null, $genre = null, $order = null, $asc = "ASC")
+    public static function list($userId=null, $name=null, $year = null, $genre = null, $order = null, $asc = "ASC")
     {
         $dbman = DBManager::getInstance();
         $whereClause = "1 ";
@@ -111,12 +111,13 @@ class Media extends Base
         $queryString = "SELECT *, count(Vote.id) AS votes_count, sum(Vote.positive) as votes_positive, ".(Genre::TABLE_NAME).".name as genre_name FROM ".(self::TABLE_NAME)." LEFT JOIN Vote ON (".(self::TABLE_NAME).".id=Vote.media_id) LEFT JOIN ".(Genre::TABLE_NAME)." ON ".(Genre::TABLE_NAME).".id = ".(self::TABLE_NAME).".genre WHERE ".$whereClause." GROUP BY Media.id {$orderClause};";
 
         $results = $dbman->query($queryString, Media::class);
-        return Media::setFavouritesFor($results);
+        return Media::setFavouritesFor($userId, $results);
     }
 
     public static function setFavouritesFor($userId, $medias)
     {
-
+        if ($userId == null) 
+            return $medias;
         $dbman = DBManager::getInstance();
         $queryString = "SELECT * FROM Favourite WHERE Favourite.user_id = {$userId}";
         $favourites = $dbman->query($queryString);
@@ -140,6 +141,7 @@ class Media extends Base
         return $results;
     }
 
+
     public function setFavourite($userId, $activate)
     {
         $dbman = DBManager::getInstance();
@@ -161,6 +163,12 @@ class Media extends Base
         $dbman = DBManager::getInstance();
         return $dbman->fetchObject(Media::class, $id);
     }
+
+    public static function getAirDateList() {
+        $dbman = DBManager::getInstance();
+        return $dbman->query("SELECT DISTINCT YEAR(air_date) as anno FROM Media");
+    }
+
  }
 
 ?>

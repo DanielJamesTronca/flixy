@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
 <head>
-<base target="_self" href="http://localhost/flixy/website/public/"> <!--da cambiare!!!! -->
+<base target="_self" href="http://localhost/flixy/website/public/"/> <!--da cambiare!!!! -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <!-- per ottimizzazione visualizzazione smartphone -->
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/> <!-- per ottimizzazione visualizzazione smartphone -->
 <link rel="stylesheet" media="screen" type="text/css" href="assets/style.css"/>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="action.js"></script>
+<script type="text/javascript" src="./scripts/action.js"></script>
 
 <title>Flixy - Registrazione</title>
 <meta name="title" content="Flixy - Registrazione" />
@@ -37,38 +37,38 @@
 
       <form action="./php/check_registrazione.php" method="post" id="regForm" onsubmit="return validateFormRegistration()">
           <div class="group">      
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="Username" value="'{username}'"/>
+            <label for="username" class="label-log-reg">Username</label>
+            <input type="text" name="username" id="username" value="'{username}'"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group">  
-            <label for="name">Nome</label>    
-            <input type="text" name="name" id="name" placeholder="Nome" value="'{name}'" />
+            <label for="name" class="label-log-reg">Nome</label>    
+            <input type="text" name="name" id="name" value="'{name}'" />
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group">     
-            <label for="surname">Cognome</label> 
-            <input type="text" name="surname" id="surname" placeholder="Cognome" value="'{surname}'"/>
+            <label for="surname" class="label-log-reg">Cognome</label> 
+            <input type="text" name="surname" id="surname" value="'{surname}'"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group">      
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" placeholder="Email" value="'{email}'"/>
+            <label for="email" class="label-log-reg">Email</label>
+            <input type="text" name="email" id="email" value="'{email}'"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group">      
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password"/>
+            <label for="password" class="label-log-reg">Password</label>
+            <input type="password" name="password" id="password"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
           <div class="group">      
-            <label for="confirmationPassword">Ripeti password</label>
-            <input type="password" name="confirmationPassword" id="confirmationPassword" placeholder="Ripeti Password"/>
+            <label for="confirmationPassword" class="label-log-reg">Ripeti password</label>
+            <input type="password" name="confirmationPassword" id="confirmationPassword"/>
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
@@ -84,7 +84,7 @@
       <p>Hai già un account? <a href="./php/login.php" class="link"> Accedi </a> </p>
     </div>
 
-    <div class="footer text-center">
+    <div class="footer-form text-center">
       <p>Flixy © Un prodotto UNIPD. 2019. All rights reserved.</p>
     </div>
 </div>
