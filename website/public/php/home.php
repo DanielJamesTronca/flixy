@@ -63,5 +63,10 @@ switch($displayMovieList) {
 }
 print_r($result);
 $movieList = getMovieList($result);
-$output = str_replace("{movieList}", $movieList, $output);
+if ($movieList != '') {
+  $output = str_replace("{movieList}", $movieList, $output);
+} else {
+  $output = str_replace("{movieList}", "Nessun file multimediale trovato.", $output);
+}
+
 ?>
