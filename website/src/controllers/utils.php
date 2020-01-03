@@ -205,6 +205,12 @@ class Utils {
         return $year."-".$month."-".$day." 00:00:00";
     }
 
+    public static function unsetAll($variablesToUnset){
+        foreach ($variablesToUnset as $var){
+            unset($_SESSION[$var]);
+        }
+    }
+
 }
 
 

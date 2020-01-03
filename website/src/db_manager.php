@@ -4,7 +4,7 @@ class DBManager
     private static $instance = null;
     private $conn;
     
-    private $host = "192.168.64.2"; //da modificare
+    private $host = "localhost"; //da modificare
     private $user = 'app';
     private $pass = 'appdbpasswd';
     private $database = 'flixy';

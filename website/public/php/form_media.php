@@ -8,6 +8,7 @@ include_once("../../src/models/models.php");
 if(isset($_SESSION['error-message-media'])) {
     $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message-media'],$output);
+    
 }
 /* END show error message if set */
 
@@ -40,9 +41,9 @@ function restore_parameters(&$output){
         $output = str_replace("'{numEpisodes}'",$media->numEpisodes,$output);
         $output = str_replace("'{numSeasons}'",$media->numSeasons,$output);
         $output = str_replace("'{trailerUrl}'",$media->trailerUrl,$output);
-        $output = str_replace("{dayOption}",utils::restoreOptionsDay(utils::getDayFromData($media->airDate)),$output);
-        $output = str_replace("{monthOption}",utils::restoreOptionsMonth(utils::getMonthFromData($media->airDate)),$output);
-        $output = str_replace("{yearOption}",utils::restoreOptionsYear(utils::getYearFromData($media->airDate)),$output);
+        $output = str_replace("{dayOption}",Utils::restoreOptionsDay(Utils::getDayFromData($media->airDate)),$output);
+        $output = str_replace("{monthOption}",Utils::restoreOptionsMonth(Utils::getMonthFromData($media->airDate)),$output);
+        $output = str_replace("{yearOption}",Utils::restoreOptionsYear(Utils::getYearFromData($media->airDate)),$output);
 
         set_path_with_mediaid($output);
     }
@@ -115,22 +116,22 @@ function restore_parameters(&$output){
             $output = str_replace("'{trailerUrl}'","",$output); 
         }
         if (isset($_SESSION['day'])){
-            $output = str_replace("{dayOption}",utils::restoreOptionsDay($_SESSION['day']),$output);
+            $output = str_replace("{dayOption}",Utils::restoreOptionsDay($_SESSION['day']),$output);
         }
         else{
-            $output = str_replace("{dayOption}",utils::generateOptionsDay(),$output);
+            $output = str_replace("{dayOption}",Utils::generateOptionsDay(),$output);
         }
         if (isset($_SESSION['month'])){
-            $output = str_replace("{monthOption}",utils::restoreOptionsMonth($_SESSION['month']),$output);
+            $output = str_replace("{monthOption}",Utils::restoreOptionsMonth($_SESSION['month']),$output);
         }
         else{
-            $output = str_replace("{monthOption}",utils::generateOptionsMonth(),$output);
+            $output = str_replace("{monthOption}",Utils::generateOptionsMonth(),$output);
         }
         if (isset($_SESSION['year'])){
-            $output = str_replace("{yearOption}",utils::restoreOptionsYear($_SESSION['year']),$output);
+            $output = str_replace("{yearOption}",Utils::restoreOptionsYear($_SESSION['year']),$output);
         }
         else{
-            $output = str_replace("{yearOption}",utils::generateOptionsYear(),$output);
+            $output = str_replace("{yearOption}",Utils::generateOptionsYear(),$output);
         }
     }
     /*END restore form parameters if available */

@@ -35,7 +35,7 @@ if ($_POST["videoUrl"]!="" && !Utils::isValidUrl($_POST["videoUrl"])) {
     return;
 }
 
-if(!utils::isValidDate($_POST["day"],$_POST["month"],$_POST["year"])){
+if(!Utils::isValidDate($_POST["day"],$_POST["month"],$_POST["year"])){
     $_SESSION['error-message-feed'] = "si prega di inserire una data di rilascio valida.";
     header("Location: ../php/form_feed.php");
     return;
@@ -47,7 +47,7 @@ $episode->content = $_POST["content"];
 $episode->subtitle = $_POST["subtitle"];
 $episode->mediaId = $_POST["mediaid"];
 $episode->authorId = SessionManager::getUserId();
-$episode->eventDate = utils::createDate($_POST["day"],$_POST["month"],$_POST["year"]);
+$episode->eventDate = Utils::createDate($_POST["day"],$_POST["month"],$_POST["year"]);
 if (isset($_POST["videoUrl"]))
     $episode->videoUrl = Utils::convert_url_to_embed($_POST["videoUrl"]);
 

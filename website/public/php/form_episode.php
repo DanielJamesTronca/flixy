@@ -48,22 +48,22 @@ function restore_parameters(&$output){
         $output = str_replace("{episodeNum}",get_id_episodes(),$output); 
     }
     if (isset($_SESSION['day'])){
-        $output = str_replace("{dayOption}",utils::restoreOptionsDay($_SESSION['day']),$output);
+        $output = str_replace("{dayOption}",Utils::restoreOptionsDay($_SESSION['day']),$output);
     }
     else{
-        $output = str_replace("{dayOption}",utils::generateOptionsDay(),$output);
+        $output = str_replace("{dayOption}",Utils::generateOptionsDay(),$output);
     }
     if (isset($_SESSION['month'])){
-        $output = str_replace("{monthOption}",utils::restoreOptionsMonth($_SESSION['month']),$output);
+        $output = str_replace("{monthOption}",Utils::restoreOptionsMonth($_SESSION['month']),$output);
     }
     else{
-        $output = str_replace("{monthOption}",utils::generateOptionsMonth(),$output);
+        $output = str_replace("{monthOption}",Utils::generateOptionsMonth(),$output);
     }
     if (isset($_SESSION['year'])){
-        $output = str_replace("{yearOption}",utils::restoreOptionsYear($_SESSION['year']),$output);
+        $output = str_replace("{yearOption}",Utils::restoreOptionsYear($_SESSION['year']),$output);
     }
     else{
-        $output = str_replace("{yearOption}",utils::generateOptionsYear(),$output);
+        $output = str_replace("{yearOption}",Utils::generateOptionsYear(),$output);
     }
     /*END restore form parameters if available */
 }
@@ -161,4 +161,5 @@ function restore_id_episodes($valueToRestore){
     }
     return $toRestore;
 }
+
 ?>

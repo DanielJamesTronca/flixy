@@ -40,7 +40,7 @@ if ($_POST["promoUrl"]!="" && !Utils::isValidUrl($_POST["promoUrl"])) {
     return;
 }
 
-if(!utils::isValidDate($_POST["day"],$_POST["month"],$_POST["year"])){
+if(!Utils::isValidDate($_POST["day"],$_POST["month"],$_POST["year"])){
     $_SESSION['error-message-episode'] = "si prega di inserire una data di rilascio valida.";
     header("Location: ../php/form_episode.php?mediaid=$mediaid");
     return;
@@ -55,12 +55,16 @@ $episode->description = $_POST["description"];
 $episode->mediaId = $_GET["mediaid"];
 $episode->seasonNum = $_POST["seasonNum"];
 $episode->episodeNum = $_POST["episodeNum"];
-$episode->airDate = utils::createDate($_POST["day"],$_POST["month"],$_POST["year"]);
+$episode->airDate = Utils::createDate($_POST["day"],$_POST["month"],$_POST["year"]);
 
 if (isset($_POST["promoUrl"]))
     $episode->promoUrl = Utils::convert_url_to_embed($_POST["promoUrl"]);
 
 $episode->saveInDB();
-echo "TODO: redirect based on result";
+
+Utils::unsetAll(array('error-message-episode','title','description','promoUrl','seasonNum','episodeNum','day','month','year'));
+header("Location: ".SessionManager::BASE_URL."dettaglio&movieId=".$mediaid);
+return;
+
 
 ?>
