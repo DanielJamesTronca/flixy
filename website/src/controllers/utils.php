@@ -153,7 +153,7 @@ class Utils {
         $options = "";
         $toRestore = "";
         for ($i=1; $i<=12; $i++){
-            $monthName = utils::getMonthNameFromNumber($i);
+            $monthName = Utils::getMonthNameFromNumber($i);
             if ($i == $monthToRestore)
                 $toRestore = "<option value='$i'>$monthName</option><optgroup class='secondary-bg' label='--------'>";
             else
@@ -202,10 +202,7 @@ class Utils {
     }
 
     public static function createDate($day,$month,$year){
-        $date = new DateTime();
-        if (utils::isValidDate($day,$month,$year)){
-            $date->setDate($year,$month,$day);
-        }
+        return $year."-".$month."-".$day." 00:00:00";
     }
 
 }

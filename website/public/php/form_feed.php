@@ -11,7 +11,7 @@ session_start();
 if(isset($_SESSION['error-message-feed'])) {
     $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message-feed'],$output);
-    session_destroy();
+
 }
 /* END show error message if set */
 

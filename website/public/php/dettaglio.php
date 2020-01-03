@@ -3,16 +3,6 @@ include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 include_once("../../src/session_manager.php");
 
-$output = file_get_contents("../html/dettaglio.html");
-
-
-function console_log ( $data)
-{
-echo '<script>';
-echo 'console.log(' .json_encode($data).')';
-echo '</script>';
-}
-
 $title="";
 $genre="None";
 $duration="0";
@@ -28,12 +18,8 @@ $serieTvEpisodeReal="Episodes:";
 $serieTvSeason=" ";
 $serieTvSeasonReal="Season:";
 
-
 $dbMan = DBManager::getInstance();
 $genreList = $dbMan->query("SELECT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");
-
-
-
 
 function loadInfo($id){
     $dbMan = DBManager::getInstance();
@@ -55,7 +41,7 @@ function loadInfo($id){
 }
 
 
-$movieId=2;
+$movieId=$_GET["movieId"];
 
 $lista= loadInfo($movieId);  // $movieId instead of 1
 
@@ -79,44 +65,16 @@ if($episode==null && $season==null){
         $output=str_replace("{serieTvEpisode}", $serieTvEpisodeReal,$output );
         $output=str_replace("{serieTvSeason}", $serieTvSeasonReal,$output );
 }
-
-
-$dbMan = DBManager::getInstance();
 $actualGenre = $dbMan->query("SELECT * FROM Media WHERE id='$movieId'");
 $actualGenre_aux= $actualGenre[0]->genre;
 $realGenre= $dbMan->query("SELECT * FROM Media WHERE genre='$actualGenre_aux'");
 
 $genre_variable= $dbMan->query("SELECT name FROM Genre WHERE id='$actualGenre_aux'");
 
-
-function getMovieList($realGenre, $genre_variable) {
-  $movieList = [];
-  $y=0;
-
-  for ($x = 0; $x < count($realGenre); $x++) {
-    $titolo = $realGenre[$x]->name;
-    $url = $realGenre[$x]->cover_url;
-    $genre_card=$genre_variable[$y]->name;
-
-    
-    $card = file_get_contents("../html/similar_content_card.html");
-    $card = str_replace("{movieTitle}", $titolo, $card);
-    $card = str_replace("{movieGenre}", $genre_card, $card);
-
-    $card = str_replace("{movieCover}", "../".$url, $card);
-    array_push($movieList, $card);
-  }
-  return implode($movieList);
-}
-
-
-
 $figaro=Comment::getCommentsFor($movieId);
-console_log($figaro);
 
 
-$lola=Comment::getAvatar(2);
-console_log($lola);
+$lola=Comment::getAvatar($movieId);
 
 function getCommentList($figaro) {
   $commentList = [];
@@ -160,7 +118,25 @@ function getMovieStar($stars) {
 }
 */
 
+function getSimilarMovies($realGenre, $genre_variable) {
+  $movieList = [];
+  $y=0;
 
+  for ($x = 0; $x < count($realGenre); $x++) {
+    $titolo = $realGenre[$x]->name;
+    $url = $realGenre[$x]->cover_url;
+    $genre_card=$genre_variable[$y]->name;
+
+    
+    $card = file_get_contents("../html/similar_content_card.html");
+    $card = str_replace("{movieTitle}", $titolo, $card);
+    $card = str_replace("{movieGenre}", $genre_card, $card);
+
+    $card = str_replace("{movieCover}", $url, $card);
+    array_push($movieList, $card);
+  }
+  return implode($movieList);
+}
 
 
 
@@ -169,19 +145,18 @@ function getMovieStar($stars) {
 $output = str_replace("{commentList}", getCommentList($figaro), $output);
 
 
-$output = str_replace("{movieList}", getMovieList($realGenre, $genre_variable), $output);
+$output = str_replace("{movieList}", getSimilarMovies($realGenre, $genre_variable), $output);
 
 $output=str_replace("{title}", $title,$output);
 $output=str_replace("{duration}", $duration,$output);
 $output=str_replace("{description}", $description,$output);
 $output=str_replace("{episode}", $episode,$output);
 $output=str_replace("{season}", $season,$output);
-$output=str_replace("{cover_url}", "../../public".$cover_url,$output);
+$output=str_replace("{cover_url}", $cover_url,$output);
 $output=str_replace("{genre}", $genre,$output);
 $output=str_replace("{trailer_url}",$trailer_url,$output);
-
-
-echo $output;
+$output=str_replace("{mediaid}",$movieId,$output);
+// echo $output;
 
 
 ?>

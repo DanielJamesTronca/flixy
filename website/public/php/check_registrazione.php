@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+include_once("../../src/session_manager.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 
@@ -107,7 +106,7 @@ function RegUser($username, $password, $confirmationPassword, $name, $surname, $
 function userRegisteredCorrectly()
 {
 	// redirect to home (and save session data and bla blah)
-	header("Location: /index.php");
+	header("Location: ".SessionManager::BASE_URL."home");
 }
 
 ?>

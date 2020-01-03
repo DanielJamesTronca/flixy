@@ -53,6 +53,7 @@ class User extends Base
     {
         $dbman = DBManager::getInstance();
         $queryString = "UPDATE ".User::TABLE_NAME." SET ".User::NAME_KEY."='{$this->name}', ".User::SURNAME_KEY."='{$this->surname}', ".User::EMAIL_KEY."='{$this->email}' WHERE id = {$this->id};";
+        echo $queryString;
         $result = $dbman->query($queryString, Media::class);
         return $result;
     }

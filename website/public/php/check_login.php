@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+include_once("../../src/session_manager.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 
@@ -20,6 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($man->login($username, $password)) // se loggato
     {
       $_SESSION['login'] = true;
+
+      SessionManager::startSessionForUser(14, $username, true);
+
       userLoggedCorrectly(); 
     } else {
       $_SESSION['error-message'] = "Le tue credenziali non sono valide";
@@ -62,7 +64,7 @@ function logUser($username, $password)
 function userLoggedCorrectly()
 {
 	// redirect to home (and save session data and bla blah)
-	header("Location: /index.php");
+	header("Location: ".SessionManager::BASE_URL."home");
 }
 
 ?>

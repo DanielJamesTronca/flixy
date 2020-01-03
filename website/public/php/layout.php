@@ -17,10 +17,13 @@ if (SessionManager::isUserLogged())
 
 if ($username != "")
 {
+    $user = User::getUser(SessionManager::getUserId());
+
     $output = str_replace("{link_to_profile_or_log_in}", $profile, $output);
-    $output = str_replace("{login_O_username}", $username, $output);
+    $output = str_replace("{login_O_username}", $user->name." ".$user->surname, $output);
     $output = str_replace("{link_to_log_out_or_register}", "Logout", $output);
     $output = str_replace("{logout_O_registrazione}", "Logout", $output);
+    $output = str_replace("{profile_photo_url}", $user->avatarUrl, $output);
 }
 else
 {
@@ -75,14 +78,19 @@ switch ($_GET['page'])
         $output = str_replace("{content}", $dettaglio, $output);
         include_once ("./dettaglio.php");
     break;
+
+    case 'formmedia':
+        $page = file_get_contents("../html/form-media.html");
+        $output = str_replace("{content}", $page, $output);
+        include_once ("./form_media.php");
+    break;
+
+    case 'formepisode':
+        $page = file_get_contents("../html/form-episode.html");
+        $output = str_replace("{content}", $page, $output);
+        include_once ("./form_episode.php");
+    break;
 }
-
-$homePage = file_get_contents("../html/home.html");
-$output = str_replace("{homePage}", $homePage, $output);
-
-include_once("./home.php");
-
-
 
 echo $output;
 ?>

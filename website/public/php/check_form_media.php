@@ -24,41 +24,40 @@ $mediaid = $_GET['mediaid'];
 if (!SessionManager::isUserLogged()) {
     $_SESSION['error-message-media'] = "devi prima autenticarti.";
     if(isset($_GET['mediaid']))
-        header("Location: ../php/form_media.php?mediaid=$mediaid");
+        header("Location: ".SessionManager::BASE_URL."formmedia&mediaid=".$mediaid);
     else
-        header("Location: ../php/form_media.php");
+        header("Location: ".SessionManager::BASE_URL."formmedia");
     return;
 }
 
 /* START check if all parameters are ok */
-if (!isset($_POST["mediaTitle"]) || !isset($_POST["description"]) || !isset($_POST["genreid"]) || !isset($_POST["stars"]) || !isset($_POST["duration"]) || !isset($_POST["hasEpisodes"]) || !isset($_POST["numEpisodes"]) || !isset($_POST["numSeasons"]) || (isset($_POST["trailerUrl"]) && !Utils::isValidUrl($_POST["trailerUrl"]))) {
+if (!isset($_POST["mediaTitle"]) || !isset($_POST["description"]) || !isset($_POST["genreid"]) || !isset($_POST["stars"]) || !isset($_POST["duration"]) || !isset($_SESSION["hasEpisodes"]) || !isset($_POST["numEpisodes"]) || !isset($_POST["numSeasons"]) || (isset($_POST["trailerUrl"]) && !Utils::isValidUrl($_POST["trailerUrl"]))) {
     $_SESSION['error-message-media'] = "si prega di compilare tutti i campi.";
     if(isset($_GET['mediaid']))
-        header("Location: ../php/form_media.php?mediaid=$mediaid");
+        header("Location: ".SessionManager::BASE_URL."formmedia&mediaid=".$mediaid);
     else
-        header("Location: ../php/form_media.php");
+        header("Location: ".SessionManager::BASE_URL."formmedia");
     return;
 }
 
 if ($_POST["trailerUrl"]!="" && !Utils::isValidUrl($_POST["trailerUrl"])) {
     $_SESSION['error-message-media'] = "si prega di inserire un link video valido. Il parametro è opzionale.";
     if(isset($_GET['mediaid']))
-        header("Location: ../php/form_media.php?mediaid=$mediaid");
+        header("Location: ".SessionManager::BASE_URL."formmedia&mediaid=".$mediaid);
     else
-        header("Location: ../php/form_media.php");
+    header("Location: ".SessionManager::BASE_URL."formmedia");
     return;
 }
 
 if(!utils::isValidDate($_POST["day"],$_POST["month"],$_POST["year"])){
     $_SESSION['error-message-media'] = "si prega di inserire una data di rilascio valida.";
     if(isset($_GET['mediaid']))
-        header("Location: ../php/form_media.php?mediaid=$mediaid");
+        header("Location: ".SessionManager::BASE_URL."formmedia&mediaid=".$mediaid);
     else
-        header("Location: ../php/form_media.php");
+        header("Location: ".SessionManager::BASE_URL."formmedia");
     return;
 }
 /* END check if all parameters are ok */
-
 
 // good to go on these parameters, now upload them to db
 $id = null;
@@ -72,13 +71,12 @@ $media->description = $_POST["description"];
 $media->genreId = $_POST["genreid"]; 
 $media->stars = $_POST["stars"];
 $media->duration = $_POST["duration"];
-$media->hasEpisodes = $_POST["hasEpisodes"];
+$media->hasEpisodes = $_SESSION["hasEpisodes"];
 $media->numEpisodes = $_POST["numEpisodes"];
 $media->numSeasons = $_POST["numSeasons"];
-$media->airDate = utils::createDate($_POST["day"],$_POST["month"],$_POST["year"]);
+$media->airDate = Utils::createDate($_POST["day"],$_POST["month"],$_POST["year"]);
 if (isset($_POST["trailerUrl"]))
     $media->trailerUrl = Utils::convert_url_to_embed($_POST["trailerUrl"]);
-
 
 // good to go on these parameters, now check image upload
 $target_dir = "/assets/images/covers/";
@@ -92,16 +90,15 @@ if (isset($_FILES["cover"])) {
 } else if (isset($_POST["coverUrl"])) {
     $media->coverUrl = $_POST["coverUrl"];
 }
-
 if ($id == null) {
     // create new
     $media->saveInDB();
+    header("Location: ".SessionManager::BASE_URL."home");
 } else {
     // update
     $media->id = $id;
     $media->updateInDB();
+    header("Location: ".SessionManager::BASE_URL."dettaglio&movieId=".$id);
 }
-
-echo "TODO: redirect based on result";
 
 ?>

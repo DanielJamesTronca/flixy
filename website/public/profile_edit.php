@@ -32,25 +32,24 @@ if (!(isset($email) && !empty($email) && Utils::is_email($email))) {
 
 // good to go on these parameters, now check image upload
 $target_dir = "assets/images/avatars/";
-if (!isset($_FILES["avatar"])) {
-    echo "Error, no image selected";
-    return;
-}
-$upload_result = Utils::uploadImage($target_dir, $_FILES["avatar"]);
-if ($upload_result["success"] === false) {
-    echo $upload_result["error"];
-    return;
+if (isset($_FILES["avatar"])) {
+    $upload_result = Utils::uploadImage($target_dir, $_FILES["avatar"]);
+    if ($upload_result["success"] === false) {
+        echo $upload_result["error"];
+        return;
+    }
+    $user->avatarUrl = $upload_result["url"];
 }
 
 // now save user data
-$userId = 1;//SessionManager::getUserId();
+$userId = SessionManager::getUserId();
 $user = User::getUser($userId);
 $user->name = $name;
 $user->surname = $surname;
 $user->email = $email;
-$user->avatarUrl = $upload_result["url"];
 
-print_r($user);
 $user->saveUser();
+
+header("Location: ".SessionManager::BASE_URL."profilo");
 
 ?>

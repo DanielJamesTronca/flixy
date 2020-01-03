@@ -3,15 +3,6 @@ include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 include_once("../../src/session_manager.php");
 
-$output = file_get_contents("../html/profilo.html");
-
-function console_log ( $data)
-{
-echo '<script>';
-echo 'console.log(' .json_encode($data).')';
-echo '</script>';
-}
-
 $name="";
 $surName="";
 $userName="";
@@ -20,10 +11,12 @@ $avatarUrl="";
 
 $dbMan = DBManager::getInstance();
 
-//if(SessionManager::isUserLogged()){
-    //$userId = SessionManager::getUserId();
-   
-    $userId=2;
+if(!SessionManager::isUserLogged()){
+  header("Location: ".SessionManager::BASE_URL."home");
+}
+
+$userId = null;
+    $userId = SessionManager::getUserId();
 
     $user=User::getUser($userId);
 
@@ -37,7 +30,6 @@ $dbMan = DBManager::getInstance();
     $email=$user->email;
       
     $favoruites=Media::getUserFavourites($userId);
-    console_log($favoruites);
 
 
     function getFavouriteList($favoruites) {
@@ -50,7 +42,6 @@ $dbMan = DBManager::getInstance();
           $genre_card=$favoruites[$x]->genreId;
           
           $aloah=Genre::getNameGenre($genre_card);
-          console_log($aloah);
 
           $finally_genre=$aloah[$y]->name;
 
@@ -63,7 +54,7 @@ $dbMan = DBManager::getInstance();
 
          
 
-          $card = str_replace("{favouriteCover}", "../".$url, $card);
+          $card = str_replace("{favouriteCover}", $url, $card);
 
       
          
@@ -83,26 +74,10 @@ $output = str_replace("{favouriteList}", getFavouriteList($favoruites), $output)
 
 $output=str_replace("{name}", $name,$output);
 $output=str_replace("{surname}", $surName,$output);
-$output=str_replace("{avatar_url}", "../../public".$avatarUrl,$output);
+$output=str_replace("{avatar_url}", $avatarUrl,$output);
 
 
 $output=str_replace("{email}", $email,$output);
 $output=str_replace("{username}",$userName,$output);
 
-
-
-
-
-echo $output;
-
 ?>
-
-
-
-
-
-
-
-
-
-

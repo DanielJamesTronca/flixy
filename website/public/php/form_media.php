@@ -3,16 +3,11 @@
 include_once("../../src/controllers/utils.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
-$output = file_get_contents("../html/form-media.html");
-
-if(!isset($_SESSION))
-session_start();
 
 /* START show error message if set */
 if(isset($_SESSION['error-message-media'])) {
     $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message-media'],$output);
-    session_destroy();
 }
 /* END show error message if set */
 
@@ -255,10 +250,4 @@ function generate_hidden_episodes_attributes(){
         <span class='bar small-input-text-bar'></span>
     </div>";
 }
-
-
-
-
-
-echo $output;
 ?>

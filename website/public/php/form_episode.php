@@ -2,11 +2,6 @@
 include_once("../../src/controllers/utils.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
-$output = file_get_contents("../html/form-episode.html");
-
-if(!isset($_SESSION))
-session_start();
-
 
 get_media_name($output);
 
@@ -14,7 +9,6 @@ get_media_name($output);
 if(isset($_SESSION['error-message-episode'])) {
     $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message-episode'],$output);
-    session_destroy();
 }
 /* END show error message if set */
 
@@ -167,6 +161,4 @@ function restore_id_episodes($valueToRestore){
     }
     return $toRestore;
 }
-
-echo $output;
 ?>

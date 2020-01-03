@@ -39,15 +39,20 @@ if ($varSearch) {
   $displayMovieList = 0;
 }
 
+$userId = null;
+if (SessionManager::isUserLogged()) {
+  $userId = SessionManager::getUserId();
+}
+$userId = 2;
 switch($displayMovieList) {
   case 0:
     $result = $varReturnSearch; 
   break;
   case 1: 
-    $result = Media::list(null, null,null,null, null, "ASC"); 
+    $result = Media::list($userId, null,null,null, null, "ASC"); 
   break;
   case 2: 
-    $result = Media::list(null, null,null,null, null, "ASC"); 
+    $result = Media::list($userId, null,null,null, null, "ASC"); 
   break;
   case 3: 
     $result = filterList($varYear, $varGenre);
@@ -56,7 +61,7 @@ switch($displayMovieList) {
     $result = filterList($varYear, $varGenre);
   break;
 }
-
+print_r($result);
 $movieList = getMovieList($result);
 $output = str_replace("{movieList}", $movieList, $output);
 ?>

@@ -6,8 +6,9 @@
     <title>Flixy - Dettaglio Film</title>
     <meta name="title" content="Flixy - Dettaglio" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="../assets/dettaglio.css" />
 
+  <base target="_self" href="http://192.168.64.2/flixy/website/public">
+    <link rel="stylesheet" type="text/css" href="assets/dettaglio.css" />
     <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
 
 </head>
@@ -77,19 +78,13 @@
     </div>
 
 
-    <div id="three_buttons" class=" margin-top-2 text-align-center">
-        <form action="" method="post">
+    <div id="three_buttons" class="margin-top-2 text-align-left">
             <div class="bottone">
-                <input type="submit" value="Modifica" class="button primary-color-gradient-button"/>
+                <a href="php/layout.php?page=formmedia&mediaid={mediaid}" class="button primary-color-gradient-button padding-1">Modifica</a>
               </div>
               <div class="bottone">
-                <input type="submit" value="Aggiungi episodio" class="button primary-color-gradient-button"/>
+                <a href="php/layout.php?page=formepisode&mediaid={mediaid}" class="button primary-color-gradient-button padding-1">Aggiungi episodio</a>
               </div>
-              <div class="bottone">
-                <input type="submit" value="Elimina" class="button primary-color-gradient-button"/>
-              </div>
-        </form>
-
     </div>
 
 

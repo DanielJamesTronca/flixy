@@ -5,7 +5,7 @@
   <title>movie-card</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="title" content="Flixy - Homepage" />
-  <base target="_self" href="http://localhost/flixy/website/public/html">
+  <base target="_self" href="http://192.168.64.2//flixy/website/public/html">
   <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="../public/assets/rules.css" />
 </head>
@@ -25,7 +25,7 @@
       </a>
     </div>
     <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"></span>
-    <form name="rateForm" method="POST">
+    <form name="rateForm" method="POST" action="/flixy/website/public/php/add_vote.php">
       <div id="thumbs" class="text-align-center primary-color">
         <button type="submit" value="like" class="custom-button-no-hover font-size-2-2">
           <i id="thumbs-up" class="far fa-thumbs-up"></i>
@@ -40,11 +40,22 @@
       <span id="num-up">{likes}</span>
       <span id="num-down">{dislikes}</span>
     </div>
-    <div id="fav-section" class="text-align-center primary-color">
-      <form name="setFavForm" method="POST">
-        <input type="hidden" value="{movieID}"></input>
+    <div id="fav-section" class="text-align-center primary-color {mediaNotFav}">
+      <form name="setFavForm" method="POST" action="/flixy/website/public/php/toggle_favorite.php">
+        <input type="hidden" value="{movieID}" name="movieID"></input>
+        <input type="hidden" value="home" name="redirectURL"></input>
+        <input type="hidden" value="1" name="fav"></input>
         <button id="fav-icon" class="fas fa-heart custom-button-no-hover font-size-1-1"></button>
         <label for="fav'icon" id="fav-text" class="text-align-center font-size-0-625">Add to your favourites</label>
+      </form>
+    </div>
+    <div id="fav-section" class="text-align-center primary-color {mediaIsFav}">
+      <form name="setFavForm" method="POST" action="/flixy/website/public/php/toggle_favorite.php">
+        <input type="hidden" value="{movieID}" name="movieID"></input>
+        <input type="hidden" value="home" name="redirectURL"></input>
+        <input type="hidden" value="0" name="fav"></input>
+        <button id="fav-icon" class="fas fa-heart custom-button-no-hover font-size-1-1"></button>
+        <label for="fav'icon" id="fav-text" class="text-align-center font-size-0-625">Remove from favourites</label>
       </form>
     </div>
   </div>
