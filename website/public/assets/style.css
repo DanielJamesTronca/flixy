@@ -30,7 +30,7 @@ body{
 }
 
 .form-title{
-    padding-top: 4em;
+    padding-top: 2em;
 }
 
 .padding-top-small{
@@ -236,10 +236,6 @@ body{
     
     .padding-top-medium{
       padding-top: 2.5em;
-    }
-
-    .form-title{
-      padding-top: 2em;
     }
 
     .button{

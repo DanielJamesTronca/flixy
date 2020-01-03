@@ -632,12 +632,6 @@ option {
     height: 80%;
 }
 
-@media only screen and (max-width: 456px) {
-    #content {
-        margin-top: 8em;
-    }
-}
-
 @media only screen and (max-width: 896px) {
     .menu-divider {
         display: none;
@@ -691,6 +685,11 @@ option {
     min-height: 100%;
     order: 2;
   }
+
+  #content-layout {
+    /* aggiunte le prime tre proprietà sotto per problema con inclusione feed in layout */
+    padding: 2em 2em;
+    }
   
   .logo-size {
     width: 38px;
@@ -896,6 +895,7 @@ option {
       vertical-align: middle;
       height: 100%;   
     }
+
   
   }
 /* END MERGE LAYOUT.CSS */  
@@ -984,7 +984,6 @@ option {
     color: red;
 }
 
-
 #title {
     width: 100%;
     height: 2em;
@@ -1013,7 +1012,10 @@ option {
 }
 
 .insert-form-container{
-    width:90%;
+    width:100%;
+    background-color: #000000;
+    padding-left: 1.5em;
+    padding-right: 1.5em
 }
 
 #media-comboBox-container{
@@ -1142,13 +1144,21 @@ fieldset{
     margin: 0 auto;
 }
 
-#add-news-button{
-    background-color: #ff0000;
-    width: 206px;
-    height: 40px;
-    border-radius: 3.2px;
-    border:none;
-    font-weight: bold;
+.custom-link-button {
+    text-decoration: none;
+    color: white;
+    background: #910223;
+    transition: background .2s ease-in-out;
+}
+
+.custom-link-button:hover {
+    background: #ff0000;
+}
+
+.group-insert-form{
+    position: relative;
+    flex-direction: column;    
+    margin-bottom: 2.2em;
 }
 
 

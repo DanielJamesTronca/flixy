@@ -31,17 +31,17 @@
     <div class="padding-top-medium">
 
       <form action="./php/check_form_episode.php" method="post" id="regForm" onsubmit="return isValidFormEpisode()">
-          <div class="group-insert">  
+          <div class="group-insert-form">  
             <label for="titleEpisode" class="label-form">Titolo</label>    
             <input type="text" name="titleEpisode" id="titleEpisode" value="'{title}'" />
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
-          <div class="group-insert">     
+          <div class="group-insert-form">     
             <label for="description" class="label-form">Descrizione</label> 
             <textarea rows="10" cols="100" class="textarea-description font-size-1-125" name="description" id="description">{description}</textarea>
           </div>
-          <div class="group-insert">      
+          <div class="group-insert-form">      
             <label for="promoUrl" class="label-form">URL video (YouTube)</label>
             <input type="text" name="promoUrl" id="promoUrl" value="'{promoUrl}'"/>
             <span class="highlight"></span>
@@ -50,19 +50,19 @@
           <fieldset>
             <legend>Data di rilascio</legend>
               <div class="container-comboBox-data">
-                <div class="group-insert">       
+                <div class="group-insert-form">       
                   <label for="day" class="primary-color label-form">Giorno</label>
                   <select name="day" id="day" class="custom-select primary-color font-size-1-125 fit-content-width">
                     {dayOption}
                   </select>
                 </div>
-                <div class="group-insert"> 
+                <div class="group-insert-form"> 
                   <label for="month" class="primary-color label-form">Mese</label>
                   <select name="month" id="month" class="custom-select primary-color font-size-1-125 fit-content-width">
                     {monthOption}
                   </select>
                 </div>
-                <div class="group-insert">       
+                <div class="group-insert-form">       
                   <label for="year" class="primary-color label-form">Anno</label>
                   <select name="year" id="year" class="custom-select primary-color font-size-1-125 fit-content-width">
                     {yearOption}
@@ -71,13 +71,13 @@
               </div>
           </fieldset>
           <div id="episode-comboBox-container" class="padding-top-1-5">
-            <div class="group-insert">       
+            <div class="group-insert-form">       
             <label for="seasonNum" class="primary-color label-form">Stagione</label>
               <select name="seasonNum" id="seasonNum" class="custom-select primary-color font-size-1-125 fit-content-width">
                 {seasonNum}
               </select>
             </div>
-            <div class="group-insert margin-left-2-5"> 
+            <div class="group-insert-form margin-left-2-5"> 
               <label for="episodeNum" class="primary-color label-form">Episodio</label>
               <select name="episodeNum" id="episodeNum" class="custom-select primary-color font-size-1-125 fit-content-width">
                 {episodeNum}

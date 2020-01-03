@@ -61,38 +61,51 @@ switch ($_GET['page'])
 {
     case 'home':
         $homepage = file_get_contents("../html/home.html");
+        $output = str_replace("{contentLayout}", "", $output);
         $output = str_replace("{content}", $homepage, $output);
         include_once ("./home.php");
     break;
 
     case 'feed':
         $feed = file_get_contents("../html/feed.html");
+        $output = str_replace("{contentLayout}", "id='content-layout'", $output);
         $output = str_replace("{content}", $feed, $output);
         include_once ("./feed.php");
     break;
 
     case 'profilo':
         $profilo = file_get_contents("../html/profilo.html");
+        $output = str_replace("{contentLayout}", "id='content-layout'", $output);
         $output = str_replace("{content}", $profilo, $output);
         include_once ("./profilo.php");
     break;
 
     case 'dettaglio':
         $dettaglio = file_get_contents("../html/dettaglio.html");
+        $output = str_replace("{contentLayout}", "id='content-layout'", $output);
         $output = str_replace("{content}", $dettaglio, $output);
         include_once ("./dettaglio.php");
     break;
 
     case 'formmedia':
         $page = file_get_contents("../html/form-media.html");
+        $output = str_replace("{contentLayout}", "id='content-layout'", $output);
         $output = str_replace("{content}", $page, $output);
         include_once ("./form_media.php");
     break;
 
     case 'formepisode':
         $page = file_get_contents("../html/form-episode.html");
+        $output = str_replace("{contentLayout}", "id='content-layout'", $output);
         $output = str_replace("{content}", $page, $output);
         include_once ("./form_episode.php");
+    break;
+
+    case 'formfeed':
+        $page = file_get_contents("../html/form-feed.html");
+        $output = str_replace("{contentLayout}", "id='content-layout'", $output);
+        $output = str_replace("{content}", $page, $output);
+        include_once ("./form_feed.php");
     break;
 }
 

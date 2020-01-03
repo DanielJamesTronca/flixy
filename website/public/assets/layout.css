@@ -38,6 +38,7 @@ body {
   flex-grow: 10;
   flex-shrink: 1;
 }
+
 #aside3 {
   flex-basis: 0;
   flex-grow: 1;

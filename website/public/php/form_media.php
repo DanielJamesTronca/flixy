@@ -222,13 +222,13 @@ function isFilm(){
 
 function generate_episodes_attributes(){
     return
-    "<div class='group-insert' id='seasonsNum'> 
+    "<div class='group-insert-form' id='seasonsNum'> 
         <label for='numSeasons' class='primary-color label-form'>Numero stagioni</label>
         <input type='text' class='small-input-text' name='numSeasons' id='numSeasons' value=''{numSeasons}''/>
         <span class='highlight'></span>
         <span class='bar small-input-text-bar'></span>
     </div>
-    <div class='group-insert' id='episodesNum'> 
+    <div class='group-insert-form' id='episodesNum'> 
         <label for='numEpisodes' class='primary-color label-form'>Episodi stagione</label>
         <input type='text' class='small-input-text' name='numEpisodes' id='numEpisodes' value=''{numEpisodes}''/>
         <span class='highlight'></span>
@@ -238,13 +238,13 @@ function generate_episodes_attributes(){
 
 function generate_hidden_episodes_attributes(){
     return
-    "<div class='group-insert hidden' id='seasonsNum'> 
+    "<div class='group-insert-form hidden' id='seasonsNum'> 
         <label for='numSeasons' class='primary-color label-form'>Numero stagioni</label>
         <input type='text' class='small-input-text' name='numSeasons' id='numSeasons' tabindex='-1' value=''{numSeasons}''/>
         <span class='highlight'></span>
         <span class='bar small-input-text-bar'></span>
     </div>
-    <div class='group-insert hidden' id='episodesNum'> 
+    <div class='group-insert-form hidden' id='episodesNum'> 
         <label for='numEpisodes' class='primary-color label-form'>Episodi stagione</label>
         <input type='text' class='small-input-text' name='numEpisodes' id='numEpisodes' tabindex='-1' value=''{numEpisodes}''/>
         <span class='highlight'></span>

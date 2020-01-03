@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body class="layout-body primary-bg text-align-center document-font flex-container flex-content-center flex-wrap flex-items-center">
+<body class="layout-body primary-bg document-font flex-container flex-content-center flex-wrap flex-items-center">
     <header id="outer-container" class="flex-container flex-content-center">
         <div id="header-container" class="flex-container flex-items-center flex-content-start flex-wrap border-radius-0-3 secondary-bg margin-top-1 margin-left-1 margin-right-1">
             <a href="./php/layout.php?page=home" class="custom-link flex-grow-shrink">
@@ -61,7 +61,7 @@
     
     <main id="content-container" class="flex-container padding-bottom-2-5 ">
         <aside id="aside1" class="flex-grow-shrink"></aside>
-            <section id="content" class="flex-grow-bigger">
+            <section {contentLayout} class="flex-grow-bigger">
                 {content}
             </section>
         <aside id="aside3" class="flex-grow-shrink"></aside>

@@ -173,15 +173,15 @@ function showEpisodesInput($toShow){
     var numSeasons = document.getElementById("numSeasons");
     var numEpisodes = document.getElementById("numEpisodes");
     if (!$toShow){
-        seasonsNum.className = "group-insert hidden";
+        seasonsNum.className = "group-insert-form hidden";
         numSeasons.tabIndex = -1;
-        episodesNum.className = "group-insert hidden";
+        episodesNum.className = "group-insert-form hidden";
         numEpisodes.tabIndex = -1;
     }
     else{
-        seasonsNum.className = "group-insert";
+        seasonsNum.className = "group-insert-form";
         numSeasons.tabIndex = 0;
-        episodesNum.className = "group-insert";
+        episodesNum.className = "group-insert-form";
         numEpisodes.tabIndex = 0;
     }
 }

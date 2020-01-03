@@ -31,13 +31,13 @@
     <div class="padding-top-medium">
       
       <form action="./php/check_form_media.php" method="post" id="regForm" onsubmit="return isValidFormMedia()">
-        <div class="group-insert">  
+        <div class="group-insert-form">  
           <label for="mediaTitle" class="label-form">Titolo</label>    
           <input type="text" name="mediaTitle" id="mediaTitle" value="'{title}'"/>
           <span class="highlight"></span>
           <span class="bar"></span>
         </div>
-        <div class="group-insert">     
+        <div class="group-insert-form">     
           <label for="description" class="label-form">Descrizione</label> 
           <textarea rows="10" cols="100" class="textarea-description font-size-1-125" name="description" id="description">{description}</textarea>
         </div>
@@ -48,19 +48,19 @@
             <label for="radioFilm" class="switch-label">Film</label>
         </div>
         <div id="media-comboBox-container">
-          <div class="group-insert">       
+          <div class="group-insert-form">       
             <label for="genreid" class="primary-color label-form">Genere</label>
             <select name="genreid" id="genreid" class="custom-select primary-color font-size-1-125 fit-content-width">
               {genreid}
             </select>
           </div>
-          <div class="group-insert"> 
+          <div class="group-insert-form"> 
             <label for="duration" class="primary-color label-form">Durata in minuti</label>
             <input type="text" class="small-input-text" name="duration" id="duration" value="'{duration}'"/>
             <span class="highlight"></span>
             <span class="bar small-input-text-bar"></span>
           </div>
-          <div class="group-insert">       
+          <div class="group-insert-form">       
             <label for="stars" class="primary-color label-form">Valutazione</label>
             <select name="stars" id="stars" class="custom-select primary-color font-size-1-125 fit-content-width">
               {stars}
@@ -68,7 +68,7 @@
           </div>
           {episodesAttributes}
         </div>
-        <div class="group-insert">     
+        <div class="group-insert-form">     
           <label for="trailerUrl" class="label-form">URL trailer (YouTube)</label> 
           <input type="text" name="trailerUrl" id="trailerUrl" value="'{trailerUrl}'"/> <!-- non mettere un value con all'interno "-" o sintetizzatore vocale si bugga-->
           <span class="highlight"></span>
@@ -77,19 +77,19 @@
         <fieldset>
           <legend>Data originale di rilascio</legend>
             <div class="container-comboBox-data">
-              <div class="group-insert">       
+              <div class="group-insert-form">       
                 <label for="day" class="primary-color label-form">Giorno</label>
                 <select name="day" id="day" class="custom-select primary-color font-size-1-125 fit-content-width">
                   {dayOption}
                 </select>
               </div>
-              <div class="group-insert"> 
+              <div class="group-insert-form"> 
                 <label for="month" class="primary-color label-form">Mese</label>
                 <select name="month" id="month" class="custom-select primary-color font-size-1-125 fit-content-width">
                   {monthOption}
                 </select>
               </div>
-              <div class="group-insert">       
+              <div class="group-insert-form">       
                 <label for="year" class="primary-color label-form">Anno</label>
                 <select name="year" id="year" class="custom-select primary-color font-size-1-125 fit-content-width">
                   {yearOption}

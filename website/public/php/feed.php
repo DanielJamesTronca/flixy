@@ -3,10 +3,9 @@
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 
-$output = file_get_contents("../html/feed.html"); //DA TOGLIERE per far funzionare layout
 $output = str_replace("{feed-timeline}",generate_feed_timeline(1),$output); //da sostituire 1 con userId!!
 $output = str_replace("{feed-next-releases}",generate_feed_next_releases(1),$output); //da sostituire 1 con userId!!
-echo $output; //DA TOGLIERE per non far stampare due volte quando richiamato da layout
+
 
 function generate_feed_next_releases($userId){
     $arrayReleases = Feed::getReleases($userId); 

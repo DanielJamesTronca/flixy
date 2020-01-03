@@ -31,23 +31,23 @@
     <div class="padding-top-medium">
 
       <form action="./php/check_form_feed.php" method="post" id="newsForm" onsubmit="return isValidFormFeed()">
-          <div class="group-insert">      
+          <div class="group-insert-form">      
             <label for="mediaid" class="single-label-form">Media</label>
             <select name="mediaid" id="mediaid" class="custom-select primary-color font-size-1-125 fit-content-width">
               {mediaid}
             </select>
           </div>
-          <div class="group-insert">  
+          <div class="group-insert-form">  
             <label for="subtitle" class="label-form">Sottotitolo</label>    
             <input type="text" name="subtitle" id="subtitle" value="'{subtitle}'" />
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
-          <div class="group-insert">     
+          <div class="group-insert-form">     
             <label for="content" class="label-form">Contenuto</label> 
             <textarea rows="10" cols="100" class="textarea-description font-size-1-125" id="content" name="content">{content}</textarea>
           </div>
-          <div class="group-insert">      
+          <div class="group-insert-form">      
             <label for="videoUrl" class="label-form">URL video (YouTube)</label>
             <input type="text" name="videoUrl" id="videoUrl" value="'{videoUrl}'"/>
             <span class="highlight"></span>
@@ -56,19 +56,19 @@
           <fieldset>
             <legend>Data di rilascio</legend>
               <div class="container-comboBox-data">
-                <div class="group-insert">       
+                <div class="group-insert-form">       
                   <label for="day" class="primary-color label-form">Giorno</label>
                   <select name="day" id="day" class="custom-select primary-color font-size-1-125 fit-content-width">
                     {dayOption}
                   </select>
                 </div>
-                <div class="group-insert"> 
+                <div class="group-insert-form"> 
                   <label for="month" class="primary-color label-form">Mese</label>
                   <select name="month" id="month" class="custom-select primary-color font-size-1-125 fit-content-width">
                     {monthOption}
                   </select>
                 </div>
-                <div class="group-insert">       
+                <div class="group-insert-form">       
                   <label for="year" class="primary-color label-form">Anno</label>
                   <select name="year" id="year" class="custom-select primary-color font-size-1-125 fit-content-width">
                     {yearOption}
