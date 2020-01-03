@@ -54,6 +54,7 @@
     $starNumber = [];
     $card = str_replace("{movieTitle}", $title, $card);
     $card = str_replace("{coverURL}", "../public".$coverUrl, $card);
+    $card = str_replace("{movieID}", $id, $card);
     $card = str_replace("{linkDettaglioMovie}", "./php/layout.php?page=dettaglio&movieId=".$id, $card);
     for($i=0;$i<$stars;$i++) {
       array_push($starNumber, "<i class='fa fa-star'></i>");

@@ -602,26 +602,46 @@ option {
     height: 80%;
 }
 
+@media only screen and (max-width: 1001px) {
+    #content {
+        margin-top: 6em;
+    }
+}
 
-@media only screen and (max-width: 624px) {
+@media only screen and (max-width: 456px) {
+    #content {
+        margin-top: 8em;
+    }
+}
+
+@media only screen and (max-width: 695px) {
     .menu-divider {
         display: none;
     }
+
     #menu {
         flex-grow: 1;
     }
+
     #general-filters {
         flex-basis: 0;
         flex-grow: 1;
         flex-shrink: 1;
      }
+
     #dropdown-select {
         flex-basis: 100%;
         justify-content: center;
     }
+
     #movies-container {
         margin-top: 2em;
     }
+
+    #filters-form {
+        flex-direction: column;
+    }
+
 }
 
 /* END MERGE HOME.CSS*/
@@ -706,7 +726,7 @@ option {
     background: transparent;
     border: none;
     cursor: pointer;
-    color:white;
+    color: white;
   }
 
   #search-icon {
