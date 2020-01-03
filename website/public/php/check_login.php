@@ -16,11 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (checkParameters($username, $password, $errorMessage)) // se true, i dati sono nel formato corretto, provo ad autentificare l'utente
   {
     $man = DBManager::getInstance();
-    if ($man->login($username, $password)) // se loggato
+    $log = $man->login($username, $password);
+    if ($log !== false) // se loggato
     {
       $_SESSION['login'] = true;
 
-      SessionManager::startSessionForUser(14, $username, true);
+      SessionManager::startSessionForUser($log, $username, true);
 
       userLoggedCorrectly(); 
     } else {
