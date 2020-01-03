@@ -19,6 +19,7 @@ if ($username != "")
 {
     $user = User::getUser(SessionManager::getUserId());
 
+    $output = str_replace("{linkToFavs", "./php/layout.php?page=profilo", $output);
     $output = str_replace("{link_to_profile_or_log_in}", $profile, $output);
     $output = str_replace("{login_O_username}", $user->name." ".$user->surname, $output);
     $output = str_replace("{link_to_log_out_or_register}", "Logout", $output);
@@ -27,6 +28,7 @@ if ($username != "")
 }
 else
 {
+    $output = str_replace("{linkToFavs", "./php/registrazione.php", $output);
     $output = str_replace("{link_to_profile_or_log_in}", "./php/login.php", $output);
     $output = str_replace("{login_O_username}", "Log in", $output);
     $output = str_replace("{link_to_log_out_or_register}", "./php/registrazione.php", $output);
@@ -35,9 +37,9 @@ else
 }
 
 // <form> logic
-if (isset($_POST["search"]))
+if (isset($_GET["search"]))
 {
-    $varSearch = $_POST["search"];
+    $varSearch = $_GET["search"];
     $varReturnSearch = research('%' . $varSearch . '%');
 }
 else
@@ -51,6 +53,8 @@ $logOutAction = '$logOut';
 $signup = '<a id="sign-up" class="font-size-0-75 font-weight-light" href="./php/registrazione.php">';
 $logout = str_replace($registrazionePage, $logOutAction, $signup);
 
+
+$output = str_replace("{linkToFeed}", "./php/layout.php?page=feed", $output);
 $output = str_replace("{linkToFeed}", "./php/layout.php?page=feed", $output);
 
 switch ($_GET['page'])
