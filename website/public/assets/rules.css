@@ -523,10 +523,18 @@
 }
 
 .hidden {
-    opacity: 0%;
+    display: none;
 }
 
 .visible {
+    display: block;
+}
+
+.hidden-opacity {
+    opacity: 0%;
+}
+
+.visible-opacity {
     opacity: 100%;
 }
 
@@ -541,7 +549,17 @@
 .custom-link {
     text-decoration: none;
     color: white;
-    
+}
+
+.custom-link-hover {
+    text-decoration: none;
+    color: white;
+    background: transparent;
+    transition: background .2s ease-in-out;
+}
+
+.custom-link-hover:hover {
+    background: red;
 }
 
 .custom-select {
@@ -579,7 +597,6 @@
 }
 
 #general-filters {
-    flex-basis: 20em;
     flex-shrink: 1;
     flex-grow: 0;
 }
@@ -598,6 +615,7 @@
     flex-basis: 18.750em;
     flex-shrink: 0;
     flex-grow: 1;
+    justify-content: flex-start;
 }
 
 li {
@@ -614,23 +632,33 @@ option {
     height: 80%;
 }
 
-@media only screen and (max-width: 1001px) {
-    #content {
-        margin-top: 6em;
-    }
-}
-
 @media only screen and (max-width: 456px) {
     #content {
         margin-top: 8em;
     }
 }
 
-@media only screen and (max-width: 695px) {
+@media only screen and (max-width: 896px) {
     .menu-divider {
         display: none;
     }
+    #dropdown-select {
+        flex-basis: 100%;
+        justify-content: center;
+    }
 
+    #movies-container {
+        margin-top: 3.5em;
+    }
+
+    #profile-container {
+        flex-shrink: .8;
+        flex-grow: .8;
+        flex-basis: 0;
+    }
+}
+
+@media only screen and (max-width: 695px) {
     #menu {
         flex-grow: 1;
     }
@@ -641,19 +669,9 @@ option {
         flex-shrink: 1;
      }
 
-    #dropdown-select {
-        flex-basis: 100%;
-        justify-content: center;
-    }
-
-    #movies-container {
-        margin-top: 2em;
-    }
-
     #filters-form {
         flex-direction: column;
     }
-
 }
 
 /* END MERGE HOME.CSS*/
@@ -691,7 +709,7 @@ option {
     height: 4.5em;
     flex-basis: 100%;
   }
-    
+
   #title-container {
     order: 0;
   }
@@ -800,7 +818,7 @@ option {
     margin-top: 2em;
   }
     
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1040px) {
     #logo {
       margin-left: .5em;
     }
@@ -812,10 +830,6 @@ option {
     #search-bar {
       height: 2.6em;
       border-radius: .3em;
-    }
-  
-    #link-container li {
-      background: black; 
     }
   
     #title-container {
@@ -833,17 +847,12 @@ option {
       justify-content: center;
     }
   
-    #profile-container {
-      flex-shrink: 1;
-      flex-grow: 1;
-      flex-basis: 0;
-    }
+
   
     #nav-container {
-      flex-basis: 100%;
       justify-content: center;
       justify-items: center;
-      order:5;
+      order:2;
     }
   
     #profile-links {
@@ -852,6 +861,14 @@ option {
   
     #link-container {
       margin-left: 0;
+    }
+
+    #content-container {
+        margin-top: 2.5em;
+    }
+
+    #text-input {
+        width: 80%;
     }
   }
   

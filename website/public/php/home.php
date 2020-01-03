@@ -10,22 +10,20 @@ $displayMovieList = 3;
 $varGenre = "All";
 $varYear = "All";
 
-if (isset($_POST["year-select"])) {
-  $varYear = $_POST['year-select'];
-  unset($_GET);
+if (isset($_GET["year-select"])) {
+  $varYear = $_GET['year-select'];
 } else {
   $varYear = "All";
 }
 
-if (isset($_POST["genre-select"])){
-  $varGenre = $_POST['genre-select'];
-  unset($_GET);
+if (isset($_GET["genre-select"])){
+  $varGenre = $_GET['genre-select'];
 } else {
   $varGenre = "All";
 }
 
-if (isset($_POST["gen-filters"])) {
-  switch($_POST["gen-filters"]) {
+if (isset($_GET["getMovies"])) {
+  switch($_GET["getMovies"]) {
     case "latest":
       $displayMovieList = 1;
     break;
@@ -49,10 +47,10 @@ switch($displayMovieList) {
     $result = $varReturnSearch; 
   break;
   case 1: 
-    $result = Media::list($userId, null,null,null, null, "ASC"); 
+    $result = Media::list($userId, null,null,null, "air_date", "DESC"); 
   break;
   case 2: 
-    $result = Media::list($userId, null,null,null, null, "ASC"); 
+    $result = Media::list($userId, null,null,null,"votes_positive", "DESC"); 
   break;
   case 3: 
     $result = filterList($varYear, $varGenre);
@@ -61,7 +59,7 @@ switch($displayMovieList) {
     $result = filterList($varYear, $varGenre);
   break;
 }
-print_r($result);
+// print_r($result);
 $movieList = getMovieList($result);
 if ($movieList != '') {
   $output = str_replace("{movieList}", $movieList, $output);
