@@ -7,42 +7,45 @@
   <meta name="title" content="Flixy - Homepage" />
   <base target="_self" href="http://localhost/flixy/website/public/html">
   <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
-  <link rel="stylesheet" type="text/css" href="../public/assets/rules.css"/>
+  <link rel="stylesheet" type="text/css" href="../public/assets/rules.css" />
 </head>
-  <body class="primary-bg">
-    <div class="movie-entry secondary-bg margin-right-0-6 margin-left-0-6 margin-top-0-5 margin-bottom-0-5 border-radius-0-5">
-        <img id="copertina" class="border-radius-0-5 copertina-size" src="{coverURL}" alt="copertina"/>
-      <h3 id="title" class="full-width text-align-center primary-color font-size-1-5">
-        {movieTitle}
-      </h3>
-     
-      <div class="margin-left-0-6 margin-top-1 font-size-1 rating primary-color flex-container flex-content-space-between flex-align-items-center">
-          <span id="activeStars" class="stars-active text-align-left">
-            {movieStars}
-          </span>
-          <a href="{linkDettaglioMovie}" class="custom-link "><i id="link-to-book" class="fas fa-chevron-right primary-color font-size-1-5"></i></a>
-      </div>
-      <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"></span>
-      <form name="rateForm" method="POST">
-        <div id="thumbs" class="text-align-center primary-color font-size-2-2">
-          <button type="submit" value="like" class="custom-button"><i id="thumbs-up" class="far fa-thumbs-up"></i></button>
-          <button type="submit" value="dislike" class="custom-button"><i id="thumbs-down" class="far fa-thumbs-down"></i></button>
-        </div>
-      </form>
-      <div id="num-up-down" class="text-align-center primary-color font-size-0-938">
-        <span id="num-up">{likes}</span>
-        <span id="num-down">{dislikes}</span>
-      </div>
-      <div id="fav-section" class="text-align-center primary-color">
-        <form name="setFavForm" method="POST">
-          <button type="submit" value="setFav" class="custom-button">
-            <i id="fav-icon" class="fas fa-heart font-size-1-1"></i>
-            <span id="fav-text" class="text-align-center font-size-0-625">Add to your favourites</span>
-          </button>
-        </form>
-      </div>
+
+<body class="primary-bg">
+  <div class="movie-entry secondary-bg margin-right-0-6 margin-left-0-6 margin-top-0-5 margin-bottom-0-5 border-radius-0-5">
+    <img id="copertina" class="border-radius-0-5 copertina-size" src="{coverURL}" alt="copertina" />
+    <h3 id="title" class="full-width text-align-center primary-color font-size-1-5">
+      {movieTitle}
+    </h3>
+    <div class="margin-left-0-6 margin-top-1 font-size-1 rating primary-color flex-container flex-content-space-between flex-align-items-center">
+      <span id="activeStars" class="stars-active text-align-left">
+        {movieStars}
+      </span>
+      <a href="{linkDettaglioMovie}" class="custom-link">
+        <i id="link-to-book" class="fas fa-chevron-right primary-color font-size-1-5"></i>
+      </a>
     </div>
-  </body>
+    <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"></span>
+    <form name="rateForm" method="POST">
+      <div id="thumbs" class="text-align-center primary-color font-size-2-2">
+        <button type="submit" value="like" class="custom-button"><i id="thumbs-up"
+            class="far fa-thumbs-up"></i></button>
+        <button type="submit" value="dislike" class="custom-button"><i id="thumbs-down"
+            class="far fa-thumbs-down"></i></button>
+      </div>
+    </form>
+    <div id="num-up-down" class="text-align-center primary-color font-size-0-938">
+      <span id="num-up">{likes}</span>
+      <span id="num-down">{dislikes}</span>
+    </div>
+    <div id="fav-section" class="text-align-center primary-color">
+      <form name="setFavForm" method="POST">
+        <button id="fav-icon" class="fas fa-heart custom-button font-size-1-1"></button>
+        <label for="fav'icon" id="fav-text" class="text-align-center font-size-0-625">Add to your favourites</label>
+      </form>
+    </div>
+  </div>
+</body>
+
 </html>
 
 <!-- This page is validated -->
