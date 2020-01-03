@@ -21,13 +21,16 @@ class Genre extends Base
                 break;
         }
     }
-
+    
     public function getNameGenre($id) {
         $dbMan = DBManager::getInstance();
         return $dbMan->query("SELECT name FROM Genre WHERE Genre.id = '$id'");
     }
+
+    public function getGenreList() {
+        $dbMan = DBManager::getInstance();
+        return $dbMan->query("SELECT DISTINCT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");
+    }
  }
-
-
 
 ?>
