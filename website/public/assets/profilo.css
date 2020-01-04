@@ -530,7 +530,14 @@
 }
 
 
-
+#profilo-content{
+    width: 100%;
+    height: 100%;
+    border-radius: .5em;
+    box-shadow: 0 2px 8px 0 #000000;
+    display: flex;
+    flex-direction: column;
+}
 
 
 
