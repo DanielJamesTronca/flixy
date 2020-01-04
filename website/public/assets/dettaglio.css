@@ -532,6 +532,39 @@
     width: 100%;
 }
 
+.display_none{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+#num-up, #num-down{
+    margin-top: .3em;
+    margin-right: 1.4em;
+    margin-left: 1.4em;
+}
+
+
+
+#dettaglio-content{
+    width: 100%;
+    height: 100%;
+    border-radius: .5em;
+    box-shadow: 0 2px 8px 0 #000000;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
 
 
 #dettaglio-content{
@@ -555,7 +588,7 @@
     padding-top:2em;
     padding-left: 2em;
     margin-right:2em;
-      }
+    }
 
   #main{
     padding-top:2em;
@@ -584,13 +617,17 @@
   #fav-icon{
       transition: color .2s ease-in;
       cursor: pointer;
+<<<<<<< Updated upstream
   }
 
   #fav-text{
       margin-bottom: 10px;
       
 
+=======
+>>>>>>> Stashed changes
   }
+
 
   #fav-icon:hover{
       color: red;
@@ -713,7 +750,33 @@ textarea{
 
 
 
+<<<<<<< Updated upstream
 @media only screen and (max-width:1080px){
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width:1280px){
+>>>>>>> Stashed changes
    
     #side{
         display: flex;
@@ -721,13 +784,25 @@ textarea{
         flex-grow: 0;
         flex-shrink: 0;
         padding-left: 0em;
+        padding-right: 0em;
+        text-align: center;
     }
 
     #main {
         display: flex;
-        flex-basis: 100%;  
+        flex-basis: 100%; 
+        padding-left: 2em; 
      }
 }
+
+
+@media only screen and (max-width:1075px){
+    .textbox{
+        width: 50vh;
+
+    }
+}
+
 @media only screen and (max-width: 768px) {
       
     #side{
@@ -738,9 +813,15 @@ textarea{
         width: 100%;
         justify-content: center;
         text-align: center;
-
         overflow-x: hidden;
     }
+
+    .textbox{
+        width: 50vh;
+    }
+
+
+
 }
 
 
@@ -771,10 +852,6 @@ textarea{
         height:auto;
         padding-left: 0;
     }
-
-
-    
-
 
     #copertina {
         width: 18.5em;

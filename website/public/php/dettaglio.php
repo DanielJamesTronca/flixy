@@ -11,11 +11,12 @@ $description="None";
 $season="/";
 $episode="/";
 $trailer_url="None";
+$stars="0";
 
 
 $serieTvEpisode="";
 $serieTvEpisodeReal="Episodes:";
-$serieTvSeason=" ";
+$serieTvSeason="";
 $serieTvSeasonReal="Season:";
 
 $dbMan = DBManager::getInstance();
@@ -23,6 +24,8 @@ $genreList = $dbMan->query("SELECT Genre.name FROM Genre LEFT JOIN Media ON Genr
 
 function loadInfo($id){
     $dbMan = DBManager::getInstance();
+
+    $numeroStelle=[];
 
     $list=$dbMan->query("SELECT * FROM Media WHERE id='$id'") ;
 
@@ -35,15 +38,37 @@ function loadInfo($id){
     $season=$list[0]->seasons;
     $trailer_url=$list[0]->trailer_url;
 
-    $arr=array($title,$duration, $cover_url, $description, $episode, $season, $trailer_url);
+    $stars=$list[0]->stars;
+
+    for($i=0;$i<$stars;$i++) {
+      array_push($numeroStelle, "<i class='fa fa-star'></i>");
+    }
+
+    $arr=array($title,$duration, $cover_url, $description, $episode, $season, $trailer_url, $numeroStelle);
     return $arr;
 
 }
 
 
+function loadVote($id){
+  $dbMan = DBManager::getInstance();
+
+  $pippo= $dbMan->query("SELECT * FROM Vote WHERE media_id='$id'");
+
+  $positive=$pippo[0]->positive;
+  //TO DO WITH NEGATIVE AND TOTALS VOTE
+  return $positive;
+}
+
+
+
+
 $movieId=$_GET["movieId"];
 
 $lista= loadInfo($movieId);  // $movieId instead of 1
+
+$likes=loadVote($movieId);
+
 
 $title=$lista[0];
 $duration=$lista[1];
@@ -52,6 +77,8 @@ $description=$lista[3];
 $episode=$lista[4];
 $season=$lista[5];
 $trailer_url=$lista[6];
+$numeroStelle=$lista[7];
+
 
 $genre=$genreList[$movieId-1]->name;
 
@@ -65,10 +92,14 @@ if($episode==null && $season==null){
         $output=str_replace("{serieTvEpisode}", $serieTvEpisodeReal,$output );
         $output=str_replace("{serieTvSeason}", $serieTvSeasonReal,$output );
 }
+
+
+
+
+
 $actualGenre = $dbMan->query("SELECT * FROM Media WHERE id='$movieId'");
 $actualGenre_aux= $actualGenre[0]->genre;
 $realGenre= $dbMan->query("SELECT * FROM Media WHERE genre='$actualGenre_aux'");
-
 $genre_variable= $dbMan->query("SELECT name FROM Genre WHERE id='$actualGenre_aux'");
 
 $figaro=Comment::getCommentsFor($movieId);
@@ -105,18 +136,6 @@ function getCommentList($figaro) {
 }
 
 
-/*
-$stars=Media
-function getMovieStar($stars) {
-  $starNumber = [];
-
-  for($i=0;$i<$stars;$i++) {
-    array_push($starNumber, "<i class='fa fa-star'></i>");
-  }
-  $card = str_replace("{movieStars}", implode($starNumber), $stelline);
-  return $stelline;
-}
-*/
 
 function getSimilarMovies($realGenre, $genre_variable) {
   $movieList = [];
@@ -141,11 +160,38 @@ function getSimilarMovies($realGenre, $genre_variable) {
 
 
 
+function setComments(){
+  if(isset($_POST['commentSubmit'])){
+    $message = $_POST['message'];
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $output = str_replace("{commentList}", getCommentList($figaro), $output);
 
-
 $output = str_replace("{movieList}", getSimilarMovies($realGenre, $genre_variable), $output);
+
+
+$output=str_replace("{likes}", $likes,$output);
+$output=str_replace("{dislikes}", $likes,$output);  //DA FARE C'E' LIKES E NON DISLIKES
+
+
 
 $output=str_replace("{title}", $title,$output);
 $output=str_replace("{duration}", $duration,$output);
@@ -156,6 +202,10 @@ $output=str_replace("{cover_url}", "../public/".$cover_url,$output);
 $output=str_replace("{genre}", $genre,$output);
 $output=str_replace("{trailer_url}",$trailer_url,$output);
 $output=str_replace("{mediaid}",$movieId,$output);
+$output = str_replace("{movieStars}", implode($numeroStelle), $output);
+
+
+
 // echo $output;
 
 
