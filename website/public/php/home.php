@@ -5,7 +5,7 @@ $yearList = fillYearSelect(Media::getAirDateList());
 $output = str_replace("{genreOption}", $genreList, $output);
 $output = str_replace("{yearOption}", $yearList, $output);
 
-$displayMovieList = 3;
+$displayMovieList = 4;
 
 $varGenre = "All";
 $varYear = "All";
@@ -30,6 +30,8 @@ if (isset($_GET["getMovies"])) {
     case "mostVotes":
       $displayMovieList = 2;
     break;
+    case "trending":
+      $displayMovieList = 3;
   }
 }
 
@@ -52,13 +54,16 @@ switch($displayMovieList) {
     $result = Media::list($userId, null,null,null,"votes_positive", "DESC"); 
   break;
   case 3: 
+    $result = Media::list($userId, null,null,null,"votes_positive", "DESC"); 
+  break;
+  case 4: 
     $result = filterList($varYear, $varGenre, $userId);
   break;
   default: 
     $result = filterList($varYear, $varGenre, $userId);
   break;
 }
-// print_r($result);
+
 $movieList = getMovieList($result);
 if ($movieList != '') {
   $output = str_replace("{movieList}", $movieList, $output);

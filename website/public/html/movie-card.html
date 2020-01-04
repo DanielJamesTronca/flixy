@@ -2,20 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
 <head>
-  <title>movie-card</title>
+  <title> Carta film: {movieTitle} </title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="title" content="Flixy - Homepage" />
-  <base target="_self" href="http://localhost//flixy/website/public/html">
+  <base target="_self" href="http://localhost//flixy/website/public/html" />
 </head>
 
 <body class="primary-bg">
   <div class="movie-entry secondary-bg margin-right-0-6 margin-left-0-6 margin-top-0-5 margin-bottom-0-5 border-radius-0-5">
-    <a href="{linkDettaglioMovie}" class="custom-link">
-      <img id="copertina" class="border-radius-0-5 copertina-size" src="{coverURL}" alt="copertina" />
-      <h3 id="title" class="full-width text-align-center primary-color font-size-1-5">
-        {movieTitle}
-      </h3>
+    <a href="{linkDettaglioMovie}" class="custom-link copertina-size">
+      <img id="copertina" class="border-radius-0-5 copertina-size" src="{coverURL}" alt="Copertina del film {movieTitle}" />
     </a>
+    <h3 id="title" class="full-width text-align-center primary-color font-size-1-5">
+      {movieTitle}
+    </h3>
     <div class="margin-left-0-6 margin-top-1 font-size-1 rating primary-color flex-container flex-content-space-between flex-align-items-center">
       <span id="activeStars" class="stars-active text-align-left">
         {movieStars}
@@ -25,37 +25,43 @@
       </a>
     </div>
     <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"></span>
-    <form name="rateForm" method="POST" action="/flixy/website/public/php/add_vote.php">
+    <form method="post" action="/flixy/website/public/php/add_vote.php">
       <div id="thumbs" class="text-align-center primary-color">
-        <button type="submit" value="like" class="custom-button-no-hover font-size-2-2">
-          <i id="thumbs-up" class="far fa-thumbs-up"></i>
+        <button name="vote" type="submit" value="like" class="custom-button-no-hover font-size-2-2">
+          <i id="thumbs-up" class="far fa-thumbs-up {like-selected}"></i>
         </button>
-        <button type="submit" value="dislike" class="custom-button-no-hover font-size-2-2">
-          <i id="thumbs-down" class="far fa-thumbs-down"></i>
+        <button name="vote" type="submit" value="dislike" class="custom-button-no-hover font-size-2-2">
+          <i id="thumbs-down" class="far fa-thumbs-down {dislike-selected}"></i>
         </button>
-        <input type="hidden" value="{movieID}"></input>
+        <input type="hidden" value="{movieID}" name="movieID"></input>
+        <input type="hidden" value="home" name="redirectURL"></input>
       </div>
     </form>
     <div id="num-up-down" class="text-align-center primary-color font-size-0-938">
       <span id="num-up">{likes}</span>
       <span id="num-down">{dislikes}</span>
     </div>
-    <div id="fav-section" class="text-align-center primary-color {mediaNotFav}">
-      <form name="setFavForm" method="POST" action="/flixy/website/public/php/toggle_favorite.php">
-        <input type="hidden" value="{movieID}" name="movieID"></input>
-        <input type="hidden" value="home" name="redirectURL"></input>
-        <input type="hidden" value="1" name="fav"></input>
-        <button id="fav-icon" class="fas fa-heart custom-button-no-hover font-size-1-1"></button>
-        <label for="fav'icon" id="fav-text" class="text-align-center font-size-0-625">Add to your favourites</label>
+    <div class="text-align-center primary-color {mediaNotFav}">
+      <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
+        <fieldset class="button-wrapper">
+          <input type="hidden" value="{movieID}" name="movieID"></input>
+          <input type="hidden" value="home" name="redirectURL"></input>
+          <input type="hidden" value="1" name="fav"></input>
+          <button id="add-fav-icon" class="fas fav-icon fa-heart custom-button-no-hover font-size-1-1"></button>
+          <label for="add-fav-icon" class="text-align-center font-size-0-625">Add to your favourites</label>
+        </fieldset>
       </form>
     </div>
-    <div id="fav-section" class="text-align-center primary-color {mediaIsFav}">
-      <form name="setFavForm" method="POST" action="/flixy/website/public/php/toggle_favorite.php">
-        <input type="hidden" value="{movieID}" name="movieID"></input>
-        <input type="hidden" value="home" name="redirectURL"></input>
-        <input type="hidden" value="0" name="fav"></input>
-        <button id="fav-icon" class="fas fa-heart custom-button-no-hover font-size-1-1"></button>
-        <label for="fav'icon" id="fav-text" class="text-align-center font-size-0-625">Remove from favourites</label>
+    <div class="text-align-center primary-color {mediaIsFav}">
+      <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
+        <fieldset class="button-wrapper">
+          <input type="hidden" value="{movieID}" name="movieID"></input>
+          <input type="hidden" value="home" name="redirectURL"></input>
+          <input type="hidden" value="0" name="fav"></input>
+          <button id="rm-fav-icon" class="fas fa-heart fav-icon custom-button-no-hover font-size-1-1"></button>
+          <label for="rm-fav-icon" class="text-align-center font-size-0-625">Remove from favourites</label>
+        </fieldset>
+        
       </form>
     </div>
   </div>

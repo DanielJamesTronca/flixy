@@ -3,27 +3,27 @@
 <head>
   <title>Flixy - Homepage</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <base target="_self" href="http://localhost/flixy/website/public/html">
+  <base target="_self" href="http://localhost/flixy/website/public/html" />
   <meta name="title" content="Flixy - Homepage" />
 </head>
-  <section class="document-font primary-bg layout-body">
-      <nav id="filters-menu" class=" margin-top-2 full-width flex-container flex-content-center flex-align-items-center flex-wrap">
+  <body class="document-font primary-bg layout-body">
+      <div id="filters-menu" class=" margin-top-2 full-width flex-container flex-content-center flex-align-items-center flex-wrap">
         <ul id="general-filters" class="full-height text-align-center primary-color flex-container flex-content-center flex-items-center flex-align-items-center">
           <li class="margin-left-1">
             <a href="php/layout.php?page=formmedia" class="font-size-0-938 font-weight-bold custom-link-hover primary-color padding-left-1 padding-right-1 padding-top-0-4 padding-bottom-0-4 border-radius-0-3">Aggiungi media</a>
           </li>
           <li class="margin-left-1">
-            <a href="./php/layout.php?page=home&getMovies=latest" class="font-size-0-938 font-weight-bold custom-link-hover padding-left-1-5 padding-right-1-5 padding-top-0-4 padding-bottom-0-4 border-radius-0-3">Latest</a> 
+            <a href="./php/layout.php?page=home&amp;getMovies=latest" class="font-size-0-938 font-weight-bold custom-link-hover padding-left-1-5 padding-right-1-5 padding-top-0-4 padding-bottom-0-4 border-radius-0-3">Latest</a> 
           </li>
           <li class="margin-left-1">
-            <a href="./php/layout.php?page=home&getMovies=mostVotes" class="font-size-0-938 font-weight-bold custom-link-hover padding-left-1-5 padding-right-1-5 padding-top-0-4 padding-bottom-0-4 border-radius-0-3">Most votes</a> 
+            <a href="./php/layout.php?page=home&amp;getMovies=mostVotes" class="font-size-0-938 font-weight-bold custom-link-hover padding-left-1-5 padding-right-1-5 padding-top-0-4 padding-bottom-0-4 border-radius-0-3">Most votes</a> 
           </li>
         </ul>
 
         <hr class="menu-divider margin-left-1"></hr>
         
         <div id="dropdown-select" class="full-height primary-color text-align-center flex-container flex-items-center flex-align-items-center">
-          <form id="filters-form" name="filters" method="GET" class="flex-container flex-content-start flex-items-center flex-align-items-center">
+          <form action="" id="filters-form" method="get" class="flex-container flex-content-start flex-items-center flex-align-items-center">
             <div id="year-filter" class="margin-left-1">
               <label id="year-label" for="year-select" class="primary-color margin-left-1">Year</label>
               <select name="year-select" id="year-select" class="custom-select margin-left-0-5 primary-color font-size-0-938 font-weight-bold">
@@ -31,7 +31,6 @@
                 {yearOption}
               </select>
             </div>
-            
             <div id="genre-filter"> 
               <label id="genre-label" for="genre-select" class="margin-left-1">Genre</label>
               <select name="genre-select" id="genre-select" class="custom-select margin-left-0-5 primary-color font-size-0-938 font-weight-bold">
@@ -39,13 +38,16 @@
                 {genreOption}
               </select>
             </div>
-            
-            <button type="submit" name="page" value="home" class="margin-left-1-5 custom-button font-size-0-938 font-weight-bold padding-0-3 border-radius-0-3">Filter</button>
+            <fieldset class="button-wrapper">    
+              <button type="submit" name="page" value="home" class="margin-left-1-5 custom-button font-size-0-938 font-weight-bold padding-0-3 border-radius-0-3">
+                Filter
+              </button>
+            </fieldset>
           </form>
         </div>
-      </nav>
-      <main id="movies-container" class="full-size flex-container flex-content-center flex-items-center flex-wrap margin-top-2">
+      </div>
+      <div id="movies-container" class="full-size flex-container flex-content-center flex-items-center flex-wrap margin-top-2">
         {movieList}
-      </main>
-  </section>
+      </div>
+    </body>
 </html>
