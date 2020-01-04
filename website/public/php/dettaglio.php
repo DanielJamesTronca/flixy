@@ -98,7 +98,7 @@ function getCommentList($figaro) {
     $commento = str_replace("{nome_commento}", $nome_commento, $commento);
     $commento = str_replace("{contenuto_commento}", $contenuto, $commento);
 
-    $commento = str_replace("{avatar_url_commento}", "../".$finally_url, $commento);
+    $commento = str_replace("{avatar_url_commento}", "../public/".$finally_url, $commento);
     array_push($commentList, $commento);
   }
   return implode($commentList);
@@ -132,7 +132,7 @@ function getSimilarMovies($realGenre, $genre_variable) {
     $card = str_replace("{movieTitle}", $titolo, $card);
     $card = str_replace("{movieGenre}", $genre_card, $card);
 
-    $card = str_replace("{movieCover}", $url, $card);
+    $card = str_replace("{movieCover}", "../public/".$url, $card);
     array_push($movieList, $card);
   }
   return implode($movieList);
@@ -152,7 +152,7 @@ $output=str_replace("{duration}", $duration,$output);
 $output=str_replace("{description}", $description,$output);
 $output=str_replace("{episode}", $episode,$output);
 $output=str_replace("{season}", $season,$output);
-$output=str_replace("{cover_url}", $cover_url,$output);
+$output=str_replace("{cover_url}", "../public/".$cover_url,$output);
 $output=str_replace("{genre}", $genre,$output);
 $output=str_replace("{trailer_url}",$trailer_url,$output);
 $output=str_replace("{mediaid}",$movieId,$output);

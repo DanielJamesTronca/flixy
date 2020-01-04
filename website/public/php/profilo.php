@@ -74,7 +74,7 @@ $output = str_replace("{favouriteList}", getFavouriteList($favoruites), $output)
 
 $output=str_replace("{name}", $name,$output);
 $output=str_replace("{surname}", $surName,$output);
-$output=str_replace("{avatar_url}", $avatarUrl,$output);
+$output=str_replace("{avatar_url}", "../public/".$avatarUrl,$output);
 
 
 $output=str_replace("{email}", $email,$output);
