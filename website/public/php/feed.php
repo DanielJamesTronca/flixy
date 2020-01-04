@@ -68,7 +68,7 @@ function generate_feed_timeline($userId){
 function get_media($feedObj){
     if ($feedObj instanceof Feed){
         $video = $feedObj->videoUrl; 
-                    if (isset($video)){ 
+                    if (isset($video) && $video!=""){ 
                         $media ="<div class='content-justify-right padding-top-1 padding-left-3'>
                                     <object class='timeline-video' data='$video'>trailer 
                                     </object>

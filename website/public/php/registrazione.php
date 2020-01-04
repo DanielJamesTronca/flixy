@@ -1,11 +1,11 @@
 <?php
+include_once("../../src/session_manager.php");
+include_once("../../src/controllers/utils.php");
 $output = file_get_contents("../html/registrazione.html");
-if(!isset($_SESSION))
-  session_start();
-if(isset($_SESSION['registration']) && !$_SESSION['registration']) {
+
+if(isset($_SESSION['error-message']) && isset($_SESSION['registration']) && !$_SESSION['registration']) {
     $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message'],$output);
-    session_destroy();
 }
 /* controlla se sono impostate le variabili di sessione con i rispettivi valori 
  per ri-assegnare i rispettivi valori al campo value dell'input della form 
@@ -35,5 +35,7 @@ if (isset($_SESSION['email'])){
 else{
     $output = str_replace("'{email}'","",$output);
 }
+
+Utils::unsetAll(array('username','name','surname','email','error-message'));
 echo $output;
 ?>

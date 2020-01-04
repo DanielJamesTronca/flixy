@@ -27,6 +27,7 @@ function loadInfo($id){
     $list=$dbMan->query("SELECT * FROM Media WHERE id='$id'") ;
 
     $title=$list[0]->name;
+  
     $duration=$list[0]->duration;
     
     $cover_url=$list[0]->cover_url;
@@ -54,7 +55,6 @@ $season=$lista[5];
 $trailer_url=$lista[6];
 
 $genre=$genreList[$movieId-1]->name;
-
 
 
 if($episode==null && $season==null){

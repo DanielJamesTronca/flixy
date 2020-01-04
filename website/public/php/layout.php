@@ -9,16 +9,14 @@ $dbMan = DBManager::getInstance();
 
 $username = "";
 $profile = "profile" . $username;
-
 if (SessionManager::isUserLogged())
 {
     $username = SessionManager::getUsername();
 }
-
 if ($username != "")
 {
     $user = User::getUser(SessionManager::getUserId());
-
+    
     $output = str_replace("{linkToFavs", "./php/layout.php?page=profilo", $output);
     $output = str_replace("{link_to_profile_or_log_in}", $profile, $output);
     $output = str_replace("{login_O_username}", $user->name." ".$user->surname, $output);

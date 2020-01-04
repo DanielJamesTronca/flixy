@@ -1,11 +1,11 @@
 <?php
+include_once("../../src/session_manager.php");
+include_once("../../src/controllers/utils.php");
 $output = file_get_contents("../html/login.html");
-if(!isset($_SESSION))
-  session_start();
-if(isset($_SESSION['login']) && !$_SESSION['login']) {
+
+if(isset($_SESSION['error-message']) && isset($_SESSION['login']) && !$_SESSION['login']) {
     $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message'],$output);
-    session_destroy();
 }
 if (isset($_SESSION['username'])){
     $output = str_replace("'{username}'",$_SESSION['username'],$output);
@@ -13,5 +13,7 @@ if (isset($_SESSION['username'])){
 else{
     $output = str_replace("'{username}'","",$output);
 }
+
+Utils::unsetAll(array('username','error-message'));
 echo $output;
 ?>

@@ -109,7 +109,6 @@ if ($id == null) {
 }
 
 Utils::unsetAll(array('error-message-media','title','description','genreid','stars','duration','hasEpisodes','numEpisodes','numSeasons','trailerUrl','day','month','year'));
-return;
 
 function isTvSeries(){
     if ($_SESSION["hasEpisodes"] == 'true')

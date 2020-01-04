@@ -28,9 +28,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (checkParameters($username, $password, $confirmationPassword, $name, $surname, $email, $errorMessage)) // se true, i dati sono nel formato corretto, provo ad autentificare l'utente
   {
     $man = DBManager::getInstance();
-    if ($man->register($username, $password, $name, $surname, $email)) // se registrato correttamente
+    $reg = $man->register($username, $password, $name, $surname, $email);
+    if ($reg!=false) // se registrato correttamente
     {
       $_SESSION['registration'] = true;
+      SessionManager::startSessionForUser($reg, $username, true);
       userRegisteredCorrectly();
     } else {
       $_SESSION['error-message'] = "Le tue credenziali non sono valide";

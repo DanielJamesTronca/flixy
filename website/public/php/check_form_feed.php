@@ -23,21 +23,21 @@ if (!SessionManager::isUserLogged()) {
 
 // parametri in input: content, subtitle, mediaid, videoUrl, eventDate
 
-if (!isset($_POST["content"]) || !isset($_POST["subtitle"]) || !isset($_POST["mediaid"]) || (isset($_POST["videoUrl"]) && !Utils::isValidUrl($_POST["videoUrl"]))) {
+if (!isset($_POST["content"]) || !isset($_POST["subtitle"]) || !isset($_POST["mediaid"])) {
     $_SESSION['error-message-feed'] = "si prega di compilare tutti i campi.";
-    header("Location: ../php/form_feed.php");
+    header("Location: ".SessionManager::BASE_URL."formfeed");
     return;
 }
 
-if ($_POST["videoUrl"]!="" && !Utils::isValidUrl($_POST["videoUrl"])) {
+if (isset($_POST["videoUrl"]) && $_POST["videoUrl"]!="" && !Utils::isValidUrl($_POST["videoUrl"])) {
     $_SESSION['error-message-feed'] = "si prega di inserire un link video valido. Il parametro è opzionale.";
-    header("Location: ../php/form_feed.php");
+    header("Location: ".SessionManager::BASE_URL."formfeed");
     return;
 }
 
 if(!Utils::isValidDate($_POST["day"],$_POST["month"],$_POST["year"])){
     $_SESSION['error-message-feed'] = "si prega di inserire una data di rilascio valida.";
-    header("Location: ../php/form_feed.php");
+    header("Location: ".SessionManager::BASE_URL."formfeed");
     return;
 }
 /* END check if all paramters are ok */
@@ -48,12 +48,11 @@ $episode->subtitle = $_POST["subtitle"];
 $episode->mediaId = $_POST["mediaid"];
 $episode->authorId = SessionManager::getUserId();
 $episode->eventDate = Utils::createDate($_POST["day"],$_POST["month"],$_POST["year"]);
-if (isset($_POST["videoUrl"]))
+if (isset($_POST["videoUrl"]) && $_POST["videoUrl"]!="")
     $episode->videoUrl = Utils::convert_url_to_embed($_POST["videoUrl"]);
-
 
 $episode->saveInDB();
 Utils::unsetAll(array('error-message-feed','content','subtitle','eventDate','videoUrl','mediaid','day','month','year'));
-echo "TODO: redirect based on result";
+header("Location: ".SessionManager::BASE_URL."feed");
 
 ?>

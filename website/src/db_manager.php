@@ -56,7 +56,7 @@ class DBManager
         if (count($result) == 1)
         {
             // user credentials found
-            return $result[0]->user_id;
+            return (int)$result[0]->user_id;
         }
         return false;
     }
@@ -69,7 +69,7 @@ class DBManager
         $keyId = $this->conn->insert_id;
         $this->conn->query("INSERT INTO `Keychain` (`user_id`, `username`, `password`) VALUES ({$keyId}, '{$username}', '{$hashedPassword}');");
         if ($this->conn->commit())
-            return true;
+            return self::login($username,$password);
         else {
             $this->conn->rollback();
             return false;
