@@ -617,15 +617,6 @@
   #fav-icon{
       transition: color .2s ease-in;
       cursor: pointer;
-<<<<<<< Updated upstream
-  }
-
-  #fav-text{
-      margin-bottom: 10px;
-      
-
-=======
->>>>>>> Stashed changes
   }
 
 
@@ -750,9 +741,6 @@ textarea{
 
 
 
-<<<<<<< Updated upstream
-@media only screen and (max-width:1080px){
-=======
 
 
 
@@ -776,7 +764,6 @@ textarea{
 
 
 @media only screen and (max-width:1280px){
->>>>>>> Stashed changes
    
     #side{
         display: flex;
