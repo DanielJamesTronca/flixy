@@ -30,7 +30,7 @@
     
     <div class="padding-top-medium">
       
-      <form action="./php/check_form_media.php" method="post" id="regForm" onsubmit="return isValidFormMedia()">
+      <form action="./php/check_form_media.php" method="post" id="regForm" enctype="multipart/form-data" onsubmit="return isValidFormMedia()">
         <div class="group-insert-form">  
           <label for="mediaTitle" class="label-form">Titolo</label>    
           <input type="text" name="mediaTitle" id="mediaTitle" value="'{title}'"/>
@@ -67,6 +67,10 @@
             </select>
           </div>
           {episodesAttributes}
+        </div>
+        <div class="group-insert-form">  
+          <label for="cover" class="primary-color label-form">Immagine di copertina</label>
+          <input type="file" name="cover" id="cover" class="padding-top-0-3" />
         </div>
         <div class="group-insert-form">     
           <label for="trailerUrl" class="label-form">URL trailer (YouTube)</label> 
