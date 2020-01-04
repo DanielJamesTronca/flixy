@@ -8,11 +8,8 @@ class SessionManager
     private const USERNAME_KEY = "username";
     private const PUBLISH_KEY = "canPublish";
 
-<<<<<<< Updated upstream
-    public const BASE_URL = "http://192.168.64.2/flixy/website/public/php/layout.php?page=";
-=======
     public const BASE_URL = "http://192.168.64.3/flixy/website/public/php/layout.php?page=";
->>>>>>> Stashed changes
+
 
     private function __construct()
     {

@@ -42,17 +42,6 @@ function loadInfo($id){
   return $arr;
 }
 
-<<<<<<< Updated upstream
-    $title=$list[0]->name;
-    $duration=$list[0]->duration;
-    
-    $cover_url=$list[0]->cover_url;
-    $description=$list[0]->description;
-    $episode=$list[0]->episodes;
-    $season=$list[0]->seasons;
-    $trailer_url=$list[0]->trailer_url;
-=======
->>>>>>> Stashed changes
 
 
 function loadVote($id){
@@ -83,7 +72,6 @@ $trailer_url=$lista[6];
 $numeroStelle=$lista[7];
 $genre=$lista[8];
 $genre_aux=$genre[0]->name;
-
 
 
 if($episode==null && $season==null){
