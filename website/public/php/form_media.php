@@ -6,7 +6,7 @@ include_once("../../src/models/models.php");
 
 /* START show error message if set */
 if(isset($_SESSION['error-message-media'])) {
-    $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
+    $output = str_replace("<div class='margin-top-2 hidden'>","<div class='margin-top-2' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message-media'],$output);
     restore_parameters($output);
     Utils::unsetAll(array('error-message-media','title','description','genreid','stars','duration','hasEpisodes','numEpisodes','numSeasons','trailerUrl','day','month','year'));

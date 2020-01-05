@@ -13,13 +13,21 @@ if (SessionManager::isUserLogged()) {
     echo "Utente non autenticato";
 }
 
-if (isset($_POST["redirectURL"]) && isset($_POST["mediaID"]) && isset($_POST["pos"])) {
+if (isset($_POST["redirectURL"]) && isset($_POST["mediaID"]) && isset($_POST["vote"])) {
     $redirectURL = $_POST["redirectURL"];
     $mediaID = $_POST["mediaID"];
-    $pos = $_POST["fav"];
+    $vote = $_POST["vote"];
+    
+    switch ($vote) {
+        case "like":
+            Media::addVote($userId, $mediaID, 1);
+        break;
+        case "dislike":
+            Media::addVote($userId, $mediaID, 0);
+        break;
+    }
 
-    Media::addVote($userId, $mediaID, $pos);
-
+    
     header("Location: ".SessionManager::BASE_URL.$redirectURL);
 } else {
     echo "Parametri incorretti";

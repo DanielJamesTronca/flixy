@@ -2,11 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
 <head>
-<base target="_self" href="http://localhost//flixy/website/public/"/>  <!--da cambiare!!!! -->
+<base target="_self" href="http://192.168.64.2//flixy/website/public/"/>  <!--da cambiare!!!! -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/> <!-- per ottimizzazione visualizzazione smartphone -->
-<link rel="stylesheet" media="screen" type="text/css" href="./assets/style.css"/>
+<link rel="stylesheet" media="screen" type="text/css" href="./assets/rules.css"/>
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="./scripts/action.js"></script>
@@ -14,29 +13,28 @@
 <title>Flixy - Login</title>
 <meta name="title" content="Flixy - Login" />
 </head>
-<body>
+<body class="body-log-reg">
 
-<div class="content">
+<div class="content-log-reg">
 
-    <div class="header">
+    <div class="header-log-reg">
         <img src="assets/images/icons/logo.png" alt="logo" class="logo"/> <h1 class="primary-color-gradient-text"> Flixy </h1>
 
     </div>
              
     <div class="form-title">
         <h1 class="text-center"> Accedi al tuo account </h1>
-        <p class="text-center padding-top-small">Inserisci il tuo username e password per accedere ai contenuti associati al tuo account</p>
+        <p class="text-center padding-top-small-adaptive">Inserisci il tuo username e password per accedere ai contenuti associati al tuo account</p>
     </div>
 
-    <div class='margin-top-small hidden'>
+    <div class='margin-top-2 hidden'>
         <div class="error-message-box">
-            <p class="bold">Credenziali invalide</p>
+            <p class="font-weight-bold">Credenziali invalide</p>
             <p>Controlla le tue credenziali e riprova a fare l’accesso: {error-message}</p>
         </div>
     </div>
 
-
-    <div class="padding-top-medium" xml:lang="en-GB" lang="en-GB">
+    <div class="padding-top-medium-adaptive" xml:lang="en-GB" lang="en-GB">
 
         <form action="./php/check_login.php" method="post" id="regForm" onsubmit="return validateFormLogin()">
             <div class="group">     
@@ -45,32 +43,25 @@
               <span class="highlight"></span>
               <span class="bar"></span> 
             </div>
-
-
             <div class="group">      
               <label for="password" class="label-log-reg">Password</label>
               <input type="password" name="password" id="password" tabindex="0"/>
               <span class="highlight"></span>
               <span class="bar"></span>
             </div>
-
-            
             <div class="content-center">
               <input type="submit" value="Login" class="button primary-color-gradient-button" tabindex="0"/>
             </div>
-         
         </form>
-    </div>
-                
-    <div class="text-center padding-top-medium">
-      <p>Non hai un account? <a href="./php/registrazione.php" class="link"> Registrati </a> </p>
+    </div>  
+    <div class="text-center padding-top-medium-adaptive">
+      <p>Non hai un account? <a href="./php/registrazione.php" class="link-page"> Registrati </a> </p>
     </div>
 
     <div class="footer-form text-center">
       <p>Flixy © Un prodotto UNIPD. 2019. All rights reserved.</p>
     </div>
 </div>
-
 
 </body>
 </html>

@@ -140,6 +140,10 @@ class Media extends Base
         return $results;
     }
 
+    public static function getUserVotes($userId) {
+        $dbman = DBManager::getInstance();
+        return $dbman->query("SELECT * FROM Vote WHERE user_id ={$userid}");
+    }
 
     public function setFavourite($userId, $activate)
     {
@@ -169,6 +173,19 @@ class Media extends Base
         return $dbman->query("SELECT DISTINCT YEAR(air_date) as anno FROM Media");
     }
 
+    public static function addVote($userId, $mediaId, $vote) 
+    {
+        $dbman = DBManager::getInstance();
+        $result = $dbman->query("SELECT * FROM VOTES WHERE user_id = {$userId} AND media_id = {$mediaId}");
+
+        if ($result) {
+            if ($result[0]->positive != $vote) {
+                $dbman->query("UPDATE `vote` SET positive={$vote} WHERE user_id = {$userId} AND media_id = {$mediaId}");
+            }
+        } else {
+            $dbman->query("INSERT INTO `vote` (`id`, `user_id`, `media_id`, `created_at`, `updated_at`, `positive`) VALUES (NULL, {$userid}, {$mediaId}, current_timestamp(), current_timestamp(), {$vote})");
+        }
+    }
  }
 
 ?>

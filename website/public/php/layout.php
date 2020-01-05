@@ -17,7 +17,7 @@ if ($username != "")
 {
     $user = User::getUser(SessionManager::getUserId());
     
-    $output = str_replace("{linkToFavs", "./php/layout.php?page=profilo", $output);
+    $output = str_replace("{linkToFavs}", "./php/layout.php?page=profilo", $output);
     $output = str_replace("{link_to_profile_or_log_in}", $profile, $output);
     $output = str_replace("{login_O_username}", $user->name." ".$user->surname, $output);
     $output = str_replace("{link_to_log_out_or_register}", "Logout", $output);
@@ -26,7 +26,7 @@ if ($username != "")
 }
 else
 {
-    $output = str_replace("{linkToFavs", "./php/registrazione.php", $output);
+    $output = str_replace("{linkToFavs}", "./php/registrazione.php", $output);
     $output = str_replace("{link_to_profile_or_log_in}", "./php/login.php", $output);
     $output = str_replace("{login_O_username}", "Log in", $output);
     $output = str_replace("{link_to_log_out_or_register}", "./php/registrazione.php", $output);
@@ -53,7 +53,8 @@ $logout = str_replace($registrazionePage, $logOutAction, $signup);
 
 
 $output = str_replace("{linkToFeed}", "./php/layout.php?page=feed", $output);
-$output = str_replace("{linkToFeed}", "./php/layout.php?page=feed", $output);
+$output = str_replace("{linkToFavs}", "./php/layout.php?page=profilo", $output);
+$output = str_replace("{linkToTrending}", "./php/layout.php?page=home&amp;getMovies=trending", $output);
 
 switch ($_GET['page'])
 {

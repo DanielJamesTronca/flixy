@@ -19,7 +19,6 @@ $_SESSION['day'] = $_POST["day"];
 $_SESSION['month'] = $_POST["month"];
 $_SESSION['year'] = $_POST["year"];
 
-
 $id = null;
 if (isset($_GET["mediaid"])) {
     $id = $_GET["mediaid"];
