@@ -38,16 +38,6 @@ function loadInfo($id){
     array_push($numeroStelle, "<i class='fa fa-star'></i>");
   }
 
-<<<<<<< Updated upstream
-    $title=$list[0]->name;
-    $duration=$list[0]->duration;
-    
-    $cover_url=$list[0]->cover_url;
-    $description=$list[0]->description;
-    $episode=$list[0]->episodes;
-    $season=$list[0]->seasons;
-    $trailer_url=$list[0]->trailer_url;
-=======
   $arr=array($title,$duration, $cover_url, $description, $episode, $season, $trailer_url, $numeroStelle, $genre);
   return $arr;
 }
@@ -56,7 +46,6 @@ function loadInfo($id){
 function loadVote($id){
   $dbMan = DBManager::getInstance();
   $w=0;
->>>>>>> Stashed changes
 
   $pippo= $dbMan->query("SELECT * FROM Vote WHERE media_id='$id'");
 
@@ -81,7 +70,6 @@ $trailer_url=$lista[6];
 $numeroStelle=$lista[7];
 $genre=$lista[8];
 $genre_aux=$genre[0]->name;
-
 
 
 if($episode==null && $season==null){
