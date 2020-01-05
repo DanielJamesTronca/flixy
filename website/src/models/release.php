@@ -81,7 +81,7 @@ class Feed extends Base
  }
 
  class Release {
-     var $mediaName, $deadlineDate, $sutitle, $isMovie, $coverUrl;
+     var $mediaName, $deadlineDate, $sutitle, $isMovie, $coverUrl, $episodes;
      var $valid = false;
 
      public function __construct($media)
@@ -113,6 +113,7 @@ class Feed extends Base
                     }
                 }
             }
+            $this->episodes = $episodes;
             if ($nextEpisode != null)
             {
                 $this->valid = true;
