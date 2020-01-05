@@ -76,22 +76,20 @@ function generate_feed_timeline($userId){
 function get_media($feedObj){
     if ($feedObj instanceof Feed){
         $video = $feedObj->videoUrl; 
-                    if (isset($video) && $video!=""){ 
-                        $media ="<div class='content-justify-right padding-top-1 padding-left-3'>
-                                    <object class='timeline-video' data='$video'>trailer 
-                                    </object>
-                                </div>";
-                    }
-                    else{
-                        $mediaObj = Media::fetch($feedObj->mediaId);
-                        $cover = $mediaObj->coverUrl; 
-                        $media = "<div class='content-justify-right padding-top-1 padding-left-2'>
-                                    <img class='timeline-image' alt='immagine copertina' src='$cover'></img>
-                                </div>";
-                    }
+        $mediaObj = Media::fetch($feedObj->mediaId);
+        $cover = $mediaObj->coverUrl; 
     }
     else{
+        $video = $feedObj->promoUrl;
         $cover = $feedObj->coverUrl; 
+    }
+    if (isset($video) && $video!=""){ 
+        $media ="<div class='content-justify-right padding-top-1 padding-left-3'>
+                    <object class='timeline-video' data='$video'>trailer 
+                    </object>
+                </div>";
+    }
+    else{
         $media = "<div class='content-justify-right padding-top-1 padding-left-2'>
                     <img class='timeline-image' alt='immagine copertina' src='$cover'></img>
                 </div>";
