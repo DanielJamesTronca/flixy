@@ -8,7 +8,6 @@ $output = file_get_contents("../html/layout.html");
 $dbMan = DBManager::getInstance();
 
 $username = "";
-$profile = "profile" . $username;
 if (SessionManager::isUserLogged())
 {
     $username = SessionManager::getUsername();
@@ -18,11 +17,11 @@ if ($username != "")
     $user = User::getUser(SessionManager::getUserId());
     
     $output = str_replace("{linkToFavs}", "./php/layout.php?page=profilo", $output);
-    $output = str_replace("{link_to_profile_or_log_in}", $profile, $output);
+    $output = str_replace("{link_to_profile_or_log_in}", "./php/layout.php?page=profilo", $output);
     $output = str_replace("{login_O_username}", $user->name." ".$user->surname, $output);
-    $output = str_replace("{link_to_log_out_or_register}", "Logout", $output);
+    $output = str_replace("{link_to_log_out_or_register}", "./php/layout.php?logout=true", $output);
     $output = str_replace("{logout_O_registrazione}", "Logout", $output);
-    $output = str_replace("{profile_photo_url}", $user->avatarUrl, $output);
+    $output = str_replace("{profile_photo_url}", "../public".$user->avatarUrl, $output);
 }
 else
 {
@@ -35,6 +34,11 @@ else
 }
 
 // <form> logic
+if (isset($_GET["logout"])) {
+    SessionManager::logout();
+    header("Location: ".SessionManager::BASE_URL."home");
+}
+
 if (isset($_GET["search"]))
 {
     $varSearch = $_GET["search"];
