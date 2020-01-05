@@ -4,7 +4,7 @@ include_once("../../src/controllers/utils.php");
 $output = file_get_contents("../html/registrazione.html");
 
 if(isset($_SESSION['error-message']) && isset($_SESSION['registration']) && !$_SESSION['registration']) {
-    $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
+    $output = str_replace("<div class='margin-top-2 hidden'>","<div class='margin-top-2' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message'],$output);
 }
 /* controlla se sono impostate le variabili di sessione con i rispettivi valori 

@@ -5,36 +5,30 @@
 <base target="_self" href="http://localhost//flixy/website/public/"/> <!--da cambiare!!!! -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/> <!-- per ottimizzazione visualizzazione smartphone -->
-<link rel="stylesheet" media="screen" type="text/css" href="assets/style.css"/>
+<link rel="stylesheet" media="screen" type="text/css" href="assets/rules.css"/>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="./scripts/action.js"></script>
 
 <title>Flixy - Registrazione</title>
 <meta name="title" content="Flixy - Registrazione" />
 </head>
-<body>
+<body class="body-log-reg">
 
-<div class="content">
-
-    <div class="header">
+<div class="content-log-reg">
+    <div class="header-log-reg">
         <img src="assets/images/icons/logo.png" alt="logo" class="logo"/> <h1 class="primary-color-gradient-text"> Flixy </h1>
-
-    </div>
-             
+    </div>  
     <div class="form-title">
         <h1 class="text-center"> Registra un nuovo account </h1>
-        <p class="text-center padding-top-small">Creando un nuovo account potrai salvare i tuoi contenuti preferiti ed essere sempre aggiornato</p>
+        <p class="text-center padding-top-small-adaptive">Creando un nuovo account potrai salvare i tuoi contenuti preferiti ed essere sempre aggiornato</p>
     </div>
-
-    <div class='margin-top-small hidden'>
+    <div class='margin-top-2 hidden'>
         <div class="error-message-box">
-            <p class="bold">Credenziali invalide</p>
+            <p class="font-weight-bold">Credenziali invalide</p>
             <p>Controlla le tue credenziali e riprova a fare l’accesso: {error-message} </p>
         </div>
     </div>
-
-    <div class="padding-top-medium">
-
+    <div class="padding-top-medium-adaptive">
       <form action="./php/check_registrazione.php" method="post" id="regForm" onsubmit="return validateFormRegistration()">
           <div class="group">      
             <label for="username" class="label-log-reg">Username</label>
@@ -72,23 +66,18 @@
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
-          
           <div class="content-center">
             <input type="submit" value="Registrati" class="button primary-color-gradient-button"/>
           </div>
-         
         </form>
+    </div>      
+    <div class="text-center padding-top-medium-adaptive">
+      <p>Hai già un account? <a href="./php/login.php" class="link-page"> Accedi </a> </p>
     </div>
-                
-    <div class="text-center padding-top-medium">
-      <p>Hai già un account? <a href="./php/login.php" class="link"> Accedi </a> </p>
-    </div>
-
     <div class="footer-form text-center">
       <p>Flixy © Un prodotto UNIPD. 2019. All rights reserved.</p>
     </div>
 </div>
-
 
 </body>
 </html>

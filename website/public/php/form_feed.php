@@ -5,7 +5,7 @@ include_once("../../src/models/models.php");
 
 /* START show error message if set */
 if(isset($_SESSION['error-message-feed'])) {
-    $output = str_replace("<div class='margin-top-small hidden'>","<div class='margin-top-small' tabindex='0'>",$output);
+    $output = str_replace("<div class='margin-top-2 hidden'>","<div class='margin-top-2' tabindex='0'>",$output);
     $output = str_replace("{error-message}",$_SESSION['error-message-feed'],$output);
     restore_parameters($output);
     Utils::unsetAll(array('error-message-feed','content','subtitle','eventDate','videoUrl','mediaid','day','month','year'));

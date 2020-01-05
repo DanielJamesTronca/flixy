@@ -5,7 +5,6 @@
 <base target="_self" href="http://localhost//flixy/website/public/"/> <!--da cambiare!!!! -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/> <!-- per ottimizzazione visualizzazione smartphone -->
-<link rel="stylesheet" media="screen" type="text/css" href="assets/style.css"/>
 <link rel="stylesheet" media="screen" type="text/css" href="assets/rules.css"/>
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="./scripts/formCheck.js"></script>
@@ -21,15 +20,14 @@
         <h1 class=""> Aggiungi Notizia </h1>
     </div>
 
-    <div class='margin-top-small hidden'>
+    <div class='margin-top-2 hidden'>
       <div class="error-message-box-insert-form">
-          <p class="bold">Dati invalidi</p>
+          <p class="font-weight-bold">Dati invalidi</p>
           <p>Controlla i dati inseriti e riprova: {error-message} </p>
       </div>
     </div>
 
-    <div class="padding-top-medium">
-
+    <div class="margin-top-2-5">
       <form action="./php/check_form_feed.php" method="post" id="newsForm" onsubmit="return isValidFormFeed()">
           <div class="group-insert-form">      
             <label for="mediaid" class="single-label-form">Media</label>
@@ -53,7 +51,7 @@
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
-          <fieldset>
+          <fieldset class="fieldset-date">
             <legend>Data di rilascio</legend>
               <div class="container-comboBox-data">
                 <div class="group-insert-form">       
