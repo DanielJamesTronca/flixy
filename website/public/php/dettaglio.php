@@ -11,21 +11,34 @@ $description="None";
 $season="/";
 $episode="/";
 $trailer_url="None";
-
+$stars="0";
 
 $serieTvEpisode="";
 $serieTvEpisodeReal="Episodes:";
-$serieTvSeason=" ";
+$serieTvSeason="";
 $serieTvSeasonReal="Season:";
 
 $dbMan = DBManager::getInstance();
-$genreList = $dbMan->query("SELECT Genre.name FROM Genre LEFT JOIN Media ON Genre.id = Media.genre");
 
 function loadInfo($id){
-    $dbMan = DBManager::getInstance();
+  $dbMan = DBManager::getInstance();
+  $numeroStelle=[];
+  $list=Media::getIdMedia($id);
+  $title=$list[0]->name;
+  $duration=$list[0]->duration;
+  $cover_url=$list[0]->cover_url;
+  $description=$list[0]->description;
+  $episode=$list[0]->episodes;
+  $season=$list[0]->seasons;
+  $trailer_url=$list[0]->trailer_url;
+  $stars=$list[0]->stars;
+  $genre=Genre::getNameGenre($list[0]->genre);
 
-    $list=$dbMan->query("SELECT * FROM Media WHERE id='$id'") ;
+  for($i=0;$i<$stars;$i++) {
+    array_push($numeroStelle, "<i class='fa fa-star'></i>");
+  }
 
+<<<<<<< Updated upstream
     $title=$list[0]->name;
     $duration=$list[0]->duration;
     
@@ -34,16 +47,29 @@ function loadInfo($id){
     $episode=$list[0]->episodes;
     $season=$list[0]->seasons;
     $trailer_url=$list[0]->trailer_url;
+=======
+  $arr=array($title,$duration, $cover_url, $description, $episode, $season, $trailer_url, $numeroStelle, $genre);
+  return $arr;
+}
 
-    $arr=array($title,$duration, $cover_url, $description, $episode, $season, $trailer_url);
-    return $arr;
 
+function loadVote($id){
+  $dbMan = DBManager::getInstance();
+  $w=0;
+>>>>>>> Stashed changes
+
+  $pippo= $dbMan->query("SELECT * FROM Vote WHERE media_id='$id'");
+
+  $positive=$pippo[$w]->positive;
+  //TO DO WITH NEGATIVE AND TOTALS VOTE
+  return $positive;
 }
 
 
 $movieId=$_GET["movieId"];
 
-$lista= loadInfo($movieId);  // $movieId instead of 1
+$lista= loadInfo($movieId);  
+$likes=loadVote($movieId);
 
 $title=$lista[0];
 $duration=$lista[1];
@@ -52,71 +78,28 @@ $description=$lista[3];
 $episode=$lista[4];
 $season=$lista[5];
 $trailer_url=$lista[6];
-
-$genre=$genreList[$movieId-1]->name;
+$numeroStelle=$lista[7];
+$genre=$lista[8];
+$genre_aux=$genre[0]->name;
 
 
 
 if($episode==null && $season==null){
-    $output=str_replace("{serieTvEpisode}", $serieTvEpisode,$output);
-    $output=str_replace("{serieTvSeason}", $serieTvSeason,$output);
+  $output=str_replace("{serieTvEpisode}", $serieTvEpisode,$output);
+  $output=str_replace("{serieTvSeason}", $serieTvSeason,$output);
 }
-    else { 
-        $output=str_replace("{serieTvEpisode}", $serieTvEpisodeReal,$output );
-        $output=str_replace("{serieTvSeason}", $serieTvSeasonReal,$output );
+else { 
+  $output=str_replace("{serieTvEpisode}", $serieTvEpisodeReal,$output );
+  $output=str_replace("{serieTvSeason}", $serieTvSeasonReal,$output );
 }
-$actualGenre = $dbMan->query("SELECT * FROM Media WHERE id='$movieId'");
+
+
+
+$actualGenre = Media::getIdMedia($movieId);
 $actualGenre_aux= $actualGenre[0]->genre;
-$realGenre= $dbMan->query("SELECT * FROM Media WHERE genre='$actualGenre_aux'");
+$realGenre= Media::getGenreMedia($actualGenre_aux);
+$genre_variable=Genre::getNameGenre($actualGenre_aux);
 
-$genre_variable= $dbMan->query("SELECT name FROM Genre WHERE id='$actualGenre_aux'");
-
-$figaro=Comment::getCommentsFor($movieId);
-
-
-$lola=Comment::getAvatar($movieId);
-
-function getCommentList($figaro) {
-  $commentList = [];
- 
-
-  for ($x = 0; $x < count($figaro); $x++) {
-    $y=0;
-
-
-    $contenuto = $figaro[$x]->content;
-    $nome_commento=$figaro[$x]->userFullName;
-
-    $id_to_url=$figaro[$x]->userId;
-    
-    $lolito=Comment::getAvatar($id_to_url);
-
-    $finally_url=$lolito[$y]->avatar_url;
-    
-    
-    $commento = file_get_contents("../html/comment.html");
-    $commento = str_replace("{nome_commento}", $nome_commento, $commento);
-    $commento = str_replace("{contenuto_commento}", $contenuto, $commento);
-
-    $commento = str_replace("{avatar_url_commento}", "../".$finally_url, $commento);
-    array_push($commentList, $commento);
-  }
-  return implode($commentList);
-}
-
-
-/*
-$stars=Media
-function getMovieStar($stars) {
-  $starNumber = [];
-
-  for($i=0;$i<$stars;$i++) {
-    array_push($starNumber, "<i class='fa fa-star'></i>");
-  }
-  $card = str_replace("{movieStars}", implode($starNumber), $stelline);
-  return $stelline;
-}
-*/
 
 function getSimilarMovies($realGenre, $genre_variable) {
   $movieList = [];
@@ -127,36 +110,77 @@ function getSimilarMovies($realGenre, $genre_variable) {
     $url = $realGenre[$x]->cover_url;
     $genre_card=$genre_variable[$y]->name;
 
-    
     $card = file_get_contents("../html/similar_content_card.html");
     $card = str_replace("{movieTitle}", $titolo, $card);
     $card = str_replace("{movieGenre}", $genre_card, $card);
-
-    $card = str_replace("{movieCover}", $url, $card);
+    $card = str_replace("{movieCover}", "../public/".$url, $card);
     array_push($movieList, $card);
   }
   return implode($movieList);
 }
 
 
+$comments=Comment::getCommentsFor($movieId);
+
+function getCommentList($comments) {
+  $commentList = [];
+  $y=0;
+
+  for ($x = 0; $x < count($comments); $x++) {
+    
+    $contenuto = $comments[$x]->content;
+    $nome_commento=$comments[$x]->userFullName;
+    $id_to_url=$comments[$x]->userId;
+
+    $id_to_url_aux=Comment::getAvatar($id_to_url);
+    $finally_url=$id_to_url_aux[$y]->avatar_url;
+    
+    $commento = file_get_contents("../html/comment.html");
+    $commento = str_replace("{nome_commento}", $nome_commento, $commento);
+    $commento = str_replace("{contenuto_commento}", $contenuto, $commento);
+    $commento = str_replace("{avatar_url_commento}", "../public/".$finally_url, $commento);
+
+    array_push($commentList, $commento);
+  }
+  return implode($commentList);
+}
+
+/* COMMENTO
 
 
+if(!SessionManager::isUserLogged()){
+  header("Location: ".SessionManager::BASE_URL."home");
+}
+$userIdentification=null;
 
-$output = str_replace("{commentList}", getCommentList($figaro), $output);
+
+function setComments(){
+  $userIdentification = SessionManager::getUserId();
+
+  if(isset($_POST['commentSubmit'])){
+    $message = $_POST['message'];
+
+    $sql=Comment::createComment($userIdentification, $movieId, $message);
+  }
+}
+*/
 
 
+$output = str_replace("{commentList}", getCommentList($comments), $output);
 $output = str_replace("{movieList}", getSimilarMovies($realGenre, $genre_variable), $output);
+
+$output=str_replace("{likes}", $likes,$output);
+$output=str_replace("{dislikes}", $likes,$output);  //DA FARE C'E' LIKES E NON DISLIKES
 
 $output=str_replace("{title}", $title,$output);
 $output=str_replace("{duration}", $duration,$output);
 $output=str_replace("{description}", $description,$output);
 $output=str_replace("{episode}", $episode,$output);
 $output=str_replace("{season}", $season,$output);
-$output=str_replace("{cover_url}", $cover_url,$output);
-$output=str_replace("{genre}", $genre,$output);
+$output=str_replace("{cover_url}", "../public/".$cover_url,$output);
+$output=str_replace("{genre}", $genre_aux,$output);
 $output=str_replace("{trailer_url}",$trailer_url,$output);
 $output=str_replace("{mediaid}",$movieId,$output);
+$output = str_replace("{movieStars}", implode($numeroStelle), $output);
 // echo $output;
-
-
 ?>

@@ -1,199 +1,252 @@
 *{
-    margin: 0em;
-    padding: 0em;
-    font-family: 'Montserrat', sans-serif;
+  margin: 0em;
+  padding: 0em;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body{
-    display: flex;
-    justify-content: center;
-    background-color:#000000;
-    color: white; 
+  display: flex;
+  justify-content: center;
+  background-color:#000000;
+  color: white; 
 }
 
 .content{
-    max-width: 36em;
-    width: 100%;
+  max-width: 36em;
+  width: 100%;
 }
 
 .header{
-    display:flex;
-    justify-content: center;
-    padding-top: 7em;
+  display:flex;
+  justify-content: center;
+  padding-top: 7em;
 }
 
 .primary-color-gradient-text {
-  background: -webkit-linear-gradient(#ff3434, #b70000);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+background: -webkit-linear-gradient(#ff3434, #b70000);
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 .form-title{
+<<<<<<< Updated upstream
     padding-top: 4em;
+=======
+  padding-top: 2em;
+>>>>>>> Stashed changes
 }
 
 .padding-top-small{
-    padding-top: 2em;
+  padding-top: 2em;
 }
 
 .padding-top-medium{
-    padding-top: 3em;
+  padding-top: 3em;
 }
 
 .margin-top-small {
-  margin-top: 2em;
+margin-top: 2em;
 }
 
 .margin-top-medium{
-  margin-top: 3em;
+margin-top: 3em;
 }
 
 .content-center{
-  display:flex;
-  justify-content: center;
+display:flex;
+justify-content: center;
 }
 
 .hidden
 {
-  display: none;
+display: none;
 }
 
 /*  */
 .text-center
 {
-    text-align: center;
+  text-align: center;
 }
 
 .logo{
-    width: 42px;
-    height: 30px;
-    padding: 5px;
+  width: 42px;
+  height: 30px;
+  padding: 5px;
 }
 
 .button{
-  width: 15.5em;
-  height: 2.6em;
-  border-radius: .5em;
+width: 15.5em;
+height: 2.6em;
+border-radius: .5em;
 }
 
 .button-small-form{
-  width: 11em;
-  height: 2.6em;
-  border-radius: .5em;
+width: 11em;
+height: 2.6em;
+border-radius: .5em;
 }
 
 .primary-color-gradient-button{
-  background: rgb(183,0,0);
-  background: linear-gradient(90deg, rgba(183,0,0,1) 0%, rgba(255,52,52,1) 35%);
+background: rgb(183,0,0);
+background: linear-gradient(90deg, rgba(183,0,0,1) 0%, rgba(255,52,52,1) 35%);
 }
 
 .primary-color-gradient-button-reset{
-  background: #191919;
-  background: linear-gradient(90deg, black 0%,#191919 35%);
+background: #191919;
+background: linear-gradient(90deg, black 0%,#191919 35%);
 }
 
 .footer-form{
-  padding-top: 10em;
-  padding-bottom: 1em;
+padding-top: 10em;
+padding-bottom: 1em;
 }
 
 .link{
-  font-weight: 700;
+font-weight: 700;
 }
 
 .error-message-box {
-  width: 80%;
-  border-radius: 1em;
-  background-color: #910223;
-  display:flex;
-  flex-direction: column;
-  padding: 1em;
-  margin: 0 auto;
+width: 80%;
+border-radius: 1em;
+background-color: #910223;
+display:flex;
+flex-direction: column;
+padding: 1em;
+margin: 0 auto;
 }
 
 .bold{
-  font-weight: bold;
+font-weight: bold;
 }
 
 
 /* form starting stylings ------------------------------- */
 
-  .group 			  { 
-    position:relative; 
-    margin-bottom:2.8em;    
+.group 			  { 
+  position:relative; 
+  margin-bottom:2.8em;    
+}
+
+input 				{
+  font-size:1.125em;
+  padding-bottom:.1em;
+  display:block;
+  width:100%;
+  border:none;
+  border-bottom:.06em solid #757575;
+  background-color: #000000;
+  color: white
+}
+input:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+.label-log-reg 				 { 
+  font-size:0.8em;
+  font-weight:normal;
+  position:absolute;
+  left:.3em;
+  bottom: 1.8em;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label 		{
+  top:-1.25em;
+  font-size:.8em;
+  color:white;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; /*width:100%;*/ }
+.bar:before, .bar:after 	{
+  content:'';
+  height:.1em; 
+  width:0;
+  bottom:.06em; 
+  position:absolute;
+  background:#ff0000; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:6.25em; 
+  top:25%; 
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+    from { background:#ff0000; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+    from { background:#ff0000; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+    from { background:#ff0000; }
+  to 	{ width:0; background:transparent; }
+}
+
+/* end form starting stylings ------------------------------- */
+
+
+/* adattamento css per dispositivi mobili/ridimensionamento schermo */
+
+@media (max-width: 768px) { 
+  .content{
+    width:90%;
   }
 
-  input 				{
-    font-size:1.125em;
-    padding-bottom:.1em;
-    display:block;
-    width:100%;
-    border:none;
-    border-bottom:.06em solid #757575;
-    background-color: #000000;
-    color: white
+  .group{
+    padding-left: 5%;
+    padding-right:5%;
   }
-  input:focus 		{ outline:none; }
-  
-  /* LABEL ======================================= */
-  .label-log-reg 				 { 
-    font-size:0.8em;
-    font-weight:normal;
-    position:absolute;
-    left:.3em;
-    bottom: 1.8em;
+
+  .label-log-reg{
+    padding-left: 5%;
+  }
+  .header{
+    padding-top: 3em;
+  }
+
+  .padding-top-small{
+    padding-top: 1em;
   }
   
-  /* active state */
-  input:focus ~ label, input:valid ~ label 		{
-    top:-1.25em;
-    font-size:.8em;
-    color:white;
+  .padding-top-medium{
+    padding-top: 2.5em;
+  }
+
+  .button{
+    width: 12.5em;
   }
   
-  /* BOTTOM BARS ================================= */
-  .bar 	{ position:relative; display:block; /*width:100%;*/ }
-  .bar:before, .bar:after 	{
-    content:'';
-    height:.1em; 
-    width:0;
-    bottom:.06em; 
-    position:absolute;
-    background:#ff0000; 
-    transition:0.2s ease all; 
-    -moz-transition:0.2s ease all; 
-    -webkit-transition:0.2s ease all;
-  }
-  .bar:before {
-    left:50%;
-  }
-  .bar:after {
-    right:50%; 
-  }
-  
-  /* active state */
-  input:focus ~ .bar:before, input:focus ~ .bar:after {
-    width:50%;
-  }
-  
-  /* HIGHLIGHTER ================================== */
-  .highlight {
-    position:absolute;
-    height:60%; 
-    width:6.25em; 
-    top:25%; 
-    pointer-events:none;
-    opacity:0.5;
-  }
-  
-  /* active state */
-  input:focus ~ .highlight {
-    -webkit-animation:inputHighlighter 0.3s ease;
-    -moz-animation:inputHighlighter 0.3s ease;
-    animation:inputHighlighter 0.3s ease;
-  }
-  
+<<<<<<< Updated upstream
   /* ANIMATIONS ================ */
   @-webkit-keyframes inputHighlighter {
       from { background:#ff0000; }
@@ -249,4 +302,9 @@ body{
     .footer-form{
       padding-top: 6em;
     }
+=======
+  .footer-form{
+    padding-top: 6em;
+>>>>>>> Stashed changes
   }
+}
