@@ -176,14 +176,16 @@ class Media extends Base
     public static function addVote($userId, $mediaId, $vote) 
     {
         $dbman = DBManager::getInstance();
-        $mediaId = $this->id;
-        $result = $dbman->query("SELECT * FROM VOTES WHERE user_id =".$userId."AND media_id = ".$mediaId);
-        if ($result != null) {
+        $mediaId = $mediaId;
+        $result = $dbman->query("SELECT * FROM Vote WHERE user_id =".$userId." AND media_id = ".$mediaId);
+        if (count($result) != 0) {
             if ($result[0]->positive != $vote) {
-                return $dbman->query("UPDATE `vote` SET positive={$vote} WHERE user_id = {$userId} AND media_id = {$mediaId}");
+                return $dbman->query("UPDATE Vote SET positive={$vote} WHERE user_id = {$userId} AND media_id = {$mediaId}");
+            } else {
+                return $dbman->query("DELETE FROM Vote WHERE user_id = {$userId} AND media_id = {$mediaId}");
             }
         } else {
-            return $dbman->query("INSERT INTO `vote` (`id`, `user_id`, `media_id`, `created_at`, `updated_at`, `positive`) VALUES (NULL, {$userid}, {$mediaId}, current_timestamp(), current_timestamp(), {$vote})");
+            return $dbman->query("INSERT INTO Vote (`id`, `user_id`, `media_id`, `created_at`, `updated_at`, `positive`) VALUES (NULL, {$userId}, {$mediaId}, current_timestamp(), current_timestamp(), {$vote})");
         }
     }
  }
