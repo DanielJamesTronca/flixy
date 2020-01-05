@@ -74,8 +74,7 @@ class Feed extends Base
         $releases = [];
         $favs = Media::getUserFavourites($userId);
         foreach ($favs as &$fav) {
-
-            if (!$fav->hasEpisodes) {
+            if ($fav->isMovie()) {
                 array_push($releases, new Release($fav));
             } else {
                 $episodes = Episode::getEpisodesFor($fav->id);
@@ -96,7 +95,7 @@ class Feed extends Base
     {
         $this->mediaName = $media->title;
         $this->coverUrl = $media->coverUrl;
-        $this->isMovie = !$media->hasEpisodes;
+        $this->isMovie = $media->isMovie();
         if ($this->isMovie)
         {
                 $this->deadlineDate = $media->airDate;
@@ -106,10 +105,9 @@ class Feed extends Base
         else 
         {
             $this->valid = true;
-            if ($episode == null) {
-                $this->deadlineDate = $episode->airDate;
-                $this->subtitle = "Stagione ".$episode->seasonNum . " episodio ".$episode->episodeNum;
-            }
+            $this->deadlineDate = $episode->airDate;
+            $this->subtitle = "Stagione ".$episode->seasonNum . " episodio ".$episode->episodeNum;
+
         }
         
     }

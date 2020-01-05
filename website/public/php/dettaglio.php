@@ -23,22 +23,22 @@ $dbMan = DBManager::getInstance();
 function loadInfo($id){
   $dbMan = DBManager::getInstance();
   $numeroStelle=[];
-  $list=Media::getIdMedia($id);
-  $title=$list[0]->name;
-  $duration=$list[0]->duration;
-  $cover_url=$list[0]->cover_url;
-  $description=$list[0]->description;
-  $episode=$list[0]->episodes;
-  $season=$list[0]->seasons;
-  $trailer_url=$list[0]->trailer_url;
-  $stars=$list[0]->stars;
-  $genre=Genre::getNameGenre($list[0]->genre);
+  $list=Media::fetch($id);
+  $title=$list->title;
+  $duration=$list->duration;
+  $cover_url=$list->coverUrl;
+  $description=$list->description;
+  $episode=$list->numEpisodes;
+  $season=$list->numSeasons;
+  $trailer_url=$list->trailerUrl;
+  $stars=$list->stars;
+  $genre=$list->genreName;
 
   for($i=0;$i<$stars;$i++) {
     array_push($numeroStelle, "<i class='fa fa-star'></i>");
   }
 
-  $arr=array($title,$duration, $cover_url, $description, $episode, $season, $trailer_url, $numeroStelle, $genre);
+  $arr=array($title,$duration, $cover_url, $description, $episode, $season, $trailer_url, $numeroStelle, $genre, $list->votesPositive, $list->votesTotal, $list->genreId);
   return $arr;
 }
 
@@ -46,7 +46,7 @@ function loadInfo($id){
 $movieId=$_GET["movieId"];
 
 $lista= loadInfo($movieId);  
-$likes=loadVote($movieId);
+$likes= $lista[9];
 
 $title=$lista[0];
 $duration=$lista[1];
@@ -57,7 +57,7 @@ $season=$lista[5];
 $trailer_url=$lista[6];
 $numeroStelle=$lista[7];
 $genre=$lista[8];
-$genre_aux=$genre[0]->name;
+$genre_aux=$genre;
 
 if($episode==null && $season==null){
   $output=str_replace("{serieTvEpisode}", $serieTvEpisode,$output);
@@ -68,11 +68,8 @@ else {
   $output=str_replace("{serieTvSeason}", $serieTvSeasonReal,$output );
 }
 
-
-
-$actualGenre = Media::getIdMedia($movieId);
-$actualGenre_aux= $actualGenre[0]->genre;
-$realGenre= Media::getGenreMedia($actualGenre_aux);
+$actualGenre_aux= $lista[11];
+$realGenre= Media::getMediasWithGenre($actualGenre_aux);
 $genre_variable=Genre::getNameGenre($actualGenre_aux);
 
 
@@ -81,8 +78,9 @@ function getSimilarMovies($realGenre, $genre_variable) {
   $y=0;
 
   for ($x = 0; $x < count($realGenre); $x++) {
-    $titolo = $realGenre[$x]->name;
-    $url = $realGenre[$x]->cover_url;
+    if ($realGenre[$x]->id == $_GET["movieId"]) continue;
+    $titolo = $realGenre[$x]->title;
+    $url = $realGenre[$x]->coverUrl;
     $genre_card=$genre_variable[$y]->name;
 
     $card = file_get_contents("../html/similar_content_card.html");
@@ -148,6 +146,7 @@ $output=str_replace("{likes}", $likes,$output);
 $output=str_replace("{dislikes}", $likes,$output);  //DA FARE C'E' LIKES E NON DISLIKES
 
 $output=str_replace("{title}", $title,$output);
+$output=str_replace("{media_id}", $movieId,$output);
 $output=str_replace("{duration}", $duration,$output);
 $output=str_replace("{description}", $description,$output);
 $output=str_replace("{episode}", $episode,$output);

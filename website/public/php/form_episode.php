@@ -3,6 +3,7 @@ include_once("../../src/controllers/utils.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 
+$media = Media::fetch($_GET["mediaid"]);
 get_media_name($output);
 
 /* START show error message if set */
@@ -68,41 +69,31 @@ function restore_parameters(&$output){
     /*END restore form parameters if available */
 }
 
-
 function get_media_name(&$output){
+    global $media;
     /* START get and set episode name */
-    if(isset($_GET['mediaid'])){
-        $mediaid = $_GET['mediaid'];
-        $mediaName = Media::fetch($mediaid)->title;
-    }
-    else{
-        $mediaid = NULL;
-        $mediaName = "";
-    }
-    $pathGET = "./php/check_form_episode.php?mediaid=".$mediaid;
+    $mediaName = $media->title;
+    $pathGET = "./php/check_form_episode.php?mediaid=".$media->id;
     $output = str_replace("./php/check_form_episode.php",$pathGET,$output);
     $output = str_replace("{mediaName}",$mediaName,$output);
     /* END get and set episode name */
 }
 
 function get_seasons(){
+    global $media;
     $options="";
-    $mediaList = Media::list();
-    if(isset($_GET['mediaid'])){
-        $numSeasons = $mediaList[$_GET['mediaid']-1]->numSeasons;
-        for ($i=1; $i<=$numSeasons; $i++){
+        for ($i=1; $i <= $media->numSeasons; $i++){
             $options.= "<option value='$i'>$i</option>"; 
         }
-    }
     return $options;
 }
 
 function restore_seasons($valueToRestore){
+    global $media;
     $options = "";
     $toRestore = "";
-    $mediaList = Media::list();
-    if(isset($_GET['mediaid'])){
-        $numSeasons = $mediaList[$_GET['mediaid']-1]->numSeasons;
+    
+        $numSeasons = $media->numSeasons;
         for ($i=1; $i<=$numSeasons; $i++){
             if ($i == $valueToRestore){
                 $toRestore = "<option value='$i'>$i</option><optgroup class='secondary-bg' label='--------'>";
@@ -113,41 +104,40 @@ function restore_seasons($valueToRestore){
         }
         $toRestore .= $options;
         $toRestore .= "</optgroup>";
-    }
+    
     return $toRestore;
 }
 
 
 function get_id_episodes(){
+    global $media;
     $options = "";
-    $mediaList = Media::list();
-    if(isset($_GET['mediaid'])){
-        $numEpisodes = $mediaList[$_GET['mediaid']-1]->numEpisodes;
+    
+        $numEpisodes = $media->numEpisodes;
         for ($i=1; $i<=$numEpisodes; $i++){
             /*if(!in_array($i,get_id_episodes_already_defined())) */
                 $options.= "<option value='$i'>$i</option>";
         }
-    }
+    
     return $options;
 }
 
 function get_id_episodes_already_defined(){
+    global $media;
     $idDefinedEpisodes = [];
-    if(isset($_GET['mediaid'])){
-        $listEpisodes = Episode::getEpisodesFor($_GET['mediaid']);
+        $listEpisodes = Episode::getEpisodesFor($media->id);
         foreach($listEpisodes as $index=>$episode){
             $idDefinedEpisodes[$index] = $episode->id;
         }
-    }
     return $idDefinedEpisodes;
 }
 
 function restore_id_episodes($valueToRestore){
+    global $media;
     $options = "";
     $toRestore = "";
-    $mediaList = Media::list();
-    if(isset($_GET['mediaid'])){
-        $numEpisodes = $mediaList[$_GET['mediaid']-1]->numEpisodes;
+
+        $numEpisodes = $media->numEpisodes;
         for ($i=1; $i<=$numEpisodes; $i++){
             if($i == $valueToRestore){
                 $toRestore.= "<option value='$i'>$i</option><optgroup class='secondary-bg' label='--------'>";
@@ -158,7 +148,7 @@ function restore_id_episodes($valueToRestore){
         }
         $toRestore .= $options;
         $toRestore .= "</optgroup>";
-    }
+    
     return $toRestore;
 }
 

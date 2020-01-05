@@ -46,7 +46,6 @@ if (!isset($_POST["mediaTitle"]) || !isset($_POST["description"]) || !isset($_PO
     return;
 }
 
-
 if ($_POST["trailerUrl"]!="" && !Utils::isValidUrl($_POST["trailerUrl"])) {
     $_SESSION['error-message-media'] = "si prega di inserire un link video valido. Il parametro è opzionale.";
     if(isset($_GET['mediaid']))
@@ -79,6 +78,7 @@ if (isTvSeries()){
     $media->numEpisodes = $_POST["numEpisodes"];
     $media->numSeasons = $_POST["numSeasons"];
 }
+
 $media->airDate = Utils::createDate($_POST["day"],$_POST["month"],$_POST["year"]);
 
 if (isset($_POST["trailerUrl"]))
@@ -100,6 +100,7 @@ if (isset($_FILES["cover"]) && $_FILES["cover"]["size"]>0) {
     if($coverUrl!="")
         $media->coverUrl = $coverUrl;
 }
+
 if ($id == null) {
     // create new
     $media->saveInDB();

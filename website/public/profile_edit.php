@@ -11,25 +11,21 @@ if (!SessionManager::isUserLogged()) {
 }
 
 // paremeters to get: name, surname, email, avatar(image)
-if (!isset($_POST["name"]) || !isset($_POST["surname"]) || !isset($_POST["email"])) {
+if (!isset($_POST["name"]) || !isset($_POST["surname"])) {
     echo "Error, Missing parameters";
     return;
 }
 
-$name = $_POST["name"]; $surname = $_POST["surname"]; $email = $_POST["email"];
+$name = $_POST["name"]; $surname = $_POST["surname"]; 
 if (!(isset($name) && !empty($name))) {
     echo "Error, invalid name";
     return;
 }
-if (!(isset($surname) && !empty($surname))) {
-    echo "Error, invalid surname";
-    return;
-}
-if (!(isset($email) && !empty($email) && Utils::is_email($email))) {
-    echo "Error, invalid email";
-    return;
-}
-
+// now save user data
+$userId = SessionManager::getUserId();
+$user = User::getUser($userId);
+$user->name = $name;
+$user->surname = $surname;
 // good to go on these parameters, now check image upload
 $target_dir = "assets/images/avatars/";
 if (isset($_FILES["avatar"])) {
@@ -38,15 +34,8 @@ if (isset($_FILES["avatar"])) {
         echo $upload_result["error"];
         return;
     }
-    $user->avatarUrl = $upload_result["url"];
+    $user->avatarUrl = "/".$upload_result["url"];
 }
-
-// now save user data
-$userId = SessionManager::getUserId();
-$user = User::getUser($userId);
-$user->name = $name;
-$user->surname = $surname;
-$user->email = $email;
 
 $user->saveUser();
 

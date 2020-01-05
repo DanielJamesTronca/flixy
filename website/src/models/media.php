@@ -21,7 +21,7 @@ class Media extends Base
 
     const TABLE_NAME = "Media";
 
-    var $title, $votesTotal, $votesPositive, $description, $coverUrl, $genreId, $genreName, $stars, $duration, $hasEpisodes, $numEpisodes, $numSeasons, $trailerUrl, $airDate, $isFavourite = false;
+    var $title, $votesTotal, $votesPositive, $description, $coverUrl, $genreId, $genreName, $stars, $duration, $hasEpisodes, $numEpisodes = 0, $numSeasons = 0, $trailerUrl, $airDate, $isFavourite = false;
  
     public function __set( $name, $value ) {
         switch ($name)
@@ -72,6 +72,10 @@ class Media extends Base
                 parent::__set($name, $value);
                 break;
         }
+    }
+
+    public function isMovie() {
+        return !$this->hasEpisodes;
     }
 
     public function saveInDB() {
@@ -187,6 +191,11 @@ class Media extends Base
         } else {
             return $dbman->query("INSERT INTO Vote (`id`, `user_id`, `media_id`, `created_at`, `updated_at`, `positive`) VALUES (NULL, {$userId}, {$mediaId}, current_timestamp(), current_timestamp(), {$vote})");
         }
+    }
+
+    public function getMediasWithGenre($genreId) {
+        $dbMan = DBManager::getInstance();
+        return $dbMan->query("SELECT * FROM Media WHERE genre='$genreId'", Media::class);
     }
  }
 

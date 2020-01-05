@@ -1,8 +1,7 @@
 <?php
-include_once("../src/controllers/utils.php");
-include_once("../src/session_manager.php");
-include_once("../src/db_manager.php");
-include_once("../src/models/models.php");
+include_once("../../src/session_manager.php");
+include_once("../../src/db_manager.php");
+include_once("../../src/models/models.php");
 
 // IS USER LOGGED? 
 
@@ -24,27 +23,11 @@ if (!(isset($content) && !empty($content))) {
 
 // SAVE COMMENT
 $userId = SessionManager::getUserId();
-$user = User::getUser($userId);
-$movieId=$_GET["movieId"];
+$movieId=$_POST["movieId"];
 
-$comment->user_id=$user;
-$comment->media_id=$movieId;
-$comment->content=$comment;
+Comment::createComment($userId,$movieId,$content); 
 
-
-
-/*
-$user->name = $name;
-$user->surname = $surname;
-$user->email = $email;
-*/
-
-
-//MISSING GET COMMENT
-
-/* getComment  -> createComment($user,$movieId,$comment); */
-
-header("Location: ".SessionManager::BASE_URL."dettaglio");
+header("Location: ".SessionManager::BASE_URL."dettaglio"."&movieId=".$movieId);
 
 
 

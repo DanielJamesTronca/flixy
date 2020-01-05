@@ -762,6 +762,9 @@ option {
 .profile-pic-size {
 	height: 34px;
 	width: 34px;
+	border: 2px solid white;
+	border-radius: 50%;
+	object-fit: cover;
 }
 
 .footer {
@@ -784,6 +787,7 @@ option {
 	display: block;
 	width: 15.063em;
 	height: 22.320em;
+	object-fit: cover;
 }
 
 .stars-active {
