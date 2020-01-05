@@ -1,14 +1,22 @@
 <?php
 
 include_once("../../src/db_manager.php");
+include_once("../../src/session_manager.php");
 include_once("../../src/models/models.php");
 
-$output = str_replace("{feed-timeline}",generate_feed_timeline(1),$output); //da sostituire 1 con userId!!
-$output = str_replace("{feed-next-releases}",generate_feed_next_releases(1),$output); //da sostituire 1 con userId!!
+$userId = null;
+if (SessionManager::isUserLogged()) {
+    $userId = SessionManager::getUserId();
+} else {
+    echo "Devi fare l'accesso per vedere il contenuto di questa pagina";
+    return;
+}
+$output = str_replace("{feed-timeline}",generate_feed_timeline($userId),$output); //da sostituire 1 con userId!!
+$output = str_replace("{feed-next-releases}",generate_feed_next_releases($userId),$output); //da sostituire 1 con userId!!
 
 
 function generate_feed_next_releases($userId){
-    $arrayReleases = Feed::getReleases($userId); 
+    $arrayReleases = Feed::getReleases($userId);
     if(isset($arrayReleases)){
         $stringToReturn = "";
         foreach($arrayReleases as $release){
