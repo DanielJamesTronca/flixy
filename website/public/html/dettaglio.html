@@ -1,63 +1,69 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
-
 <head>
     <title>Flixy - Dettaglio Film</title>
     <meta name="title" content="Flixy - Dettaglio" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-  <base target="_self" href="http://192.168.64.2/flixy/website/public">
+  <base target="_self" href="http://192.168.64.3/flixy/website/public">
+
     <link rel="stylesheet" type="text/css" href="assets/dettaglio.css" />
     <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
-
 </head>
 
-
-
-<body class="document-font secondary-bg">
+<body class="document-font">
+    <div id="dettaglio-content" class="secondary-bg">
 
     <!-- FLEXIBLE GRID -->
     <div id="row" class="flex-container flex-wrap ">
         <div id="side" class="flex-container flex-grow-shrink ">
-            <!-- COPERTINA MOVIE -->
+    <!-- COPERTINA MOVIE -->
             <div>
                 <img id="copertina" class="border-radius-0-5" src="{cover_url}" alt="copertina" />
             </div>
         </div>
 
         <!-- MAIN CONTENT -->
-        <div id="main" class="flex-container flex-wrap secondary-bg ">
+        <div id="main" class="flex-container flex-wrap">
             <div id="info" class="primary-color">
                 <h1 id="text" class="document-font font-size-2-2">{title}</h1>
 
-                <!--
-                <div class="margin-left-0-6 font-size-1 rating primary-color flex-container flex-content-space-between flex-align-items-center">
-                    <span id="activeStars" class="stars-active text-align-left">
+                
+                <div class="font-size-1 flex-container">
+                    <span id="activeStars" class="stars-active">
                       {movieStars}
                     </span>
                 </div>
-                -->
-
-                <div id="fav-section" class="primary-color">
-                    <a><i id="fav-icon" class="fas fa-heart font-size-2-2 margin-right-1-5"></i></a>
-
-                </div>
+            
 
                 <div id="column">
                     <h2 class="document-font font-size-0-938">Genere: {genre}</h2>
                     <h2 class="document-font font-size-0-938">Durata: {duration}</h2>
                     <h2 class="document-font font-size-0-938">{serieTvEpisode} {episode}</h2>
                     <h2 class="document-font font-size-0-938">{serieTvSeason} {season}</h2>
+                    
+                    <div id="fav-section" class="text-align-center primary-color {mediaNotFav}">
+                        <form name="setFavForm" method="POST" action="toggle_favorite.php">
+                          <input type="hidden" value="{movieID}" name="mediaID"></input>
+                          <input type="hidden" value="dettaglio" name="redirectURL"></input>
+                          <input type="hidden" value="1" name="fav"></input>
+                          <button id="fav-icon" class="fas fa-heart custom-button-no-hover font-size-1-7"></button>
+                          <label for="fav'icon" id="fav-text" class="text-align-center just font-size-0-75">Add to your favourites</label>
+                        </form>
+                    </div>
                 </div>
 
-                <p class="margin-top-4 document-font text-align-justify font-size-0-8 descrivendo">
+                <p class="margin-top-2 text-align-justify font-size-0-8 padding-right-1-5 descrivendo">
                     {description}
                 </p>
 
                 <div id="votes">
+                    <!-- 
                     <span id="num-votes"
                         class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"> </span>
+                    -->
+
                     <div id="thumbs" class="text-align-center primary-color font-size-2-2">
                         <a href="" class="custom-link "><i id="thumbs-up"
                                 class="primary-color far fa-thumbs-up"></i></a>
@@ -69,71 +75,59 @@
                         <span id="num-down">{dislikes}</span>
                     </div>
                 </div>
-
-
             </div>
-
-
         </div>
     </div>
 
+    
 
-    <div id="three_buttons" class="margin-top-2 text-align-left">
+    <div id="three_buttons" class="margin-top-2 text-align-left padding-left-1">
             <div class="bottone">
                 <a href="php/layout.php?page=formmedia&mediaid={mediaid}" class="button primary-color-gradient-button padding-1">Modifica</a>
-              </div>
-              <div class="bottone">
+            </div>
+            <div class="bottone">
                 <a href="php/layout.php?page=formepisode&mediaid={mediaid}" class="button primary-color-gradient-button padding-1">Aggiungi episodio</a>
-              </div>
+            </div>
     </div>
 
 
 
-    <div id="trailer" class="flex-container flex-grow-shrink flex-content-start flex-align-items-center">
-        <div id="yt" class="padding-left-2 margin-top-2">
-            <h1 class="primary-color font-size-2-2 text-align-left">Trailer</h1>
+    <div id="trailer" class="flex-container flex-content-start flex-align-items-center">
+        <div id="yt" class="margin-top-2">
+            <h1 class="primary-color padding-left-1 padding-bottom-0-5 font-size-2-2 text-align-left">Trailer</h1>
             <object class="video_yt padding-left-2" data="{trailer_url}"></object>
         </div>
     </div>
 
 
 
-    <div id="similar" class="margin-top-2 text-align-left padding-left-2">
-       
-        <!-- MAYBE NEED A FIX -->
-        <h1 class="primary-color font-size-2-2 text-align-left">Contenuti simili</h1>
-        <div class="flex-container flex-grow-shrink flex-content-start flex-wrap ">
+    <div id="similar" class="margin-top-2 text-align-left ">
+        <h1 class="primary-color font-size-2-2 padding-left-1 padding-bottom-0-5 text-align-left">Contenuti simili</h1>
+        <div class="flex-container padding-left-2 flex-grow-shrink flex-content-start flex-wrap ">
             {movieList}
         </div>
-      
-
     </div>
 
 
 
-    <div id="comment-section" class="flex-container flex-content-start flex-align-items-left padding-left-2 margin-top-2">
-        <div id="commentiamo">
-            <h1 class="primary-color font-size-2-2 padding-bottom-0-4">Commenti </h1>
+    <div id="comment-section" class="flex-container flex-content-start margin-top-2 flex-align-items-left">
+        <div id="commentiamo" class="padding-left-2">
+            <h1 class="primary-color font-size-2-2 padding-bottom-0-5">Commenti </h1>
 
-            <form action="" method="post">
-                <!-- onsubmit? -->
-                <div class="group padding-left-2">
-                    <label for="" class="primary-color">Inserisci il tuo commento qui</label>
-                    <input type="text" name="commento" id="commento" />
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                </div>
+            <form action="post_comment.php" method="post" class="flex-container">
+                    <textarea name="message" class="textbox secondary-bg">Inserisci il tuo commento qui</textarea>              
+                    <input type="submit" value="Submit" name="commentSubmit" id="submit" class="button2 primary-color-gradient-button">
             </form>
+            <div class="comment_list margin-bottom-2">
+                {commentList}
+            </div>
         </div>
     </div>
-
-    <div class="comment_list padding-left-2">
-        {commentList}
-    </div>
-
-
-
-
+</div>
 </body>
-
 </html>
+
+</div>
+
+
+

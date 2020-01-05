@@ -536,16 +536,18 @@
 
 
 
+
+
 .movie-entry {
     width: 11.25em;
-    height: 20.1875em;
-    background: black;
+    height: 21.1875em;
     margin-top: 1em;
     margin-bottom: 1em;
     margin-left: 1.5em;
     margin-right: 0.5em;
-    flex-grow: 0;
     border-radius: .5em;
+    border: 1px solid #ffffff;
+    
 }
 
 .copertina-size {
@@ -557,26 +559,25 @@
 
 .ara{
   display: inline-block;
-    width: 77%;
+  height: 2em;
+  width: 100%;
 }
 
 
-
+#fav-text{
+    display: none;
+}
 
 
 
 #fav-section{
    display: inline-block;
    margin-left: 10px;
-   position: fixed;
-   margin-top: 1em;
-
+   width: 20%;
 }
 
 #fav-icon{
-    color: red;
-    
-    
+    color: red; 
 }
 
 #fav-icon:hover{

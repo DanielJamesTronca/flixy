@@ -173,6 +173,7 @@ class Media extends Base
         return $dbman->query("SELECT DISTINCT YEAR(air_date) as anno FROM Media");
     }
 
+
     public static function addVote($userId, $mediaId, $vote) 
     {
         $dbman = DBManager::getInstance();
