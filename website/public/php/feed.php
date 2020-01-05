@@ -16,28 +16,27 @@ $output = str_replace("{feed-next-releases}",generate_feed_next_releases($userId
 
 
 function generate_feed_next_releases($userId){
-    $arrayReleases = Feed::getReleases($userId);
+    $arrayReleases = get_next_releases_group_by_media(Feed::getReleases($userId));
     if(isset($arrayReleases)){
         $stringToReturn = "";
-        foreach($arrayReleases as $release){
-            if (is_future_date($release->deadlineDate)){
-                $title = $release->mediaName;
-                $subtitle = $release->subtitle;
-                $coverImage = $release->coverUrl;
-                $remainingDays = get_remaining_days($release->deadlineDate);
-                $element = "<div class='next-release'>
-                                <div class='next-release-image-container'>
-                                    <img src='$coverImage' class='cover' alt='immagine copertina'/>
-                                </div>
-                                <div class='next-release-text-area padding-1 text-align-center'> 
-                                    <h4>$title</h4>
-                                    <h6>$subtitle</h6>
-                                    <p class='next-release-remaining-days'>$remainingDays</p>
-                                    <p> giorni rimanenti </p>
-                                </div>    
-                            </div>";
-                $stringToReturn .= $element;
-            }
+        foreach($arrayReleases as $rel){
+            $release = get_next_episode_to_release($rel);
+            $title = $release->mediaName;
+            $subtitle = $release->subtitle;
+            $coverImage = $release->coverUrl;
+            $remainingDays = get_remaining_days($release->deadlineDate);
+            $element = "<div class='next-release'>
+                            <div class='next-release-image-container'>
+                                <img src='$coverImage' class='cover' alt='immagine copertina'/>
+                            </div>
+                            <div class='next-release-text-area padding-1 text-align-center'> 
+                                <h4>$title</h4>
+                                <h6>$subtitle</h6>
+                                <p class='next-release-remaining-days'>$remainingDays</p>
+                                <p> giorni rimanenti </p>
+                            </div>    
+                        </div>";
+            $stringToReturn .= $element;
         }
     }
     return $stringToReturn;
@@ -98,9 +97,12 @@ function get_media($feedObj){
 }
 
 
-function is_future_date($dateToCheck){
+function is_future_date($dateToCheck,$referenceDate = null){
+    if ($referenceDate!=null)
+        $dteEnd = new DateTime($referenceDate);
+    else
+        $dteEnd = new DateTime(date("Y-m-d"));
     $dteStart = new DateTime($dateToCheck);
-    $dteEnd = new DateTime(date("Y-m-d"));
     $dteDiff  = date_diff($dteStart,$dteEnd);
     $diffInDays = (int)$dteDiff->format("%r%a"); //%r da il segno(+,-), %a i giorni
     if ($diffInDays<0){
@@ -163,12 +165,12 @@ function get_content($object){
         return $object->content;
     }
     else{
-        if($object->isMovie){
+        if ($object->description!="")
+            return $object->description;
+        else if($object->isMovie)
             return "L'attesissimo film è finalmente stato rilasciato!";
-        }
-        else{
+        else
             return "Il nuovo episodio è finalmente stato rilasciato!";
-        }
     }
 }
 
@@ -196,6 +198,26 @@ function get_past_releases($arrayReleases){
         }
     }
     return $arrayPastRelease;
+}
+
+
+function get_next_releases_group_by_media($releases){
+    $array = [];
+    foreach($releases as $rel){
+        if(is_future_date($rel->deadlineDate))
+            $array[$rel->mediaid][] = $rel;
+    }
+    return $array;
+}
+
+function get_next_episode_to_release($sameMediaReleases){
+    $nextRel = reset($sameMediaReleases);
+    foreach($sameMediaReleases as $rel){
+        if (is_future_date($rel->deadlineDate) && !is_future_date($rel->deadlineDate, $nextRel->deadlineDate)){
+            $nextRel = $rel;
+        }
+    }
+    return $nextRel;
 }
 
 ?>

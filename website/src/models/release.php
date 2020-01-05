@@ -88,11 +88,12 @@ class Feed extends Base
  }
 
  class Release {
-     var $mediaName, $deadlineDate, $subtitle, $isMovie, $coverUrl, $promoUrl;
+     var $mediaid, $mediaName, $deadlineDate, $subtitle, $isMovie, $coverUrl, $promoUrl, $description;
      var $valid = false;
 
      public function __construct($media, $episode = null)
     {
+        $this->mediaid = $media->id;
         $this->mediaName = $media->title;
         $this->coverUrl = $media->coverUrl;
         
@@ -103,6 +104,7 @@ class Feed extends Base
                 $this->subtitle = "Rilascio film";
                 $this->valid = true;
                 $this->promoUrl = $media->trailerUrl;
+                $this->description = $media->description;
         }
         else 
         {
@@ -110,6 +112,7 @@ class Feed extends Base
             $this->deadlineDate = $episode->airDate;
             $this->subtitle = "Stagione ".$episode->seasonNum . " episodio ".$episode->episodeNum;
             $this->promoUrl = $episode->promoUrl;
+            $this->description = $episode->description;
 
         }
         

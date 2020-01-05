@@ -191,7 +191,7 @@ class Utils {
 
     public static function getYearFromData($date){
         $dateTime = new DateTime($date);
-        return date_format($dateTime,"y");
+        return date_format($dateTime,"Y");
     }
 
     public static function isValidDate($day,$month,$year){
