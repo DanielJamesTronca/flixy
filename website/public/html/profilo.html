@@ -5,77 +5,81 @@
 <head>
   <title>Flixy - Profilo </title>
   <meta name="title" content="Flixy - Profilo" />
-
-  <base target="_self" href="http://localhost/flixy/website/public/">
+  <base target="_self" href="http://192.168.64.2/flixy/website/public/">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel="stylesheet" type="text/css" href="assets/profilo.css"/>
+  <link rel="stylesheet" type="text/css" href="assets/profilo.css" />
 </head>
 
 
-<body class="document-font secondary-bg">
+<body class="document-font">
+  <div id="profilo-content" class="secondary-bg">
 
-<div id="row" class="flex-container flex-wrap">
-  <div id="side" class="flex-container flex-grow-shrink flex-align-items-center padding-2 ">
-    
+    <div id="row" class="flex-container flex-wrap">
+      <div id="side" class="flex-container flex-grow-shrink flex-align-items-center padding-2 ">
+
         <!-- AVATAR -->
         <div>
-          <img id="avatar" src="{avatar_url}" alt="Immagine profilo"/>
+          <img id="avatar" src="{avatar_url}" alt="Immagine profilo" />
         </div>
-        <a href="#" id="link" class="margin-bottom-2 margin-top-2 primary-color font-size-0-938"> Cambia immagine profilo </a> 
-
-       
+     
         <!-- CAMPI -->
-        <form action="profile_edit.php" method="post">
-          <div class="group">  
-            <div class="group">  
-              <label for="name" class="primary-color">Nome</label>    
+        <form action="profile_edit.php" method="post" enctype="multipart/form-data">
+          <div class="group">
+            <label for="file-upload" class="upload-foto">
+              <i class="fas fa-camera"></i> Cambia immagine profilo
+            </label>
+            <input id="file-upload"  name="avatar" type="file"/>
+          </div>
+          
+          <div class="group">
+            <div class="group">
+              <label for="name" class="primary-color">Nome</label>
               <input type="text" name="name" id="name" value="{name}" />
               <span class="highlight"></span>
               <span class="bar"></span>
-            </div>    
-            <div class="group">     
-              <label for="surname" class="primary-color">Surname</label> 
-              <input type="text" name="surname" id="surname" value="{surname}"/>
+            </div>
+            <div class="group">
+              <label for="surname" class="primary-color">Surname</label>
+              <input type="text" name="surname" id="surname" value="{surname}" />
               <span class="highlight"></span>
               <span class="bar"></span>
             </div>
-            <div class="group">      
+            <div class="group">
               <label for="email" class="primary-color">Email</label>
-              <input type="text" name="email" id="email" value="{email}"/>
+              <input disabled type="text" name="email" id="email" value="{email}" />
               <span class="highlight"></span>
               <span class="bar"></span>
             </div>
             <label for="username" class="primary-color">Username</label>
-            <input type="text" name="username" id="username" value="{username}"/>
+            <input disabled type="text" name="username" id="username" value="{username}" />
             <span class="highlight"></span>
             <span class="bar"></span>
           </div>
-         
-          
+
+
           <div class="content-center">
-            <input type="submit" value="Aggiorna profilo" class="button primary-color-gradient-button"/>
+            <input type="submit" value="Aggiorna profilo" class="button primary-color-gradient-button" />
           </div>
-         
+
         </form>
+      </div>
+
+      <div id="main" class="flex-container flex-wrap">
+
+        <div id="similar" class="padding-left-2">
+          <h1 class="primary-color font-size-2-2 text-align-left contenuti_simili">Your Favourites</h1>
+          <div class=" flex-container flex-grow-shrink flex-content-start flex-wrap  ">
+            {favouriteList}
+          </div>
+        </div>
+
+      </div>
 
 
-  </div>
-
-  <div id="main" class="flex-container flex-wrap secondary-bg ">
- 
-  <div id="similar" class="padding-left-2">    <!-- MAYBE NEED A FIX -->
-    <h1 class="primary-color font-size-2-2 text-align-left contenuti_simili">Your Favourites</h1>
-    <div class=" flex-container flex-grow-shrink flex-content-start flex-wrap padding-left-2 ">
-        {favouriteList}
     </div>
+
   </div>
-      
-  </div>
-
-
-</div>
-
-
 
 </body>
+
 </html>

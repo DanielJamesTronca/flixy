@@ -558,6 +558,9 @@
 #avatar_comment{
     height: 2.85em;
     width: 2.85em;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid white;
 }
 
 

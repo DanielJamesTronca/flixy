@@ -74,51 +74,40 @@ class Feed extends Base
         $releases = [];
         $favs = Media::getUserFavourites($userId);
         foreach ($favs as &$fav) {
-            array_push($releases, new Release($fav));
+            if ($fav->isMovie()) {
+                array_push($releases, new Release($fav));
+            } else {
+                $episodes = Episode::getEpisodesFor($fav->id);
+                foreach ($episodes as &$epi) {
+                    array_push($releases, new Release($fav, $epi));
+                }
+            }
         }
         return $releases;
     }
  }
 
  class Release {
-     var $mediaName, $deadlineDate, $sutitle, $isMovie, $coverUrl;
+     var $mediaName, $deadlineDate, $subtitle, $isMovie, $coverUrl;
      var $valid = false;
 
-     public function __construct($media)
+     public function __construct($media, $episode = null)
     {
         $this->mediaName = $media->title;
         $this->coverUrl = $media->coverUrl;
-        $this->isMovie = !$media->hasEpisodes;
+        $this->isMovie = $media->isMovie();
         if ($this->isMovie)
         {
-            
                 $this->deadlineDate = $media->airDate;
-                $this->sutitle = "Rilascio film";
+                $this->subtitle = "Rilascio film";
                 $this->valid = true;
-        
         }
         else 
         {
-            // get episodes
-            $episodes = Episode::getEpisodesFor($media->id);
-            $nextEpisode = null;
-            foreach ($episodes as &$epi) {
-                if (!$epi->aired)
-                {
-                    if ($nextEpisode == null) {
-                        $nextEpisode = $epi;
-                    }
-                    else if ($nextEpisode->airDate > $epi->airDate) {
-                        $nextEpisode = $epi;
-                    }
-                }
-            }
-            if ($nextEpisode != null)
-            {
-                $this->valid = true;
-                $this->deadlineDate = $nextEpisode->airDate;
-                $this->sutitle = "Stagione ".$nextEpisode->seasonNum . " episodio ".$nextEpisode->episodeNum;
-            }
+            $this->valid = true;
+            $this->deadlineDate = $episode->airDate;
+            $this->subtitle = "Stagione ".$episode->seasonNum . " episodio ".$episode->episodeNum;
+
         }
         
     }

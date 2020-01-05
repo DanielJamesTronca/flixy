@@ -21,12 +21,13 @@ if (isset($_POST["redirectURL"]) && isset($_POST["movieID"]) && isset($_POST["vo
     $media = Media::fetch($mediaID);
     switch ($vote) {
         case "like":
-            $media->addVote($userId, 1);
+            $media->addVote($userId, $mediaID, 1);
         break;
         case "dislike":
-            $media->addVote($userId, 0);
+            $media->addVote($userId, $mediaID, 0);
         break;
     }
+
     header("Location: ".SessionManager::BASE_URL.$redirectURL);
 } else {
     echo "Parametri incorretti";
