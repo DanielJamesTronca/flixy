@@ -22,7 +22,7 @@ function generate_feed_next_releases($userId){
         foreach($arrayReleases as $release){
             if (is_future_date($release->deadlineDate)){
                 $title = $release->mediaName;
-                $subtitle = $release->sutitle;
+                $subtitle = $release->subtitle;
                 $coverImage = $release->coverUrl;
                 $remainingDays = get_remaining_days($release->deadlineDate);
                 $element = "<div class='next-release'>
@@ -156,7 +156,7 @@ function get_subtitle($object){
         return $object->subtitle;
     }
     else{
-        return $object->sutitle;
+        return $object->subtitle;
     }
 }
 
