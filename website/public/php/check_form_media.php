@@ -80,20 +80,25 @@ if (isTvSeries()){
     $media->numSeasons = $_POST["numSeasons"];
 }
 $media->airDate = Utils::createDate($_POST["day"],$_POST["month"],$_POST["year"]);
+
 if (isset($_POST["trailerUrl"]))
     $media->trailerUrl = Utils::convert_url_to_embed($_POST["trailerUrl"]);
 
 // good to go on these parameters, now check image upload
-$target_dir = "/assets/images/covers/";
-if (isset($_FILES["cover"])) {
-    $upload_result = Utils::uploadImage($target_dir, $_FILES["cover"], "..");
+$target_dir = "assets/images/covers/";
+
+if (isset($_FILES["cover"]) && $_FILES["cover"]["size"]>0) { 
+    $upload_result = Utils::uploadImage($target_dir, $_FILES["cover"],"../");
     if ($upload_result["success"] === false) {
         echo $upload_result["error"];
         return;
     }
     $media->coverUrl = $upload_result["url"];
-} else if (isset($_POST["coverUrl"])) {
-    $media->coverUrl = $_POST["coverUrl"];
+} else{
+    $mediaAttributes = Media::fetch($id);
+    $coverUrl = $mediaAttributes->coverUrl;
+    if($coverUrl!="")
+        $media->coverUrl = $coverUrl;
 }
 if ($id == null) {
     // create new
@@ -107,7 +112,7 @@ if ($id == null) {
     header("Location: ".SessionManager::BASE_URL."dettaglio&movieId=".$id);
     
 }
-
+unset($_FILES);
 Utils::unsetAll(array('error-message-media','title','description','genreid','stars','duration','hasEpisodes','numEpisodes','numSeasons','trailerUrl','day','month','year'));
 
 function isTvSeries(){
