@@ -34,8 +34,8 @@
 
             <div id="search-container" class="primary-color flex-container flex-grow-shrink flex-align-items-center flex-content-center">
                 <form id="search-bar" class="secondary-bg" method="get" action="">
-                    <div class="button-wrapper flex-container justify-content-center flex-align-items-center">
-                        <button id="search-button" class="custom-button font-size-1-7 primary-color flex-grow-shrink" type="submit">
+                    <div class="custom-fieldset flex-container justify-content-center flex-align-items-center">
+                        <button id="search-button" class="custom-button-no-hover font-size-1-7 primary-color flex-grow-shrink" type="submit">
                             <i id="search-icon" class="margin-left-1 fas fa-search"></i>
                         </button>
                         <input name="page" type="hidden" value="home"></input>
@@ -46,12 +46,12 @@
             <div id="profile-container" class="flex-container flex-align-items-center flex-grow-shrink">
                 <ul id="profile-links" class="text-align-right">
                     <li>
-                        <a id="log-in" class="font-size-0-938 font-weight-normal" href="{link_to_profile_or_log_in}">
+                        <a id="log-in" class="font-size-0-938 font-weight-normal custom-link" href="{link_to_profile_or_log_in}">
                             {login_O_username}
                         </a>
                     </li>
                     <li>
-                        <a id="sign-up" class="font-size-0-75 font-weight-light" href="{link_to_log_out_or_register}">
+                        <a id="sign-up" class="font-size-0-75 font-weight-light custom-link" href="{link_to_log_out_or_register}">
                             {logout_O_registrazione}
                         </a>
                     </li>
@@ -61,7 +61,7 @@
         </div>
     </div>
     
-    <div id="content-container" class="flex-container padding-bottom-2-5 ">
+    <div id="content-container" class="flex-container padding-bottom-2-5 flex-direction-row">
         <div id="aside1" class="flex-grow-shrink"></div>
             <div {contentLayout} class="flex-grow-bigger">
                 {content}

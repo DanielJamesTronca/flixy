@@ -43,7 +43,7 @@
     </div>
     <div class="text-align-center primary-color {mediaNotFav}">
       <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
-        <fieldset class="button-wrapper">
+        <fieldset class="custom-fieldset">
           <input type="hidden" value="{movieID}" name="movieID"></input>
           <input type="hidden" value="home" name="redirectURL"></input>
           <input type="hidden" value="1" name="fav"></input>
@@ -54,14 +54,13 @@
     </div>
     <div class="text-align-center primary-color {mediaIsFav}">
       <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
-        <fieldset class="button-wrapper">
+        <fieldset class="custom-fieldset">
           <input type="hidden" value="{movieID}" name="movieID"></input>
           <input type="hidden" value="home" name="redirectURL"></input>
           <input type="hidden" value="0" name="fav"></input>
           <button id="rm-fav-icon" class="fas fa-heart fav-icon custom-button-no-hover font-size-1-1"></button>
           <label for="rm-fav-icon" class="text-align-center font-size-0-625">Remove from favourites</label>
         </fieldset>
-        
       </form>
     </div>
   </div>
