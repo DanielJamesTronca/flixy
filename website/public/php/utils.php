@@ -63,7 +63,6 @@
       $result = Media::list($userId, null, $year, null, null, "ASC");
     } else if ($genre != "All") {
       $result = Media::list($userId, null, null, $genreId, null, "ASC");
-      console_log($genreId);
     } else {
       $result = Media::list($userId, null,null,null, null, "ASC"); 
     }
@@ -73,9 +72,10 @@
   function checkMovie($id) {
     $votedMovies = null;
     if (SessionManager::isUserLogged()) {
-      $votedMovies = Media::getUserVotes(SessionManager::getUserId());
+      $userId = SessionManager::getUserId();
+      $votedMovies = Media::getUserVotes($userId);
     }   
-    if ($votedMovies && count($votedMovies)) {
+    if ($votedMovies != null) {
       for ($x = 0; $x < count($votedMovies); $x++) {
         if ($votedMovies[$x]->media_id == $id) {
           switch ($votedMovies[$x]->positive) {
@@ -104,7 +104,8 @@
     $card = str_replace("{coverURL}", "../public/".$coverUrl, $card);
     $card = str_replace("{movieID}", $id, $card);
     $card = str_replace("{linkDettaglioMovie}", "./php/layout.php?page=dettaglio&movieId=".$id, $card);
-    switch(checkMovie($id)) {
+    $check = checkMovie($id);
+    switch($check) {
       case 1:
         $card = str_replace("{like-selected}", "thumb-selected", $card);
       break;

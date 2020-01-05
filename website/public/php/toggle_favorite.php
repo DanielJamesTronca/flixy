@@ -14,9 +14,9 @@ if (SessionManager::isUserLogged()) {
     echo "Utente non autenticato";
 }
 
-if (isset($_POST["redirectURL"]) && isset($_POST["mediaID"]) && isset($_POST["fav"])) {
+if (isset($_POST["redirectURL"]) && isset($_POST["movieID"]) && isset($_POST["fav"])) {
     $redirectURL = $_POST["redirectURL"];
-    $mediaID = $_POST["mediaID"];
+    $mediaID = $_POST["movieID"];
     $fav = $_POST["fav"];
 
     $media = Media::fetch($mediaID);

@@ -70,5 +70,4 @@ if ($movieList != '') {
 } else {
   $output = str_replace("{movieList}", "Nessun file multimediale trovato.", $output);
 }
-
 ?>
