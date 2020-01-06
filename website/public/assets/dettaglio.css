@@ -544,16 +544,16 @@
 
 
 
+
+
+
+
+
 #num-up, #num-down{
     margin-top: .3em;
     margin-right: 1.4em;
     margin-left: 1.4em;
 }
-
-
-
-
-
 
 
 #dettaglio-content{
@@ -594,10 +594,17 @@
       border-radius: .5em;
   }
 
-  #column{
-    -webkit-column-count: 3; /* Old Chrome, Safari and Opera */
-    -moz-column-count: 3; /* Old Firefox */
-    column-count: 3;
+  .column{
+    -webkit-column-count: 2; /* Old Chrome, Safari and Opera */
+    -moz-column-count: 2; /* Old Firefox */
+    column-count: 2;
+    
+  }
+
+
+
+  #text{
+    text-transform: uppercase;  
   }
 
 
@@ -629,15 +636,11 @@
     float: left;
 }
 
-a{
-    text-decoration: none;
-}
+
       
-
-
 textarea{
     display: inline-block;
-     width: 80%;
+    width: 85%;
 }
 
   .textbox{
@@ -650,12 +653,11 @@ textarea{
      overflow: auto;
      background-color: #000000;
      font-size: 1em;
-     
   }
 
-  #submit{
+  #submit_comment{
       display: inline-block;
-      width: 20%;
+      width: 15%;
       margin-left: 1em;
   }
 
@@ -664,6 +666,7 @@ textarea{
     height: 2.6em;
     border-radius: .5em;
     cursor: pointer;
+    text-decoration: none;
   }
   
   .button2{
@@ -718,11 +721,6 @@ textarea{
 }
 
 
-#threebuton{
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-}
 .bottone{
     display:inline-block;
     padding: .8em;
@@ -752,7 +750,7 @@ textarea{
 
 
 
-@media only screen and (max-width:1280px){
+@media only screen and (max-width:1365px){
    
     #side{
         display: flex;
@@ -839,7 +837,7 @@ textarea{
         justify-content: center;
      }
 
-     .descrivendo{
+     .description{
          padding-right: 2em;
          padding-top: 2em;
      }
