@@ -55,11 +55,11 @@ switch($displayMovieList) {
   break;
   case 1: {
     $output = str_replace("{latestSelected}", "custom-link-bg-selected", $output);
-    $result = Media::list($userId, null,null,null, "air_date", "DESC"); 
+    $result = Media::list($userId, null,null,null, null, "air_date", "DESC"); 
   } break;
   case 2: { 
     $output = str_replace("{mostVotesSelected}", "custom-link-bg-selected", $output);
-    $result = Media::list($userId, null,null,null,"votes_positive", "DESC"); 
+    $result = Media::list($userId, null,null,null, null, "votes_positive", "DESC"); 
   } break;
   case 3: 
     $result = filterList($varYear, $varGenre, $varType, $userId);
@@ -70,6 +70,7 @@ switch($displayMovieList) {
 }
 
 $movieList = getMovieList($result);
+
 if ($movieList != '') {
   $output = str_replace("{movieList}", $movieList, $output);
 } else {

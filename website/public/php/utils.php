@@ -9,7 +9,7 @@
 
   function research($input) {
     if ($input) {
-        return Media::list(null, $input, null, null, null, "ASC");
+        return Media::list(null, $input, null, null, null, null, "ASC");
     }
   }
 
@@ -86,18 +86,19 @@
       break;
     }
 
+    $result = Media::list($userId, null, null, null, 2, null, "ASC"); 
+
     if ($year != "All" && $genre != "All" && $type != "All") {
-      console_log($typeId);
-      $result = Media::list2($userId, null, $year, $genreId, null, "ASC", $typeId);
+      $result = Media::list($userId, null, $year, $genreId, $typeId, null, "ASC");
     } else if ($year != "All") {
-      $result = Media::list2($userId, null, $year, null, null, "ASC", null);
+      $result = Media::list($userId, null, $year, null, 2, null, "ASC");
     } else if ($genre != "All") {
-      $result = Media::list2($userId, null, null, $genreId, null, "ASC", null);
+      $result = Media::list($userId, null, null, $genreId, 2, null, "ASC");
     } else if ($type != "All") {
-      $result = Media::list2($userId, null, null, null, null, "ASC", $typeId);
-    } else {
-      $result = Media::list2($userId, null,null,null, null, "ASC", null); 
+      $result = Media::list($userId, null, null, null, $typeId, null, "ASC");
     }
+    console_log($result);
+
     return $result;
   }
 

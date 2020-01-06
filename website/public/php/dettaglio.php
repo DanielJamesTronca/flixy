@@ -34,6 +34,7 @@ function loadInfo($id){
   $stars=$list->stars;
   $genre=$list->genreName;
 
+  console_log($list);
   for($i=0;$i<$stars;$i++) {
     array_push($numeroStelle, "<i class='fa fa-star'></i>");
   }

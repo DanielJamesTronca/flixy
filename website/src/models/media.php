@@ -93,7 +93,7 @@ class Media extends Base
         return $dbman->query($insertQuery);
     }
 
-    public static function list($userId=null, $name=null, $year = null, $genre = null, $order = null, $asc = "ASC")
+    public static function list($userId=null, $name=null, $year = null, $genre = null, $hasEpisodes = 2, $order = null, $asc = "ASC")
     {
         $dbman = DBManager::getInstance();
         $whereClause = "1 ";
@@ -106,31 +106,7 @@ class Media extends Base
         if ($name != null)
             $whereClause = $whereClause." AND ".(self::TABLE_NAME).".".self::NAME_KEY." LIKE '%{$name}%'";
 
-        $orderClause = "";
-        if ($order != null)
-        {
-            $orderClause = " ORDER BY {$order} {$asc} ";
-        }
-
-        $queryString = "SELECT Media.id, Media.name, Media.description, Media.cover_url, Media.genre, Media.stars, Media.hasEpisodes, Media.episodes, Media.seasons, Media.trailer_url, Media.created_at, Media.updated_at, Media.air_date, count(Vote.id) AS votes_count, sum(Vote.positive) as votes_positive, ".(Genre::TABLE_NAME).".name as genre_name FROM ".(self::TABLE_NAME)." LEFT JOIN Vote ON (".(self::TABLE_NAME).".id=Vote.media_id) LEFT JOIN ".(Genre::TABLE_NAME)." ON ".(Genre::TABLE_NAME).".id = ".(self::TABLE_NAME).".genre WHERE ".$whereClause." GROUP BY Media.id {$orderClause};";
-        $results = $dbman->query($queryString, Media::class);
-        return Media::setFavouritesFor($userId, $results);
-    }
-
-    public static function list2($userId=null, $name=null, $year = null, $genre = null, $order = null, $asc = "ASC", $hasEpisodes = null)
-    {
-        $dbman = DBManager::getInstance();
-        $whereClause = "1 ";
-        if ($year != null)
-            $whereClause = $whereClause." AND YEAR(".(self::TABLE_NAME).".".self::DATE_KEY.") = {$year}";
-
-        if ($genre != null)
-            $whereClause = $whereClause." AND ".(self::TABLE_NAME).".".self::GENRE_ID_KEY." = {$genre}";
-
-        if ($name != null)
-            $whereClause = $whereClause." AND ".(self::TABLE_NAME).".".self::NAME_KEY." LIKE '%{$name}%'";
-
-        if ($hasEpisodes != null)
+        if ($hasEpisodes != 2)
             $whereClause = $whereClause." AND ".(self::TABLE_NAME).".".self::HAS_EPISODES_KEY." = {$hasEpisodes}";
     
         $orderClause = "";

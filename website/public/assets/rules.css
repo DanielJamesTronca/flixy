@@ -743,7 +743,6 @@ option {
 #text-input {
 	height: 100%;
 	width: 60%;
-	cursor: pointer;
 	outline: none;
 	opacity: .2;
 	border: 1px solid red;
@@ -1384,68 +1383,7 @@ input:focus ~ .highlight {
 }
 
 @media only screen and (max-width: 430px) {
-	#link-container {
-		width: 100%;
-	}
-
-	#filters-menu {
-		margin-top: 6em;
-	}
-
-	#nav-container {
-		margin-top: 2em;
-	}
-
-	.mobile-link {
-		text-decoration: none;
-		color: white;
-		background: #910223;
-		transition: background 0.2s ease-in-out;
-	}
-
-	.mobile-link:hover {
-		background: #ff0000;
-	}
-	.link {
-		display: block;
-		text-align: center;
-		width: 100%;
-		margin: 0;
-	}
-
-	.link a {
-		display: block;
-		margin: 0;
-		margin-top: 0.25em;
-		margin-bottom: 0.25em;
-	}
-
-	#general-filters {
-		width: 100%;
-	}
-
-	#general-filters li {
-		margin: 0;
-		width: 100%;
-	}
-
-	#general-filters li a {
-		display: block;
-		padding: 0.5em;
-		margin: 0;
-		margin-left: 0.65em;
-		margin-right: 0.65em;
-		margin-top: 0.25em;
-		margin-bottom: 0.25em;
-	}
-
-	#movies-container {
-		margin-top: 10.5em;
-	}
-
-	#dropdown-select{
-		margin-top: 10em;
-	}
+	
 }
 
 @media only screen and (max-width: 1040px) {
@@ -1508,15 +1446,101 @@ input:focus ~ .highlight {
 
 @media only screen and (max-width: 641px) {
 	.movie-entry {
-		width: 20.063em;
-		height: 40em;
+		width: 16.063em;
+		height: 35em;
 	}
 	#search-bar {
 		width: 100%;
 	}
 	.copertina-size {
-		width: 20.063em;
-		height: 25.320em;
+		width: 16.063em;
+		height: 20.320em;
+	}
+
+	#header-container {
+		margin: 0;
+		padding: 0;
+	}
+
+	#search-container {
+		margin: 0;
+	}
+
+	#filters-menu {
+		margin-top: 8em;
+	}
+
+	#nav-container {
+		margin-top: 3em;
+	}
+
+	.mobile-link {
+		text-decoration: none;
+		color: white;
+		background: #910223;
+		transition: background 0.2s ease-in-out;
+	}
+
+	.mobile-link:hover {
+		background: #ff0000;
+	}
+	.link {
+		display: block;
+		text-align: center;
+		width: 20em;
+		margin: 0;
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+	}
+
+	.link a {
+		display: block;
+		margin: 0;
+		font-size: 1.2em;
+		padding: 0.5em;
+	}
+
+	#general-filters li {
+		margin: 0;
+		width: 10.5em;
+	}
+
+	#general-filters {
+		margin-top: .75em;
+	}
+
+	#general-filters li a {
+		display: block;
+		padding: 0.5em;
+		margin: 0;
+		margin-left: 0.65em;
+		margin-right: 0.65em;
+		margin-top: 0.5em;
+		font-size: 1.2em;
+	}
+
+	#movies-container {
+		margin-top: 10.5em;
+	}
+
+	#dropdown-select{
+		margin-top: 4em;
+	}
+
+	#filters-form {
+		flex-direction: column;
+		width: 100%;
+		align-items: flex-start;
+		justify-content: flex-start;
+	}
+
+	#filters-form select {
+		width: 100%;
+	}
+
+	#filters-form div {
+		margin: 0;
+		text-align: left;
 	}
 }
 
