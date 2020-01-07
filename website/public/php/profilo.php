@@ -36,20 +36,38 @@ function getFavouriteList($favoruites) {
     $url = $favoruites[$x]->coverUrl;
     $genre_card=$favoruites[$x]->genreId;
           
-    $aloah=Genre::getNameGenre($genre_card);
+    $genre_name=Genre::getNameGenre($genre_card);
 
-    $finally_genre=$aloah[$y]->name;
-   
+    $finally_genre=$genre_name[$y]->name;
     $card = file_get_contents("../html/favourite_card.html");
     $card = str_replace("{favouriteTitle}", $titolo, $card);
     $card = str_replace("{favouriteGenre}",$finally_genre , $card);
-
     $card = str_replace("{favouriteCover}", "../public/".$url, $card);
 
     array_push($favouriteList, $card);
   }
   return implode($favouriteList);
 }
+
+
+/*
+$userId = null;
+$userId = SessionManager::getUserId();
+$user=User::getUser($userId);
+
+
+
+$user_id=$user->id;
+$filter_list = Media::list($user_id, null, null, null, null, "ASC");
+
+print_r($filter_list);
+
+$favourite_user_list=$filter_list[$movieId-1]->isFavourite;
+
+
+$output = str_replace("{mediaNFav}", !($favourite_user_list == true) ? "" : "hidden", $output);
+$output = str_replace("{mediaFav}", ($favourite_user_list == true) ? "" : "hidden", $output);
+*/
 
 
 $output = str_replace("{favouriteList}", getFavouriteList($favoruites), $output);

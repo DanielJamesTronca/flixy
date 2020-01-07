@@ -538,7 +538,7 @@
 
 
 
-.movie-entry {
+#favourite_card {
     width: 11.25em;
     height: 21.1875em;
     margin-top: 1em;
@@ -547,15 +547,13 @@
     margin-right: 0.5em;
     border-radius: .5em;
     border: 1px solid #ffffff;
-    
 }
 
-.copertina-size {
+.favourite_copertina {
     width: 11.25em;
     height: 15.71875em;
     border-radius: .5em;
 }
-
 
 .ara{
   display: inline-block;
