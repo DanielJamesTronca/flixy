@@ -562,6 +562,15 @@
 }
 
 /* UTILS */
+
+.mobile-hidden {
+	display: none;
+}
+
+.desktop-hidden {
+	display: block;
+}
+
 .hidden {
 	display: none;
 }
@@ -788,7 +797,6 @@ option {
 	flex-grow: .2;
 	flex-shrink: 1;
 	order: 3;
-	margin-top: 2em;
 }
 
 
@@ -1382,10 +1390,6 @@ input:focus ~ .highlight {
 	}
 }
 
-@media only screen and (max-width: 430px) {
-	
-}
-
 @media only screen and (max-width: 1040px) {
 	#logo {
 		margin-left: .5em;
@@ -1445,6 +1449,29 @@ input:focus ~ .highlight {
 }
 
 @media only screen and (max-width: 641px) {
+	.mobile-hidden {
+		display: block;
+		font-size: 1.2em;
+		border-radius: 50%;
+		padding: 0.4em;
+		width: 2em;
+		height: 2em;
+		text-align: center;
+		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+	}
+
+	.mobile-hidden i {
+		margin-top: 0.5em;
+	}
+
+	.desktop-hidden {
+		display: none;
+	}
+
+	.footer {
+		margin-top: 0;
+		margin-bottom: 6em;
+	}	
 	.movie-entry {
 		width: 16.063em;
 		height: 35em;
@@ -1458,20 +1485,24 @@ input:focus ~ .highlight {
 	}
 
 	#header-container {
+		position: fixed;
+		z-index: 100;
 		margin: 0;
 		padding: 0;
+		left: 0;
 	}
 
 	#search-container {
 		margin: 0;
 	}
 
-	#filters-menu {
-		margin-top: 8em;
-	}
-
 	#nav-container {
-		margin-top: 3em;
+		position: absolute;
+		background-color: black;
+		top: 100vh;
+		transform: translateY(-100%);
+		left: 0;
+		width: 100%;
 	}
 
 	.mobile-link {
@@ -1485,12 +1516,7 @@ input:focus ~ .highlight {
 		background: #ff0000;
 	}
 	.link {
-		display: block;
 		text-align: center;
-		width: 20em;
-		margin: 0;
-		margin-top: 0.5em;
-		margin-bottom: 0.5em;
 	}
 
 	.link a {
@@ -1498,6 +1524,7 @@ input:focus ~ .highlight {
 		margin: 0;
 		font-size: 1.2em;
 		padding: 0.5em;
+		width: fit-content;
 	}
 
 	#general-filters li {
@@ -1515,8 +1542,6 @@ input:focus ~ .highlight {
 		margin: 0;
 		margin-left: 0.65em;
 		margin-right: 0.65em;
-		margin-top: 0.5em;
-		font-size: 1.2em;
 	}
 
 	#movies-container {
@@ -1530,17 +1555,49 @@ input:focus ~ .highlight {
 	#filters-form {
 		flex-direction: column;
 		width: 100%;
-		align-items: flex-start;
-		justify-content: flex-start;
 	}
 
 	#filters-form select {
-		width: 100%;
+		margin: 0;
+		width: 20em;
+		height: 2em;
+		background: #910223;
+		margin-bottom: 0.5em;
+		border-radius: 0.3em;
+	}
+
+	#filters-form label {
+		display: none;
+	}
+
+	#filters-form button {
+		margin: 0;
+		padding-left: 1em;
+		padding-right: 1em;
+		padding-bottom: 0.4em;
+		padding-top: 0.4em;
+		width: 7em;
+	}
+
+	#nav-add-media li {
+		margin: 0;
+		right: 1em;
+		bottom: 7em;
+		position: fixed;
 	}
 
 	#filters-form div {
 		margin: 0;
 		text-align: left;
+	}
+}
+
+@media (max-width: 375px) {
+	#general-filters li {
+		width: 8em;
+	}
+	#filters-form select {
+		width: 15em;
 	}
 }
 
