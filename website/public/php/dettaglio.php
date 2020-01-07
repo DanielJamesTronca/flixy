@@ -27,7 +27,6 @@ function loadInfo($id){
   $numeroStelle=[];
   $list=Media::fetch($id);
 
-
   $stars=$list->stars;
 
   for($i=0;$i<$stars;$i++) {
@@ -226,7 +225,6 @@ $output=str_replace("{similar_content}", generate_similar_content($realGenre),$o
 
 
 $trailer_content=$lista[6];
-
 function generate_trailer_content($trailer_content){
   if(($trailer_content)==NULL){
     $element_trailer=NULL;

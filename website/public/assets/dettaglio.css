@@ -545,6 +545,11 @@
 
 
 
+#num-up, #num-down{
+    margin-top: .3em;
+    margin-right: 1.4em;
+    margin-left: 1.4em;
+}
 
 
 #dettaglio-content{
