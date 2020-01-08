@@ -557,7 +557,8 @@
 
 
 #dettaglio-content{
-    width: 100%;
+    width: 75%;
+    margin-top: 2em;
     height: 100%;
     border-radius: .5em;
     box-shadow: 0 2px 8px 0 #000000;
@@ -800,6 +801,13 @@ textarea{
 
 }
 
+@media only screen and (max-width: 641px) {
+    #dettaglio-content{
+        margin-top: 1.5em;
+        width: 100%;
+}
+
+
 
 @media only screen and (max-width: 456px) {
   
@@ -856,4 +864,5 @@ textarea{
          display: flex;
      }
 
+}
 }

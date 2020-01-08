@@ -434,6 +434,10 @@
 } 
 
 /* MERGED HOME.CSS TO RULES.CSS */
+#home-container {
+	width: 75%;
+}
+
 #general-filters {
 	flex-shrink: 1;
 	flex-grow: 0;
@@ -641,10 +645,13 @@ option {
 }
 
 .insert-form-container {
-	width: 100%;
+	margin-top: 2em;
+	width: 75%;
 	background-color: #000000;
 	padding-left: 1.5em;
-	padding-right: 1.5em
+	padding-right: 1.5em;
+	border-radius: 0.5em;
+	box-shadow: 0 2px 8px 0 #000000;
 }
 
 #media-comboBox-container {
@@ -993,6 +1000,7 @@ input:focus ~ .highlight {
 /* START MERGE FEED */
 #feed-content {
 	margin-top: 2em;
+	width: 75%;
 	height: 100%;
 	border-radius: 8px;
 	box-shadow: 0 2px 8px 0 #000000;
@@ -1268,12 +1276,24 @@ input:focus ~ .highlight {
 		padding-left: 0;
 	}
 
+	#home-container {
+		width: 100%;
+	}
+
+	.insert-form-container {
+		width: 100%;
+	}
+
+	#feed-content {
+		width: 100%;
+	}
+
 	#content-layout {
 		padding: 0;
 	}
 	
 	#feed-content {
-		margin-top: 3em;
+		margin-top: 1.5em;
 	}
 
 	#header-container {
@@ -1405,7 +1425,8 @@ input:focus ~ .highlight {
 	}
 
 	.insert-form-container {
-		width: auto;
+		width: 100%;
+		margin-top: 1.5em;
 	}
 
 	#aside3 {
@@ -1462,4 +1483,3 @@ input:focus ~ .highlight {
 		width: 15em;
 	}
 }
-

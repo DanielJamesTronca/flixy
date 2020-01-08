@@ -531,7 +531,7 @@
 
 
 #profilo-content{
-    width: 85%;
+    width: 75%;
     margin-top: 2em;
     border-radius: .5em;
     box-shadow: 0 2px 8px 0 #000000;
@@ -713,6 +713,11 @@
   }
 }
 
+@media only screen and (max-width: 641px) {
+    #profilo-content{
+        margin-top: 1.5em;
+        width: 100%;
+}
 
 
 @media only screen and (max-width: 456px) {
@@ -745,4 +750,5 @@
     background-color: black;
   }
 
+}
 }
