@@ -93,7 +93,7 @@ class Media extends Base
         return $dbman->query($insertQuery);
     }
 
-    public static function list($userId=null, $name=null, $year = null, $genre = null, $order = null, $asc = "ASC")
+    public static function list($userId=null, $name=null, $year = null, $genre = null, $hasEpisodes = 2, $order = null, $asc = "ASC")
     {
         $dbman = DBManager::getInstance();
         $whereClause = "1 ";
@@ -106,6 +106,9 @@ class Media extends Base
         if ($name != null)
             $whereClause = $whereClause." AND ".(self::TABLE_NAME).".".self::NAME_KEY." LIKE '%{$name}%'";
 
+        if ($hasEpisodes != 2)
+            $whereClause = $whereClause." AND ".(self::TABLE_NAME).".".self::HAS_EPISODES_KEY." = {$hasEpisodes}";
+    
         $orderClause = "";
         if ($order != null)
         {
@@ -116,6 +119,7 @@ class Media extends Base
         $results = $dbman->query($queryString, Media::class);
         return Media::setFavouritesFor($userId, $results);
     }
+
 
     public static function setFavouritesFor($userId, $medias)
     {
@@ -196,6 +200,18 @@ class Media extends Base
     public function getMediasWithGenre($genreId) {
         $dbMan = DBManager::getInstance();
         return $dbMan->query("SELECT * FROM Media WHERE genre='$genreId'", Media::class);
+    }
+
+    public static function getMoviesWithType($type) {
+        $dbman = DBManager::getInstance();
+        switch ($type) {
+            case "movie":{
+                return $dbman->query("SELECT * FROM Media WHERE hasEpisodes=0");
+            } break;
+            case "series":{
+                return $dbman->query("SELECT * FROM Media WHERE hasEpisodes=1");
+            } break;
+        }
     }
  }
 

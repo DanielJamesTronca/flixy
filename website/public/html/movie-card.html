@@ -13,24 +13,25 @@
     <a href="{linkDettaglioMovie}" class="custom-link copertina-size">
       <img id="copertina" class="border-radius-0-5 copertina-size" src="{coverURL}" alt="Copertina del film {movieTitle}" />
     </a>
-    <h3 id="title" class="full-width text-align-center primary-color font-size-1-5">
+    <h3 id="title" class="text-align-center primary-color font-size-1-5 margin-top-0-5 margin-bottom-0-5 flex-container flex-content-center flex-align-items-center">
       {movieTitle}
     </h3>
-    <div class="margin-left-0-6 margin-top-1 font-size-1 rating primary-color flex-container flex-content-space-between flex-align-items-center">
-      <span id="activeStars" class="stars-active text-align-left">
+    
+    <div class="margin-left-0-6 margin-top-1 rating primary-color flex-container flex-content-space-between flex-align-items-center">
+      <span id="activeStars" class="stars-active margin-left-0-6">
         {movieStars}
       </span>
       <a href="{linkDettaglioMovie}" class="custom-link">
-        <i id="link-to-book" class="fas fa-chevron-right primary-color font-size-1-5"></i>
+        <i id="link-to-book" class="fas fa-chevron-right primary-color font-size-1-5 custom-link-hover"></i>
       </a>
     </div>
-    <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"></span>
+    <span id="type-name" class="margin-left-1-2 font-weight-normal font-size-0-938 primary-color"> {isMovie} </span>
     <form method="post" action="/flixy/website/public/php/add_vote.php">
       <div id="thumbs" class="text-align-center primary-color">
-        <button name="vote" type="submit" value="like" class="custom-button-no-hover font-size-2-2">
+        <button name="vote" type="submit" value="like" class="custom-button-color-hover font-size-2-2">
           <i id="thumbs-up" class="far fa-thumbs-up {like-selected}"></i>
         </button>
-        <button name="vote" type="submit" value="dislike" class="custom-button-no-hover font-size-2-2">
+        <button name="vote" type="submit" value="dislike" class="custom-button-color-hover font-size-2-2">
           <i id="thumbs-down" class="far fa-thumbs-down {dislike-selected}"></i>
         </button>
         <input type="hidden" value="{movieID}" name="movieID"></input>
@@ -47,8 +48,8 @@
           <input type="hidden" value="{movieID}" name="movieID"></input>
           <input type="hidden" value="home" name="redirectURL"></input>
           <input type="hidden" value="1" name="fav"></input>
-          <button id="add-fav-icon" class="fas fav-icon fa-heart custom-button-no-hover font-size-1-1"></button>
-          <label for="add-fav-icon" class="text-align-center font-size-0-625">Add to your favourites</label>
+          <button id="add-fav-icon" class="fas fav-icon custom-button-color-hover fa-heart font-size-1-1"></button>
+          <span class="text-align-center font-size-0-625">Aggiungi ai preferiti</span>
         </fieldset>
       </form>
     </div>
@@ -58,8 +59,8 @@
           <input type="hidden" value="{movieID}" name="movieID"></input>
           <input type="hidden" value="home" name="redirectURL"></input>
           <input type="hidden" value="0" name="fav"></input>
-          <button id="rm-fav-icon" class="fas fa-heart fav-icon custom-button-no-hover font-size-1-1 thumb-selected"></button>
-          <label for="rm-fav-icon" class="text-align-center font-size-0-625">Remove from favourites</label>
+          <button id="rm-fav-icon" class="fas fa-heart fav-icon custom-button-color-hover font-size-1-1 thumb-selected"></button>
+          <span class="text-align-center font-size-0-625">Rimuovi dai preferiti</span>
         </fieldset>
       </form>
     </div>

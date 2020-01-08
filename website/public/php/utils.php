@@ -9,7 +9,7 @@
 
   function research($input) {
     if ($input) {
-        return Media::list(null, $input, null, null, null, "ASC");
+        return Media::list(null, $input, null, null, null, null, "ASC");
     }
   }
 
@@ -17,7 +17,7 @@
     $list = [];
     for ($x = 0; $x < count($genreList); $x++) { 
       $genre = $genreList[$x]->name;
-      if (isset($_GET["genre-select"])){
+      if (isset($_GET["genre-select"])) {
         if ($_GET["genre-select"] == $genre) {
           $element = "<option selected value=".$genre.">".$genre."</option>";
         } else {
@@ -44,28 +44,61 @@
       } else {
         $element = "<option value=".$year.">".$year."</option>";
       }
-    }
-      
       array_push($list, $element);
-
+    }
     return implode($list);
   }
 
-  function filterList($year, $genre, $userId = null) {
+  function fillTypeSelect() {
+    $type1 = "Film";
+    $type2 = "Serie";
+    if (isset($_GET["type-select"])) {
+      if ($_GET["type-select"] == $type1) {
+        $element = "<option selected value=".$type1.">".$type1."</option>"."<option value=".$type2.">".$type2."</option>";
+      } 
+      if ($_GET["type-select"] == $type2) {
+        $element = "<option value=".$type1.">".$type1."</option>"."<option selected value=".$type2.">".$type2."</option>";
+      }  
+      if ($_GET["type-select"] == "All") {
+        $element = "<option value=".$type1.">".$type1."</option>"."<option value=".$type2.">".$type2."</option>";
+      }
+    } else {
+      $element = "<option value=".$type1.">".$type1."</option>"."<option value=".$type2.">".$type2."</option>";
+    }
+
+    return $element;
+  }
+
+  function filterList($year, $genre, $type, $userId = null) {
     $result = [];
     $genreId = -1;
+    $typeId = null;
     if ($genre != "All") {
       $genreId = Genre::getIdGenre($genre)[0]->id;
     }
-    if ($year != "All" && $genre != "All") {
-      $result = Media::list($userId, null, $year, $genreId, null, "ASC");
-    } else if ($year != "All") {
-      $result = Media::list($userId, null, $year, null, null, "ASC");
-    } else if ($genre != "All") {
-      $result = Media::list($userId, null, null, $genreId, null, "ASC");
-    } else {
-      $result = Media::list($userId, null,null,null, null, "ASC"); 
+
+    switch ($type) {
+      case "Film":
+        $typeId = 0;
+      break;
+      case "Serie":
+        $typeId = 1;
+      break;
     }
+
+    $result = Media::list($userId, null, null, null, 2, null, "ASC"); 
+
+    if ($year != "All" && $genre != "All" && $type != "All") {
+      $result = Media::list($userId, null, $year, $genreId, $typeId, null, "ASC");
+    } else if ($year != "All") {
+      $result = Media::list($userId, null, $year, null, 2, null, "ASC");
+    } else if ($genre != "All") {
+      $result = Media::list($userId, null, null, $genreId, 2, null, "ASC");
+    } else if ($type != "All") {
+      $result = Media::list($userId, null, null, null, $typeId, null, "ASC");
+    }
+    console_log($result);
+
     return $result;
   }
 
@@ -96,10 +129,20 @@
 
   function replaceContentsMovieCard($card, $title, $coverUrl, $stars, $id, $votesTotal, $votesPositive, $isFav) {
     $starNumber = [];
+    if ($votesPositive == null) {
+      $card = str_replace("{likes}", 0, $card);
+    } else {
+      $card = str_replace("{likes}", $votesPositive, $card);
+    }
+    $movie = Media::fetch($id);
+    if ($movie->hasEpisodes == 1) {
+      $card = str_replace("{isMovie}", "Serie", $card);
+    } else {
+      $card = str_replace("{isMovie}", "Film", $card);
+    }
     $card = str_replace("{movieTitle}", $title, $card);
     $card = str_replace("{mediaNotFav}", !($isFav == true) ? "" : "hidden", $card);
     $card = str_replace("{mediaIsFav}", ($isFav == true) ? "" : "hidden", $card);
-    $card = str_replace("{likes}", $votesPositive, $card);
     $card = str_replace("{dislikes}", $votesTotal-$votesPositive, $card);
     $card = str_replace("{coverURL}", "../public/".$coverUrl, $card);
     $card = str_replace("{movieID}", $id, $card);

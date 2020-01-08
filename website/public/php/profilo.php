@@ -26,7 +26,6 @@ $avatarUrl=$user->avatarUrl;
 $email=$user->email;      
 $favoruites=Media::getUserFavourites($userId);
 
-
 function getFavouriteList($favoruites) {
   $favouriteList = [];
   $y=0;
