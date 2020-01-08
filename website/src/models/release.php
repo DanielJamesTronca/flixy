@@ -58,7 +58,7 @@ class Feed extends Base
         if (sizeof($favs) == 0) // no favs so no feed
             return [];
 
-        $query = "SELECT * FROM ".Feed::TABLE_NAME." WHERE (1=1";
+        $query = "SELECT * FROM ".Feed::TABLE_NAME." WHERE (1 != 1";
         foreach ($favs as &$fav) {
             $query .= " OR ".Feed::MEDIA_ID_KEY." = ".$fav->id." ";
         }
