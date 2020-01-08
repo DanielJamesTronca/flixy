@@ -28,7 +28,7 @@
     </div>
 
     <div class="margin-top-2">
-      <form action="./php/check_form_episode.php" method="post" id="regForm" onsubmit="return isValidFormEpisode()">
+      <form action="./php/check_form_episode.php" method="post"  onsubmit="return isValidFormEpisode()">
           <div class="group-insert-form">  
             <label for="titleEpisode" class="label-form">Titolo</label>    
             <input type="text" name="titleEpisode" id="titleEpisode" value="'{title}'" />
@@ -82,9 +82,11 @@
               </select>
             </div>
           </div>
-  
-          <div class="insert-form-button padding-top-1 padding-bottom-1">
+          <div class="insert-form-button padding-top-1-5 padding-bottom-1">
             <input type="submit" value="Invia" class="button-small-form margin-left-0-7 primary-color-gradient-button"/>
+            <div class = "insert-form-link-button-container">
+              <a href="php/layout.php?page=dettaglio&amp;movieId={mediaId}" class="insert-form-link-button primary-color-gradient-button margin-left-1">Annulla</a>
+            </div>
           </div>
       </form>
     </div>

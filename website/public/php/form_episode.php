@@ -6,6 +6,8 @@ include_once("../../src/models/models.php");
 $media = Media::fetch($_GET["mediaid"]);
 get_media_name($output);
 
+$output = str_replace("{mediaId}", $_GET["mediaid"], $output);
+
 /* START show error message if set */
 if(isset($_SESSION['error-message-episode'])) {
     $output = str_replace("<div class='margin-top-2 hidden'>","<div class='margin-top-2' tabindex='0'>",$output);

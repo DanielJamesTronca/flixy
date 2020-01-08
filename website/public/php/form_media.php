@@ -18,6 +18,7 @@ function restore_parameters(&$output){
     /* START restore form parameters if available */
     if (isUpdateMode()){
         $media = Media::fetch($_GET['mediaid']);
+        $output = str_replace("{page}", "dettaglio&amp;movieId=".$_GET["mediaid"], $output);
         if(isFilm()){
             $output = str_replace("{headTitle}","Flixy - Modifica film",$output);
             $output = str_replace("{pageTitle}","Modifica Film",$output);
@@ -49,6 +50,7 @@ function restore_parameters(&$output){
     else{
         $output = str_replace("{headTitle}","Flixy - Inserisci media",$output);
         $output = str_replace("{pageTitle}","Aggiungi Media",$output);
+        $output = str_replace("{page}","home", $output);
 
 
         if(!isset($_SESSION['hasEpisodes']))
