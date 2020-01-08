@@ -10,10 +10,10 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
-<body class="layout-body primary-bg document-font flex-container flex-content-center flex-wrap flex-items-center">
+<body class="layout-body primary-bg document-font flex-container flex-content-center flex-wrap">
     <div id="outer-container" class="flex-container flex-content-center">
-        <div id="header-container" class="flex-container flex-items-center flex-content-start flex-wrap border-radius-0-3 secondary-bg margin-top-1 margin-left-1 margin-right-1">
-            <div class="full-height flex-container flex-items-center flex-align-items-center flex-content-center flex-grow-shrink text-align-center">
+        <div id="header-container" class="flex-container flex-content-start flex-wrap border-radius-0-3 secondary-bg margin-top-1 margin-left-1 margin-right-1">
+            <div class="full-height flex-container flex-align-items-center flex-content-center flex-grow-shrink text-align-center">
                 <a id="title-container" href="./php/layout.php?page=home" class="font-size-1-7 font-weight-bold homepage-link full-height flex-container flex-align-items-center">
                     <img id="logo" class="logo-size margin-right-0-5" src="../public/assets/images/icons/logo.png" alt="Flixy Logo"/>
                     Flixy
@@ -43,7 +43,7 @@
                 <form id="search-bar" class="secondary-bg border-radius-0-3" method="get" action="">
                     <div class="custom-fieldset flex-container justify-content-center flex-align-items-center">
                         <input name="page" type="hidden" value="home"></input>
-                        <input name="search" id="text-input" class="flex-grow-bigger transparent-bg margin-left-1 font-size-1-7 primary-color border-radius-0-3" type="text"></input>
+                        <input name="search" id="text-input" class="flex-grow-bigger margin-left-1 font-size-1-7 primary-color border-radius-0-3" type="text"></input>
                         <button id="search-button" class="custom-button-no-hover font-size-1-7 primary-color flex-grow-shrink" type="submit">
                             <i id="search-icon" class="margin-left-0-5 margin-right-0-5 fas fa-search"></i>
                         </button>
@@ -69,12 +69,8 @@
             </div>
         </div>
     </div>
-    <div id="content-container" class="flex-container padding-bottom-2-5 flex-direction-row">
-        <div id="aside1" class="flex-grow-shrink"></div>
-        <div id="{contentLayout}" class="flex-grow-bigger">
-            {content}
-        </div>
-        <div id="aside3" class="flex-grow-shrink"></div>
+    <div id="content-container" class="flex-container padding-bottom-2-5 flex-direction-row flex-content-center flex-align-items-center">
+        {content}
     </div>
     <div class="footer flex-container flex-align-items-center flex-content-center margin-bottom-2 margin-top-2">
         <div class="text-align-center font-size-0-938 font-weight-light primary-color">
