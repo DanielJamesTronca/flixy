@@ -19,29 +19,52 @@ $userId = null;
 $userId = SessionManager::getUserId();
 $user=User::getUser($userId);
 
-$name=$user->name;
-$surName=$user->surname;
-$userName=$user->username;
-$avatarUrl=$user->avatarUrl;
-$email=$user->email;      
-$favoruites=Media::getUserFavourites($userId);
+$output=str_replace("{name}", $user->name,$output);
+$output=str_replace("{surname}", $user->surname,$output);
+$output=str_replace("{avatar_url}", "../public/".$user->avatarUrl,$output);
+$output=str_replace("{email}", $user->email,$output);
+$output=str_replace("{username}",$user->username,$output);
+  
 
-function getFavouriteList($favoruites) {
+
+
+$favourites=Media::getUserFavourites($userId);
+
+
+
+function getFavouriteList($favourites) {
   $favouriteList = [];
   $y=0;
 
-  for ($x = 0; $x < count($favoruites); $x++) {
-    $titolo = $favoruites[$x]->title;
-    $url = $favoruites[$x]->coverUrl;
-    $genre_card=$favoruites[$x]->genreId;
-          
+
+  for ($x = 0; $x < count($favourites); $x++) {
+    
+    $titolo = $favourites[$x]->title;
+    $url = $favourites[$x]->coverUrl;
+    $genre_card=$favourites[$x]->genreId;
+    $media_id=$favourites[$x]->id;
+    $fav=$favourites[$x]->isFavourite;
+    if($fav==null){
+      $fav==true;
+    }
+    else{
+      $fav=false;
+    }
+
     $genre_name=Genre::getNameGenre($genre_card);
 
-    $finally_genre=$genre_name[$y]->name;
     $card = file_get_contents("../html/favourite_card.html");
+
+    $card = str_replace("{mediaNFav}", !($fav == null) ? "" : "hidden", $card);
+    $card = str_replace("{mediaFav}", ($fav == null) ? "" : "hidden", $card);
+
+    $finally_genre=$genre_name[$y]->name;
+    $card = str_replace("{mediaid}", $media_id, $card);
+
     $card = str_replace("{favouriteTitle}", $titolo, $card);
     $card = str_replace("{favouriteGenre}",$finally_genre , $card);
     $card = str_replace("{favouriteCover}", "../public/".$url, $card);
+  
 
     array_push($favouriteList, $card);
   }
@@ -49,36 +72,6 @@ function getFavouriteList($favoruites) {
 }
 
 
-/*
-$userId = null;
-$userId = SessionManager::getUserId();
-$user=User::getUser($userId);
-
-
-
-$user_id=$user->id;
-$filter_list = Media::list($user_id, null, null, null, null, "ASC");
-
-print_r($filter_list);
-
-$favourite_user_list=$filter_list[$movieId-1]->isFavourite;
-
-
-$output = str_replace("{mediaNFav}", !($favourite_user_list == true) ? "" : "hidden", $output);
-$output = str_replace("{mediaFav}", ($favourite_user_list == true) ? "" : "hidden", $output);
-*/
-
-
-$output = str_replace("{favouriteList}", getFavouriteList($favoruites), $output);
-
-
-
-$output=str_replace("{name}", $name,$output);
-$output=str_replace("{surname}", $surName,$output);
-$output=str_replace("{avatar_url}", "../public/".$avatarUrl,$output);
-
-
-$output=str_replace("{email}", $email,$output);
-$output=str_replace("{username}",$userName,$output);
+$output = str_replace("{favouriteList}", getFavouriteList($favourites), $output);
 
 ?>

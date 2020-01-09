@@ -542,9 +542,7 @@
     width: 11.25em;
     height: 21.1875em;
     margin-top: 1em;
-    margin-bottom: 1em;
-    margin-left: 1.5em;
-    margin-right: 0.5em;
+    margin-left: 2em;
     border-radius: .5em;
     border: 1px solid #ffffff;
 }
@@ -555,35 +553,37 @@
     border-radius: .5em;
 }
 
-.ara{
-  display: inline-block;
-  height: 2em;
-  width: 100%;
-}
+#card_info{
+    position: relative;
+    width: 10.25em;
 
-
-#fav-text{
-    display: none;
 }
 
 
 
-#fav-section{
-   display: inline-block;
-   margin-left: 10px;
-   width: 20%;
-}
 
-#fav-icon{
+
+
+#add-fav-icon, #rm-fav-icon{
     color: red; 
 }
 
-#fav-icon:hover{
+#add-fav-icon:hover, #rm-fav-icon:hover{
     color: white;
 }
 
 
 
 
+
+@media only screen and (max-width: 456px) {
+
+ #favourite_card {
+     margin-left: 0;
+     margin-top: 2em;
+ }
+
+
+}
 
 
