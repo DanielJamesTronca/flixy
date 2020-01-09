@@ -2,13 +2,15 @@
 $genreList = fillGenreSelect(Genre::getGenreList());
 $yearList = fillYearSelect(Media::getAirDateList());
 
-$output = str_replace("{genreOption}", $genreList, $output);
-$output = str_replace("{yearOption}", $yearList, $output);
+$output = str_replace("<option>{genreOption}</option>", $genreList, $output);
+$output = str_replace("<option>{yearOption}</option>", $yearList, $output);
+$output = str_replace("<option>{typeOption}</option>", fillTypeSelect(), $output);
 
-$displayMovieList = 4;
+$displayMovieList = 3;
 
 $varGenre = "All";
 $varYear = "All";
+$varType = "All";
 
 if (isset($_GET["year-select"])) {
   $varYear = $_GET['year-select'];
@@ -22,6 +24,12 @@ if (isset($_GET["genre-select"])){
   $varGenre = "All";
 }
 
+if (isset($_GET["type-select"])) {
+  $varType = $_GET['type-select'];
+} else {
+  $varType = "All";
+}
+
 if (isset($_GET["getMovies"])) {
   switch($_GET["getMovies"]) {
     case "latest":
@@ -30,8 +38,6 @@ if (isset($_GET["getMovies"])) {
     case "mostVotes":
       $displayMovieList = 2;
     break;
-    case "trending":
-      $displayMovieList = 3;
   }
 }
 
@@ -47,24 +53,24 @@ switch($displayMovieList) {
   case 0:
     $result = $varReturnSearch; 
   break;
-  case 1: 
-    $result = Media::list($userId, null,null,null, "air_date", "DESC"); 
-  break;
-  case 2: 
-    $result = Media::list($userId, null,null,null,"votes_positive", "DESC"); 
-  break;
+  case 1: {
+    $output = str_replace("{latestSelected}", "highlight-bg", $output);
+    $result = Media::list($userId, null,null,null, null, "air_date", "DESC"); 
+  } break;
+  case 2: { 
+    $output = str_replace("{mostVotesSelected}", "highlight-bg", $output);
+    $result = Media::list($userId, null,null,null, null, "votes_positive", "DESC"); 
+  } break;
   case 3: 
-    $result = Media::list($userId, null,null,null,"votes_positive", "DESC"); 
-  break;
-  case 4: 
-    $result = filterList($varYear, $varGenre, $userId);
+    $result = filterList($varYear, $varGenre, $varType, $userId);
   break;
   default: 
-    $result = filterList($varYear, $varGenre, $userId);
+    $result = filterList($varYear, $varGenre, $varType, $userId);
   break;
 }
 
 $movieList = getMovieList($result);
+
 if ($movieList != '') {
   $output = str_replace("{movieList}", $movieList, $output);
 } else {
