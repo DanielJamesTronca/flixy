@@ -19,7 +19,7 @@
             </a>
         </div>
         
-        <div id="nav-container" class="flex-container flex-align-items-center flex-grow-2 full-height">
+        <div id="nav-container" class="flex-container flex-align-items-center flex-grow-shrink full-height">
             <ul id="link-container" class="font-weight-bold font-size-0-938 margin-left-2-5 border-radius-0-3">
                 <li class="margin-left-0-35 margin-right-0-35">
                     <a href="{linkToTrending}" class="{homeSelected} custom-link-bg-hover mobile-link font-size-0-938 font-weight-bold padding-0-3 border-radius-0-3">
@@ -42,6 +42,7 @@
         <div id="search-container" class="flex-container flex-grow-shrink flex-align-items-center">
             <form id="search-bar" class="flex-container justify-content-center flex-align-items-center secondary-bg border-radius-0-3" method="get" action="">
                 <div class="custom-fieldset flex-container flex-align-items-center full-width">
+                    <label for="search"> Cerca un film: </label>
                     <input name="page" type="hidden" value="home"></input>
                     <input name="search" id="text-input" class="flex-grow-10 margin-left-1 font-size-1-7 border-radius-0-3" type="text"></input>
                     <button id="search-button" class="custom-button font-size-1-7" type="submit">

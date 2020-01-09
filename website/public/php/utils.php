@@ -1,5 +1,4 @@
 <?php
-
   
   function console_log( $data ){
     echo '<script>';
@@ -9,7 +8,11 @@
 
   function research($input) {
     if ($input) {
-        return Media::list(null, $input, null, null, null, null, "ASC");
+      if (SessionManager::isUserLogged()) {
+        return Media::list(SessionManager::getUserId(), $input, null, null, 2, null, "ASC");
+      } else {
+        return Media::list(null, $input, null, null, 2, null, "ASC");
+      }
     }
   }
 
@@ -19,12 +22,12 @@
       $genre = $genreList[$x]->name;
       if (isset($_GET["genre-select"])) {
         if ($_GET["genre-select"] == $genre) {
-          $element = "<option selected value=".$genre.">".$genre."</option>";
+          $element = "<option selected value='".$genre."'>".$genre."</option>";
         } else {
-          $element = "<option value=".$genre.">".$genre."</option>";
+          $element = "<option value='".$genre."'>".$genre."</option>";
         }
       } else {
-        $element = "<option value=".$genre.">".$genre."</option>";
+        $element = "<option value='".$genre."'>".$genre."</option>";
       }
       array_push($list, $element);
     }
@@ -39,10 +42,10 @@
         if ($_GET["year-select"] == $year) {
           $element = "<option selected value=".$year.">".$year."</option>";
         } else {
-          $element = "<option value=".$year.">".$year."</option>";
+          $element = "<option value='".$year."'>".$year."</option>";
         }  
       } else {
-        $element = "<option value=".$year.">".$year."</option>";
+        $element = "<option value='".$year."'>".$year."</option>";
       }
       array_push($list, $element);
     }
@@ -54,29 +57,27 @@
     $type2 = "Serie";
     if (isset($_GET["type-select"])) {
       if ($_GET["type-select"] == $type1) {
-        $element = "<option selected value=".$type1.">".$type1."</option>"."<option value=".$type2.">".$type2."</option>";
+        $element = "<option selected value='".$type1."'>".$type1."</option>"."<option value='".$type2."'>".$type2."</option>";
       } 
       if ($_GET["type-select"] == $type2) {
-        $element = "<option value=".$type1.">".$type1."</option>"."<option selected value=".$type2.">".$type2."</option>";
+        $element = "<option value='".$type1."'>".$type1."</option>"."<option selected value='".$type2."'>".$type2."</option>";
       }  
       if ($_GET["type-select"] == "All") {
-        $element = "<option value=".$type1.">".$type1."</option>"."<option value=".$type2.">".$type2."</option>";
+        $element = "<option value='".$type1."'>".$type1."</option>"."<option value='".$type2."'>".$type2."</option>";
       }
     } else {
-      $element = "<option value=".$type1.">".$type1."</option>"."<option value=".$type2.">".$type2."</option>";
+      $element = "<option value='".$type1."'>".$type1."</option>"."<option value='".$type2."'>".$type2."</option>";
     }
 
     return $element;
   }
 
   function filterList($year, $genre, $type, $userId = null) {
-    $result = [];
-    $genreId = -1;
+    $genreId = null;
     $typeId = null;
     if ($genre != "All") {
       $genreId = Genre::getIdGenre($genre)[0]->id;
     }
-
     switch ($type) {
       case "Film":
         $typeId = 0;
@@ -85,21 +86,7 @@
         $typeId = 1;
       break;
     }
-
-    $result = Media::list($userId, null, null, null, 2, null, "ASC"); 
-
-    if ($year != "All" && $genre != "All" && $type != "All") {
-      $result = Media::list($userId, null, $year, $genreId, $typeId, null, "ASC");
-    } else if ($year != "All") {
-      $result = Media::list($userId, null, $year, null, 2, null, "ASC");
-    } else if ($genre != "All") {
-      $result = Media::list($userId, null, null, $genreId, 2, null, "ASC");
-    } else if ($type != "All") {
-      $result = Media::list($userId, null, null, null, $typeId, null, "ASC");
-    }
-    console_log($result);
-
-    return $result;
+    return Media::list($userId, null, ($year != "All" ? $year : null), ($genre != "All" ? $genreId : null), ($type != "All" ? $typeId : 2), null, "ASC");
   }
 
   function checkMovie($id) {
@@ -146,7 +133,7 @@
     $card = str_replace("{dislikes}", $votesTotal-$votesPositive, $card);
     $card = str_replace("{coverURL}", "../public/".$coverUrl, $card);
     $card = str_replace("{movieID}", $id, $card);
-    $card = str_replace("{linkDettaglioMovie}", "./php/layout.php?page=dettaglio&movieId=".$id, $card);
+    $card = str_replace("{linkDettaglioMovie}", "./php/layout.php?page=dettaglio&amp;movieId=".$id, $card);
     $check = checkMovie($id);
     switch($check) {
       case 1:

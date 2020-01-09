@@ -1338,6 +1338,9 @@ input[type="file"] {
 		justify-content: center;
 		order: 2;
 	}
+	#search-bar label {
+		margin-left: 0.5em;
+	}
 	#link-container {
 		margin-left: 0em;
 	}
@@ -1362,7 +1365,7 @@ input[type="file"] {
 		margin-top: 4.5em;
 	}
 	#search-bar {
-		width: 80%
+		width: 85%
 	}
 	#title-container {
 		justify-content: flex-start;

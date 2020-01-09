@@ -49,17 +49,23 @@ $userId = null;
 if (SessionManager::isUserLogged()) {
   $userId = SessionManager::getUserId();
 }
+
+if (SessionManager::isUserLogged() && SessionManager::userCanPublish()) {
+  $output = str_replace("{notAnAdmin}", "",$output); 
+} else {
+  $output = str_replace("{notAnAdmin}", "hidden",$output);
+}
 switch($displayMovieList) {
   case 0:
     $result = $varReturnSearch; 
   break;
   case 1: {
     $output = str_replace("{latestSelected}", "highlight-bg", $output);
-    $result = Media::list($userId, null,null,null, null, "air_date", "DESC"); 
+    $result = Media::list($userId, null,null,null, 2, "air_date", "DESC"); 
   } break;
   case 2: { 
     $output = str_replace("{mostVotesSelected}", "highlight-bg", $output);
-    $result = Media::list($userId, null,null,null, null, "votes_positive", "DESC"); 
+    $result = Media::list($userId, null,null,null, 2, "votes_positive", "DESC"); 
   } break;
   case 3: 
     $result = filterList($varYear, $varGenre, $varType, $userId);
