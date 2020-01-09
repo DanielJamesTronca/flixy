@@ -107,14 +107,13 @@ class Media extends Base
             $whereClause = $whereClause." AND ".(self::TABLE_NAME).".".self::NAME_KEY." LIKE '%{$name}%'";
 
         if ($hasEpisodes != 2)
-            $whereClause = $whereClause." AND ".(self::TABLE_NAME).".".self::HAS_EPISODES_KEY." = {$hasEpisodes}";
+            $whereClause = $whereClause." AND ".(self::TABLE_NAME).".".self::HAS_EPISODES_KEY." = ".(int)$hasEpisodes;
     
         $orderClause = "";
         if ($order != null)
         {
             $orderClause = " ORDER BY {$order} {$asc} ";
         }
-
         $queryString = "SELECT Media.id, Media.name, Media.description, Media.cover_url, Media.genre, Media.stars, Media.hasEpisodes, Media.episodes, Media.seasons, Media.trailer_url, Media.created_at, Media.updated_at, Media.air_date, count(Vote.id) AS votes_count, sum(Vote.positive) as votes_positive, ".(Genre::TABLE_NAME).".name as genre_name FROM ".(self::TABLE_NAME)." LEFT JOIN Vote ON (".(self::TABLE_NAME).".id=Vote.media_id) LEFT JOIN ".(Genre::TABLE_NAME)." ON ".(Genre::TABLE_NAME).".id = ".(self::TABLE_NAME).".genre WHERE ".$whereClause." GROUP BY Media.id {$orderClause};";
         $results = $dbman->query($queryString, Media::class);
         return Media::setFavouritesFor($userId, $results);
@@ -125,6 +124,7 @@ class Media extends Base
     {
         if ($userId == null) 
             return $medias;
+        if (!is_array($medias) || count($medias) == 0) return $medias;
         $dbman = DBManager::getInstance();
         $queryString = "SELECT * FROM Favourite WHERE Favourite.user_id = {$userId}";
         $favourites = $dbman->query($queryString);

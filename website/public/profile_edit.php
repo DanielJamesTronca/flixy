@@ -28,7 +28,8 @@ $user->name = $name;
 $user->surname = $surname;
 // good to go on these parameters, now check image upload
 $target_dir = "assets/images/avatars/";
-if (isset($_FILES["avatar"])) {
+// print_r($_FILES["avatar"]);
+if ($_FILES["avatar"]["name"] != null) {
     $upload_result = Utils::uploadImage($target_dir, $_FILES["avatar"]);
     if ($upload_result["success"] === false) {
         echo $upload_result["error"];

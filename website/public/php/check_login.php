@@ -20,9 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($log !== false) // se loggato
     {
       $_SESSION['login'] = true;
-      SessionManager::startSessionForUser($log, $username, true);
       userLoggedCorrectly(); 
-
     } else {
       $_SESSION['error-message'] = "Le tue credenziali non sono valide";
       header("Location: ../php/login.php");

@@ -19,10 +19,10 @@ function restore_parameters(&$output){
 /* START restore form parameters if available */
 
     if (isset($_SESSION['mediaid'])){
-        $output = str_replace("{mediaid}",restore_list_title_media($_SESSION['mediaid']),$output);
+        $output = str_replace("<option>{mediaid}</option>",restore_list_title_media($_SESSION['mediaid']),$output);
     }
     else{
-        $output = str_replace("{mediaid}",get_list_title_media(),$output); 
+        $output = str_replace("<option>{mediaid}</option>",get_list_title_media(),$output); 
     }
     if (isset($_SESSION['content'])){
         $output = str_replace("{content}",$_SESSION['content'],$output);
@@ -37,22 +37,22 @@ function restore_parameters(&$output){
         $output = str_replace("'{subtitle}'","",$output);
     }
     if (isset($_SESSION['day'])){
-        $output = str_replace("{dayOption}",Utils::restoreOptionsDay($_SESSION['day']),$output);
+        $output = str_replace("<option>{dayOption}</option>",Utils::restoreOptionsDay($_SESSION['day']),$output);
     }
     else{
-        $output = str_replace("{dayOption}",Utils::generateOptionsDay(),$output);
+        $output = str_replace("<option>{dayOption}</option>",Utils::generateOptionsDay(),$output);
     }
     if (isset($_SESSION['month'])){
-        $output = str_replace("{monthOption}",Utils::restoreOptionsMonth($_SESSION['month']),$output);
+        $output = str_replace("<option>{monthOption}</option>",Utils::restoreOptionsMonth($_SESSION['month']),$output);
     }
     else{
-        $output = str_replace("{monthOption}",Utils::generateOptionsMonth(),$output);
+        $output = str_replace("<option>{monthOption}</option>",Utils::generateOptionsMonth(),$output);
     }
     if (isset($_SESSION['year'])){
-        $output = str_replace("{yearOption}",Utils::restoreOptionsYear($_SESSION['year']),$output);
+        $output = str_replace("<option>{yearOption}</option>",Utils::restoreOptionsYear($_SESSION['year']),$output);
     }
     else{
-        $output = str_replace("{yearOption}",Utils::generateOptionsYear(),$output);
+        $output = str_replace("<option>{yearOption}</option>",Utils::generateOptionsYear(),$output);
     }
     if (isset($_SESSION['videoUrl'])){
         $output = str_replace("'{videoUrl}'",$_SESSION['videoUrl'],$output);

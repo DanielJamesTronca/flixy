@@ -169,6 +169,9 @@
 
   function getMovieList($list) {
     $movieList = [];
+    if (!is_array($list)) {
+      $list = [];
+    }
     for ($x = 0; $x < count($list); $x++) {
       $card = replaceContentsMovieCard(file_get_contents("../html/movie-card.html"), $list[$x]->title, $list[$x]->coverUrl, $list[$x]->stars, $list[$x]->id, $list[$x]->votesTotal, $list[$x]->votesPositive, $list[$x]->isFavourite);
       array_push($movieList, $card);
