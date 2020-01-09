@@ -815,13 +815,6 @@ option {
 	padding-top: 7em;
 }
 
-.primary-color-gradient-text {
-background: -webkit-linear-gradient(#ff3434, #b70000);
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-}
-
 .form-title{
 	padding-top: 2em;
 	margin-left:1.5em;
@@ -957,7 +950,6 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
 	height:60%; 
 	width:6.25em; 
 	top:25%; 
-	pointer-events:none;
 	opacity:0.5;
 }
   
@@ -1442,7 +1434,7 @@ input[type="file"] {
     }
 
 	.custom-fieldset {
-		max-width: auto;
+		max-width: 100%;
 	}
 	.insert-form-button {
 		justify-content: center;

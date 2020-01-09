@@ -97,7 +97,6 @@
     } else if ($type != "All") {
       $result = Media::list($userId, null, null, null, $typeId, null, "ASC");
     }
-    console_log($result);
 
     return $result;
   }
