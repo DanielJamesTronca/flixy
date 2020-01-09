@@ -17,8 +17,6 @@ $serieTvEpisode="";
 $serieTvEpisodeReal="EPISODES:";
 $serieTvSeason="";
 $serieTvSeasonReal="SEASON:";
-<<<<<<< Updated upstream
-=======
 
 $userId = null;
 
@@ -29,10 +27,6 @@ function loadInfo($id){
   $numeroStelle=[];
   $list=Media::fetch($id);
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
   $stars=$list->stars;
 
   console_log($list);
@@ -83,11 +77,8 @@ $output = str_replace("{air_date}", $lista[10], $output);
 
 
 
-=======
+
 $output = str_replace("{air_date}", $lista[10], $output);
-
-
-
 
 
 
@@ -109,6 +100,7 @@ function setFavouriteLikes($id){
     }
   }
 }
+
 $favourite_variable=setFavouriteLikes($movieId);
 
 
@@ -234,10 +226,6 @@ $output=str_replace("{similar_content}", generate_similar_content($realGenre),$o
 
 
 $trailer_content=$lista[6];
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 function generate_trailer_content($trailer_content){
   if(($trailer_content)==NULL){
     $element_trailer=NULL;
