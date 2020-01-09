@@ -540,14 +540,13 @@
 
 
 
-.movie-entry {
+.similar_card_entry {
     width: 11.25em;
     height: 21.1875em;
     background: black;   
     margin-right: 2em;
     border-radius: .5em;
     border: 1px solid #ffffff;
-
 }
 
 .copertina-size {
@@ -558,8 +557,8 @@
 
 .testo {
     float: left;
-    position: absolute;
     width: 10.25em;
+    position: relative;
 }
 
 
