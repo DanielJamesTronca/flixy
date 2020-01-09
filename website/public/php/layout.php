@@ -67,7 +67,7 @@ switch ($_GET['page'])
     case 'home':
         $homepage = file_get_contents("../html/home.html");
         $output = str_replace("{contentLayout}", "", $output);
-        $output = str_replace("{homeSelected}", "custom-link-bg-selected", $output);
+        $output = str_replace("{homeSelected}", "highlight-bg", $output);
         $output = str_replace("{favsSelected}", "", $output);
         $output = str_replace("{feedSelected}", "", $output);
         $output = str_replace("{content}", $homepage, $output);
@@ -79,7 +79,7 @@ switch ($_GET['page'])
         $output = str_replace("{contentLayout}", "content-layout", $output);
         $output = str_replace("{homeSelected}", "", $output);
         $output = str_replace("{favsSelected}", "", $output);
-        $output = str_replace("{feedSelected}", "custom-link-bg-selected", $output);
+        $output = str_replace("{feedSelected}", "highlight-bg", $output);
         $output = str_replace("{content}", $feed, $output);
         include_once ("./feed.php");
     break;
@@ -88,7 +88,7 @@ switch ($_GET['page'])
         $profilo = file_get_contents("../html/profilo.html");
         $output = str_replace("{contentLayout}", "content-layout", $output);
         $output = str_replace("{homeSelected}", "", $output);
-        $output = str_replace("{favsSelected}", "custom-link-bg-selected", $output);
+        $output = str_replace("{favsSelected}", "highlight-bg", $output);
         $output = str_replace("{feedSelected}", "", $output);
         $output = str_replace("{content}", $profilo, $output);
         include_once ("./profilo.php");

@@ -36,7 +36,7 @@
                             <input type="hidden" value="{mediaid}" name="movieID"></input>
                             <input type="hidden" value="dettaglio&amp;movieId={mediaid}" name="redirectURL"></input>
                             <input type="hidden" value="1" name="fav"></input>
-                            <button id="add_icon" class="fas fav-icon fa-heart custom-button-no-hover font-size-1-7"></button>
+                            <button id="add_icon" class="fas margin-top-0-2 fa-heart custom-button custom-link-hover font-size-1-7"></button>
                             <label for="add_icon" class="text-align-center font-size-0-625">Add to your favourites</label>
                           </fieldset>
                         </form>
@@ -47,7 +47,7 @@
                             <input type="hidden" value="{mediaid}" name="movieID"></input>
                             <input type="hidden" value="dettaglio&amp;movieId={mediaid}" name="redirectURL"></input>
                             <input type="hidden" value="0" name="fav"></input>
-                            <button id="remove_icon" class="fas fa-heart fav-icon custom-button-no-hover font-size-1-7 thumb-selected"></button>
+                            <button id="remove_icon" class="fas fa-heart margin-top-0-2 custom-button custom-link-hover font-size-1-7 thumb-selected"></button>
                             <label for="remove_icon" class="text-align-center font-size-0-625">Remove from favourites</label>
                           </fieldset>
                         </form>
@@ -82,11 +82,11 @@
                     <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"></span>
                     <form method="post" action="/flixy/website/public/php/add_vote.php">
                         <div id="thumbs" class="text-align-center primary-color">
-                          <button name="vote" type="submit" value="like" class="custom-button-no-hover font-size-2-2">
-                            <i id="thumbs-up" class="far fa-thumbs-up {like-selected}"></i>
+                          <button name="vote" type="submit" value="like" class="custom-button font-size-2-2">
+                            <i id="thumbs-up" class="far fa-thumbs-up custom-link-hover {like-selected}"></i>
                           </button>
-                          <button name="vote" type="submit" value="dislike" class="custom-button-no-hover font-size-2-2">
-                            <i id="thumbs-down" class="far fa-thumbs-down {dislike-selected}"></i>
+                          <button name="vote" type="submit" value="dislike" class="custom-button font-size-2-2">
+                            <i id="thumbs-down" class="far fa-thumbs-down custom-link-hover {dislike-selected}"></i>
                           </button>
                           <input type="hidden" value="{mediaid}" name="movieID"></input>
                           <input type="hidden" value="dettaglio&amp;movieId={mediaid}" name="redirectURL"></input>

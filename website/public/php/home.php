@@ -54,11 +54,11 @@ switch($displayMovieList) {
     $result = $varReturnSearch; 
   break;
   case 1: {
-    $output = str_replace("{latestSelected}", "custom-link-bg-selected", $output);
+    $output = str_replace("{latestSelected}", "highlight-bg", $output);
     $result = Media::list($userId, null,null,null, null, "air_date", "DESC"); 
   } break;
   case 2: { 
-    $output = str_replace("{mostVotesSelected}", "custom-link-bg-selected", $output);
+    $output = str_replace("{mostVotesSelected}", "highlight-bg", $output);
     $result = Media::list($userId, null,null,null, null, "votes_positive", "DESC"); 
   } break;
   case 3: 
