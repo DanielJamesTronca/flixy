@@ -2,25 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
 <head>
-    <title>Flixy - Dettaglio Film</title>
-    <meta name="title" content="Flixy - Dettaglio" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <base target="_self" href="http://192.168.62.3/flixy/website/public"/>
-    <link rel="stylesheet" type="text/css" href="assets/dettaglio.css" />
-    <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
+  <title>Flixy - Dettaglio Film</title>
+  <meta name="title" content="Flixy - Dettaglio" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <base target="_self" href="http://192.168.62.3/flixy/website/public"/>
+  <link rel="stylesheet" type="text/css" href="assets/rules.css" />
+  <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
 </head>
 
-
 <body class="document-font">
-    <div id="dettaglio-content" class="secondary-bg">
+  <div id="dettaglio-content" class="secondary-bg">
+    <div id="row" class="flex-container flex-wrap">
 
-    <!-- FLEXIBLE GRID -->
-    <div id="row" class="flex-container flex-wrap ">
-        <div id="side" class="flex-container flex-grow-shrink ">
-    <!-- COPERTINA MOVIE -->
-            <div>
-                <img id="copertina" class="border-radius-0-5" src="{cover_url}" alt="copertina" />
-            </div>
+      <div id="side" class="flex-container flex-grow-shrink">
+        <div>
+          <img id="copertina_detail" class="border-radius-0-5" src="{cover_url}" alt="copertina" />
         </div>
 
         <!-- MAIN CONTENT -->
@@ -54,13 +50,11 @@
                       </div>
                 </div>
                
-
-                
-                <div class="font-size-1 flex-container">
-                    <span id="activeStars" class="stars-active margin-top-0-5 margin-bottom-0-5">
-                      {movieStars}
-                    </span>
-                </div>
+          <div class="font-size-1 flex-container">
+            <span id="activeStars" class="stars-active margin-top-0-5 margin-bottom-0-5">
+              {movieStars}
+            </span>
+          </div>
             
 
                 <div class="column">
@@ -97,63 +91,51 @@
                         <span id="num-down">{dislikes}</span>
                       </div>
                 </div>
+              </form>
+            <div id="num-up-down" class="text-align-center primary-color font-size-0-938">
+              <span id="num-up">{likes}</span>
+              <span id="num-down">{dislikes}</span>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
-    
-    
-
-
-  
     <div id="three_buttons" class="margin-top-2 text-align-left padding-left-1">
-            <div class="bottone">
-                <a href="php/layout.php?page=formmedia&amp;mediaid={mediaid}" class="button primary-color-gradient-button padding-1">Modifica</a>
-            </div>
-            <div class="bottone">
-              {add_button}
-            </div>
+      <div class="bottone">
+        <a href="php/layout.php?page=formmedia&amp;mediaid={mediaid}" class="button primary-color-gradient-button padding-1">Modifica</a>
+      </div>
+      <div class="bottone">
+        {add_button}
+      </div>
     </div>
-
-
 
     <div id="trailer" class="flex-container flex-content-start flex-align-items-center ">
-        {trailer}
+      {trailer}
     </div>
-
-
 
     <div id="similar" class=" text-align-left margin-top-2 ">
-        {similar_content}
+      {similar_content}
         <div id="similar_list" class="flex-container padding-left-2 flex-grow-shrink flex-content-start flex-wrap ">
-        {movieList}
+          {movieList}
         </div>
     </div>
 
-
-
     <div id="comment-section" class="flex-container flex-content-start margin-top-1 flex-align-items-left">
-        <div id="commentiamo" class="padding-left-2">
-            <h1 class="primary-color font-size-2-2 padding-bottom-0-5">Commenti </h1>
-
-           
-
-           
+      <div id="commentiamo" class="padding-left-2">
+         <h1 class="primary-color font-size-2-2 padding-bottom-0-5">Commenti </h1>
             <form action="php/post_comment.php" method="post" class="">
-                <fieldset class="fieldset_area">
-                    <label for="comment" class="comment_label  font-size-0-75">Inserisci qui il tuo commento</label> 
-                    <textarea name="message" rows="1" cols="10" class="textbox margin-top-0-5 secondary-bg"></textarea> 
-                    <input type="hidden" name="movieId" value="{mediaid}"/>            
-                    <input type="submit" value="Submit" name="commentSubmit" id="submit_comment" class="button primary-color-gradient-button"/>
-                </fieldset>
+              <fieldset class="fieldset_area">
+                <label for="comment" class="comment_label  font-size-0-75">Inserisci qui il tuo commento</label> 
+                <textarea name="message" rows="1" cols="10" class="textbox margin-top-0-5 secondary-bg"></textarea> 
+                <input type="hidden" name="movieId" value="{mediaid}"/>            
+                <input type="submit" value="Submit" name="commentSubmit" id="submit_comment" class="button primary-color-gradient-button"/>
+              </fieldset>
             </form>
-           
-
-
-            <div class="comment_list margin-bottom-2">
-                {commentList}
-            </div>
-        </div>
+          <div class="comment_list margin-bottom-2">
+            {commentList}
+          </div>
+      </div>
     </div>
   </div>
 </body>
