@@ -631,6 +631,7 @@ option {
 	border: .04em groove;
 	margin-left:1.5em;
 	margin-right:1.5em;
+	margin-bottom:1.5em;
 }
 
 .group-insert {
@@ -783,8 +784,8 @@ option {
 }
 
 .insert-form-link-button{
-	padding-left: 4.5em;
-	padding-right: 4.5em;
+	padding-left: 4.3em;
+	padding-right: 4.3em;
 	padding-bottom: 0.8em;
 	padding-top: 1em;
 	text-decoration: none;
@@ -1322,6 +1323,7 @@ input[type="file"] {
   
 .timeline-text{
 	width:100%;   
+	padding-right: 2em;
 }
 
 .timeline-image{
@@ -1331,8 +1333,8 @@ input[type="file"] {
 }
 
 .timeline-video{
-	width: 12.2em;
-	height: 6.25em;
+	width: 15em;
+	height: auto;
 }
 
 #search-button {
@@ -1403,7 +1405,32 @@ input[type="file"] {
 	#profile-container {
 		justify-content: flex-end;
 	}
+	/* START INSERT-FORM media query */
+	#media-comboBox-container {
+		flex-direction: column;
+	}
+	/* END INSERT-FORM media query */
+
+	/* START FEED media query */
+	.timeline-container {
+		width: 90%;
+		padding-left: 1.5em;
+		padding-right: 1.5em;
+		flex-direction: column;
+	}
+	.timeline{
+		padding-left:1.5em;
+	}
+	.timeline-content{
+		display:block;
+	}
+	.timeline-date{
+		padding-bottom: 0.5em;
+	}
+	/* END FEED media query */
 }
+	
+
 
 @media only screen and (max-width: 794px) {
 	#nav-container {
@@ -1420,16 +1447,13 @@ input[type="file"] {
 
 @media (max-width: 768px) {
 /* START INSERT FORM media query */
-	#media-comboBox-container {
-		flex-direction: column;
-	}
+	
 	.container-comboBox-data {
 		flex-direction: column;
 	}
 
 	.fieldset-date{
 		max-width:60%;
-		margin-bottom:1.5em;
 		margin-left:1em;
     }
 
@@ -1499,23 +1523,8 @@ input[type="file"] {
 	padding-top: 6em;
 	}
 /*END LOG-REG media query */
-
-/* START FEED MEDIA QUERY */
-	.timeline{
-		padding-left:1.5em;
-	}
-	.timeline-container {
-		width: 90%;
-		padding-left: 1.5em;
-		padding-right: 1.5em;
-	}
-	.timeline-content{
-		display:block;
-	}
-	.timeline-date{
-		padding-bottom: 0.5em;
-	}
 }
+
 
 #dettaglio-content{
 	width: 75%;
@@ -1638,7 +1647,7 @@ input[type="file"] {
 
 	#link-container a {
 		margin: 0;
-		font-size: 1.2em;
+		font-size: 1.17em;
 		padding: 0.5em;
 	}
 
@@ -1680,10 +1689,6 @@ input[type="file"] {
 		flex-grow: 0;
 		flex-shrink: 0;
 		flex-basis: 0;
-	}
-
-	.fieldset-date {
-		max-width: 100%;
 	}
 
 	.insert-form-container {
@@ -1739,6 +1744,15 @@ input[type="file"] {
 	#content-container {
 		padding-bottom: 4em;
 	}
+	/* START INSERT-FORM media query */
+	.insert-form-button{
+		display: grid;
+		padding-block-end: 2em;
+	}
+	.button-small-form {
+		margin-bottom:.7em;
+	}
+	/* END INSERT-FORM media query */
 }
 
 @media (max-width: 375px) {
@@ -1899,7 +1913,6 @@ input[type="file"] {
         width: 50vh;
 	}
 	
-
 }
 
 @media only screen and (max-width: 768px) { 

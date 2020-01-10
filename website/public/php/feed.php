@@ -11,8 +11,14 @@ if (SessionManager::isUserLogged()) {
     echo "Devi fare l'accesso per vedere il contenuto di questa pagina";
     return;
 }
-$output = str_replace("{feed-timeline}",generate_feed_timeline($userId),$output); //da sostituire 1 con userId!!
-$output = str_replace("{feed-next-releases}",generate_feed_next_releases($userId),$output); //da sostituire 1 con userId!!
+if (Media::getUserFavourites(SessionManager::getUserId())!=null){
+    $output = str_replace("{feed-timeline}",generate_feed_timeline($userId),$output);
+    $output = str_replace("{feed-next-releases}",generate_feed_next_releases($userId),$output); 
+}
+else{
+    $output = str_replace("{feed-timeline}", "Nessun elemento presente: aggiungi ai preferiti almeno un media per poter seguire il feed!",$output);
+    $output = str_replace("{feed-next-releases}","",$output); 
+}
 
 
 function generate_feed_next_releases($userId){
@@ -83,13 +89,13 @@ function get_media($feedObj){
         $cover = $feedObj->coverUrl; 
     }
     if (isset($video) && $video!=""){ 
-        $media ="<div class='content-justify-right padding-top-1 padding-left-3'>
+        $media ="<div class='content-justify-right padding-top-1'>
                     <object class='timeline-video' data='$video'>trailer 
                     </object>
                 </div>";
     }
     else{
-        $media = "<div class='content-justify-right padding-top-1 padding-left-2'>
+        $media = "<div class='content-justify-right padding-top-1'>
                     <img class='timeline-image' alt='immagine copertina' src='$cover'></img>
                 </div>";
     }
