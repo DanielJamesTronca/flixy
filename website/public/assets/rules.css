@@ -1101,7 +1101,7 @@ input:focus ~ .highlight {
     display: inline;
 }
     
-input[type="file"] {
+#file-upload{
     display: none;
 }
 

@@ -31,9 +31,9 @@ function generate_feed_next_releases($userId){
             $subtitle = $release->subtitle;
             $coverImage = $release->coverUrl;
             $remainingDays = get_remaining_days($release->deadlineDate);
-            $element = "<div class='next-release'>
+            $element = "<div class='next-release' tabindex='0'>
                             <div class='next-release-image-container'>
-                                <img src='$coverImage' class='cover' alt='immagine copertina'/>
+                                <img src='$coverImage' class='cover' alt='immagine di copertina'/>
                             </div>
                             <div class='next-release-text-area padding-1 text-align-center'> 
                                 <h4>$title</h4>
@@ -58,13 +58,13 @@ function generate_feed_timeline($userId){
             $content = get_content($item);
             $date = get_date($item);
             $media = get_media($item);
-            $element = "<div class='timeline-container'>
+            $element = "<div class='timeline-container' tabindex='0'>
                             <div class='timeline-content'>
                                 <div class='timeline-date'>
                                     <p>$date</p> 
                                 </div>
                                 <div class='timeline-text'>
-                                    <h3 xml:lang='en-GB' lang='en-GB'>$title</h3>
+                                    <h3>$title</h3>
                                     <p>$subtitle</p>
                                     <p class='padding-top-0-5'>$content</p>
                                 </div>
@@ -90,13 +90,12 @@ function get_media($feedObj){
     }
     if (isset($video) && $video!=""){ 
         $media ="<div class='content-justify-right padding-top-1'>
-                    <object class='timeline-video' data='$video'>trailer 
-                    </object>
+                    <object class='timeline-video' data='$video' title='trailer'></object>
                 </div>";
     }
     else{
         $media = "<div class='content-justify-right padding-top-1'>
-                    <img class='timeline-image' alt='immagine copertina' src='$cover'></img>
+                    <img class='timeline-image' alt='immagine di copertina' src='$cover'></img>
                 </div>";
     }
     return $media;
