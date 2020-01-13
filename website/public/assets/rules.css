@@ -127,8 +127,9 @@ option {
 	font-size: 2.2em;
 }
 
+
 .font-weight-light {
-	font-weight: 300;
+	font-weight: 200;
 }
 
 .font-weight-normal {
@@ -346,6 +347,10 @@ option {
 
 .flex-direction-row {
 	flex-direction: row;
+}
+
+.flex-direction-row-reverse {
+	flex-direction: row-reverse;
 }
 
 .flex-direction-col {
@@ -623,7 +628,10 @@ option {
 /* MERGE INSERT-FORM.CSS */
 .fieldset-date{
     width:20em;
-    border: .04em groove;
+	border: .04em groove;
+	margin-left:1.5em;
+	margin-right:1.5em;
+	margin-bottom:1.5em;
 }
 
 .group-insert {
@@ -637,10 +645,8 @@ option {
 	margin-top: 2em;
 	width: 75%;
 	background-color: #000000;
-	padding-left: 1.5em;
-	padding-right: 1.5em;
-	border-radius: 0.5em;
-	box-shadow: 0 2px 8px 0 #000000;
+	border-radius: .5em;
+	box-shadow: 0 .125em .5em 0 #000000;
 }
 
 #media-comboBox-container {
@@ -701,12 +707,15 @@ option {
 .insert-form-button {
 	display: flex;
 	justify-content: flex-end;
+	margin-right:1.5em;
 }
 
 .switch-field {
 	display: flex;
 	margin-bottom: 36px;
 	overflow: hidden;
+	margin-left:1.5em;
+	margin-right:1.5em;
 }
 
 .switch-field input {
@@ -753,6 +762,7 @@ option {
 
 .error-message-box-insert-form {
 	width: fit-content;
+	max-width: 80%;
 	border-radius: 1em;
 	background-color: #910223;
 	display: flex;
@@ -765,6 +775,21 @@ option {
 	position: relative;
 	flex-direction: column;
 	margin-bottom: 2.2em;
+	margin-left:1.5em;
+	margin-right:1.5em;
+}
+
+.insert-form-link-button-container{
+	padding-top: 1em;
+}
+
+.insert-form-link-button{
+	padding-left: 4.3em;
+	padding-right: 4.3em;
+	padding-bottom: 0.8em;
+	padding-top: 1em;
+	text-decoration: none;
+	border-radius: .5em;
 }
 
 
@@ -791,15 +816,10 @@ option {
 	padding-top: 7em;
 }
 
-.primary-color-gradient-text {
-background: -webkit-linear-gradient(#ff3434, #b70000);
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-}
-
 .form-title{
 	padding-top: 2em;
+	margin-left:1.5em;
+	margin-right:1.5em;
 }
 
 .padding-top-small-adaptive{
@@ -931,7 +951,6 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
 	height:60%; 
 	width:6.25em; 
 	top:25%; 
-	pointer-events:none;
 	opacity:0.5;
 }
   
@@ -1082,7 +1101,7 @@ input:focus ~ .highlight {
     display: inline;
 }
     
-input[type="file"] {
+#file-upload{
     display: none;
 }
 
@@ -1188,13 +1207,14 @@ input[type="file"] {
 
 /* START MERGE FEED */
 #feed-content {
-	margin-top: 2em;
 	width: 75%;
-	border-radius: 8px;
-	box-shadow: 0 2px 8px 0 #000000;
+	height: 100%;
+	border-radius: .5em;
+	box-shadow: 0 .125em .5em 0 #000000;
 	display: flex;
 	flex-direction: column;
 	min-height: 70vh;
+	margin-top: 2em;
 }
 
 #container-next-release{
@@ -1229,6 +1249,16 @@ input[type="file"] {
 	font-size: 4em;
 }
 
+.cover{
+	max-width: 100%;
+	height:85%;
+	margin: 15%;
+	border-radius: .5em;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+	object-fit: cover;
+}
+
+
 /* TIMELINE */
 /* The actual timeline (the vertical ruler) */
 .timeline {
@@ -1239,6 +1269,7 @@ input[type="file"] {
 	display:flex;
 	flex-direction: column;
 	text-align: left;
+	width: 90%;
 }
   
 /* The actual timeline (the vertical ruler) */
@@ -1292,6 +1323,7 @@ input[type="file"] {
   
 .timeline-text{
 	width:100%;   
+	padding-right: 2em;
 }
 
 .timeline-image{
@@ -1301,8 +1333,8 @@ input[type="file"] {
 }
 
 .timeline-video{
-	width: 12.2em;
-	height: 6.25em;
+	width: 15em;
+	height: auto;
 }
 
 #search-button {
@@ -1376,7 +1408,32 @@ input[type="file"] {
 	#profile-container {
 		justify-content: flex-end;
 	}
+	/* START INSERT-FORM media query */
+	#media-comboBox-container {
+		flex-direction: column;
+	}
+	/* END INSERT-FORM media query */
+
+	/* START FEED media query */
+	.timeline-container {
+		width: 90%;
+		padding-left: 1.5em;
+		padding-right: 1.5em;
+		flex-direction: column;
+	}
+	.timeline{
+		padding-left:1.5em;
+	}
+	.timeline-content{
+		display:block;
+	}
+	.timeline-date{
+		padding-bottom: 0.5em;
+	}
+	/* END FEED media query */
 }
+	
+
 
 @media only screen and (max-width: 794px) {
 	#nav-container {
@@ -1392,23 +1449,47 @@ input[type="file"] {
 }
 
 @media (max-width: 768px) {
-	#media-comboBox-container {
-		flex-direction: column;
-	}
+/* START INSERT FORM media query */
+	
 	.container-comboBox-data {
 		flex-direction: column;
 	}
 
 	.fieldset-date{
-        max-width:60%;
+		max-width:60%;
+		margin-left:1em;
     }
 
 	.custom-fieldset {
-		max-width: auto;
+		max-width: 100%;
 	}
 	.insert-form-button {
 		justify-content: center;
+		margin-right:0em;
 	}
+
+	.form-title{
+		padding-top: 1.5em;
+		margin-left:1em;
+		margin-right:1em;
+	}
+
+	.group-insert-form {
+		margin-left:1em;
+		margin-right:1em;
+	}
+
+	.switch-field {
+		margin-left:1em;
+		margin-right:1em;
+	}
+	.insert-form-link-button-container{
+		margin-right:1em;
+	}
+
+/* END INSERT FORM media query */
+
+/* START LOG-REG media query */
 	.content-log-reg{
 		width:90%;
 	}
@@ -1444,21 +1525,9 @@ input[type="file"] {
 	.footer-form{
 	padding-top: 6em;
 	}
-	.timeline{
-		padding-left:1.5em;
-	}
-	.timeline-container {
-		width: 90%;
-		padding-left: 1.5em;
-		padding-right: 1.5em;
-	}
-	.timeline-content{
-		display:block;
-	}
-	.timeline-date{
-		padding-bottom: 0.5em;
-	}
+/*END LOG-REG media query */
 }
+
 
 #dettaglio-content{
 	width: 75%;
@@ -1581,7 +1650,7 @@ input[type="file"] {
 
 	#link-container a {
 		margin: 0;
-		font-size: 1.2em;
+		font-size: 1.17em;
 		padding: 0.5em;
 	}
 
@@ -1623,10 +1692,6 @@ input[type="file"] {
 		flex-grow: 0;
 		flex-shrink: 0;
 		flex-basis: 0;
-	}
-
-	.fieldset-date {
-		max-width: 100%;
 	}
 
 	.insert-form-container {
@@ -1682,6 +1747,15 @@ input[type="file"] {
 	#content-container {
 		padding-bottom: 4em;
 	}
+	/* START INSERT-FORM media query */
+	.insert-form-button{
+		display: grid;
+		padding-block-end: 2em;
+	}
+	.button-small-form {
+		margin-bottom:.7em;
+	}
+	/* END INSERT-FORM media query */
 }
 
 @media (max-width: 375px) {
@@ -1842,7 +1916,6 @@ input[type="file"] {
         width: 50vh;
 	}
 	
-
 }
 
 @media only screen and (max-width: 768px) { 

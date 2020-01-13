@@ -58,7 +58,7 @@ class Feed extends Base
         if (sizeof($favs) == 0) // no favs so no feed
             return [];
 
-        $query = "SELECT * FROM ".Feed::TABLE_NAME." WHERE (1=1";
+        $query = "SELECT * FROM ".Feed::TABLE_NAME." WHERE (1 != 1";
         foreach ($favs as &$fav) {
             $query .= " OR ".Feed::MEDIA_ID_KEY." = ".$fav->id." ";
         }
@@ -88,25 +88,31 @@ class Feed extends Base
  }
 
  class Release {
-     var $mediaName, $deadlineDate, $subtitle, $isMovie, $coverUrl;
+     var $mediaid, $mediaName, $deadlineDate, $subtitle, $isMovie, $coverUrl, $promoUrl, $description;
      var $valid = false;
 
      public function __construct($media, $episode = null)
     {
+        $this->mediaid = $media->id;
         $this->mediaName = $media->title;
         $this->coverUrl = $media->coverUrl;
+        
         $this->isMovie = $media->isMovie();
         if ($this->isMovie)
         {
                 $this->deadlineDate = $media->airDate;
                 $this->subtitle = "Rilascio film";
                 $this->valid = true;
+                $this->promoUrl = $media->trailerUrl;
+                $this->description = $media->description;
         }
         else 
         {
             $this->valid = true;
             $this->deadlineDate = $episode->airDate;
             $this->subtitle = "Stagione ".$episode->seasonNum . " episodio ".$episode->episodeNum;
+            $this->promoUrl = $episode->promoUrl;
+            $this->description = $episode->description;
 
         }
         

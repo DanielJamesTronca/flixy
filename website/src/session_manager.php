@@ -8,8 +8,7 @@ class SessionManager
     private const USERNAME_KEY = "username";
     private const PUBLISH_KEY = "canPublish";
 
-    public const BASE_URL = "http://192.168.64.3/flixy/website/public/php/layout.php?page=";
-
+    public const BASE_URL = "http://192.168.1.202/flixy/website/public/php/layout.php?page=";
 
     private function __construct()
     {

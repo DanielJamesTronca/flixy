@@ -4,7 +4,7 @@ class DBManager
     private static $instance = null;
     private $conn;
     
-    private $host = "localhost"; //da modificare
+    private $host = "192.168.1.202"; //da modificare
     private $user = 'app';
     private $pass = 'appdbpasswd';
     private $database = 'flixy';
@@ -52,11 +52,14 @@ class DBManager
     public function login($username, $password)
     {
         $hashedPassword = hash('sha256', $password);
-        $result = $this->query("SELECT Keychain.user_id FROM Keychain WHERE Keychain.username ='{$username}' AND Keychain.password = '{$hashedPassword}';");
+        $result = $this->query("SELECT Keychain.user_id, Keychain.can_publish FROM Keychain WHERE Keychain.username ='{$username}' AND Keychain.password = '{$hashedPassword}';");
         if (count($result) == 1)
         {
             // user credentials found
-            return (int)$result[0]->user_id;
+            $userId = (int)$result[0]->user_id;
+            $canPublish = (int)$result[0]->can_publish;
+            SessionManager::startSessionForUser($userId, $username, $canPublish);
+            return $userId;
         }
         return false;
     }
