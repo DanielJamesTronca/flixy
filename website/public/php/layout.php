@@ -2,12 +2,10 @@
 include_once ("../../src/db_manager.php");
 include_once ("../../src/models/models.php");
 include_once ("../../src/session_manager.php");
-include_once ("./utils.php");
+include_once ("../../src/controllers/utils.php");
 
 $output = file_get_contents("../html/layout.html");
-$dbMan = DBManager::getInstance();
 
-$username = "";
 if (SessionManager::isUserLogged())
 {
     $username = SessionManager::getUsername();
@@ -19,9 +17,7 @@ if (SessionManager::isUserLogged())
     $output = str_replace("{logout_O_registrazione}", "Disconnettiti", $output);
     $output = str_replace("{profile_photo_url}", "../public".$user->avatarUrl, $output);
     $output = str_replace("{linkToFeed}", "./php/layout.php?page=feed", $output);
-}
-else
-{
+} else {
     $output = str_replace("{linkToFavs}", "./php/registrazione.php", $output);
     $output = str_replace("{link_to_profile_or_log_in}", "./php/login.php", $output);
     $output = str_replace("{login_O_username}", "Accedi", $output);
@@ -31,32 +27,18 @@ else
     $output = str_replace("{linkToFeed}", "./php/registrazione.php", $output);
 }
 
-// <form> logic
 if (isset($_GET["logout"])) {
     SessionManager::logout();
     header("Location: ".SessionManager::BASE_URL."home");
 }
 
-if (isset($_GET["search"]))
-{
+if (isset($_GET["search"])) {
     $varSearch = $_GET["search"];
-    $varReturnSearch = research($varSearch);
-}
-else
-{
+    $varReturnSearch = Utils::research($varSearch);
+} else {
     $varSearch = '';
     $varReturnSearch = '';
 }
-
-$registrazionePage = '"./php/registrazione.php"';
-$logOutAction = '$logOut';
-$signup = '<a id="sign-up" class="font-size-0-75 font-weight-light" href="./php/registrazione.php">';
-$logout = str_replace($registrazionePage, $logOutAction, $signup);
-
-
-
-$output = str_replace("{linkToFavs}", "./php/layout.php?page=profilo", $output);
-$output = str_replace("{linkToTrending}", "./php/layout.php?page=home", $output);
 
 switch ($_GET['page'])
 {
