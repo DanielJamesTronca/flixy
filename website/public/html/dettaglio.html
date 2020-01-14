@@ -5,7 +5,7 @@
   <title>Flixy - Dettaglio Film</title>
   <meta name="title" content="Flixy - Dettaglio" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <base target="_self" href="http://192.168.62.3/flixy/website/public"/>
+  <base target="_self" href="http://192.168.62.2/flixy/website/public"/>
   <link rel="stylesheet" type="text/css" href="assets/rules.css" />
   <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
 </head>
@@ -15,40 +15,39 @@
     <div id="row" class="flex-container flex-wrap">
 
       <div id="side" class="flex-container flex-grow-shrink">
-        <div>
-          <img id="copertina_detail" class="border-radius-0-5" src="{cover_url}" alt="copertina" />
-        </div>
-      </div>
+        <img id="copertina_detail" class="border-radius-0-5" src="{cover_url}" alt="copertina" />
+      
 
-      <div id="main" class="flex-container flex-wrap">
-        <div id="info" class="primary-color">
-          <div class="column">
-            <h1 id="text" class="document-font font-size-1-7 ">{title}</h1>
+        <!-- MAIN CONTENT -->
+        <div id="main" class="flex-container flex-wrap">
+            <div id="info" class="primary-color">
 
-              <div id="mobile_only" class="text-align-center primary-color {mediaNoFav}">
-                <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
-                  <fieldset class="fieldset_area">
-                    <input type="hidden" value="{mediaid}" name="movieID"></input>
-                    <input type="hidden" value="dettaglio&amp;movieId={mediaid}" name="redirectURL"></input>
-                    <input type="hidden" value="1" name="fav"></input>
-                    <button id="add_icon" class="fas fav-icon fa-heart custom-button-no-hover font-size-1-7"></button>
-                    <label for="add_icon" class="text-align-center font-size-0-625">Add to your favourites</label>
-                  </fieldset>
-                </form>
-              </div>
+                <div class="column">
+                    <h1 id="text" class="document-font font-size-1-7 ">{title}</h1>
 
-              <div id="mobile_only1" class="text-align-center primary-color {mediaIFav}">
-                <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
-                  <fieldset class="fieldset_area">
-                    <input type="hidden" value="{mediaid}" name="movieID"></input>
-                    <input type="hidden" value="dettaglio&amp;movieId={mediaid}" name="redirectURL"></input>
-                    <input type="hidden" value="0" name="fav"></input>
-                    <button id="remove_icon" class="fas fa-heart fav-icon custom-button-no-hover font-size-1-7 thumb-selected"></button>
-                    <label for="remove_icon" class="text-align-center font-size-0-625">Remove from favourites</label>
-                  </fieldset>
-                </form>
-              </div>
-          </div>
+                    <div id="mobile_only" class="text-align-center primary-color {mediaNoFav}">
+                        <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
+                          <fieldset class="fieldset_area">
+                            <input type="hidden" value="{mediaid}" name="movieID"></input>
+                            <input type="hidden" value="dettaglio&amp;movieId={mediaid}" name="redirectURL"></input>
+                            <input type="hidden" value="1" name="fav"></input>
+                            <button id="add_icon" class="fas margin-top-0-2 fa-heart custom-button custom-link-hover font-size-1-7"></button>
+                            <label for="add_icon" class="text-align-center font-size-0-625">Add to your favourites</label>
+                          </fieldset>
+                        </form>
+                      </div>
+                      <div id="mobile_only1" class="text-align-center primary-color {mediaIFav}">
+                        <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
+                          <fieldset class="fieldset_area">
+                            <input type="hidden" value="{mediaid}" name="movieID"></input>
+                            <input type="hidden" value="dettaglio&amp;movieId={mediaid}" name="redirectURL"></input>
+                            <input type="hidden" value="0" name="fav"></input>
+                            <button id="remove_icon" class="fas fa-heart margin-top-0-2 custom-button custom-link-hover font-size-1-7 thumb-selected"></button>
+                            <label for="remove_icon" class="text-align-center font-size-0-625">Remove from favourites</label>
+                          </fieldset>
+                        </form>
+                      </div>
+                </div>
                
           <div class="font-size-1 flex-container">
             <span id="activeStars" class="stars-active margin-top-0-5 margin-bottom-0-5">
@@ -56,37 +55,42 @@
             </span>
           </div>
             
-          <div class="column">
-            <h2 class="document-font font-size-0-938">{isMovie}</h2>
-            <h2 class="document-font font-size-0-938">GENERE: {genre}</h2>
-            <h2 class="document-font font-size-0-938">DURATA: {duration}</h2>
-            <h2 class="document-font font-size-0-938">{serieTvEpisode} {episode}</h2>
-            <h2 class="document-font font-size-0-938">{serieTvSeason} {season}</h2>
-            <h2 class="document-font font-size-0-938">DATA DI RILASCIO: {air_date}</h2>
-          </div>
 
-          <p class="margin-top-1 text-align-justify font-size-0-8 padding-right-1-5 description">
-            {description}
-          </p>
+                <div class="column">
+                    <h2 class="document-font font-size-0-938">{isMovie}</h2>
+                    <h2 class="document-font font-size-0-938">GENERE: {genre}</h2>
+                    <h2 class="document-font font-size-0-938">DURATA: {duration}</h2>
+                    <h2 class="document-font font-size-0-938">{serieTvEpisode} {episode}</h2>
+                    <h2 class="document-font font-size-0-938">{serieTvSeason} {season}</h2>
+                    <h2 class="document-font font-size-0-938">DATA DI RILASCIO: {air_date}</h2>
+                </div>
 
-          <div id="votes" class="margin-top-1">
-            <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"></span>
-              <form method="post" action="/flixy/website/public/php/add_vote.php">
-                <div id="thumbs" class="text-align-center primary-color">
-                  <button name="vote" type="submit" value="like" class="custom-button-no-hover font-size-2-2">
-                    <i id="thumbs-up" class="far fa-thumbs-up {like-selected}"></i>
-                  </button>
-                  <button name="vote" type="submit" value="dislike" class="custom-button-no-hover font-size-2-2">
-                    <i id="thumbs-down" class="far fa-thumbs-down {dislike-selected}"></i>
-                  </button>
-                  <input type="hidden" value="{mediaid}" name="movieID"></input>
-                  <input type="hidden" value="dettaglio&amp;movieId={mediaid}" name="redirectURL"></input>
+                <p class="margin-top-1 text-align-justify font-size-0-8 padding-right-1-5 description">
+                    {description}
+                </p>
+
+
+
+                <div id="votes" class="margin-top-1">
+                    <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"></span>
+                    <form method="post" action="/flixy/website/public/php/add_vote.php">
+                        <div id="thumbs" class="text-align-center primary-color">
+                          <button name="vote" type="submit" value="like" class="custom-button font-size-2-2">
+                            <i id="thumbs-up" class="far fa-thumbs-up custom-link-hover {like-selected}"></i>
+                          </button>
+                          <button name="vote" type="submit" value="dislike" class="custom-button font-size-2-2">
+                            <i id="thumbs-down" class="far fa-thumbs-down custom-link-hover {dislike-selected}"></i>
+                          </button>
+                          <input type="hidden" value="{mediaid}" name="movieID"></input>
+                          <input type="hidden" value="dettaglio&amp;movieId={mediaid}" name="redirectURL"></input>
+                        </div>
+                      </form>
+                      <div id="num-up-down" class="text-align-center primary-color font-size-0-938">
+                        <span id="num-up">{likes}</span>
+                        <span id="num-down">{dislikes}</span>
+                      </div>
                 </div>
               </form>
-            <div id="num-up-down" class="text-align-center primary-color font-size-0-938">
-              <span id="num-up">{likes}</span>
-              <span id="num-down">{dislikes}</span>
-            </div>
           </div>
         </div>
       </div>

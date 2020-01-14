@@ -6,6 +6,7 @@
   <meta name="title" content="Flixy - Favourite Card" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" type="text/css" href="assets/rules.css" />
+  <!-- <base target="_self" href="http://192.168.94.2/flixy/website/public/"> -->
   <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
 </head>
 
@@ -14,37 +15,38 @@
     <div class="favourite_cover">
       <img class="border-radius-0-5 favourite_card_copertina" src="{favouriteCover}" alt="copertina" />
     </div>
-    <div id="favourite_card_info" class=" primary-color text-align-center">
-      <h1 class="font-size-1 text-align-center">
-        {favouriteTitle}
-      </h1>
-      <h1 class="font-size-0-75 text-align-center">
-        {favouriteGenre}
-      </h1>
-      <div id="absolute_hearth">
-        <div class="text-align-center primary-color {mediaNFav}">
-          <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
-            <fieldset class="custom-fieldset">
-              <input type="hidden" value="{mediaid}" name="movieID"></input>
-              <input type="hidden" value="profilo" name="redirectURL"></input>
-              <input type="hidden" value="1" name="fav"></input>
-              <button id="add-fav-icon" class="fas fav-icon fa-heart custom-button-no-hover font-size-1-5"></button>
-              <label for="add-fav-icon" class="text-align-center font-size-0-625">Add to your favourites</label>
-            </fieldset>
-          </form>
-        </div>
-        <div class="text-align-center primary-color {mediaFav}">
-          <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
-            <fieldset class="custom-fieldset">
-              <input type="hidden" value="{mediaid}" name="movieID"></input>
-              <input type="hidden" value="profilo" name="redirectURL"></input>
-              <input type="hidden" value="0" name="fav"></input>
-              <button id="rm-fav-icon" class="fas fa-heart fav-icon custom-button-no-hover font-size-1-5 thumb-selected"></button>
-              <label for="rm-fav-icon" class="text-align-center font-size-0-625">Remove from favourites</label>
-            </fieldset>
-          </form>
-        </div>
+
+    <div id="card_info" class=" primary-color text-align-center">
+        <h1 class="font-size-1">
+          {favouriteTitle}
+        </h1>
+        <h1 class="font-size-0-75 text-align-center">
+          {favouriteGenre}
+        </h1>
+
+      <div class="text-align-center primary-color {mediaNFav}">
+        <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
+          <fieldset class="custom-fieldset">
+            <input type="hidden" value="{mediaid}" name="movieID"></input>
+            <input type="hidden" value="profilo" name="redirectURL"></input>
+            <input type="hidden" value="1" name="fav"></input>
+            <button id="add-fav-icon" class="fas margin-top-0-2 fa-heart custom-button custom-link-hover font-size-1-125"></button>
+            <label for="add-fav-icon" class="text-align-center font-size-0-625">Add to your favourites</label>
+          </fieldset>
+        </form>
       </div>
+      <div class="text-align-center primary-color {mediaFav}">
+        <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
+          <fieldset class="custom-fieldset">
+            <input type="hidden" value="{mediaid}" name="movieID"></input>
+            <input type="hidden" value="profilo" name="redirectURL"></input>
+            <input type="hidden" value="0" name="fav"></input>
+            <button id="rm-fav-icon" class="fas fa-heart margin-top-0-2 custom-button custom-link-hover font-size-1-125 thumb-selected"></button>
+            <label for="rm-fav-icon" class="text-align-center font-size-0-625">Remove from favourites</label>
+          </fieldset>
+        </form>
+      </div>
+
     </div>
   </div>
 </body>

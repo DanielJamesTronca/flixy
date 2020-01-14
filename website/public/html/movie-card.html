@@ -5,7 +5,7 @@
   <title> Carta film: {movieTitle} </title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="title" content="Flixy - Homepage" />
-  <base target="_self" href="http://192.168.64.3//flixy/website/public/html" />
+  <base target="_self" href="http://localhost/flixy/website/public/html" />
 </head>
 
 <body class="primary-bg">
@@ -28,11 +28,11 @@
     <span id="type-name" class="margin-left-1-2 font-weight-normal font-size-0-938 primary-color"> {isMovie} </span>
     <form method="post" action="/flixy/website/public/php/add_vote.php">
       <div id="thumbs" class="text-align-center primary-color">
-        <button name="vote" type="submit" value="like" class="custom-button-color-hover font-size-2-2">
-          <i id="thumbs-up" class="far fa-thumbs-up {like-selected}"></i>
+        <button name="vote" type="submit" value="like" class="custom-button font-size-2-2">
+          <i id="thumbs-up" class="far fa-thumbs-up custom-link-hover {like-selected}"></i>
         </button>
-        <button name="vote" type="submit" value="dislike" class="custom-button-color-hover font-size-2-2">
-          <i id="thumbs-down" class="far fa-thumbs-down {dislike-selected}"></i>
+        <button name="vote" type="submit" value="dislike" class="custom-button font-size-2-2">
+          <i id="thumbs-down" class="far fa-thumbs-down custom-link-hover {dislike-selected} "></i>
         </button>
         <input type="hidden" value="{movieID}" name="movieID"></input>
         <input type="hidden" value="home" name="redirectURL"></input>
@@ -48,7 +48,7 @@
           <input type="hidden" value="{movieID}" name="movieID"></input>
           <input type="hidden" value="home" name="redirectURL"></input>
           <input type="hidden" value="1" name="fav"></input>
-          <button id="add-fav-icon" class="fas fav-icon custom-button-color-hover fa-heart font-size-1-1"></button>
+          <button id="add-fav-icon" class="fas margin-top-0-2 custom-button custom-link-hover fa-heart font-size-1-1"></button>
           <span class="text-align-center font-size-0-625">Aggiungi ai preferiti</span>
         </fieldset>
       </form>
@@ -59,7 +59,7 @@
           <input type="hidden" value="{movieID}" name="movieID"></input>
           <input type="hidden" value="home" name="redirectURL"></input>
           <input type="hidden" value="0" name="fav"></input>
-          <button id="rm-fav-icon" class="fas fa-heart fav-icon custom-button-color-hover font-size-1-1 thumb-selected"></button>
+          <button id="rm-fav-icon" class="fas fa-heart margin-top-0-2 custom-button custom-link-hover font-size-1-1 thumb-selected"></button>
           <span class="text-align-center font-size-0-625">Rimuovi dai preferiti</span>
         </fieldset>
       </form>
