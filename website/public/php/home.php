@@ -1,10 +1,11 @@
 <?php
-$genreList = fillGenreSelect(Genre::getGenreList());
-$yearList = fillYearSelect(Media::getAirDateList());
+$genreList = Utils::generateMovieGenreOptions(Genre::getGenreList());
+$yearList = Utils::generateMovieYearOptions(Media::getAirDateList());
+$typeList = Utils::generateMovieTypeOptions();
 
 $output = str_replace("<option>{genreOption}</option>", $genreList, $output);
 $output = str_replace("<option>{yearOption}</option>", $yearList, $output);
-$output = str_replace("<option>{typeOption}</option>", fillTypeSelect(), $output);
+$output = str_replace("<option>{typeOption}</option>", $typeList, $output);
 
 $displayMovieList = 3;
 
@@ -68,14 +69,14 @@ switch($displayMovieList) {
     $result = Media::list($userId, null,null,null, 2, "votes_positive", "DESC"); 
   } break;
   case 3: 
-    $result = filterList($varYear, $varGenre, $varType, $userId);
+    $result = Utils::getFilteredMovieList($varYear, $varGenre, $varType, $userId);
   break;
   default: 
-    $result = filterList($varYear, $varGenre, $varType, $userId);
+    $result = Utils::getFilteredMovieList($varYear, $varGenre, $varType, $userId);
   break;
 }
 
-$movieList = getMovieList($result);
+$movieList = Utils::generateMovieList($result);
 
 if ($movieList != '') {
   $output = str_replace("{movieList}", $movieList, $output);

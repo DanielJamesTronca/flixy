@@ -67,23 +67,27 @@ option {
 /* COLOR SECTION */
 .primary-color {
 	color: #ffffff;
+	/* color: black; */
 }
 
 .highlight-color {
-	color: #ff0000;
+	color: #E21221;
 }
 
 /* BG SECTION */
 .primary-bg {
-	background-color: #191919;
+	background-color: #191919; 
+	/* background-color: white; */
 }
 
 .secondary-bg {
 	background-color: #000000;
+	/* background-color: whitesmoke; */
 }
 
 .highlight-bg {
-	background: red;
+	background: #E21221;
+	/* background: grey; */
 }
 
 /* FONT SECTION */
