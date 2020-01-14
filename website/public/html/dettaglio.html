@@ -49,12 +49,11 @@
                 </div>
                
           <div class="font-size-1 flex-container">
-            <span id="activeStars" class="stars-active margin-top-0-5 margin-bottom-0-5" tabindex="0">
+            <span id="activeStars" class="stars-active margin-top-0-5 margin-bottom-0-5" tabindex="0" aria-label="Valutazione {starNumber} su cinque">
               {movieStars}
             </span>
           </div>
             
-
                 <div class="column">
                     <h2 class="document-font font-size-0-938" tabindex="0">{isMovie}</h2>
                     <h2 class="document-font font-size-0-938" tabindex="0">GENERE: {genre}</h2>
@@ -67,8 +66,6 @@
                 <p class="margin-top-1 text-align-justify font-size-0-8 padding-right-1-5 description" tabindex="0">
                     {description}
                 </p>
-
-
 
                 <div id="votes" class="margin-top-1">
                     <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"></span>
@@ -95,14 +92,17 @@
       </div>
     </div>
 
-    <div id="three_buttons" class="margin-top-2 text-align-left padding-left-1">
-      <div class="bottone">
+    <ul id="three_buttons" class="margin-top-2 {notAnAdmin} text-align-left padding-left-1">
+      <li>
         <a href="php/layout.php?page=formmedia&amp;mediaid={mediaid}" class="button primary-color-gradient-button padding-1">Modifica</a>
-      </div>
-      <div class="bottone">
-        {add_button}
-      </div>
-    </div>
+      </li>
+      <li>
+        <a href='php/layout.php?page=formepisode&amp;mediaid={mediaid}' class='button primary-color-gradient-button padding-1'>Aggiungi episodio</a>
+      </li>
+      <li>
+        <a href='php/layout.php?page=formepisode&amp;mediaid={mediaid}' class='button primary-color-gradient-button padding-1'>Aggiungi episodio</a>
+      </li>
+    </ul>
 
     <div id="trailer" class="flex-container flex-content-start flex-align-items-center" >
       {trailer}

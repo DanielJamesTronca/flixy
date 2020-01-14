@@ -1066,6 +1066,8 @@ input:focus ~ .highlight {
     display: flex;
 }
 
+
+
 #main_profilo{
     padding-top:2em;
     flex-basis: 0;
@@ -1132,6 +1134,10 @@ input:focus ~ .highlight {
 	flex-basis: 0;
 }
 
+#bottone_aggiorna button{
+	width: 100%;
+
+}
 
 
 @media only screen and (max-width:980px){

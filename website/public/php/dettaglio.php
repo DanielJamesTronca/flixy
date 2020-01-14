@@ -38,8 +38,11 @@ function loadInfo($id){
   return $arr;
 }
 
+
 $movieId=$_GET["movieId"];
 $lista= loadInfo($movieId);
+
+$starNumber=$lista[7];
 
 $genre=Genre::getNameGenre($lista[8]);
 $genre2=$genre[0]->name;
@@ -49,19 +52,16 @@ $season=$lista[5];
 $likes=$lista[9];
 $data_rilascio=$lista[10];
 
-$add_button="<a href='php/layout.php?page=formepisode&amp;mediaid={mediaid}' class='button primary-color-gradient-button padding-1'>Aggiungi episodio</a>";
-
-if ($lista[11] == 1) {
-  $output = str_replace("{isMovie}", "SERIE TV", $output);
-  $output = str_replace("{add_button}", $add_button, $output);
-
+if (SessionManager::isUserLogged() && SessionManager::userCanPublish()) {
+  $output = str_replace("{notAnAdmin}", "",$output); 
 } else {
-  $output = str_replace("{isMovie}", "FILM", $output);
-  $output = str_replace("{add_button}", null , $output);
+  $output = str_replace("{notAnAdmin}", "hidden",$output);
 }
 
 
 $output=str_replace("{genre}", $genre2,$output);
+$output=str_replace("{starNumber}", count($starNumber),$output);
+
 $output=str_replace("{mediaid}",$movieId,$output);
 $output=str_replace("{title}", $lista[0],$output);
 $output=str_replace("{duration}", $lista[1],$output);
@@ -73,12 +73,12 @@ $output=str_replace("{trailer_url}",$lista[6],$output);
 $output = str_replace("{movieStars}", implode($lista[7]), $output);
 $output = str_replace("{air_date}", $lista[10], $output);
 
-
-
-
-
-$output = str_replace("{air_date}", $lista[10], $output);
-
+if($lista[11]==1){
+  $output= str_replace("{isMovie}", "SERIE TV", $output);
+}
+else{
+  $output= str_replace("{isMovie}", "FILM", $output);
+}
 
 
 function setFavouriteLikes($id){
