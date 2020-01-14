@@ -1002,6 +1002,18 @@ input:focus ~ .highlight {
     height: 5.78215em;
 }
 
+@media only screen and (max-width: 456px) {
+	.similar_card_entry {
+		width: 10.5em;
+		height: 19.5em;
+}
+.similar_card_copertina {
+    width: 10.5em;
+	height: 13.71875em;
+}
+}
+
+
 /* FAVOURITE */
 
 #favourite_card_entry {
@@ -1886,7 +1898,7 @@ input:focus ~ .highlight {
         flex-basis: 100%;
         flex-grow: 0;
         flex-shrink: 0;
-        padding-left: 0em;
+        padding-left: 0;
 		padding-right: 2em;
 	}
 	
@@ -1897,7 +1909,7 @@ input:focus ~ .highlight {
     #main {
         display: flex;
         flex-basis: 100%; 
-        padding-left: 2em; 
+		padding-left: 2em; 
 	}
 	.column{
         -webkit-column-count: 1; /* Old Chrome, Safari and Opera */
@@ -1910,12 +1922,23 @@ input:focus ~ .highlight {
 	}
 }
 
-
-@media only screen and (max-width:1075px){
-    .textbox{
+@media only screen and (max-width:1250px){
+	.textbox{
         width: 50vh;
 	}
+}
+
+@media only screen and (max-width:1128px){
+	#main{
+		margin-top: 2em;
+	}
 	
+}
+@media only screen and (max-width:850px){
+	#submit_comment{
+		margin-top: 1em;
+		display: block;
+	}
 }
 
 @media only screen and (max-width: 768px) { 
@@ -1925,7 +1948,6 @@ input:focus ~ .highlight {
         flex-grow: 0;
         flex-shrink: 0;
         width: 100%;
-        
         overflow-x: hidden;
     }
 
@@ -1948,9 +1970,6 @@ input:focus ~ .highlight {
         text-align: left;
 	}
 
-	#similar_list{
-		justify-content: center;
-	}
 	#similar h1{
 		margin-left: 0;
 		margin-top: 0;
@@ -1962,7 +1981,8 @@ input:focus ~ .highlight {
 	
     #submit_comment{
         width: 5em;
-        height: 1.5em; 
+		height: 1.5em; 
+		
     }
 }
 
@@ -1997,19 +2017,43 @@ input:focus ~ .highlight {
         display: flex;
         flex-basis: 100%;  
         overflow-x: hidden;
-        padding-left: 2em;
-        padding-right: 2em;
+        padding-left: 1em;
+        padding-right: 1em;
     }
 
     .textbox{
         width: 80%;
-    }
+	}
+	
+	#yt h1{
+		padding-left: 0.5em;
+		padding-bottom: 0em;
+	}
+	#three_button{
+		padding-left: 0.5em;
+	}
+	.bottone{
+		padding: 0;
+	}
 
     #yt object{
-        width: 100%;
-        padding-left: 0; 
+        width: 90%;
+        padding-left: 1em; 
     }
+	#comment-section{
+		margin-top: 0;
+	}
+	#similar{
+		margin-top:0;
+	}
 
+	.textbox{
+        width: 100%;
+    }
+	#similar h1{
+		padding-left: 0.5em;
+		padding-bottom: 0;
+	}
     #similar_list{
         justify-content: center;
     }
@@ -2020,11 +2064,7 @@ input:focus ~ .highlight {
     }
 
     #commentiamo {
-        padding-left: 0;
-	}
-	
-    #comment_label, #commentiamo h1{
-        text-align: center;
+        padding-left: 1em;
 	}
 	
     #text{
@@ -2045,7 +2085,11 @@ input:focus ~ .highlight {
     #submit_comment{
         margin-top: 1em;
         display: block;
-    }
+	}
+	
+	#side_comment{
+		padding-left:0;
+	}
 }
 
 @media only screen and (max-width: 320px) {
