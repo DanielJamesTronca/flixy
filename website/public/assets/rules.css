@@ -2029,13 +2029,18 @@ input:focus ~ .highlight {
 		padding-left: 0.5em;
 		padding-bottom: 0em;
 	}
-	#three_button{
-		padding-left: 0.5em;
+	#three_buttons{
+		padding-left: 1em;
+		padding-bottom: 1.5em;
+		
 	}
 	.bottone{
 		padding: 0;
 	}
 
+	#yt{
+		margin-top:1em;
+	}
     #yt object{
         width: 90%;
         padding-left: 1em; 
