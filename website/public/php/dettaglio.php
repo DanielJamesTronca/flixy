@@ -13,10 +13,10 @@ $episode="/";
 $trailer_url="None";
 $stars="0";
 
-$serieTvEpisode="";
-$serieTvEpisodeReal="EPISODES:";
-$serieTvSeason="";
-$serieTvSeasonReal="SEASON:";
+$serieTvEpisode="hidden";
+//$serieTvEpisodeReal="EPISODES:";
+$serieTvSeason="hidden";
+//$serieTvSeasonReal="SEASON:";
 
 $userId = null;
 
@@ -174,10 +174,7 @@ if($episode==null && $season==null){
   $output=str_replace("{serieTvEpisode}", $serieTvEpisode,$output);
   $output=str_replace("{serieTvSeason}", $serieTvSeason,$output);
 }
-else { 
-  $output=str_replace("{serieTvEpisode}", $serieTvEpisodeReal,$output );
-  $output=str_replace("{serieTvSeason}", $serieTvSeasonReal,$output );
-}
+
 
 $actualGenre_aux= $lista[8];
 $realGenre= Media::getMediasWithGenre($actualGenre_aux);
@@ -214,7 +211,7 @@ function getSimilarMovies($realGenre, $genre_variable) {
 
 function generate_similar_content($realGenre){
   if(count($realGenre)>1){
-    $element_similar_content="<h1 class='primary-color font-size-2-2 padding-left-1 padding-bottom-0-5 text-align-left'>Contenuti simili</h1>";
+    $element_similar_content="<h1 class='primary-color font-size-2-2 padding-left-1 padding-bottom-0-5 text-align-left' tabindex='0'>Contenuti simili</h1>";
   }
   else {
     $element_similar_content=NULL;
@@ -232,8 +229,8 @@ function generate_trailer_content($trailer_content){
   else {
     $element_trailer="
     <div id='yt' class='margin-top-2'>
-    <h1 class='primary-color font-size-2-2 padding-left-1 padding-bottom-0-5 text-align-left'>Trailer</h1> 
-    <object class='video_yt padding-left-2' data='$trailer_content'></object>
+    <h1 class='primary-color font-size-2-2 padding-left-1 padding-bottom-0-5 text-align-left' tabindex='0'>Trailer</h1> 
+    <object class='video_yt padding-left-2' data='$trailer_content' tabindex='0'></object>
     </div>
     ";
   }
