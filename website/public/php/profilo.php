@@ -59,8 +59,9 @@ function getFavouriteList($favourites) {
     $card = str_replace("{mediaFav}", ($fav == null) ? "" : "hidden", $card);
 
     $finally_genre=$genre_name[$y]->name;
-    $card = str_replace("{mediaid}", $media_id, $card);
+    $card = str_replace("{linkMovieFavourite}", "./php/layout.php?page=dettaglio&amp;movieId=".$media_id , $card);
 
+    $card = str_replace("{favouriteTitle}", $titolo, $card);
     $card = str_replace("{favouriteTitle}", $titolo, $card);
     $card = str_replace("{favouriteGenre}",$finally_genre , $card);
     $card = str_replace("{favouriteCover}", "../public/".$url, $card);

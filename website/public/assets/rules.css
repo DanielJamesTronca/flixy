@@ -583,7 +583,7 @@ option {
 }
 
 .stars-active i {
-	color: #FFBC0B;
+	color: #e21221;
 }
 
 .rating {
@@ -2059,7 +2059,6 @@ input:focus ~ .highlight {
 	#similar{
 		margin-top:0;
 	}
-
 	.textbox{
         width: 100%;
     }

@@ -70,6 +70,9 @@ $output=str_replace("{trailer_url}",$lista[6],$output);
 $output = str_replace("{movieStars}", implode($lista[7]), $output);
 $output = str_replace("{air_date}", $lista[10], $output);
 
+
+
+
 if($lista[11]==1){
   $output= str_replace("{isMovie}", "SERIE TV", $output);
 }
@@ -181,7 +184,7 @@ function getSimilarMovies($realGenre, $genre_variable) {
     $titolo = $realGenre[$x]->title;
     $url = $realGenre[$x]->coverUrl;
     $genre_card=$genre_variable[$y]->name;
-
+    $id_card=$realGenre[$x]->id;
     $card = file_get_contents("../html/similar_content_card.html");
     if(($realGenre[$x]->hasEpisodes)==1){
       $card = str_replace("{isMovie}", "SERIE TV", $card);
@@ -193,6 +196,8 @@ function getSimilarMovies($realGenre, $genre_variable) {
     $card = str_replace("{movieTitle}", $titolo, $card);
     $card = str_replace("{movieGenre}", $genre_card, $card);
     $card = str_replace("{movieCover}", "../public/".$url, $card);
+    $card = str_replace("{linkMovie}", "./php/layout.php?page=dettaglio&amp;movieId=".$id_card, $card);
+
     array_push($movieList, $card);
   }
   return implode($movieList);

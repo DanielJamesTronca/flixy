@@ -13,13 +13,17 @@
 <body>
   <div id="favourite_card_entry" class="secondary-bg margin-top-1">
     <div class="favourite_cover favourite_card_copertina">
-      <img class="border-radius-0-5 favourite_card_copertina" tabindex="0" src="{favouriteCover}" alt="copertina" />
+      <a href="{linkMovieFavourite}" class="custom-link favourite_card_copertina">
+        <img class="border-radius-0-5 favourite_card_copertina" tabindex="0" src="{favouriteCover}" alt="Copertina di {favouriteTitle}" />
+      </a>
     </div>
 
     <div id="card_info" class=" primary-color text-align-center">
+      <a href="{linkMovieFavourite}" class="custom-link">
         <h1 class="font-size-1" tabindex="0">
           {favouriteTitle}
         </h1>
+      </a>
         <h1 class="font-size-0-75 text-align-center" tabindex="0">
           {favouriteGenre}
         </h1>
