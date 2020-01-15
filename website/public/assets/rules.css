@@ -182,10 +182,6 @@ option {
 	margin-left: 2.5em;
 }
 
-.margin-left-3 {
-	margin-left: 3em;
-}
-
 /* MARGIN RIGHT SECTION */
 .margin-right-0-35 {
 	margin-right: 0.35em;
@@ -211,9 +207,6 @@ option {
 	margin-right: 2.5em;
 }
 
-.margin-right-3 {
-	margin-right: 3em;
-}
 
 
 /* MARGIN TOP SECTION */
@@ -600,7 +593,7 @@ option {
 }
 .movie-entry {
 	width: 15.063em;
-	height: 35.000em;
+	height: 33.000em;
 	flex-grow: 0;
 }
 
@@ -1889,8 +1882,8 @@ input:focus ~ .highlight {
 
 #num-up, #num-down{
     margin-top: .3em;
-    margin-right: 1.1em;
-    margin-left: 1.1em;
+    margin-right: 2em;
+    margin-left: 2em;
 }
 
 .thumbs-up {
