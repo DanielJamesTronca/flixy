@@ -83,6 +83,11 @@ switch ($_GET['page'])
 
     case 'dettaglio':
         $dettaglio = file_get_contents("../html/dettaglio.html");
+        if (SessionManager::isUserLogged() && SessionManager::userCanPublish()) {
+            $dettaglio = str_replace("{notAnAdmin}", "",$dettaglio); 
+          } else {
+            $dettaglio = str_replace("{notAnAdmin}", "hidden",$dettaglio);
+          }
         $output = str_replace("{contentLayout}", "content-layout", $output);
         $output = str_replace("{content}", $dettaglio, $output);
         include_once ("./dettaglio.php");

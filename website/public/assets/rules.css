@@ -454,8 +454,8 @@ option {
 }
 
 .logo-size {
-	width: 38px;
-	height: 27px;
+	width: 3em;
+	/* height: 27px; */
 }
 
 #outer-container {

@@ -354,6 +354,7 @@ class Utils {
         for($i=0;$i<$stars;$i++) {
             array_push($starNumber, "<i class='fa fa-star'></i>");
         }
+        $card = str_replace("{starNumber}", $stars, $card);
         $card = str_replace("{movieStars}", implode($starNumber), $card);
         return $card;
     }
@@ -370,6 +371,4 @@ class Utils {
         return implode($movieList);
     }
 }
-
-
 ?>
