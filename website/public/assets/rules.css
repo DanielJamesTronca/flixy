@@ -174,8 +174,16 @@ option {
 	margin-left: 1.5em;
 }
 
+.margin-left-2 {
+	margin-left: 2em;
+}
+
 .margin-left-2-5 {
 	margin-left: 2.5em;
+}
+
+.margin-left-3 {
+	margin-left: 3em;
 }
 
 /* MARGIN RIGHT SECTION */
@@ -194,6 +202,19 @@ option {
 .margin-right-1 {
 	margin-right: 1em;
 }
+
+.margin-right-2 {
+	margin-right: 2em;
+}
+
+.margin-right-2-5 {
+	margin-right: 2.5em;
+}
+
+.margin-right-3 {
+	margin-right: 3em;
+}
+
 
 /* MARGIN TOP SECTION */
 .margin-top-0-2 {
@@ -486,6 +507,7 @@ option {
 #text-input {
 	height: 100%;
 	width: 60%;
+	min-width: 10em;
 	outline: none;
 	opacity: .2;
 	border: 1px solid red;
@@ -573,6 +595,9 @@ option {
 
 
 /* START MERGE MOVIE-CARD.CSS */
+#type-name {
+	display: block;
+}
 .movie-entry {
 	width: 15.063em;
 	height: 35.000em;
@@ -619,14 +644,6 @@ option {
 
 .movie-entry #num-up-down {
 	margin-top: .3em;
-}
-
-.movie-entry #num-up-down #num-up {
-	margin-right: .8em;
-}
-
-.movie-entry #num-up-down #num-down {
-	margin-left: .8em;
 }
 
 /* MERGE INSERT-FORM.CSS */
@@ -1067,7 +1084,7 @@ input:focus ~ .highlight {
     margin-top: 2em;
     border-radius: .5em;
     box-shadow: 0 2px 8px 0 #000000;
-    display: flex;
+    /* display: flex; */
 }
 
 
@@ -1136,11 +1153,11 @@ input:focus ~ .highlight {
 	flex-grow: 0.2;
 	flex-shrink: 0.2;
 	flex-basis: 0;
+	min-height: 80vh;
 }
 
 #bottone_aggiorna button{
 	width: 100%;
-
 }
 
 
