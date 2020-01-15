@@ -49,6 +49,9 @@ switch ($_GET['page'])
         $output = str_replace("{favsSelected}", "", $output);
         $output = str_replace("{feedSelected}", "", $output);
         $output = str_replace("{content}", $homepage, $output);
+        $output = str_replace("{currentPageHome}", "page", $output);
+        $output = str_replace("{currentPageFeed}", "", $output);
+        $output = str_replace("{currentPageProfile}", "", $output);
         include_once ("./home.php");
     break;
 
@@ -59,6 +62,9 @@ switch ($_GET['page'])
         $output = str_replace("{favsSelected}", "", $output);
         $output = str_replace("{feedSelected}", "highlight-bg", $output);
         $output = str_replace("{content}", $feed, $output);
+        $output = str_replace("{currentPageHome}", "", $output);
+        $output = str_replace("{currentPageFeed}", "page", $output);
+        $output = str_replace("{currentPageProfile}", "", $output);
         include_once ("./feed.php");
     break;
 
@@ -69,11 +75,19 @@ switch ($_GET['page'])
         $output = str_replace("{favsSelected}", "highlight-bg", $output);
         $output = str_replace("{feedSelected}", "", $output);
         $output = str_replace("{content}", $profilo, $output);
+        $output = str_replace("{currentPageHome}", "", $output);
+        $output = str_replace("{currentPageFeed}", "", $output);
+        $output = str_replace("{currentPageProfile}", "page", $output);
         include_once ("./profilo.php");
     break;
 
     case 'dettaglio':
         $dettaglio = file_get_contents("../html/dettaglio.html");
+        if (SessionManager::isUserLogged() && SessionManager::userCanPublish()) {
+            $dettaglio = str_replace("{notAnAdmin}", "",$dettaglio); 
+          } else {
+            $dettaglio = str_replace("{notAnAdmin}", "hidden",$dettaglio);
+          }
         $output = str_replace("{contentLayout}", "content-layout", $output);
         $output = str_replace("{content}", $dettaglio, $output);
         include_once ("./dettaglio.php");

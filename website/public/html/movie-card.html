@@ -5,42 +5,40 @@
   <title> Carta film: {movieTitle} </title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="title" content="Flixy - Homepage" />
-  <base target="_self" href="http://192.168.64.3/flixy/website/public/html" />
+  <base target="_self" href="http://localhost/flixy/website/public/html" />
 </head>
 
 <body class="primary-bg">
   <div class="movie-entry secondary-bg margin-right-0-6 margin-left-0-6 margin-top-0-5 margin-bottom-0-5 border-radius-0-5">
-    <a href="{linkDettaglioMovie}" class="custom-link copertina-size">
-      <img id="copertina" class="border-radius-0-5 copertina-size" src="{coverURL}" alt="Copertina del film {movieTitle}" />
+    <a aria-label="Vai alla pagina dettaglio di {movieTitle}" href="{linkDettaglioMovie}" class="custom-link copertina-size">
+      <img id="copertina" class="border-radius-0-5 copertina-size" src="{coverURL}" alt="Copertina di {movieTitle}" />
     </a>
-    <h3 id="title" class="text-align-center primary-color font-size-1-5 margin-top-0-5 margin-bottom-0-5 flex-container flex-content-center flex-align-items-center">
+    <a href="{linkDettaglioMovie}" tabindex="0" id="title" class="custom-link text-align-center primary-color font-size-1-5 margin-top-0-5 margin-bottom-0-5 flex-container flex-content-center flex-align-items-center">
       {movieTitle}
-    </h3>
+    </a>
     
-    <div class="margin-left-0-6 margin-top-1 rating primary-color flex-container flex-content-space-between flex-align-items-center">
-      <span id="activeStars" class="stars-active margin-left-0-6">
+    <!-- <div class="margin-left-0-6 margin-top-1 rating primary-color flex-container flex-content-space-between flex-align-items-center">
+      <span aria-label="Valutazione {starNumber} su 5" tabindex="0" id="activeStars" class="stars-active margin-left-0-6">
         {movieStars}
       </span>
-      <a href="{linkDettaglioMovie}" class="custom-link">
+      <a tabindex="0" aria-label="Vai alla pagina dettaglio di {movieTitle}" href="{linkDettaglioMovie}" class="custom-link">
         <i id="link-to-book" class="fas fa-chevron-right primary-color font-size-1-5 custom-link-hover"></i>
       </a>
-    </div>
-    <span id="type-name" class="margin-left-1-2 font-weight-normal font-size-0-938 primary-color"> {isMovie} </span>
+    </div> -->
+    <span tabindex="0" aria-label="Categoria del film" id="type-name" class="font-weight-normal font-size-0-938 primary-color text-align-center margin-bottom-0-5"> {isMovie} </span>
     <form method="post" action="/flixy/website/public/php/add_vote.php">
       <div id="thumbs" class="text-align-center primary-color">
-        <button name="vote" type="submit" value="like" class="custom-button font-size-2-2">
-          <i id="thumbs-up" class="far fa-thumbs-up custom-link-hover {like-selected}"></i>
+        <button tabindex="0" aria-label="Dai un voto positivo" name="vote" type="submit" value="like" class="margin-right-0-5 custom-button font-size-2-2 far fa-thumbs-up custom-link-hover {like-selected}">
         </button>
-        <button name="vote" type="submit" value="dislike" class="custom-button font-size-2-2">
-          <i id="thumbs-down" class="far fa-thumbs-down custom-link-hover {dislike-selected} "></i>
+        <button tabindex="0" aria-label="Dai un voto negativo" name="vote" type="submit" value="dislike" class="margin-left-0-5 custom-button font-size-2-2 far fa-thumbs-down custom-link-hover {dislike-selected} ">
         </button>
         <input type="hidden" value="{movieID}" name="movieID"></input>
         <input type="hidden" value="home" name="redirectURL"></input>
       </div>
     </form>
-    <div id="num-up-down" class="text-align-center primary-color font-size-0-938">
-      <span id="num-up">{likes}</span>
-      <span id="num-down">{dislikes}</span>
+    <div tabindex="0" id="num-up-down" class="text-align-center primary-color font-size-0-938">
+      <span class="margin-right-3" aria-label="Voti positivi" id="num-up">{likes}</span a>
+      <span class="margin-left-3" aria-label="Voti negativi" id="num-down">{dislikes}</span>
     </div>
     <div class="text-align-center primary-color {mediaNotFav}">
       <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
@@ -48,8 +46,8 @@
           <input type="hidden" value="{movieID}" name="movieID"></input>
           <input type="hidden" value="home" name="redirectURL"></input>
           <input type="hidden" value="1" name="fav"></input>
-          <button id="add-fav-icon" class="fas margin-top-0-2 custom-button custom-link-hover fa-heart font-size-1-1"></button>
-          <span class="text-align-center font-size-0-625">Aggiungi ai preferiti</span>
+          <button aria-label="Clicca per aggiungere ai preferiti" id="add-fav-icon" class="fas margin-top-0-2 custom-button custom-link-hover fa-heart font-size-1-1"></button>
+          <span class="text-align-center font-size-0-75">Aggiungi ai preferiti</span>
         </fieldset>
       </form>
     </div>
@@ -59,8 +57,8 @@
           <input type="hidden" value="{movieID}" name="movieID"></input>
           <input type="hidden" value="home" name="redirectURL"></input>
           <input type="hidden" value="0" name="fav"></input>
-          <button id="rm-fav-icon" class="fas fa-heart margin-top-0-2 custom-button custom-link-hover font-size-1-1 thumb-selected"></button>
-          <span class="text-align-center font-size-0-625">Rimuovi dai preferiti</span>
+          <button aria-label="Clicca per togliere dai preferiti" id="rm-fav-icon" class="fas fa-heart margin-top-0-2 custom-button custom-link-hover font-size-1-1 thumb-selected"></button>
+          <span class="text-align-center font-size-0-75">Rimuovi dai preferiti</span>
         </fieldset>
       </form>
     </div>
