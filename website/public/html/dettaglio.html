@@ -49,12 +49,11 @@
                 </div>
                
           <div class="font-size-1 flex-container">
-            <span id="activeStars" class="stars-active margin-top-0-5 margin-bottom-0-5" tabindex="0">
+            <span id="activeStars" class="stars-active margin-top-0-5 margin-bottom-0-5" tabindex="0" aria-label="Valutazione {starNumber} su cinque">
               {movieStars}
             </span>
           </div>
             
-
                 <div class="column">
                     <h2 class="document-font font-size-0-938" tabindex="0">{isMovie}</h2>
                     <h2 class="document-font font-size-0-938" tabindex="0">GENERE: {genre}</h2>
@@ -68,16 +67,14 @@
                     {description}
                 </p>
 
-
-
                 <div id="votes" class="margin-top-1">
                     <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"></span>
                     <form method="post" action="/flixy/website/public/php/add_vote.php">
                         <div id="thumbs" class="text-align-center primary-color">
-                          <button aria-label="Dai un voto positivo" name="like" type="submit" value="like" class="custom-button font-size-2-2" tabindex="0">
+                          <button aria-label="Dai un voto positivo" name="vote" type="submit" value="like" class="custom-button font-size-2-2" tabindex="0">
                             <i id="thumbs-up" class="far fa-thumbs-up custom-link-hover {like-selected}"></i>
                           </button>
-                          <button aria-label="Dai un voto positivo" name="dislike" type="submit" value="dislike" class="custom-button font-size-2-2" tabindex="0">
+                          <button aria-label="Dai un voto positivo" name="vote" type="submit" value="dislike" class="custom-button font-size-2-2" tabindex="0">
                             <i id="thumbs-down" class="far fa-thumbs-down custom-link-hover {dislike-selected}"></i>
                           </button>
                           <input type="hidden" value="{mediaid}" name="movieID"></input>
@@ -95,14 +92,17 @@
       </div>
     </div>
 
-    <div id="three_buttons" class="margin-top-2 text-align-left padding-left-1">
-      <li class="{notAnAdmin}">
+    <ul id="three_buttons" class="margin-top-2 {notAnAdmin} text-align-left padding-left-1">
+      <li>
         <a href="php/layout.php?page=formmedia&amp;mediaid={mediaid}" class="button primary-color-gradient-button padding-1">Modifica</a>
       </li>
-      <div class="bottone">
-        {add_button}
-      </div>
-    </div>
+      <li>
+        <a href='php/layout.php?page=formepisode&amp;mediaid={mediaid}' class='button primary-color-gradient-button padding-1'>Aggiungi episodio</a>
+      </li>
+      <li>
+        <a href='php/layout.php?page=formepisode&amp;mediaid={mediaid}' class='button primary-color-gradient-button padding-1'>Aggiungi episodio</a>
+      </li>
+    </ul>
 
     <div id="trailer" class="flex-container flex-content-start flex-align-items-center" >
       {trailer}
@@ -123,7 +123,7 @@
                 <label for="input_comment" class="comment_label font-size-0-75" tabindex="0">Inserisci qui il tuo commento</label> 
                 <textarea id="input_comment" name="message" rows="1" cols="10" class="textbox margin-top-0-5 secondary-bg" tabindex="0"></textarea> 
                 <input type="hidden" name="movieId" value="{mediaid}"/>            
-                <input type="submit" value="Submit" name="commentSubmit" id="submit_comment" class="button primary-color-gradient-button"tabindex="0"/>
+                <button type="submit" name="commentSubmit" id="submit_comment" class="button primary-color-gradient-button" tabindex="0"> Submit </button>
               </fieldset>
             </form>
           <div class="comment_list margin-bottom-2">

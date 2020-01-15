@@ -12,15 +12,19 @@
 
 <body>
   <div id="favourite_card_entry" class="secondary-bg margin-top-1">
-    <div class="favourite_cover">
-      <img class="border-radius-0-5 favourite_card_copertina" src="{favouriteCover}" alt="copertina" />
+    <div class="favourite_cover favourite_card_copertina">
+      <a href="{linkMovieFavourite}" class="custom-link favourite_card_copertina">
+        <img class="border-radius-0-5 favourite_card_copertina" tabindex="0" src="{favouriteCover}" alt="Copertina di {favouriteTitle}" />
+      </a>
     </div>
 
     <div id="card_info" class=" primary-color text-align-center">
-        <h1 class="font-size-1">
+      <a href="{linkMovieFavourite}" class="custom-link">
+        <h1 class="font-size-1" tabindex="0">
           {favouriteTitle}
         </h1>
-        <h1 class="font-size-0-75 text-align-center">
+      </a>
+        <h1 class="font-size-0-75 text-align-center" tabindex="0">
           {favouriteGenre}
         </h1>
 
@@ -30,7 +34,7 @@
             <input type="hidden" value="{mediaid}" name="movieID"></input>
             <input type="hidden" value="profilo" name="redirectURL"></input>
             <input type="hidden" value="1" name="fav"></input>
-            <button id="add-fav-icon" class="fas margin-top-0-2 fa-heart custom-button custom-link-hover font-size-1-125"></button>
+            <button aria-label="Clicca per aggiungere ai preferiti" id="add-fav-icon" class="fas margin-top-0-2 fa-heart custom-button custom-link-hover font-size-1-125"></button>
             <label for="add-fav-icon" class="text-align-center font-size-0-625">Add to your favourites</label>
           </fieldset>
         </form>
@@ -41,7 +45,7 @@
             <input type="hidden" value="{mediaid}" name="movieID"></input>
             <input type="hidden" value="profilo" name="redirectURL"></input>
             <input type="hidden" value="0" name="fav"></input>
-            <button id="rm-fav-icon" class="fas fa-heart margin-top-0-2 custom-button custom-link-hover font-size-1-125 thumb-selected"></button>
+            <button aria-label="Clicca per rimuovere dai preferiti" id="rm-fav-icon" class="fas fa-heart margin-top-0-2 custom-button custom-link-hover font-size-1-125 thumb-selected"></button>
             <label for="rm-fav-icon" class="text-align-center font-size-0-625">Remove from favourites</label>
           </fieldset>
         </form>

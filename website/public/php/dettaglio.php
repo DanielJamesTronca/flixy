@@ -14,9 +14,7 @@ $trailer_url="None";
 $stars="0";
 
 $serieTvEpisode="hidden";
-//$serieTvEpisodeReal="EPISODES:";
 $serieTvSeason="hidden";
-//$serieTvSeasonReal="SEASON:";
 
 $userId = null;
 
@@ -38,8 +36,11 @@ function loadInfo($id){
   return $arr;
 }
 
+
 $movieId=$_GET["movieId"];
 $lista= loadInfo($movieId);
+
+$starNumber=$lista[7];
 
 $genre=Genre::getNameGenre($lista[8]);
 $genre2=$genre[0]->name;
@@ -49,19 +50,15 @@ $season=$lista[5];
 $likes=$lista[9];
 $data_rilascio=$lista[10];
 
-$add_button="<a href='php/layout.php?page=formepisode&amp;mediaid={mediaid}' class='button primary-color-gradient-button padding-1'>Aggiungi episodio</a>";
-
-if ($lista[11] == 1) {
-  $output = str_replace("{isMovie}", "SERIE TV", $output);
-  $output = str_replace("{add_button}", $add_button, $output);
-
+if (SessionManager::isUserLogged() && SessionManager::userCanPublish()) {
+  $output = str_replace("{notAnAdmin}", "",$output); 
 } else {
-  $output = str_replace("{isMovie}", "FILM", $output);
-  $output = str_replace("{add_button}", null , $output);
+  $output = str_replace("{notAnAdmin}", "hidden",$output);
 }
 
 
 $output=str_replace("{genre}", $genre2,$output);
+$output=str_replace("{starNumber}", count($starNumber),$output);
 $output=str_replace("{mediaid}",$movieId,$output);
 $output=str_replace("{title}", $lista[0],$output);
 $output=str_replace("{duration}", $lista[1],$output);
@@ -76,10 +73,12 @@ $output = str_replace("{air_date}", $lista[10], $output);
 
 
 
-
-$output = str_replace("{air_date}", $lista[10], $output);
-
-
+if($lista[11]==1){
+  $output= str_replace("{isMovie}", "SERIE TV", $output);
+}
+else{
+  $output= str_replace("{isMovie}", "FILM", $output);
+}
 
 function setFavouriteLikes($id){
   if(SessionManager::isUserLogged()){
@@ -117,15 +116,11 @@ $positive_votes=$both_likes[1];
 $total_votes=$both_likes[0];
 
 
-
-
-
 $output=str_replace("{likes}", ($positive_votes==null) ? 0 : $positive_votes,$output);
 $output=str_replace("{dislikes}", (($total_votes-$positive_votes)==null) ? 0 : ($total_votes-$positive_votes) ,$output); 
 
 $output = str_replace("{mediaNoFav}", !($favourite_variable == true) ? "" : "hidden", $output);
 $output = str_replace("{mediaIFav}", ($favourite_variable == true) ? "" : "hidden", $output);
-
 
 
 function like_check($id) {
@@ -167,7 +162,6 @@ switch($check) {
   } break;
 }
 
-
 $genre_aux=$genre;
 
 if($episode==null && $season==null){
@@ -190,7 +184,7 @@ function getSimilarMovies($realGenre, $genre_variable) {
     $titolo = $realGenre[$x]->title;
     $url = $realGenre[$x]->coverUrl;
     $genre_card=$genre_variable[$y]->name;
-
+    $id_card=$realGenre[$x]->id;
     $card = file_get_contents("../html/similar_content_card.html");
     if(($realGenre[$x]->hasEpisodes)==1){
       $card = str_replace("{isMovie}", "SERIE TV", $card);
@@ -202,11 +196,12 @@ function getSimilarMovies($realGenre, $genre_variable) {
     $card = str_replace("{movieTitle}", $titolo, $card);
     $card = str_replace("{movieGenre}", $genre_card, $card);
     $card = str_replace("{movieCover}", "../public/".$url, $card);
+    $card = str_replace("{linkMovie}", "./php/layout.php?page=dettaglio&amp;movieId=".$id_card, $card);
+
     array_push($movieList, $card);
   }
   return implode($movieList);
 }
-
 
 
 function generate_similar_content($realGenre){
@@ -239,11 +234,6 @@ function generate_trailer_content($trailer_content){
 $output=str_replace("{trailer}", generate_trailer_content($trailer_content),$output );
 
 
-
-
-
-
-
 $comments=Comment::getCommentsFor($movieId);
 
 function getCommentList($comments) {
@@ -272,7 +262,5 @@ function getCommentList($comments) {
 
 $output = str_replace("{commentList}", getCommentList($comments), $output);
 $output = str_replace("{movieList}", getSimilarMovies($realGenre, $genre_variable), $output);
-
-
 
 ?>
