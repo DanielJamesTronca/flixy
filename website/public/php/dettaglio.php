@@ -14,9 +14,7 @@ $trailer_url="None";
 $stars="0";
 
 $serieTvEpisode="hidden";
-//$serieTvEpisodeReal="EPISODES:";
 $serieTvSeason="hidden";
-//$serieTvSeasonReal="SEASON:";
 
 $userId = null;
 
@@ -61,7 +59,6 @@ if (SessionManager::isUserLogged() && SessionManager::userCanPublish()) {
 
 $output=str_replace("{genre}", $genre2,$output);
 $output=str_replace("{starNumber}", count($starNumber),$output);
-
 $output=str_replace("{mediaid}",$movieId,$output);
 $output=str_replace("{title}", $lista[0],$output);
 $output=str_replace("{duration}", $lista[1],$output);
@@ -79,7 +76,6 @@ if($lista[11]==1){
 else{
   $output= str_replace("{isMovie}", "FILM", $output);
 }
-
 
 function setFavouriteLikes($id){
   if(SessionManager::isUserLogged()){
@@ -117,15 +113,11 @@ $positive_votes=$both_likes[1];
 $total_votes=$both_likes[0];
 
 
-
-
-
 $output=str_replace("{likes}", ($positive_votes==null) ? 0 : $positive_votes,$output);
 $output=str_replace("{dislikes}", (($total_votes-$positive_votes)==null) ? 0 : ($total_votes-$positive_votes) ,$output); 
 
 $output = str_replace("{mediaNoFav}", !($favourite_variable == true) ? "" : "hidden", $output);
 $output = str_replace("{mediaIFav}", ($favourite_variable == true) ? "" : "hidden", $output);
-
 
 
 function like_check($id) {
@@ -167,7 +159,6 @@ switch($check) {
   } break;
 }
 
-
 $genre_aux=$genre;
 
 if($episode==null && $season==null){
@@ -208,7 +199,6 @@ function getSimilarMovies($realGenre, $genre_variable) {
 }
 
 
-
 function generate_similar_content($realGenre){
   if(count($realGenre)>1){
     $element_similar_content="<h1 class='primary-color font-size-2-2 padding-left-1 padding-bottom-0-5 text-align-left' tabindex='0'>Contenuti simili</h1>";
@@ -239,11 +229,6 @@ function generate_trailer_content($trailer_content){
 $output=str_replace("{trailer}", generate_trailer_content($trailer_content),$output );
 
 
-
-
-
-
-
 $comments=Comment::getCommentsFor($movieId);
 
 function getCommentList($comments) {
@@ -272,7 +257,5 @@ function getCommentList($comments) {
 
 $output = str_replace("{commentList}", getCommentList($comments), $output);
 $output = str_replace("{movieList}", getSimilarMovies($realGenre, $genre_variable), $output);
-
-
 
 ?>

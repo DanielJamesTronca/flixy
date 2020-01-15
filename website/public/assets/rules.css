@@ -1848,7 +1848,8 @@ input:focus ~ .highlight {
     display: inline-block;
     border-radius: .5em;
     cursor: pointer;
-    text-decoration: none;
+	text-decoration: none;
+	font-size: 1em;
 }
 
 .primary-color-gradient-button{
@@ -1897,6 +1898,7 @@ input:focus ~ .highlight {
     display:inline-block;
     padding: .8em;
 }
+
 
 @media only screen and (max-width:1480px){
     #side{
@@ -1986,7 +1988,7 @@ input:focus ~ .highlight {
 	}
 	
     #submit_comment{
-        width: 5em;
+        width: 8em;
 		height: 1.5em; 
 		
     }
