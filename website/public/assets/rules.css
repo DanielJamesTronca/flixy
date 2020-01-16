@@ -500,7 +500,7 @@ option {
 #text-input {
 	height: 100%;
 	width: 60%;
-	min-width: 10em;
+	min-width: 6em;
 	outline: none;
 	opacity: .2;
 	border: 1px solid red;
@@ -1382,8 +1382,34 @@ input:focus ~ .highlight {
 }
 
 /* MEDIA QUERIES */
-@media only screen and (max-width: 1128px) {
 
+@media only screen and (-ms-high-contrast: active) and (max-width: 1128px), (-ms-high-contrast: none) and (max-width: 1128px) {
+	#header-container {
+		display: inline-block;
+		width: 100%;
+	}
+	
+	#nav-container {
+		position: absolute;
+		right: 30vw;
+		top: 0.5em;
+		width: 40%;
+	}
+
+	#profile-container {
+		position: absolute;
+		right: 0;
+		top: 1em;
+		width: 30%;
+	}
+	#title-container {
+		width: 20%;
+	}
+ }
+
+
+
+@media only screen and (max-width: 1128px) {
 	#side {
 		flex-direction: column;
 		justify-content: center;
@@ -1419,10 +1445,11 @@ input:focus ~ .highlight {
 	}
 	#search-container {
 		flex-basis: 100%;
+		width: 100%;
 		order: 4;
 		margin-top: 1em;
 		align-items: center;
-		justify-items: center;
+		/* justify-items: center; */
 		justify-content: center;
 	}
 	#content-container {
