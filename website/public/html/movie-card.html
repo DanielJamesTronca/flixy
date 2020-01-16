@@ -5,7 +5,7 @@
   <title> Carta film: {movieTitle} </title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="title" content="Flixy - Homepage" />
-  <base target="_self" href="http://192.168.64.3/flixy/website/public/html" />
+  <base target="_self" href="http://localhost/flixy/website/public/html" />
 </head>
 
 <body class="primary-bg">
@@ -26,7 +26,7 @@
       </a>
     </div> -->
     <span tabindex="0" aria-label="Categoria del film" id="type-name" class="font-weight-normal font-size-0-938 primary-color text-align-center margin-bottom-0-5"> {isMovie} </span>
-    <form method="post" action="/flixy/website/public/php/add_vote.php">
+    <form method="post" action="/flixy/website/public/php/add_vote.php" class="margin-top-1">
       <div id="thumbs" class="text-align-center primary-color">
         <button tabindex="0" aria-label="Dai un voto positivo" name="vote" type="submit" value="like" class="margin-right-0-5 custom-button font-size-2-2 far fa-thumbs-up custom-link-hover {like-selected}">
         </button>
