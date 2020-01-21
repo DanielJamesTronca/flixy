@@ -1153,7 +1153,7 @@ input:focus ~ .highlight {
 }
 
 #similar {
-	min-height: 80vh;
+	/* min-height: 80vh; it breaks on chrome */
 	height: 100%;
 }
 
@@ -1423,7 +1423,7 @@ input:focus ~ .highlight {
 
 
 
-@media only screen and (max-width: 1128px) {
+@media only screen and (max-width: 1179px) {
 	#side {
 		flex-direction: column;
 		justify-content: center;
@@ -2161,5 +2161,116 @@ input:focus ~ .highlight {
 		background-size: cover;
 		border:0.1em solid white;
 		border-radius: .5em;
+	}
+}
+
+
+@media only print {
+	/* COLOR SECTION */
+	#header-container {
+		margin: 0;
+	}
+
+	#add-favourites-detail h2 {
+		font-size: .7em;
+	}
+
+	img, object {
+		display: none;
+	}
+
+	* {
+		color: black;
+	}
+
+	#search-container {
+		display: none;
+	}
+
+	#filters-menu {
+		margin: 0em;
+	}
+
+	#home-container {
+		width: 100%;
+		margin: 0em;
+	}
+
+	#logo, #profile-pic {
+		display: none;
+	}
+
+	.primary-color {
+		color: black; 
+	}
+
+	.highlight-color {
+		color: black;
+	}
+
+	.custom-link.copertina-size {
+		display: none;
+	}
+
+	#copertina {
+		display: none;
+	}
+
+	#text-input {
+		border: 1px solid black;
+	}
+
+	.movie-entry {
+		border: 1px solid black;
+		height: 10em;
+	}
+
+	/* BG SECTION */
+	.primary-bg {
+		background-color: white;
+	}
+
+	.secondary-bg {
+		background: grey;
+	}
+
+	.highlight-bg {
+		background: grey; 
+	}
+
+	#num-up-down {
+		font-size: 1.2em;
+		color: black;
+	}
+
+	#thumbs, #side_comment {
+		display: none;
+	}
+
+	.thumb-selected {
+		color: darkgrey;
+	}
+
+	#copertina_detail {
+		display: none;
+	}
+
+	#trailer {
+		display: none;
+	}
+
+	#input_comment, #submit_comment {
+		display: none;
+	}
+
+	#dettaglio-content, #feed-content {
+		width: 100%;
+		height: auto;
+		border: none;
+		box-shadow: none;
+	}
+
+	.stars-active i {
+		color: black;
 	}
 }
