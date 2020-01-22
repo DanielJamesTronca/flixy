@@ -1106,6 +1106,11 @@ input:focus ~ .highlight {
 	flex-direction: column;
 }
 /* START MERGE DETAIl */
+.column{
+    -webkit-column-count: 2; /* Old Chrome, Safari and Opera */
+    -moz-column-count: 2; /* Old Firefox */
+    column-count: 2;
+}
 #row {
 	flex-direction: row;
 	align-items: flex-start;
@@ -1207,6 +1212,11 @@ input:focus ~ .highlight {
     #mobile_only, #mobile_only1{
         text-align: left;
 	}
+	.column{
+        -webkit-column-count: 1; /* Old Chrome, Safari and Opera */
+        -moz-column-count: 1; /* Old Firefox */
+		column-count: 1;
+	}
 }
 
 /* Questa media query e' BOH */
@@ -1290,6 +1300,7 @@ input:focus ~ .highlight {
 	#main {
 		padding: 0;
 		margin-top: 2em;
+		padding-left: 2em;
 	}
 	/* END FEED media query */
 }
@@ -1359,6 +1370,12 @@ input:focus ~ .highlight {
 	}
 }
 @media only screen and (max-width: 768px) {
+	.column{
+        -webkit-column-count: 1; /* Old Chrome, Safari and Opera */
+        -moz-column-count: 1; /* Old Firefox */
+        column-count: 1;
+    }
+
 	/* START INSERT FORM media query */
 	.container-comboBox-data {
 		flex-direction: column;
@@ -1421,7 +1438,7 @@ input:focus ~ .highlight {
 	}
 	#side {
 		display: flex;
-		/* flex-basis: 100%; */
+		flex-basis: 100%;
 		flex-grow: 0;
 		flex-shrink: 0;
 		width: 100%;
@@ -1644,6 +1661,12 @@ input:focus ~ .highlight {
 	}
 }
 @media only screen and (max-width: 456px) {
+	.column{
+        -webkit-column-count: 1; /* Old Chrome, Safari and Opera */
+        -moz-column-count: 1; /* Old Firefox */
+        column-count: 1;
+    }
+
 	#dettaglio-content {
 		overflow-x: hidden;
 	}

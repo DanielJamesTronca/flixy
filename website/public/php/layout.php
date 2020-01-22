@@ -49,9 +49,6 @@ switch ($_GET['page'])
         $output = str_replace("{favsSelected}", "", $output);
         $output = str_replace("{feedSelected}", "", $output);
         $output = str_replace("{content}", $homepage, $output);
-        $output = str_replace("{currentPageHome}", "page", $output);
-        $output = str_replace("{currentPageFeed}", "", $output);
-        $output = str_replace("{currentPageProfile}", "", $output);
         $output = str_replace("{currentPage}", "Homepage", $output);
         include_once ("./home.php");
     break;
@@ -63,9 +60,6 @@ switch ($_GET['page'])
         $output = str_replace("{favsSelected}", "", $output);
         $output = str_replace("{feedSelected}", "highlight-bg", $output);
         $output = str_replace("{content}", $feed, $output);
-        $output = str_replace("{currentPageHome}", "", $output);
-        $output = str_replace("{currentPageFeed}", "page", $output);
-        $output = str_replace("{currentPageProfile}", "", $output);
         $output = str_replace("{currentPage}", "Feed", $output);
         include_once ("./feed.php");
     break;
@@ -77,9 +71,6 @@ switch ($_GET['page'])
         $output = str_replace("{favsSelected}", "highlight-bg", $output);
         $output = str_replace("{feedSelected}", "", $output);
         $output = str_replace("{content}", $profilo, $output);
-        $output = str_replace("{currentPageHome}", "", $output);
-        $output = str_replace("{currentPageFeed}", "", $output);
-        $output = str_replace("{currentPageProfile}", "page", $output);
         $output = str_replace("{currentPage}", "Il tuo profilo", $output);
         include_once ("./profilo.php");
     break;
