@@ -82,8 +82,8 @@
                         </div>
                       </form>
                       <div id="num-up-down" class="text-align-center primary-color font-size-0-938">
-                        <span id="num-up" tabindex="0">{likes}</span>
-                        <span id="num-down" tabindex="0">{dislikes}</span>
+                        <span id="num-upDetail" tabindex="0">{likes}</span>
+                        <span id="num-downDetail" tabindex="0">{dislikes}</span>
                       </div>
                 </div>
               </form>
@@ -104,11 +104,14 @@
       </li>
     </ul>
 
-    <div id="trailer" class="flex-container flex-content-start flex-align-items-center" >
-      {trailer}
+    <div id="trailer_detail" class="flex-container flex-content-start flex-align-items-center margin-top-1 {trailer}" >
+      <div id='yt' class="{trailer}">
+        <h1 class='primary-color font-size-2-2 padding-left-1 margin-top-1 text-align-left' tabindex='0'>Trailer</h1> 
+        <object class='video_yt padding-left-2' data="{trailer_content}" tabindex='0'></object>
+      </div>
     </div>
 
-    <div id="similar" class=" text-align-left margin-top-2 ">
+    <div id="similar" class=" text-align-left margin-top-1 ">
       {similar_content}
         <div id="similar_list" class="flex-container padding-left-2 flex-grow-shrink flex-content-start flex-wrap ">
           {movieList}
@@ -117,7 +120,7 @@
 
     <div id="comment-section" class="flex-container flex-content-start margin-top-1 flex-align-items-left">
       <div id="commentiamo" class="padding-left-2">
-         <h1 class="primary-color font-size-2-2 padding-bottom-0-5" tabindex="0">Commenti </h1>
+         <h1 class="primary-color font-size-2-2 margin-top-1 padding-bottom-0-5" tabindex="0">Commenti </h1>
             <form action="php/post_comment.php" method="post" class="">
               <fieldset class="fieldset_area">
                 <label for="input_comment" class="comment_label font-size-0-75" tabindex="0">Inserisci qui il tuo commento</label> 

@@ -13,8 +13,6 @@ $episode="/";
 $trailer_url="None";
 $stars="0";
 
-$serieTvEpisode="hidden";
-$serieTvSeason="hidden";
 
 $userId = null;
 
@@ -49,6 +47,7 @@ $season=$lista[5];
 
 $likes=$lista[9];
 $data_rilascio=$lista[10];
+$newDate = date("d-m-Y", strtotime($data_rilascio));
 
 if (SessionManager::isUserLogged() && SessionManager::userCanPublish()) {
   $output = str_replace("{notAnAdmin}", "",$output); 
@@ -66,9 +65,10 @@ $output=str_replace("{cover_url}", "../public/".$lista[2],$output);
 $output=str_replace("{description}", $lista[3],$output);
 $output=str_replace("{episode}", $lista[4],$output);
 $output=str_replace("{season}", $lista[5],$output);
-$output=str_replace("{trailer_url}",$lista[6],$output);
+$output=str_replace("{trailer_content}",$lista[6],$output);
 $output = str_replace("{movieStars}", implode($lista[7]), $output);
-$output = str_replace("{air_date}", $lista[10], $output);
+$output = str_replace("{air_date}", $newDate, $output);
+
 
 
 
@@ -164,9 +164,15 @@ switch($check) {
 
 $genre_aux=$genre;
 
+
 if($episode==null && $season==null){
-  $output=str_replace("{serieTvEpisode}", $serieTvEpisode,$output);
-  $output=str_replace("{serieTvSeason}", $serieTvSeason,$output);
+  $output=str_replace("{serieTvEpisode}", "hidden" ,$output);
+  $output=str_replace("{serieTvSeason}", "hidden" ,$output);
+}
+
+$trailer_content=$lista[6];
+if($trailer_content==null){
+  $output=str_replace("{trailer}", "hidden" ,$output);
 }
 
 
@@ -206,7 +212,7 @@ function getSimilarMovies($realGenre, $genre_variable) {
 
 function generate_similar_content($realGenre){
   if(count($realGenre)>1){
-    $element_similar_content="<h1 class='primary-color font-size-2-2 padding-left-1 padding-bottom-0-5 text-align-left' tabindex='0'>Contenuti simili</h1>";
+    $element_similar_content="<h1 class='primary-color font-size-2-2 padding-left-1 margin-top-1 text-align-left' tabindex='0'>Contenuti simili</h1>";
   }
   else {
     $element_similar_content=NULL;
@@ -216,22 +222,7 @@ function generate_similar_content($realGenre){
 $output=str_replace("{similar_content}", generate_similar_content($realGenre),$output );
 
 
-$trailer_content=$lista[6];
-function generate_trailer_content($trailer_content){
-  if(($trailer_content)==NULL){
-    $element_trailer=NULL;
-  }
-  else {
-    $element_trailer="
-    <div id='yt'>
-    <h1 class='primary-color font-size-2-2 padding-left-1 padding-bottom-0-5 text-align-left' tabindex='0'>Trailer</h1> 
-    <object class='video_yt padding-left-2' data='$trailer_content' tabindex='0'></object>
-    </div>
-    ";
-  }
-  return $element_trailer;
-}
-$output=str_replace("{trailer}", generate_trailer_content($trailer_content),$output );
+
 
 
 $comments=Comment::getCommentsFor($movieId);

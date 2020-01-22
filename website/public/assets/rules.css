@@ -247,6 +247,9 @@ option {
 .padding-top-1-5 {
 	padding-top: 1.5em;
 }
+.padding-top-2 {
+	padding-top: 2em;
+}
 
 /* PADDING BOTTOM SECTION */
 .padding-bottom-0-4 {
@@ -962,10 +965,10 @@ input:focus ~ .highlight {
 #bottone_aggiorna button {
 	width: 100%;
 }
-#similar {
-	/* min-height: 80vh; it breaks on chrome */
-	height: 100%;
-}
+
+
+
+
 
 /* START MERGE FEED */
 #feed-content {
@@ -1170,11 +1173,11 @@ input:focus ~ .highlight {
 .fieldset_area {
 	border: none;
 }
-#num-up,
-#num-down {
+#num-upDetail,
+#num-downDetail {
 	margin-top: .3em;
-	margin-right: 2em;
-	margin-left: 2em;
+	margin-right: 1em;
+	margin-left: 1em;
 }
 .thumbs-up {
 	transition: color .2s ease-in;
@@ -1472,7 +1475,11 @@ input:focus ~ .highlight {
 		display: none;
 	}
 	#copertina_detail {
-		border: none;
+		width: 17.5em;
+		height: 26em;
+	}
+	#trailer_detail{
+		padding-top: 0;
 	}
 	#dettaglio-content {
 		width: 100%;
@@ -1656,8 +1663,8 @@ input:focus ~ .highlight {
 		width: 25vh;
 	}
 	#yt object {
-		width: 349px;
-		height: 200px;
+		width: 369px;
+		height: 220px;
 	}
 }
 @media only screen and (max-width: 456px) {
@@ -1698,7 +1705,7 @@ input:focus ~ .highlight {
 		padding-bottom: 1.5em;
 	}
 	.bottone {
-		padding: 0;
+		margin-bottom:2em;
 	}
 	#yt {
 		margin-top: 1em;
@@ -1717,7 +1724,7 @@ input:focus ~ .highlight {
 		width: 100%;
 	}
 	#similar h1 {
-		padding-left: 0.5em;
+		
 		padding-bottom: 0;
 	}
 	#similar_list {
