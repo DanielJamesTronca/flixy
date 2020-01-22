@@ -310,7 +310,7 @@ option {
 .flex-grow-shrink {
 	flex-grow: 1;
 	flex-shrink: 1;
-	flex-basis: 0;
+	flex-basis: auto; /* modificato da 0 a auto per IE */
 }
 .flex-grow-2 {
 	flex-basis: 0;
