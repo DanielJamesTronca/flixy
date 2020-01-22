@@ -223,7 +223,7 @@ function generate_trailer_content($trailer_content){
   }
   else {
     $element_trailer="
-    <div id='yt' class='margin-top-2'>
+    <div id='yt'>
     <h1 class='primary-color font-size-2-2 padding-left-1 padding-bottom-0-5 text-align-left' tabindex='0'>Trailer</h1> 
     <object class='video_yt padding-left-2' data='$trailer_content' tabindex='0'></object>
     </div>

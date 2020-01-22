@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 
-<head>
+<!-- <head>
   <title> Carta film: {movieTitle} </title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="title" content="Flixy - Homepage" />
-  <base target="_self" href="http://192.168.64.3/flixy/website/public/html" />
-</head>
+  <base target="_self" href="http://localhost/flixy/website/public/html" />
+</head> -->
 
-<body class="primary-bg">
+<body>
   <div class="movie-entry secondary-bg margin-right-0-6 margin-left-0-6 margin-top-0-5 margin-bottom-0-5 border-radius-0-5">
     <a aria-label="Vai alla pagina dettaglio di {movieTitle}" href="{linkDettaglioMovie}" class="custom-link copertina-size">
       <img id="copertina" class="border-radius-0-5 copertina-size" src="{coverURL}" alt="Copertina di {movieTitle}" />
@@ -26,7 +26,7 @@
       </a>
     </div> -->
     <span tabindex="0" aria-label="Categoria del film" id="type-name" class="font-weight-normal font-size-0-938 primary-color text-align-center margin-bottom-0-5"> {isMovie} </span>
-    <form method="post" action="/flixy/website/public/php/add_vote.php">
+    <form method="post" action="/flixy/website/public/php/add_vote.php" class="margin-top-1">
       <div id="thumbs" class="text-align-center primary-color">
         <button tabindex="0" aria-label="Dai un voto positivo" name="vote" type="submit" value="like" class="margin-right-0-5 custom-button font-size-2-2 far fa-thumbs-up custom-link-hover {like-selected}">
         </button>

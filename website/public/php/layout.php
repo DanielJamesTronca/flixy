@@ -52,6 +52,7 @@ switch ($_GET['page'])
         $output = str_replace("{currentPageHome}", "page", $output);
         $output = str_replace("{currentPageFeed}", "", $output);
         $output = str_replace("{currentPageProfile}", "", $output);
+        $output = str_replace("{currentPage}", "Homepage", $output);
         include_once ("./home.php");
     break;
 
@@ -65,6 +66,7 @@ switch ($_GET['page'])
         $output = str_replace("{currentPageHome}", "", $output);
         $output = str_replace("{currentPageFeed}", "page", $output);
         $output = str_replace("{currentPageProfile}", "", $output);
+        $output = str_replace("{currentPage}", "Feed", $output);
         include_once ("./feed.php");
     break;
 
@@ -78,6 +80,7 @@ switch ($_GET['page'])
         $output = str_replace("{currentPageHome}", "", $output);
         $output = str_replace("{currentPageFeed}", "", $output);
         $output = str_replace("{currentPageProfile}", "page", $output);
+        $output = str_replace("{currentPage}", "Il tuo profilo", $output);
         include_once ("./profilo.php");
     break;
 
@@ -90,6 +93,7 @@ switch ($_GET['page'])
           }
         $output = str_replace("{contentLayout}", "content-layout", $output);
         $output = str_replace("{content}", $dettaglio, $output);
+        $output = str_replace("{currentPage}", "Dettaglio", $output);
         include_once ("./dettaglio.php");
     break;
 
@@ -97,6 +101,7 @@ switch ($_GET['page'])
         $page = file_get_contents("../html/form-media.html");
         $output = str_replace("{contentLayout}", "content-layout", $output);
         $output = str_replace("{content}", $page, $output);
+        $output = str_replace("{currentPage}", "Aggiungi un media", $output);
         include_once ("./form_media.php");
     break;
 
@@ -104,6 +109,7 @@ switch ($_GET['page'])
         $page = file_get_contents("../html/form-episode.html");
         $output = str_replace("{contentLayout}", "content-layout", $output);
         $output = str_replace("{content}", $page, $output);
+        $output = str_replace("{currentPage}", "Aggiungi un episodio", $output);
         include_once ("./form_episode.php");
     break;
 
@@ -111,6 +117,7 @@ switch ($_GET['page'])
         $page = file_get_contents("../html/form-feed.html");
         $output = str_replace("{contentLayout}", "content-layout", $output);
         $output = str_replace("{content}", $page, $output);
+        $output = str_replace("{currentPage}", "Aggiungi una notizia", $output);
         include_once ("./form_feed.php");
     break;
 }
