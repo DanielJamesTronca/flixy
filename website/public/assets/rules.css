@@ -440,14 +440,6 @@ option {
 	order: 3;
 }
 
-/* MERGE MOVIE-CARD.CSS */
-#aside3 {
-	flex-grow: 1;
-}
-#aside1 {
-	flex-grow: 1;
-}
-
 /* START MERGE COMMENT (CARD) */
 #row_comment {
 	flex-direction: row;
@@ -1116,8 +1108,8 @@ input:focus ~ .highlight {
 }
 /* START MERGE DETAIl */
 .column{
-    -webkit-column-count: 2; /* Old Chrome, Safari and Opera */
-    -moz-column-count: 2; /* Old Firefox */
+    -webkit-column-count: 2; 
+    -moz-column-count: 2;
     column-count: 2;
 }
 #row {
@@ -1193,7 +1185,6 @@ input:focus ~ .highlight {
 	transition: color .2s ease-in;
 	cursor: pointer;
 	transform: scale(-1, 1);
-	/* Needed to rotate other thumb */
 }
 #thumbs i {
 	margin-left: .1em;
@@ -1207,8 +1198,8 @@ input:focus ~ .highlight {
 	display: inline-block;
 	padding: .8em;
 }
-/* MEDIA QUERIES */
 
+/* MEDIA QUERIES */
 @media only screen and (max-width:1480px){
     #side {
         padding-left: 0;
@@ -1227,8 +1218,6 @@ input:focus ~ .highlight {
 		column-count: 1;
 	}
 }
-
-/* Questa media query e' BOH */
 @media only screen and (max-width: 1250px) {
 	.textbox {
 		width: 50vh;
@@ -1340,8 +1329,6 @@ input:focus ~ .highlight {
 		align-items: center;
 	}
 }
-/* Questa media query e' BOH */
-
 @media only screen and (max-width: 850px) {
 	#submit_comment {
 		margin-top: 1em;
@@ -1380,8 +1367,8 @@ input:focus ~ .highlight {
 }
 @media only screen and (max-width: 768px) {
 	.column{
-        -webkit-column-count: 1; /* Old Chrome, Safari and Opera */
-        -moz-column-count: 1; /* Old Firefox */
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
         column-count: 1;
     }
 
@@ -1477,6 +1464,9 @@ input:focus ~ .highlight {
 	}
 }
 @media only screen and (max-width: 641px) {
+	#filters-menu {
+		margin-top: 0em;
+	}
 	#footer-container {
 		display: none;
 	}
@@ -1604,19 +1594,9 @@ input:focus ~ .highlight {
 		overflow-x: hidden;
 		width: 100vw;
 	}
-	#aside1 {
-		flex-grow: 0;
-		flex-shrink: 0;
-		flex-basis: 0;
-	}
 	.insert-form-container {
 		width: 100%;
 		margin-top: 0em;
-	}
-	#aside3 {
-		flex-grow: 0;
-		flex-shrink: 0;
-		flex-basis: 0;
 	}
 	#filters-form {
 		flex-direction: column;
@@ -1675,8 +1655,8 @@ input:focus ~ .highlight {
 }
 @media only screen and (max-width: 456px) {
 	.column{
-        -webkit-column-count: 1; /* Old Chrome, Safari and Opera */
-        -moz-column-count: 1; /* Old Firefox */
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
         column-count: 1;
     }
 
@@ -1685,7 +1665,6 @@ input:focus ~ .highlight {
 	}
 	#side {
 		display: flex;
-		/* flex-basis: 100%; */
 		flex-grow: 0;
 		flex-shrink: 0;
 		width: 100%;
@@ -1694,7 +1673,6 @@ input:focus ~ .highlight {
 	}
 	#main {
 		display: flex;
-		/* flex-basis: 100%; */
 		overflow-x: hidden;
 		padding-left: 1em;
 		padding-right: 1em;
@@ -1800,8 +1778,8 @@ input:focus ~ .highlight {
 		width: 15em;
 	}
 }
-/* Media query per css per internet explorer */
 
+/* Media query per css per internet explorer */
 @media only screen and (-ms-high-contrast: active),
 (-ms-high-contrast: none) {
 	#side {
@@ -1843,8 +1821,41 @@ input:focus ~ .highlight {
 		width: 20%;
 	}
 }
+@media only screen and (-ms-high-contrast: active) and (max-width: 1179px),
+(-ms-high-contrast: none) and (max-width: 1179px) {
+	#header-container {
+		display: inline-block;
+		width: 100%;
+	}
+	#nav-container {
+		position: absolute;
+		right: 30vw;
+		top: 0.5em;
+		width: 40%;
+	}
+	#profile-container {
+		position: absolute;
+		right: 0;
+		top: 1em;
+		width: 30%;
+	}
+	#title-container {
+		width: 20%;
+	}
+}
+@media only screen and (-ms-high-contrast: active) and (max-width: 641px),
+(-ms-high-contrast: none) and (max-width: 641px) {
+	#nav-container {
+		position: absolute;
+		background-color: black;
+		top: 100vh;
+		transform: translateY(-100%);
+		left: 0;
+		width: 100%;
+		box-shadow: 0 2px 8px 0 #000000;
+	}
+}
 /* Media query per css di stampa */
-
 @media only print {
 	.secondary-bg {
 		background-color: grey;
