@@ -7,6 +7,14 @@ include_once("../../src/models/models.php");
 $userId = null;
 if (SessionManager::isUserLogged()) {
     $userId = SessionManager::getUserId();
+    if (SessionManager::userCanPublish()){
+        $output = str_replace("{add-news}","",$output);
+        $output = str_replace("{form-link}","php/layout.php?page=formfeed",$output);
+    }
+    else{
+        $output = str_replace("{add-news}","hidden",$output);
+        $output = str_replace("{form-link}","",$output);
+    }  
 } else {
     echo "Devi fare l'accesso per vedere il contenuto di questa pagina";
     return;
@@ -33,11 +41,11 @@ function generate_feed_next_releases($userId){
             $remainingDays = get_remaining_days($release->deadlineDate);
             $element = "<div class='next-release' tabindex='0'>
                             <div class='next-release-image-container'>
-                                <img src='$coverImage' class='cover' alt='immagine di copertina'/>
+                                <img src='$coverImage' class='cover' alt='immagine di copertina $title'/>
                             </div>
                             <div class='next-release-text-area padding-1 text-align-center'> 
-                                <h4>$title</h4>
-                                <h6>$subtitle</h6>
+                                <h3>$title</h3>
+                                <h5>$subtitle</h5>
                                 <p class='next-release-remaining-days'>$remainingDays</p>
                                 <p> giorni rimanenti </p>
                             </div>    
@@ -57,7 +65,7 @@ function generate_feed_timeline($userId){
             $subtitle = get_subtitle($item);
             $content = get_content($item);
             $date = get_date($item);
-            $media = get_media($item);
+            $media = get_media($item, $title);
             $element = "<div class='timeline-container' tabindex='0'>
                             <div class='timeline-content'>
                                 <div class='timeline-date'>
@@ -78,7 +86,7 @@ function generate_feed_timeline($userId){
 }
 
 //se disponibile ritorna il link del trailer altrimenti ritorna foto di copertina
-function get_media($feedObj){
+function get_media($feedObj, $titleMedia){
     if ($feedObj instanceof Feed){
         $video = $feedObj->videoUrl; 
         $mediaObj = Media::fetch($feedObj->mediaId);
@@ -90,12 +98,12 @@ function get_media($feedObj){
     }
     if (isset($video) && $video!=""){ 
         $media ="<div class='content-justify-right padding-top-1'>
-                    <object class='timeline-video' data='$video' title='trailer'></object>
+                    <object class='timeline-video' data='$video' title='trailer $titleMedia'></object>
                 </div>";
     }
     else{
         $media = "<div class='content-justify-right padding-top-1'>
-                    <img class='timeline-image' alt='immagine di copertina' src='$cover'></img>
+                    <img class='timeline-image' alt='immagine di copertina $titleMedia' src='$cover'></img>
                 </div>";
     }
     return $media;
