@@ -18,7 +18,7 @@
         <img id="copertina_detail" class="border-radius-0-5" tabindex="0" src="{cover_url}" alt="Copertina di {title}" />
 
         <!-- MAIN CONTENT -->
-        <article id="main" class="flex-container flex-wrap">
+        <div id="main" class="flex-container flex-wrap">
             <div id="info" class="primary-color">
 
                 <div class="column">
@@ -68,7 +68,7 @@
                 </p>
 
                 <div id="votes" class="margin-top-1">
-                    <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"></span>
+                  <span id="num-votes" class="font-weight-bold full-width text-align-center font-size-0-938 primary-color"></span>
                     <form method="post" action="/flixy/website/public/php/add_vote.php">
                         <div id="thumbs" class="text-align-center primary-color">
                           <button aria-label="Dai un voto positivo" name="vote" type="submit" value="like" class="custom-button font-size-2-2" tabindex="0">
@@ -86,9 +86,8 @@
                         <span id="num-downDetail" tabindex="0">{dislikes}</span>
                       </div>
                 </div>
-              </form>
           </div>
-        </article>
+        </div>
       </div>
     </div>
 
@@ -106,7 +105,7 @@
         <form method="post" action="/flixy/website/public/php/delete_object.php">
           <fieldset class="fieldset_area">
             <input type="hidden" value="{mediaid}" name="movieID"></input>
-            <input type="hidden" value="0" name="fav"></input>
+            <input type="hidden" value="media" name="object"></input>
               <button aria-label="Rimuovi contenuto" id="remove_media" class="fas margin-top-0-2 fa-heart custom-button custom-link-hover font-size-1-7"></button>
               <label for="remove_media" class="text-align-center font-size-0-625">Rimuovi</label>          
           </fieldset>
