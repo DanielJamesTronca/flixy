@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($reg!=false) // se registrato correttamente
     {
       $_SESSION['registration'] = true;
-      SessionManager::startSessionForUser($reg, $username, true);
+      SessionManager::startSessionForUser($reg, $username, false);
       userRegisteredCorrectly();
     } else {
       $_SESSION['error-message'] = "Le tue credenziali non sono valide";
