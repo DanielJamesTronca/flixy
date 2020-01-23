@@ -212,7 +212,7 @@ function getSimilarMovies($realGenre, $genre_variable) {
 
 function generate_similar_content($realGenre){
   if(count($realGenre)>1){
-    $element_similar_content="<h1 class='primary-color font-size-2-2 padding-left-1 margin-top-1 text-align-left' tabindex='0'>Contenuti simili</h1>";
+    $element_similar_content="<h1 class='testoSimilar primary-color font-size-2-2 padding-left-1 margin-top-1 text-align-left' tabindex='0'>Contenuti simili</h1>";
   }
   else {
     $element_similar_content=NULL;

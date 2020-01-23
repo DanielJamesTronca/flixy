@@ -13,31 +13,31 @@
     <div id="side_profilo" class="flex-container flex-align-items-center padding-2 flex-direction-col">
       <img id="avatar" src="{avatar_url}" alt="Immagine profilo" tabindex="0" />
       <form class="margin-top-1" action="profile_edit.php" method="post" enctype="multipart/form-data">
-        <div class="group text-align-center margin-top-1">
+        <div class="groupProfilo text-align-center margin-top-1">
           <label for="file-upload" class="upload-foto" tabindex="0">
             <i class="fas fa-camera"></i> Cambia immagine profilo
           </label>
           <input id="file-upload" name="avatar" type="file"/>
         </div>
-        <div class="group">
+        <div class="groupProfilo">
           <label for="name" class="primary-color" tabindex="0">Nome</label>
           <input type="text" name="name" id="name" value="{name}" />
           <span class="highlight"></span>
           <span class="bar"></span>
         </div>
-        <div class="group">
+        <div class="groupProfilo">
           <label for="surname" class="primary-color" tabindex="0">Surname</label>
           <input type="text" name="surname" id="surname" value="{surname}" />
           <span class="highlight"></span>
           <span class="bar"></span>
         </div>
-        <div class="group">
+        <div class="groupProfilo">
           <label for="email" class="primary-color" tabindex="0" aria-label="La tua email è {email}">Email</label>
           <input disabled="disabled" type="text" name="email" id="email" value="{email}" />
           <span class="highlight"></span>
           <span class="bar"></span>
         </div>
-        <div class="group">
+        <div class="groupProfilo">
           <label for="username" class="primary-color" aria-label="La tua email è {username}" tabindex="0">Username </label>
           <input disabled="disabled" type="text" name="username" id="username" value="{username}" />
           <span class="highlight"></span>
@@ -46,7 +46,6 @@
 
         <div id="bottone_aggiorna" class="content-center">
           <button type="submit" value="Aggiorna profilo" class="bottone custom-button border-radius-0-3 font-size-1 primary-color-gradient-button"> Aggiorna Profilo </button>
-          <script src="scripts/function.js"></script> 
         </div>
       </form>
     </div>

@@ -740,6 +740,10 @@ option {
 	position: relative;
 	margin-bottom: 2.8em;
 }
+.groupProfilo{
+	position: relative;
+	margin-bottom: 2.8em;
+}
 input {
 	font-size: 1.125em;
 	padding-bottom: .1em;
@@ -868,10 +872,6 @@ input:focus ~ .highlight {
 	width: 100%;
 	position: relative;
 	height: 5.78215em;
-}
-.similar_card_copertina {
-	width: 10.5em;
-	height: 13.71875em;
 }
 
 /* FAVOURITE */
@@ -1140,7 +1140,7 @@ input:focus ~ .highlight {
 .comment_label {
 	display: block;
 }
-.textbox {
+.textboxDetail {
 	resize: none;
 	outline: none;
 	width: 80vh;
@@ -1172,6 +1172,12 @@ input:focus ~ .highlight {
 }
 .fieldset_area {
 	border: none;
+}
+#num-up,
+#num-down {
+	margin-top: .3em;
+	margin-right: 2em;
+	margin-left: 2em;
 }
 #num-upDetail,
 #num-downDetail {
@@ -1224,7 +1230,7 @@ input:focus ~ .highlight {
 
 /* Questa media query e' BOH */
 @media only screen and (max-width: 1250px) {
-	.textbox {
+	.textboxDetail {
 		width: 50vh;
 	}
 }
@@ -1421,6 +1427,10 @@ input:focus ~ .highlight {
 		padding-left: 5%;
 		padding-right: 5%;
 	}
+	.groupProfilo{
+		padding-left: 5%;
+		padding-right: 5%;
+	}
 	.label-log-reg {
 		padding-left: 5%;
 	}
@@ -1447,7 +1457,7 @@ input:focus ~ .highlight {
 		width: 100%;
 		overflow-x: hidden;
 	}
-	.textbox {
+	.textboxDetail {
 		width: 50vh;
 	}
 	#yt object {
@@ -1471,6 +1481,13 @@ input:focus ~ .highlight {
 	}
 }
 @media only screen and (max-width: 641px) {
+	#avatar {
+		width: 12.5625em;
+		height: 12.5625em;
+	}
+	.groupProfilo{
+		margin-bottom: 1.5em;
+	}
 	#footer-container {
 		display: none;
 	}
@@ -1480,6 +1497,15 @@ input:focus ~ .highlight {
 	}
 	#trailer_detail{
 		padding-top: 0;
+	}
+	#yt h1{
+		margin-top: 0;
+	}
+	.testoSimilar{
+		padding-left:0.5em;
+	}
+	#commentiamo h1{
+		margin-top: 0;
 	}
 	#dettaglio-content {
 		width: 100%;
@@ -1659,7 +1685,7 @@ input:focus ~ .highlight {
 	/* END INSERT-FORM media query */
 }
 @media only screen and (max-width: 600px) {
-	.textbox {
+	.textboxDetail{
 		width: 25vh;
 	}
 	#yt object {
@@ -1693,7 +1719,7 @@ input:focus ~ .highlight {
 		padding-left: 1em;
 		padding-right: 1em;
 	}
-	.textbox {
+	.textboxDetail {
 		width: 80%;
 	}
 	#yt h1 {
@@ -1707,9 +1733,6 @@ input:focus ~ .highlight {
 	.bottone {
 		margin-bottom:2em;
 	}
-	#yt {
-		margin-top: 1em;
-	}
 	#yt object {
 		width: 90%;
 		padding-left: 1em;
@@ -1721,7 +1744,7 @@ input:focus ~ .highlight {
 		margin-top: 0;
 	}
 	.textbox {
-		width: 100%;
+		width: 80%;
 	}
 	#similar h1 {
 		
@@ -1772,6 +1795,11 @@ input:focus ~ .highlight {
 	.similar_card_entry {
 		width: 10.5em;
 		height: 19.5em;
+	}
+	.similar_card_copertina {
+		width: 10.5em;
+		height: 13.71875em;
+		border-radius: .5em;
 	}
 	#favourite_card {
 		margin-left: 0;

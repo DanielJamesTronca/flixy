@@ -97,10 +97,20 @@
         <a href="php/layout.php?page=formmedia&amp;mediaid={mediaid}" class="button primary-color-gradient-button padding-1">Modifica</a>
       </li>
       <li>
-        <a href='php/layout.php?page=formepisode&amp;mediaid={mediaid}' class='button primary-color-gradient-button padding-1'>Aggiungi episodio</a>
+        <a href="php/layout.php?page=formepisode&amp;mediaid={mediaid}" class='button primary-color-gradient-button padding-1'>Aggiungi episodio</a>
       </li>
       <li>
-        <a href='php/layout.php?page=formepisode&amp;mediaid={mediaid}' class='button primary-color-gradient-button padding-1'>Aggiungi episodio</a>
+        <a href="php/layout.php?page=formepisode&amp;mediaid={mediaid}" class='button primary-color-gradient-button padding-1'>Aggiungi episodio</a>
+      </li>
+      <li>
+        <form method="post" action="/flixy/website/public/php/delete_object.php">
+          <fieldset class="fieldset_area">
+            <input type="hidden" value="{mediaid}" name="movieID"></input>
+            <input type="hidden" value="0" name="fav"></input>
+              <button aria-label="Rimuovi contenuto" id="remove_media" class="fas margin-top-0-2 fa-heart custom-button custom-link-hover font-size-1-7"></button>
+              <label for="remove_media" class="text-align-center font-size-0-625">Rimuovi</label>          
+          </fieldset>
+         </form>
       </li>
     </ul>
 
@@ -124,7 +134,7 @@
             <form action="php/post_comment.php" method="post" class="">
               <fieldset class="fieldset_area">
                 <label for="input_comment" class="comment_label font-size-0-75" tabindex="0">Inserisci qui il tuo commento</label> 
-                <textarea id="input_comment" name="message" rows="1" cols="10" class="textbox margin-top-0-5 secondary-bg" tabindex="0"></textarea> 
+                <textarea id="input_comment" name="message" rows="1" cols="10" class="textboxDetail margin-top-0-5 secondary-bg" tabindex="0"></textarea> 
                 <input type="hidden" name="movieId" value="{mediaid}"/>            
                 <button type="submit" name="commentSubmit" id="submit_comment" class="button primary-color-gradient-button" tabindex="0"> Submit </button>
               </fieldset>
