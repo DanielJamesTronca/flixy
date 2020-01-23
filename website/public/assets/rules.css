@@ -1783,6 +1783,14 @@ input:focus ~ .highlight {
 		margin-left: 0;
 		margin-top: 2em;
 	}
+	/* START feed media query */
+	#container-next-release{
+		margin-left: .8em;
+	}
+	.next-release{
+		margin-right: .8em;
+	}
+	/* END feed media query */
 }
 @media (max-width: 375px) {
 	#general-filters li {
@@ -1930,16 +1938,6 @@ input:focus ~ .highlight {
         margin-top: 1em;
         display: block;
 	}
-	
-	/* START feed media query */
-	#container-next-release{
-		margin-left: .8em;
-	}
-
-	.next-release{
-		margin-right: .8em;
-	}
-	/* END feed media query */
 }
 
 @media only screen and (max-width: 320px) {
