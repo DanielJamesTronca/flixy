@@ -1664,6 +1664,9 @@ input:focus ~ .highlight {
 		margin-bottom: .7em;
 	}
 	/* END INSERT-FORM media query */
+	#filters-menu {
+		margin-top: 0em;
+	}
 }
 @media only screen and (max-width: 600px) {
 	.textboxDetail{
