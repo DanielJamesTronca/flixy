@@ -9,11 +9,11 @@ if (SessionManager::isUserLogged()) {
     $userId = SessionManager::getUserId();
     if (SessionManager::userCanPublish()){
         $output = str_replace("{add-news}","",$output);
-        $output = str_replace("{form-link}","php/layout.php?page=formfeed",$output);
+        $output = str_replace("form-link","php/layout.php?page=formfeed",$output);
     }
     else{
         $output = str_replace("{add-news}","hidden",$output);
-        $output = str_replace("{form-link}","",$output);
+        $output = str_replace("form-link","",$output);
     }  
 } else {
     echo "Devi fare l'accesso per vedere il contenuto di questa pagina";
