@@ -75,9 +75,11 @@ $output = str_replace("{air_date}", $newDate, $output);
 
 if($lista[11]==1){
   $output= str_replace("{isMovie}", "SERIE TV", $output);
+  $output= str_replace("{serie_only}", "", $output);
 }
 else{
   $output= str_replace("{isMovie}", "FILM", $output);
+  $output= str_replace("{serie_only}", "hidden", $output);
 }
 
 function setFavouriteLikes($id){
