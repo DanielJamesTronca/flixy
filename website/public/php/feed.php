@@ -44,8 +44,8 @@ function generate_feed_next_releases($userId){
                                 <img src='$coverImage' class='cover' alt='immagine di copertina $title'/>
                             </div>
                             <div class='next-release-text-area padding-1 text-align-center'> 
-                                <h3>$title</h3>
-                                <h5>$subtitle</h5>
+                                <h2 class='font-size-1-125'>$title</h2>
+                                <h3 class='font-size-0-8'>$subtitle</h3>
                                 <p class='next-release-remaining-days'>$remainingDays</p>
                                 <p> giorni rimanenti </p>
                             </div>    
@@ -72,7 +72,7 @@ function generate_feed_timeline($userId){
                                     <p>$date</p> 
                                 </div>
                                 <div class='timeline-text'>
-                                    <h3>$title</h3>
+                                    <h2 class='font-size-1-125'>$title</h2>
                                     <p>$subtitle</p>
                                     <p class='padding-top-0-5'>$content</p>
                                 </div>
