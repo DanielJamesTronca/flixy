@@ -2,7 +2,7 @@
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 192.168.64.3
+-- Host: 192.168.1.202
 -- Creato il: Ott 20, 2019 alle 14:33
 -- Versione del server: 10.4.8-MariaDB
 -- Versione PHP: 7.3.10

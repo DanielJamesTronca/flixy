@@ -3,6 +3,13 @@ include_once("../../src/controllers/utils.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 
+
+if (!SessionManager::userCanPublish()) {
+    //l'utente non dovrebbe trovarsi qui, redirect alla home
+    header("Location: ../php/layout.php?page=home");
+    return;
+}
+
 /* START show error message if set */
 if(isset($_SESSION['error-message-feed'])) {
     $output = str_replace("<div class='margin-top-2 hidden'>","<div class='margin-top-2' tabindex='0'>",$output);

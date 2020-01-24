@@ -1,6 +1,4 @@
-/* 
-    espressioni regolari per la validazione dei campi 
-*/
+
 const RE_PASSWORD = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!.@#$%^&*]{6,16}$/;
 const RE_EMAIL = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const RE_NAME = /^[a-zA-Z ]{1,16}$/;

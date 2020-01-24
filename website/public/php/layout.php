@@ -18,7 +18,7 @@ if (SessionManager::isUserLogged())
     $output = str_replace("{profile_photo_url}", "../public".$user->avatarUrl, $output);
     $output = str_replace("{linkToFeed}", "./php/layout.php?page=feed", $output);
 } else {
-    $output = str_replace("{linkToFavs}", "./php/registrazione.php", $output);
+    $output = str_replace("{linkToFavs}", "./php/login.php", $output);
     $output = str_replace("{link_to_profile_or_log_in}", "./php/login.php", $output);
     $output = str_replace("{login_O_username}", "Accedi", $output);
     $output = str_replace("{link_to_log_out_or_register}", "./php/registrazione.php", $output);

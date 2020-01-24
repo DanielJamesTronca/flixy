@@ -3,6 +3,12 @@ include_once("../../src/controllers/utils.php");
 include_once("../../src/db_manager.php");
 include_once("../../src/models/models.php");
 
+if (!SessionManager::userCanPublish()) {
+    //l'utente non dovrebbe trovarsi qui, redirect alla home
+    header("Location: ../php/layout.php?page=home");
+    return;
+}
+
 $media = Media::fetch($_GET["mediaid"]);
 get_media_name($output);
 

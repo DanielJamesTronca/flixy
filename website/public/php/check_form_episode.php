@@ -26,6 +26,7 @@ if (!SessionManager::isUserLogged()) {
     return;
 }
 
+
 /* START check if all paramters are ok */
 if (!isset($_POST["titleEpisode"]) || !isset($_POST["description"]) || !isset($_GET["mediaid"]) || !isset($_POST["seasonNum"]) || !isset($_POST["episodeNum"])){
 
