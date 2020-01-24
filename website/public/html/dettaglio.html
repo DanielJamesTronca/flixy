@@ -82,7 +82,7 @@
           <a href="php/layout.php?page=formmedia&amp;mediaid={mediaid}" class="button primary-color-gradient-button padding-1">Modifica</a>
         </li>
         <li>
-          <a href="php/layout.php?page=formepisode&amp;mediaid={mediaid}" class='button primary-color-gradient-button padding-1 margin-left-1'>Aggiungi episodio</a>
+          <a href="php/layout.php?page=formepisode&amp;mediaid={mediaid}" class="button primary-color-gradient-button padding-1 margin-left-1 {serie_only}">Aggiungi episodio</a>
         </li>
         <li>
           <form method="post" action="/flixy/website/public/php/delete_object.php">
@@ -90,8 +90,8 @@
               <input type="hidden" value="{mediaid}" name="id"/>
               <input type="hidden" value="media" name="object"/>
               <input type="hidden" value="home" name="redirectURL"/>
-              <button aria-label="Rimuovi contenuto" id="remove_media" class="margin-top-0-2 custom-button font-size-1-7"></button>
-              <label for="remove_media" class="button primary-color-gradient-button padding-1 margin-left-1">Rimuovi</label>          
+              <button aria-label="Rimuovi contenuto" id="remove_media" class="remove_button custom-button font-size-1-7"></button>
+              <label for="remove_media" class="button primary-color-gradient-button remove_button padding-1 margin-left-1">Rimuovi</label>          
             </fieldset>
           </form>
         </li>
