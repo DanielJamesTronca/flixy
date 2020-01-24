@@ -15,6 +15,7 @@ if(!SessionManager::isUserLogged()){
   header("Location: ".SessionManager::BASE_URL."home");
 }
 
+
 $userId = null;
 $userId = SessionManager::getUserId();
 $user=User::getUser($userId);
@@ -26,16 +27,11 @@ $output=str_replace("{email}", $user->email,$output);
 $output=str_replace("{username}",$user->username,$output);
   
 
-
-
 $favourites=Media::getUserFavourites($userId);
-
-
 
 function getFavouriteList($favourites) {
   $favouriteList = [];
   $y=0;
-
 
   for ($x = 0; $x < count($favourites); $x++) {
     
@@ -51,28 +47,26 @@ function getFavouriteList($favourites) {
       $fav=false;
     }
 
+
     $genre_name=Genre::getNameGenre($genre_card);
 
     $card = file_get_contents("../html/favourite_card.html");
-
-    $card = str_replace("{mediaNFav}", !($fav == null) ? "" : "hidden", $card);
-    $card = str_replace("{mediaFav}", ($fav == null) ? "" : "hidden", $card);
+    
+    $card = str_replace("{mediaNFav}", !($fav == false) ? "" : "hidden", $card);
+    $card = str_replace("{mediaFav}", ($fav == false) ? "" : "hidden", $card);
 
     $finally_genre=$genre_name[$y]->name;
     $card = str_replace("{linkMovieFavourite}", "./php/layout.php?page=dettaglio&amp;movieId=".$media_id , $card);
 
-    $card = str_replace("{favouriteTitle}", $titolo, $card);
+    $card = str_replace("{mediaid}", $media_id, $card);
     $card = str_replace("{favouriteTitle}", $titolo, $card);
     $card = str_replace("{favouriteGenre}",$finally_genre , $card);
     $card = str_replace("{favouriteCover}", "../public/".$url, $card);
   
-
     array_push($favouriteList, $card);
   }
   return implode($favouriteList);
 }
 
-
 $output = str_replace("{favouriteList}", getFavouriteList($favourites), $output);
-
 ?>

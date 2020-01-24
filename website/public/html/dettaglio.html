@@ -91,23 +91,21 @@
       </div>
     </div>
 
-    <ul id="three_buttons" class="margin-top-2 {notAnAdmin} text-align-left padding-left-1">
+    <ul id="three_buttons" class="margin-top-2 {notAnAdmin} text-align-left padding-left-2">
       <li>
         <a href="php/layout.php?page=formmedia&amp;mediaid={mediaid}" class="button primary-color-gradient-button padding-1">Modifica</a>
       </li>
       <li>
-        <a href="php/layout.php?page=formepisode&amp;mediaid={mediaid}" class='button primary-color-gradient-button padding-1'>Aggiungi episodio</a>
-      </li>
-      <li>
-        <a href="php/layout.php?page=formepisode&amp;mediaid={mediaid}" class='button primary-color-gradient-button padding-1'>Aggiungi episodio</a>
+        <a href="php/layout.php?page=formepisode&amp;mediaid={mediaid}" class='button primary-color-gradient-button padding-1 margin-left-1'>Aggiungi episodio</a>
       </li>
       <li>
         <form method="post" action="/flixy/website/public/php/delete_object.php">
           <fieldset class="fieldset_area">
-            <input type="hidden" value="{mediaid}" name="movieID"></input>
+            <input type="hidden" value="{mediaid}" name="id"></input>
             <input type="hidden" value="media" name="object"></input>
-              <button aria-label="Rimuovi contenuto" id="remove_media" class="fas margin-top-0-2 fa-heart custom-button custom-link-hover font-size-1-7"></button>
-              <label for="remove_media" class="text-align-center font-size-0-625">Rimuovi</label>          
+            <input type="hidden" value="home" name="redirectURL"></input>
+              <button aria-label="Rimuovi contenuto" id="remove_media" class="margin-top-0-2 custom-button font-size-1-7"></button>
+              <label for="remove_media" class="button primary-color-gradient-button padding-1 margin-left-1">Rimuovi</label>          
           </fieldset>
          </form>
       </li>
@@ -115,19 +113,19 @@
 
     <div id="trailer_detail" class="flex-container flex-content-start flex-align-items-center margin-top-1 {trailer}" >
       <div id='yt' class="{trailer}">
-        <h1 class='primary-color font-size-2-2 padding-left-1 margin-top-1 text-align-left' tabindex='0'>Trailer</h1> 
-        <object class='video_yt padding-left-2' data="{trailer_content}" tabindex='0'></object>
+        <h1 class="primary-color font-size-2-2 padding-left-1 margin-top-1 text-align-left margin-bottom-0-5" tabindex='0'>Trailer</h1> 
+        <object class="video_yt padding-left-2" data="{trailer_content}" tabindex='0'></object>
       </div>
     </div>
 
-    <div id="similar" class=" text-align-left margin-top-1 ">
+    <div id="similar" class=" text-align-left ">
       {similar_content}
         <div id="similar_list" class="flex-container padding-left-2 flex-grow-shrink flex-content-start flex-wrap ">
           {movieList}
         </div>
     </div>
 
-    <div id="comment-section" class="flex-container flex-content-start margin-top-1 flex-align-items-left">
+    <div id="comment-section" class="flex-container flex-content-start  flex-align-items-left">
       <div id="commentiamo" class="padding-left-2">
          <h1 class="primary-color font-size-2-2 margin-top-1 padding-bottom-0-5" tabindex="0">Commenti </h1>
             <form action="php/post_comment.php" method="post" class="">

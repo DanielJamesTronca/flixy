@@ -16,11 +16,16 @@ if (!isset($_POST["object"]) || !isset($_POST["id"])) {
 }
 $className = $_POST["object"];
 $id = $_POST["id"];
-if ($className != "Media" && $className != "Episode" && $className != "Feed") {
+
+$redirectURL = $_POST["redirectURL"];
+header("Location: ".SessionManager::BASE_URL.$redirectURL);
+
+/* if ($className != "Media" && $className != "Episode" && $className != "Feed") {
     echo "Invalid object";
+    
     return;
 }
-
+*/
 $dbman = DBManager::getInstance();
 return $dbman->deleteObject($id, $className);
 
