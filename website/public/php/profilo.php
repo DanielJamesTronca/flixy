@@ -21,7 +21,7 @@ $user=User::getUser($userId);
 
 $output=str_replace("{name}", $user->name,$output);
 $output=str_replace("{surname}", $user->surname,$output);
-$output=str_replace("{avatar_url}", "../public/".$user->avatarUrl,$output);
+$output=str_replace("avatar_url", "../public/".$user->avatarUrl,$output);
 $output=str_replace("{email}", $user->email,$output);
 $output=str_replace("{username}",$user->username,$output);
   
@@ -54,12 +54,12 @@ function getFavouriteList($favourites) {
     $card = str_replace("{mediaFav}", ($fav == false) ? "" : "hidden", $card);
 
     $finally_genre=$genre_name[$y]->name;
-    $card = str_replace("{linkMovieFavourite}", "./php/layout.php?page=dettaglio&amp;movieId=".$media_id , $card);
+    $card = str_replace("linkMovieFavourite", "./php/layout.php?page=dettaglio&amp;movieId=".$media_id , $card);
 
     $card = str_replace("{mediaid}", $media_id, $card);
     $card = str_replace("{favouriteTitle}", $titolo, $card);
     $card = str_replace("{favouriteGenre}",$finally_genre , $card);
-    $card = str_replace("{favouriteCover}", "../public/".$url, $card);
+    $card = str_replace("favouriteCover", "../public/".$url, $card);
   
     array_push($favouriteList, $card);
   }

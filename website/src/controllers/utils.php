@@ -335,9 +335,9 @@ class Utils {
         $card = str_replace("{mediaNotFav}", !($isFav == true) ? "" : "hidden", $card);
         $card = str_replace("{mediaIsFav}", ($isFav == true) ? "" : "hidden", $card);
         $card = str_replace("{dislikes}", $votesTotal-$votesPositive, $card);
-        $card = str_replace("{coverURL}", "../public/".$coverUrl, $card);
+        $card = str_replace("coverURL", "../public/".$coverUrl, $card);
         $card = str_replace("{movieID}", $id, $card);
-        $card = str_replace("{linkDettaglioMovie}", "./php/layout.php?page=dettaglio&amp;movieId=".$id, $card);
+        $card = str_replace("linkDettaglioMovie", "./php/layout.php?page=dettaglio&amp;movieId=".$id, $card);
         $check = Utils::checkLikedMovies($id);
         switch($check) {
             case 1:

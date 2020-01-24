@@ -1,34 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
-
-<!-- <head>
-  <title>Flixy -  Similar Content Card</title>
-  <meta name="title" content="Flixy - Similar Content Card" />
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <script src="https://kit.fontawesome.com/cfeebd4134.js" type="text/javascript"></script>
-</head> -->
-
-<body class="primary-bg">
-  <div class="similar_card_entry secondary-bg margin-bottom-1 margin-top-1 border-radius-0-5">
-    <div class="movie similar_card_copertina">
-      <a href="{linkMovie}" class="custom-link similar_card_copertina">
-        <img class="border-radius-0-5 similar_card_copertina " src="{movieCover}" tabindex="0" alt="Copertina di {movieTitle}"/>
-      </a>
-    </div>
-    <div class="similar_card_info margin-top-0-5 text-align-center">
-      <a href="{linkMovie}" class="custom-link">
-        <h1 class="primary-color text-align-center font-size-1" tabindex="0">
-          {movieTitle} 
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <title>Similar movie card</title>
+    <meta charset="utf-8" />
+    <base target="_self" href="http://localhost/flixy/website/public/html" />
+  </head>
+  <body class="primary-bg">
+    <div class="similar_card_entry secondary-bg margin-bottom-1 margin-top-1 border-radius-0-5">
+      <div class="movie similar_card_copertina">
+        <a href="linkMovie" class="custom-link similar_card_copertina">
+        <img class="border-radius-0-5 similar_card_copertina " src="movieCover" alt="Copertina di {movieTitle}"/>
+        </a>
+      </div>
+      <div class="similar_card_info margin-top-0-5 text-align-center">
+        <a href="linkMovie" class="custom-link">
+          <h1 class="primary-color text-align-center font-size-1">
+            {movieTitle} 
+          </h1>
+        </a>
+        <h1 class="primary-color text-align-center font-size-0-75 margin-top-0-5" tabindex="0">
+          {movieGenre}
         </h1>
-      </a>
-      <h1 class="primary-color text-align-center font-size-0-75 margin-top-0-5" tabindex="0">
-        {movieGenre}
-      </h1>
-      <h1 class="primary-color text-align-center font-size-0-75 margin-top-0-5" tabindex="0">
-        {isMovie}
-      </h1>
+        <h1 class="primary-color text-align-center font-size-0-75 margin-top-0-5" tabindex="0">
+          {isMovie}
+        </h1>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
-

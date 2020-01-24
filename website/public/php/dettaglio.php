@@ -61,11 +61,11 @@ $output=str_replace("{starNumber}", count($starNumber),$output);
 $output=str_replace("{mediaid}",$movieId,$output);
 $output=str_replace("{title}", $lista[0],$output);
 $output=str_replace("{duration}", $lista[1],$output);
-$output=str_replace("{cover_url}", "../public/".$lista[2],$output);
+$output=str_replace("cover_url", "../public/".$lista[2],$output);
 $output=str_replace("{description}", $lista[3],$output);
 $output=str_replace("{episode}", $lista[4],$output);
 $output=str_replace("{season}", $lista[5],$output);
-$output=str_replace("{trailer_content}",$lista[6],$output);
+$output=str_replace("trailer_content",$lista[6],$output);
 $output = str_replace("{movieStars}", implode($lista[7]), $output);
 $output = str_replace("{air_date}", $newDate, $output);
 
@@ -201,8 +201,8 @@ function getSimilarMovies($realGenre, $genre_variable) {
       
     $card = str_replace("{movieTitle}", $titolo, $card);
     $card = str_replace("{movieGenre}", $genre_card, $card);
-    $card = str_replace("{movieCover}", "../public/".$url, $card);
-    $card = str_replace("{linkMovie}", "./php/layout.php?page=dettaglio&amp;movieId=".$id_card, $card);
+    $card = str_replace("movieCover", "../public/".$url, $card);
+    $card = str_replace("linkMovie", "./php/layout.php?page=dettaglio&amp;movieId=".$id_card, $card);
 
     array_push($movieList, $card);
   }
@@ -243,7 +243,7 @@ function getCommentList($comments) {
     $commento = file_get_contents("../html/comment.html");
     $commento = str_replace("{nome_commento}", $nome_commento, $commento);
     $commento = str_replace("{contenuto_commento}", $contenuto, $commento);
-    $commento = str_replace("{avatar_url_commento}", "../public/".$finally_url, $commento);
+    $commento = str_replace("avatar_url_commento", "../public/".$finally_url, $commento);
 
     array_push($commentList, $commento);
   }
