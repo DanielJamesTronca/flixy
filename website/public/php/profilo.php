@@ -15,7 +15,6 @@ if(!SessionManager::isUserLogged()){
   header("Location: ".SessionManager::BASE_URL."home");
 }
 
-
 $userId = null;
 $userId = SessionManager::getUserId();
 $user=User::getUser($userId);
@@ -47,7 +46,6 @@ function getFavouriteList($favourites) {
       $fav=false;
     }
 
-
     $genre_name=Genre::getNameGenre($genre_card);
 
     $card = file_get_contents("../html/favourite_card.html");
@@ -67,6 +65,8 @@ function getFavouriteList($favourites) {
   }
   return implode($favouriteList);
 }
-
-$output = str_replace("{favouriteList}", getFavouriteList($favourites), $output);
+if (getFavouriteList($favourites)!=null)
+  $output = str_replace("{favouriteList}", getFavouriteList($favourites), $output);
+else
+  $output = str_replace("{favouriteList}", "Non hai preferiti al momento. Aggiungi dei contenuti ai preferiti per visualizzarli qui!", $output);
 ?>

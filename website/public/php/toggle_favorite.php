@@ -11,7 +11,9 @@ $userId = null;
 if (SessionManager::isUserLogged()) {
     $userId = SessionManager::getUserId();
 } else {
-    echo "Utente non autenticato";
+    // Utente non autenticato
+    header("Location: ./login.php");
+    return;
 }
 
 if (isset($_POST["redirectURL"]) && isset($_POST["movieID"]) && isset($_POST["fav"])) {

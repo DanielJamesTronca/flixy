@@ -24,7 +24,7 @@ if (SessionManager::isUserLogged())
     $output = str_replace("{link_to_log_out_or_register}", "./php/registrazione.php", $output);
     $output = str_replace("{logout_O_registrazione}", "Registrati", $output);
     $output = str_replace("{profile_photo_url}", "../public/assets/images/avatars/default.png", $output);
-    $output = str_replace("{linkToFeed}", "./php/registrazione.php", $output);
+    $output = str_replace("{linkToFeed}", "./php/login.php", $output);
 }
 
 if (isset($_GET["logout"])) {

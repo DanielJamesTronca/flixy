@@ -701,7 +701,7 @@ option {
 	width: 15.5em;
 	height: 2.6em;
 	border-radius: .5em;
-	text-decoration: underline;
+	text-decoration: none;
 }
 .button-small-form {
 	width: 11em;
