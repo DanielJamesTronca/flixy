@@ -1088,7 +1088,8 @@ input:focus ~ .highlight {
 	float: right;
 }
 #copertina_detail {
-	width: 25.5em;
+	width: auto;
+	min-width: 23.5em;
 	height: 34em;
 	background-size: cover;
 	border: 0.1em solid white;
@@ -1213,6 +1214,7 @@ input:focus ~ .highlight {
 	
 	#copertina_detail{
 		align-self: center;
+		margin-left: 2em;
 	}
 	
     #mobile_only, #mobile_only1{
@@ -1373,7 +1375,11 @@ input:focus ~ .highlight {
         -webkit-column-count: 1;
         -moz-column-count: 1;
         column-count: 1;
-    }
+	}
+	
+	#copertina_detail{
+	margin-left: 0em;
+	}
 
 	/* START INSERT FORM media query */
 	.container-comboBox-data {
@@ -1482,7 +1488,8 @@ input:focus ~ .highlight {
 		display: none;
 	}
 	#copertina_detail {
-		width: 17.5em;
+		width: auto;
+		min-width: 17.5em;
 		height: 26em;
 	}
 	#trailer_detail{
@@ -1820,9 +1827,11 @@ input:focus ~ .highlight {
 (-ms-high-contrast: none) {
 	#side {
 		min-height: 70vh;
+		width:100%;
 	}
 	#copertina_detail {
-		width: 25.5em;
+		width: auto;
+		min-width: 23.5em;
 		height: 34em;
 		background-size: cover;
 		border: 0.1em solid white;
@@ -1988,7 +1997,8 @@ input:focus ~ .highlight {
 
 @media only screen and (max-width: 320px) {
     #copertina_detail {
-        width: 12.5em;
+		width: auto;
+        min-width: 12.5em;
         height: 18em;
     }
 }
