@@ -1090,6 +1090,7 @@ input:focus ~ .highlight {
 #copertina_detail {
 	width: auto;
 	min-width: 23.5em;
+	max-width: 25em;
 	height: 34em;
 	background-size: cover;
 	border: 0.1em solid white;
@@ -1488,8 +1489,8 @@ input:focus ~ .highlight {
 		display: none;
 	}
 	#copertina_detail {
-		width: auto;
 		min-width: 17.5em;
+		max-width: 18em;
 		height: 26em;
 	}
 	#trailer_detail{
@@ -1830,8 +1831,8 @@ input:focus ~ .highlight {
 		width:100%;
 	}
 	#copertina_detail {
-		width: auto;
 		min-width: 23.5em;
+		max-width: 25em;
 		height: 34em;
 		background-size: cover;
 		border: 0.1em solid white;
@@ -1997,7 +1998,7 @@ input:focus ~ .highlight {
 
 @media only screen and (max-width: 320px) {
     #copertina_detail {
-		width: auto;
+		max-width: 13em;
         min-width: 12.5em;
         height: 18em;
     }
