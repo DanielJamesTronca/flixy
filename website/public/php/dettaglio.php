@@ -59,6 +59,8 @@ if (SessionManager::isUserLogged() && SessionManager::userCanPublish()) {
 $output=str_replace("{genre}", $genre2,$output);
 $output=str_replace("{starNumber}", count($starNumber),$output);
 $output=str_replace("{mediaid}",$movieId,$output);
+$output=str_replace("media-id-link",$movieId,$output);
+
 $output=str_replace("{title}", $lista[0],$output);
 $output=str_replace("{duration}", $lista[1],$output);
 $output=str_replace("cover_url", "../public/".$lista[2],$output);
