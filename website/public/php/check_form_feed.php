@@ -43,8 +43,8 @@ if(!Utils::isValidDate($_POST["day"],$_POST["month"],$_POST["year"])){
 /* END check if all paramters are ok */
 
 $episode = new Feed();
-$episode->content = $_POST["content"];
-$episode->subtitle = $_POST["subtitle"];
+$episode->content = htmlentities($_POST["content"], ENT_QUOTES);
+$episode->subtitle = htmlentities($_POST["subtitle"], ENT_QUOTES);
 $episode->mediaId = $_POST["mediaid"];
 $episode->authorId = SessionManager::getUserId();
 $episode->eventDate = Utils::createDate($_POST["day"],$_POST["month"],$_POST["year"]);

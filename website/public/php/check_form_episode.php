@@ -51,8 +51,8 @@ if(!Utils::isValidDate($_POST["day"],$_POST["month"],$_POST["year"])){
 
 // good to go on these parameters, now upload them to db
 $episode = new Episode();
-$episode->title = $_POST["titleEpisode"];
-$episode->description = $_POST["description"];
+$episode->title = htmlentities($_POST["titleEpisode"], ENT_QUOTES);
+$episode->description = htmlentities($_POST["description"], ENT_QUOTES);
 $episode->mediaId = $_GET["mediaid"];
 $episode->seasonNum = $_POST["seasonNum"];
 $episode->episodeNum = $_POST["episodeNum"];

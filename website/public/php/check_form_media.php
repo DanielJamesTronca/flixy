@@ -68,8 +68,8 @@ if(!Utils::isValidDate($_POST["day"],$_POST["month"],$_POST["year"])){
 // good to go on these parameters, now upload them to db
 
 $media = new Media();
-$media->title = $_POST["mediaTitle"];
-$media->description = $_POST["description"];
+$media->title = htmlentities($_POST["mediaTitle"], ENT_QUOTES);
+$media->description = htmlentities($_POST["description"], ENT_QUOTES);
 $media->genreId = $_POST["genreid"]; 
 $media->stars = $_POST["stars"];
 $media->duration = $_POST["duration"];
@@ -105,7 +105,6 @@ if ($id == null) {
     // create new
     $media->saveInDB();
     header("Location: ".SessionManager::BASE_URL."home");
-    
 } else {
     // update
     $media->id = $id;

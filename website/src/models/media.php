@@ -82,7 +82,6 @@ class Media extends Base
         $dbman = DBManager::getInstance();
         $insertQuery = "INSERT INTO ".(self::TABLE_NAME)." (".(self::NAME_KEY).", ".(self::DESCRIPTION_KEY).", ".(self::COVER_KEY).", ".(self::GENRE_ID_KEY).", ".(self::STARS_KEY).", ".(self::DURATION_KEY).", ".(self::HAS_EPISODES_KEY).", ".(self::EPISODES_NUM_KEY).", ".(self::SEASONS_NUM_KEY).", ".(self::TRAILER_KEY).", ".(self::DATE_KEY).") ";
         $insertQuery .= "VALUES ('".$this->title."', '".$this->description."', '".$this->coverUrl."', ".$this->genreId.", ".$this->stars.", ".$this->duration.", ".$this->hasEpisodes.", ".$this->numEpisodes.", ".$this->numSeasons.", '".$this->trailerUrl."', '".$this->airDate."');";
-    
         return $dbman->query($insertQuery);
     }
 
