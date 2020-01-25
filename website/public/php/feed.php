@@ -24,7 +24,7 @@ if (Media::getUserFavourites(SessionManager::getUserId())!=null){
     $output = str_replace("{feed-next-releases}",generate_feed_next_releases($userId),$output); 
 }
 else{
-    $output = str_replace("{feed-timeline}", "Nessun elemento presente: aggiungi ai preferiti almeno un media per poter seguire il feed!",$output);
+    $output = str_replace("{feed-timeline}", "Nessun elemento presente: aggiungi ai preferiti almeno un film o serie tv per poter seguire il suo feed!",$output);
     $output = str_replace("{feed-next-releases}","",$output); 
 }
 
