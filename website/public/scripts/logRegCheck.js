@@ -11,7 +11,7 @@ var errorMessage = ""; //gestita da createErrorMessage
     controlla se l'item rispetta l'espressione regolare ==> ritorna booleano
     type è una stringa, specifica se si deve validare la form di "login" o di "registration"
 */
-function validInput(item, reg_expr, type){
+function validInput(item, reg_expr = null, type){
     if (item.value == "" || !reg_expr.test(item.value)){
         createErrorMessage(item,type);
         return false;
@@ -35,7 +35,7 @@ function validateFormLogin() {
         return false; 
     } 
    
-    if (!validInput(password, RE_PASSWORD, type))                               
+    if (!validInput(password, type))                               
     { 
         alert(errorMessage); 
         password.focus(); 
@@ -135,8 +135,6 @@ function createErrorMessage(item, type){
     else if (type == "login"){
         switch (item.name) {
             case 'username': errorMessage = "L'username inserito non è corretto.";
-                break;
-            case 'password': errorMessage = "La password inserita non è corretta.";
                 break;
         }
     }

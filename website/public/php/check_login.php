@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['login'] = true;
       userLoggedCorrectly(); 
     } else {
-      $_SESSION['error-message'] = "Le tue credenziali non sono valide";
+      $_SESSION['error-message'] = "le tue credenziali non sono valide";
       header("Location: ../php/login.php");
     }
   }
@@ -45,10 +45,6 @@ function checkParameters($username, $password, &$errorMessage) // controlla il f
 	if (empty($password)) {
 		$_SESSION['error-message'] .= " La password è richiesta! ";
 		return false;
-  }
-  else if(!preg_match("/^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!.@#$%^&*]{6,32}$/",$password)){
-    $_SESSION['error-message'] .= " Controlla la password! Dev'essere alfanumerica ed essere composta da almeno 6 caratteri. ";
-    return false;
   }
 	return true;
 }
