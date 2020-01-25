@@ -885,6 +885,7 @@ input:focus ~ .highlight {
 	height: 15.71875em;
 	border-radius: .5em;
 	background-size: cover;
+	object-fit: cover;
 }
 #favourite_card_info {
 	position: relative;

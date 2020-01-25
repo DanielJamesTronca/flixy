@@ -65,11 +65,13 @@ function generate_feed_timeline($userId){
             $subtitle = get_subtitle($item);
             $content = get_content($item);
             $date = get_date($item);
+            $year = get_year($item);
             $media = get_media($item, $title);
             $element = "<div class='timeline-container' tabindex='0'>
                             <div class='timeline-content'>
                                 <div class='timeline-date'>
                                     <p>$date</p> 
+                                    <p class='padding-top-0-5'>$year</p>
                                 </div>
                                 <div class='timeline-text'>
                                     <h2 class='font-size-1-125'>$title</h2>
@@ -200,6 +202,16 @@ function get_date($object){
     $day = $date->format('j');
     $month = $date->format('n'); //formatta data per prendere il numero del mese che sarà l'indice dell'array mesi (per traduzione italiana)
     return $day.' '.$mesi[$month];
+}
+
+function get_year($object){
+    if ($object instanceof Feed){
+        $date = new DateTime($object->eventDate);
+    }
+    else{
+        $date = new DateTime($object->deadlineDate);
+    }
+    return $date->format("Y");
 }
 
 // ritorna array con le release la cui data di uscita è già passata

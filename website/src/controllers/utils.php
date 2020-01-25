@@ -90,7 +90,7 @@ class Utils {
 
     public static function generateOptionsYear(){
         $toReturn = "";
-        for ($i=2000; $i<=2025; $i++)
+        for ($i=1985; $i<=2025; $i++)
             $toReturn.= "<option value='$i'>$i</option>";
         return $toReturn;
     }
@@ -98,7 +98,7 @@ class Utils {
     public static function restoreOptionsYear($yearToRestore){
         $options = "";
         $toRestore = "";
-        for ($i=2000; $i<=2025; $i++){
+        for ($i=1985; $i<=2025; $i++){
             if ($i == $yearToRestore)
                     $toRestore = "<option value='$i'>$i</option><optgroup class='secondary-bg' label='--------'>";
             else
