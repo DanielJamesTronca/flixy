@@ -169,7 +169,7 @@ switch($check) {
 $genre_aux=$genre;
 
 
-if($episode==null && $season==null){
+if(Media::fetch($movieId)->isMovie()){
   $output=str_replace("{serieTvEpisode}", "hidden" ,$output);
   $output=str_replace("{serieTvSeason}", "hidden" ,$output);
 }
