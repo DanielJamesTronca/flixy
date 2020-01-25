@@ -386,7 +386,8 @@ option {
 	padding: 2em 2em;
 }
 .logo-size {
-	width: 3em;
+	width: auto;
+	height:4em;
 }
 #outer-container {
 	flex-basis: 100%;
