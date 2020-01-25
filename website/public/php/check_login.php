@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['login'] = true;
       userLoggedCorrectly(); 
     } else {
-      $_SESSION['error-message'] = "le tue credenziali non sono valide";
+      $_SESSION['error-message'] = "le tue credenziali non sono valide.";
       header("Location: ../php/login.php");
     }
   }
