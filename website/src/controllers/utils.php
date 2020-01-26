@@ -210,6 +210,7 @@ class Utils {
 
     public static function generateMovieYearOptions($yearList) {
         $list = [];
+        array_multisort(array_column($yearList, 'anno'), SORT_DESC, $yearList);
         for ($x = 0; $x < count($yearList); $x++) { 
             $year = $yearList[$x]->anno;
             if (isset($_GET["year-select"])) {

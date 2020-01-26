@@ -25,7 +25,7 @@ if (!(isset($content) && !empty($content))) {
 $userId = SessionManager::getUserId();
 $movieId=$_POST["movieId"];
 
-Comment::createComment($userId,$movieId,$content); 
+Comment::createComment($userId,$movieId,htmlentities($content, ENT_QUOTES)); 
 
 header("Location: ".SessionManager::BASE_URL."dettaglio"."&movieId=".$movieId);
 
