@@ -1338,6 +1338,10 @@ input:focus ~ .highlight {
 		justify-content: center;
 		align-items: center;
 	}
+	#yt object{
+		width: 409px;
+		height: 213px;
+	}
 }
 @media only screen and (max-width: 850px) {
 	#submit_comment {
@@ -1459,11 +1463,11 @@ input:focus ~ .highlight {
 		overflow-x: hidden;
 	}
 	.textboxDetail {
-		width: 50vh;
-	}
-	#yt object {
-		width: 449px;
-		height: 253px;
+		resize: none;
+		outline: none;
+		width: 35vh;
+		height: 3em;
+		border: .06em solid #757575;
 	}
 	#mobile_only,
 	#mobile_only1 {
@@ -1680,10 +1684,16 @@ input:focus ~ .highlight {
 		margin-top: 0em;
 	}
 }
+
+
 @media only screen and (max-width: 600px) {
-	.textboxDetail{
-		width: 25vh;
-	}
+	.textboxDetail {
+	resize: none;
+	outline: none;
+	width: 35vh;
+	height: 3em;
+	border: .06em solid #757575;
+}
 	#yt object {
 		width: 369px;
 		height: 220px;
