@@ -718,10 +718,10 @@ option {
 	padding-bottom: 1em;
 }
 .link-page {
-	font-weight: 700;
+	font-weight: bold;
 }
 .link-page:visited {
-	color: #910223;
+	color: #E21221;	
 }
 .error-message-box {
 	width: 80%;
