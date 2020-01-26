@@ -965,9 +965,9 @@ input:focus ~ .highlight {
 	width: 100%;
 }
 
-
-
-
+#similar {
+	width:55%;
+}
 
 /* START MERGE FEED */
 #feed-content {
@@ -1331,6 +1331,7 @@ input:focus ~ .highlight {
 	#similar {
 		text-align: center;
 		padding-left: 0;
+		width: auto;
 	}
 	#mobile_adjustmante {
 		padding-top: 1em;
