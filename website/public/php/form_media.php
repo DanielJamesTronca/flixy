@@ -1,0 +1,261 @@
+
+<?php
+include_once("../../src/controllers/utils.php");
+include_once("../../src/db_manager.php");
+include_once("../../src/models/models.php");
+
+if (!SessionManager::userCanPublish()) {
+    //l'utente non dovrebbe trovarsi qui, redirect alla home
+    header("Location: ../php/layout.php?page=home");
+    return;
+}
+
+/* START show error message if set */
+if(isset($_SESSION['error-message-media'])) {
+    $output = str_replace("<div class='margin-top-2 hidden'>","<div class='margin-top-2' tabindex='0'>",$output);
+    $output = str_replace("{error-message}",$_SESSION['error-message-media'],$output);
+    restore_parameters($output);
+    Utils::unsetAll(array('error-message-media','title','description','genreid','stars','duration','hasEpisodes','numEpisodes','numSeasons','trailerUrl','day','month','year'));
+}
+/* END show error message if set */
+restore_parameters($output);
+
+function restore_parameters(&$output){
+    /* START restore form parameters if available */
+    if (isUpdateMode()){
+        $media = Media::fetch($_GET['mediaid']);
+        $output = str_replace("{page}", "dettaglio&amp;movieId=".$_GET["mediaid"], $output);
+        if(isFilm()){
+            $output = str_replace("{headTitle}","Flixy - Modifica film",$output);
+            $output = str_replace("{pageTitle}","Modifica Film",$output);
+            $output = str_replace("id='radioTvSeries' checked='checked'","id='radioTvSeries' tabindex='-1' disabled='disabled'",$output); //disabilita switch serie tv
+            $output = str_replace("id='radioFilm'","id='radioFilm' checked='checked' tabindex='-1'",$output); //seleziona switch film, tabindex=-1 perchè ha solo una funzione grafica
+            $output = str_replace("{episodesAttributes}",generate_hidden_episodes_attributes(),$output);
+        }
+        else{
+            $output = str_replace("{headTitle}","Flixy - Modifica serie",$output);
+            $output = str_replace("{pageTitle}","Modifica Serie TV",$output);
+            $output = str_replace("id='radioFilm'","id='radioFilm' tabindex='-1' disabled='disabled'",$output); //disabilita switch film
+            $output = str_replace("id='radioTvSeries'","id='radioTvSeries' tabindex='-1'",$output); //tabindex=-1 perchè ha solo una funzione grafica
+            $output = str_replace("{episodesAttributes}",generate_episodes_attributes(),$output);
+        }
+        $output = str_replace("'{title}'",$media->title,$output);
+        $output = str_replace("{description}",$media->description,$output);
+        $output = str_replace("<option>{genreid}</option>",restore_list_genres($media->genreId),$output);
+        $output = str_replace("<option>{stars}</option>",restore_rating($media->stars),$output);
+        $output = str_replace("'{duration}'",$media->duration,$output);
+        $output = str_replace("'{hasEpisodes}'",$media->hasEpisodes,$output);
+        $output = str_replace("'{numEpisodes}'",$media->numEpisodes,$output);
+        $output = str_replace("'{numSeasons}'",$media->numSeasons,$output);
+        $output = str_replace("'{trailerUrl}'",$media->trailerUrl,$output);
+        $output = str_replace("<option>{dayOption}</option>",Utils::restoreOptionsDay(Utils::getDayFromData($media->airDate)),$output);
+        $output = str_replace("<option>{monthOption}</option>",Utils::restoreOptionsMonth(Utils::getMonthFromData($media->airDate)),$output);
+        $output = str_replace("<option>{yearOption}</option>",Utils::restoreOptionsYear(Utils::getYearFromData($media->airDate)),$output);
+        set_path_with_mediaid($output);
+    }
+    else{
+        $output = str_replace("{headTitle}","Flixy - Inserisci media",$output);
+        $output = str_replace("{pageTitle}","Aggiungi Media",$output);
+        $output = str_replace("{page}","home", $output);
+
+
+        if(!isset($_SESSION['hasEpisodes']))
+            $output = str_replace("{episodesAttributes}",generate_episodes_attributes(),$output);
+    
+        if (isset($_SESSION['title'])){
+            $output = str_replace("'{title}'",$_SESSION['title'],$output);  
+        }
+        else{
+            $output = str_replace("'{title}'","",$output); 
+        }
+        if (isset($_SESSION['description'])){
+            $output = str_replace("{description}",$_SESSION['description'],$output);
+        }
+        else{
+            $output = str_replace("{description}","",$output);
+        }
+        if (isset($_SESSION['genreid'])){
+            $output = str_replace("<option>{genreid}</option>",restore_list_genres($_SESSION['genreid']),$output);
+        }
+        else{
+            $output = str_replace("<option>{genreid}</option>",get_list_genres(),$output);
+        }
+        if (isset($_SESSION['stars'])){
+            $output = str_replace("<option>{stars}</option>",restore_rating($_SESSION['stars']),$output);
+        }
+        else{
+            $output = str_replace("<option>{stars}</option>",generate_rating_options(),$output); 
+        }
+        if (isset($_SESSION['duration'])){
+            $output = str_replace("'{duration}'",$_SESSION['duration'],$output);
+        }
+        else{
+            $output = str_replace("'{duration}'","",$output);
+        }
+        if (isset($_SESSION['hasEpisodes']) && $_SESSION['hasEpisodes']=="true"){
+            $output = str_replace("{episodesAttributes}",generate_episodes_attributes(),$output);
+        }
+        else if (isset($_SESSION['hasEpisodes']) && $_SESSION['hasEpisodes']=="false"){
+            $output = str_replace("{episodesAttributes}",generate_hidden_episodes_attributes(),$output); 
+            $output = str_replace("id='radioTvSeries' checked='checked'","id='radioTvSeries'",$output); //uncheck switch serie tv
+            $output = str_replace("id='radioFilm'","id='radioFilm' checked='checked'",$output); //check switch film
+        }
+        else{
+            $output = str_replace("{episodesAttributes}",generate_hidden_episodes_attributes(),$output); 
+        }
+            
+        if (isset($_SESSION['numEpisodes'])){
+            $output = str_replace("'{numEpisodes}'",$_SESSION['numEpisodes'],$output);
+        }
+        else{
+            $output = str_replace("'{numEpisodes}'","",$output); 
+        }
+        if (isset($_SESSION['numSeasons'])){
+            $output = str_replace("'{numSeasons}'",$_SESSION['numSeasons'],$output);
+        }
+        else{
+            $output = str_replace("'{numSeasons}'","",$output);
+        }
+        if (isset($_SESSION['trailerUrl'])){
+            $output = str_replace("'{trailerUrl}'",$_SESSION['trailerUrl'],$output);
+        }
+        else{
+            $output = str_replace("'{trailerUrl}'","",$output); 
+        }
+        if (isset($_SESSION['day'])){
+            $output = str_replace("<option>{dayOption}</option>",Utils::restoreOptionsDay($_SESSION['day']),$output);
+        }
+        else{
+            $output = str_replace("<option>{dayOption}</option>",Utils::generateOptionsDay(),$output);
+        }
+        if (isset($_SESSION['month'])){
+            $output = str_replace("<option>{monthOption}</option>",Utils::restoreOptionsMonth($_SESSION['month']),$output);
+        }
+        else{
+            $output = str_replace("<option>{monthOption}</option>",Utils::generateOptionsMonth(),$output);
+        }
+        if (isset($_SESSION['year'])){
+            $output = str_replace("<option>{yearOption}</option>",Utils::restoreOptionsYear($_SESSION['year']),$output);
+        }
+        else{
+            $output = str_replace("<option>{yearOption}</option>",Utils::generateOptionsYear(),$output);
+        }
+    }
+    /*END restore form parameters if available */
+}
+
+function get_list_genres(){
+    $genresOptions = "";
+    $genreList = Genre::getGenreList();
+    foreach ($genreList as $genre){
+        $genreList = Genre::getIdGenre($genre->name);
+        $id = $genreList[0]->id;
+        $genresOptions.= "<option value='$id'>$genre->name</option>";
+    }
+    return $genresOptions;
+}
+
+function restore_list_genres($valueToRestore){
+    $options = "";
+    $toRestore = "";
+    $genre_list = genre::getGenreList();
+    foreach ($genre_list as $genre){
+        $genreList = Genre::getIdGenre($genre->name);
+        $id = $genreList[0]->id;
+        if ($id == $valueToRestore){
+            $toRestore = "<option value='$id'>$genre->name</option><optgroup class='secondary-bg' label='--------'>";
+        }
+        else{
+            $options.= "<option value='$id'>$genre->name</option>";
+        }
+    }
+    $toRestore .= $options;
+    return $toRestore;
+}
+
+function isUpdateMode(){
+    if (isset($_GET['mediaid']))
+        return true;
+    else
+        return false;
+}
+
+function set_path_with_mediaid(&$output){
+/* START set path with mediaid for submit form in updateMode */
+    $mediaid = $_GET['mediaid'];
+    $pathGET = "./php/check_form_media.php?mediaid=".$mediaid;
+    $output = str_replace("./php/check_form_media.php",$pathGET,$output);
+/* END set path with mediaid for updateMode */
+}
+
+function generate_rating_options(){
+    return
+   "<option value='1'>1 (min)</option>
+    <option value='2'>2</option>
+    <option value='3'>3</option>
+    <option value='4'>4</option>
+    <option value='5'>5 (max)</option>";
+}
+
+function restore_rating($valueToRestore){
+    $options = "";
+    $toRestore = "";
+    for ($i=1; $i<=5; $i++){
+        if ($i == $valueToRestore){
+            if($i==1)
+                $toRestore = "<option value='$i'>$i (min)</option><optgroup class='secondary-bg' label='--------'>";
+            else if ($i==5)
+                $toRestore = "<option value='$i'>$i (max)</option><optgroup class='secondary-bg' label='--------'>";
+            else
+                $toRestore = "<option value='$i'>$i</option><optgroup class='secondary-bg' label='--------'>";
+        }
+        else{
+            if($i==1)
+                $options .= "<option value='$i'>$i (min)</option>";
+            else if ($i==5)
+                $options .= "<option value='$i'>$i (max)</option>";
+            else
+                $options .= "<option value='$i'>$i</option>";
+        }
+    }
+    $toRestore .= $options;
+    $toRestore .= "</optgroup>";
+    return $toRestore;
+}
+
+function isFilm(){
+    return !(Media::fetch($_GET['mediaid'])->hasEpisodes);
+}
+
+function generate_episodes_attributes(){
+    return
+    "<div class='group-insert-form' id='seasonsNum'> 
+        <label for='numSeasons' class='primary-color label-form'>Numero stagioni</label>
+        <input type='text' class='small-input-text' name='numSeasons' id='numSeasons' value=''{numSeasons}''/>
+        <span class='highlight'></span>
+        <span class='bar small-input-text-bar'></span>
+    </div>
+    <div class='group-insert-form' id='episodesNum'> 
+        <label for='numEpisodes' class='primary-color label-form'>Episodi stagione</label>
+        <input type='text' class='small-input-text' name='numEpisodes' id='numEpisodes' value=''{numEpisodes}''/>
+        <span class='highlight'></span>
+        <span class='bar small-input-text-bar'></span>
+    </div>";
+}
+
+function generate_hidden_episodes_attributes(){
+    return
+    "<div class='group-insert-form hidden' id='seasonsNum'> 
+        <label for='numSeasons' class='primary-color label-form'>Numero stagioni</label>
+        <input type='text' class='small-input-text' name='numSeasons' id='numSeasons' tabindex='-1' value=''{numSeasons}''/>
+        <span class='highlight'></span>
+        <span class='bar small-input-text-bar'></span>
+    </div>
+    <div class='group-insert-form hidden' id='episodesNum'> 
+        <label for='numEpisodes' class='primary-color label-form'>Episodi stagione</label>
+        <input type='text' class='small-input-text' name='numEpisodes' id='numEpisodes' tabindex='-1' value=''{numEpisodes}''/>
+        <span class='highlight'></span>
+        <span class='bar small-input-text-bar'></span>
+    </div>";
+}
+?>

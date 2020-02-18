@@ -1,0 +1,86 @@
+<?php
+$genreList = Utils::generateMovieGenreOptions(Genre::getGenreList());
+$yearList = Utils::generateMovieYearOptions(Media::getAirDateList());
+$typeList = Utils::generateMovieTypeOptions();
+
+$output = str_replace("<option>{genreOption}</option>", $genreList, $output);
+$output = str_replace("<option>{yearOption}</option>", $yearList, $output);
+$output = str_replace("<option>{typeOption}</option>", $typeList, $output);
+
+$displayMovieList = 3;
+
+$varGenre = "All";
+$varYear = "All";
+$varType = "All";
+
+if (isset($_GET["year-select"])) {
+  $varYear = $_GET['year-select'];
+} else {
+  $varYear = "All";
+}
+
+if (isset($_GET["genre-select"])){
+  $varGenre = $_GET['genre-select'];
+} else {
+  $varGenre = "All";
+}
+
+if (isset($_GET["type-select"])) {
+  $varType = $_GET['type-select'];
+} else {
+  $varType = "All";
+}
+
+if (isset($_GET["getMovies"])) {
+  switch($_GET["getMovies"]) {
+    case "latest":
+      $displayMovieList = 1;
+    break;
+    case "mostVotes":
+      $displayMovieList = 2;
+    break;
+  }
+}
+
+if ($varSearch) {
+  $displayMovieList = 0;
+}
+
+$userId = null;
+if (SessionManager::isUserLogged()) {
+  $userId = SessionManager::getUserId();
+}
+
+if (SessionManager::isUserLogged() && SessionManager::userCanPublish()) {
+  $output = str_replace("{notAnAdmin}", "",$output); 
+} else {
+  $output = str_replace("{notAnAdmin}", "hidden",$output);
+}
+switch($displayMovieList) {
+  case 0:
+    $result = $varReturnSearch; 
+  break;
+  case 1: {
+    $output = str_replace("{latestSelected}", "highlight-bg", $output);
+    $result = Media::list($userId, null,null,null, 2, "air_date", "DESC"); 
+  } break;
+  case 2: { 
+    $output = str_replace("{mostVotesSelected}", "highlight-bg", $output);
+    $result = Media::list($userId, null,null,null, 2, "votes_positive", "DESC"); 
+  } break;
+  case 3: 
+    $result = Utils::getFilteredMovieList($varYear, $varGenre, $varType, $userId);
+  break;
+  default: 
+    $result = Utils::getFilteredMovieList($varYear, $varGenre, $varType, $userId);
+  break;
+}
+
+$movieList = Utils::generateMovieList($result);
+
+if ($movieList != '') {
+  $output = str_replace("{movieList}", $movieList, $output);
+} else {
+  $output = str_replace("{movieList}", "Nessun file multimediale trovato.", $output);
+}
+?>

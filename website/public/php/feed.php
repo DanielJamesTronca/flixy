@@ -1,0 +1,248 @@
+<?php
+
+include_once("../../src/db_manager.php");
+include_once("../../src/session_manager.php");
+include_once("../../src/models/models.php");
+
+$userId = null;
+if (SessionManager::isUserLogged()) {
+    $userId = SessionManager::getUserId();
+    if (SessionManager::userCanPublish()){
+        $output = str_replace("{add-news}","",$output);
+        $output = str_replace("form-link","php/layout.php?page=formfeed",$output);
+    }
+    else{
+        $output = str_replace("{add-news}","hidden",$output);
+        $output = str_replace("form-link","",$output);
+    }  
+} else {
+    echo "Devi fare l'accesso per vedere il contenuto di questa pagina";
+    return;
+}
+if (Media::getUserFavourites(SessionManager::getUserId())!=null){
+    $output = str_replace("{feed-timeline}",generate_feed_timeline($userId),$output);
+    $output = str_replace("{feed-next-releases}",generate_feed_next_releases($userId),$output); 
+}
+else{
+    $output = str_replace("{feed-timeline}", "Nessun elemento presente: aggiungi ai preferiti almeno un film o serie tv per poter seguire il suo feed!",$output);
+    $output = str_replace("{feed-next-releases}","",$output); 
+}
+
+
+function generate_feed_next_releases($userId){
+    $arrayReleases = get_next_releases_group_by_media(Feed::getReleases($userId));
+    if(isset($arrayReleases)){
+        $stringToReturn = "";
+        foreach($arrayReleases as $rel){
+            $release = get_next_episode_to_release($rel);
+            $title = $release->mediaName;
+            $subtitle = $release->subtitle;
+            $coverImage = $release->coverUrl;
+            $remainingDays = get_remaining_days($release->deadlineDate);
+            $element = "<div class='next-release' tabindex='0'>
+                            <div class='next-release-image-container'>
+                                <img src='$coverImage' class='cover' alt='immagine di copertina $title'/>
+                            </div>
+                            <div class='next-release-text-area padding-1 text-align-center'> 
+                                <h2 class='font-size-1-125'>$title</h2>
+                                <h3 class='font-size-0-8'>$subtitle</h3>
+                                <p class='next-release-remaining-days'>$remainingDays</p>
+                                <p> giorni rimanenti </p>
+                            </div>    
+                        </div>";
+            $stringToReturn .= $element;
+        }
+    }
+    return $stringToReturn;
+}
+
+function generate_feed_timeline($userId){
+    $arrayFeed = get_merged_array_date_ordered(get_past_releases(Feed::getReleases($userId)), Feed::getFeed($userId));
+    if(isset($arrayFeed)){
+        $stringToReturn = "";
+        foreach($arrayFeed as $item){
+            $title = get_title($item);
+            $subtitle = get_subtitle($item);
+            $content = get_content($item);
+            $date = get_date($item);
+            $year = get_year($item);
+            $media = get_media($item, $title);
+            $element = "<div class='timeline-container' tabindex='0'>
+                            <div class='timeline-content'>
+                                <div class='timeline-date'>
+                                    <p>$date</p> 
+                                    <p class='padding-top-0-5'>$year</p>
+                                </div>
+                                <div class='timeline-text'>
+                                    <h2 class='font-size-1-125'>$title</h2>
+                                    <p>$subtitle</p>
+                                    <p class='padding-top-0-5'>$content</p>
+                                </div>
+                            </div>
+                                $media
+                        </div>";
+            $stringToReturn .= $element;
+        }
+    }
+    return $stringToReturn;
+}
+
+//se disponibile ritorna il link del trailer altrimenti ritorna foto di copertina
+function get_media($feedObj, $titleMedia){
+    if ($feedObj instanceof Feed){
+        $video = $feedObj->videoUrl; 
+        $mediaObj = Media::fetch($feedObj->mediaId);
+        $cover = $mediaObj->coverUrl; 
+    }
+    else{
+        $video = $feedObj->promoUrl;
+        $cover = $feedObj->coverUrl; 
+    }
+    if (isset($video) && $video!=""){ 
+        $media ="<div class='content-justify-right padding-top-1'>
+                    <object class='timeline-video' data='$video' title='trailer $titleMedia'></object>
+                </div>";
+    }
+    else{
+        $media = "<div class='content-justify-right padding-top-1'>
+                    <img class='timeline-image' alt='immagine di copertina $titleMedia' src='$cover'></img>
+                </div>";
+    }
+    return $media;
+}
+
+
+function is_future_date($dateToCheck,$referenceDate = null){
+    if ($referenceDate!=null)
+        $dteEnd = new DateTime($referenceDate);
+    else
+        $dteEnd = new DateTime(date("Y-m-d"));
+    $dteStart = new DateTime($dateToCheck);
+    $dteDiff  = date_diff($dteStart,$dteEnd);
+    $diffInDays = (int)$dteDiff->format("%r%a"); //%r da il segno(+,-), %a i giorni
+    if ($diffInDays<0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function get_remaining_days($date){
+    $dteStart = new DateTime($date);
+    $dteEnd = new DateTime(date("Y-m-d"));
+    $dteDiff  = date_diff($dteStart,$dteEnd);
+    return $dteDiff->days;
+}
+
+
+function get_merged_array_date_ordered($array1, $array2){
+    $mergedArray =  array_merge($array1,$array2);  
+    //ordina le date del mergedArray
+    usort($mergedArray, function($a, $b) {
+        if($a instanceof Feed && $b instanceof Feed){
+            return ($b->eventDate <=> $a->eventDate);
+        }
+        if($a instanceof Feed && $b instanceof Release){
+            return ($b->deadlineDate <=> $a->eventDate);
+        }
+        if($a instanceof Release && $b instanceof Feed){
+            return ($b->eventDate <=> $a->deadlineDate);
+        }
+        if($a instanceof Release && $b instanceof Release){
+            return ($b->deadlineDate <=> $a->deadlineDate);
+        }
+    });
+    return $mergedArray;
+}
+
+function get_title($object){
+    if ($object instanceof Feed){
+        $mediaObj = Media::fetch($object->mediaId);
+        return $mediaObj->title;
+    }
+    else{
+        return $object->mediaName;
+    }
+}
+
+function get_subtitle($object){
+    if ($object instanceof Feed){
+        return $object->subtitle;
+    }
+    else{
+        return $object->subtitle;
+    }
+}
+
+function get_content($object){
+    if ($object instanceof Feed){
+        return $object->content;
+    }
+    else{
+        if ($object->description!="")
+            return $object->description;
+        else if($object->isMovie)
+            return "L'attesissimo film è finalmente stato rilasciato!";
+        else
+            return "Il nuovo episodio è finalmente stato rilasciato!";
+    }
+}
+
+function get_date($object){
+    $mesi = array(1=>'Gennaio', 'Febbraio', 'Marzo', 'Aprile',
+                'Maggio', 'Giugno', 'Luglio', 'Agosto',
+                'Settembre', 'Ottobre', 'Novembre','Dicembre');
+    if ($object instanceof Feed){
+        $date = new DateTime($object->eventDate);
+    }
+    else{
+        $date = new DateTime($object->deadlineDate);
+    }
+    $day = $date->format('j');
+    $month = $date->format('n'); //formatta data per prendere il numero del mese che sarà l'indice dell'array mesi (per traduzione italiana)
+    return $day.' '.$mesi[$month];
+}
+
+function get_year($object){
+    if ($object instanceof Feed){
+        $date = new DateTime($object->eventDate);
+    }
+    else{
+        $date = new DateTime($object->deadlineDate);
+    }
+    return $date->format("Y");
+}
+
+// ritorna array con le release la cui data di uscita è già passata
+function get_past_releases($arrayReleases){
+    $arrayPastRelease = array();
+    foreach($arrayReleases as $release){
+        if (!is_future_date($release->deadlineDate)){
+            array_push($arrayPastRelease,$release);
+        }
+    }
+    return $arrayPastRelease;
+}
+
+
+function get_next_releases_group_by_media($releases){
+    $array = [];
+    foreach($releases as $rel){
+        if(is_future_date($rel->deadlineDate))
+            $array[$rel->mediaid][] = $rel;
+    }
+    return $array;
+}
+
+function get_next_episode_to_release($sameMediaReleases){
+    $nextRel = reset($sameMediaReleases);
+    foreach($sameMediaReleases as $rel){
+        if (is_future_date($rel->deadlineDate) && !is_future_date($rel->deadlineDate, $nextRel->deadlineDate)){
+            $nextRel = $rel;
+        }
+    }
+    return $nextRel;
+}
+
+?>

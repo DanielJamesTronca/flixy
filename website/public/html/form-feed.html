@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+
+<head>
+<base href="http://localhost//flixy/website/public/"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="./scripts/formCheck.js"></script>
+<title>Flixy - Inserisci Notizia</title>
+<meta name="title" content="Flixy - Inserimento notizie" />
+</head> 
+<body>
+
+<div class="insert-form-container">
+             
+    <div class="form-title">
+        <h1 class=""> Aggiungi Notizia </h1>
+    </div>
+
+    <div class='margin-top-2 hidden'>
+      <div class="error-message-box-insert-form">
+          <p class="font-weight-bold">Dati invalidi</p>
+          <p>Controlla i dati inseriti e riprova: {error-message} </p>
+      </div>
+    </div>
+
+    <div class="margin-top-2-5">
+      <form action="./php/check_form_feed.php" method="post" id="newsForm" onsubmit="return isValidFormFeed()">
+          <div class="group-insert-form">      
+            <label for="mediaid" class="single-label-form">Media</label>
+            <select name="mediaid" id="mediaid" class="custom-select primary-color font-size-1-125 fit-content-width">
+              <option>{mediaid}</option>
+            </select>
+          </div>
+          <div class="group-insert-form">  
+            <label for="subtitle" class="label-form">Sottotitolo</label>    
+            <input type="text" name="subtitle" id="subtitle" value="'{subtitle}'" />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          <div class="group-insert-form">     
+            <label for="content" class="label-form">Contenuto</label> 
+            <textarea rows="10" cols="100" class="textarea-description font-size-1-125" id="content" name="content">{content}</textarea>
+          </div>
+          <div class="group-insert-form">      
+            <label for="videoUrl" class="label-form">URL video (YouTube)</label>
+            <input type="text" name="videoUrl" id="videoUrl" value="'{videoUrl}'"/>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          <fieldset class="fieldset-date">
+            <legend>Data di rilascio</legend>
+              <div class="container-comboBox-data">
+                <div class="group-insert-form">       
+                  <label for="day" class="primary-color label-form">Giorno</label>
+                  <select name="day" id="day" class="custom-select primary-color font-size-1-125 fit-content-width">
+                    <option>{dayOption}</option>
+                  </select>
+                </div>
+                <div class="group-insert-form"> 
+                  <label for="month" class="primary-color label-form">Mese</label>
+                  <select name="month" id="month" class="custom-select primary-color font-size-1-125 fit-content-width">
+                    <option>{monthOption}</option>
+                  </select>
+                </div>
+                <div class="group-insert-form">       
+                  <label for="year" class="primary-color label-form">Anno</label>
+                  <select name="year" id="year" class="custom-select primary-color font-size-1-125 fit-content-width">
+                    <option>{yearOption}</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+          
+            <div class="insert-form-button padding-top-2 padding-bottom-1">
+              <input type="submit" value="Invia" class="button-small-form margin-left-1 primary-color-gradient-button"/>
+              <div class = "insert-form-link-button-container">
+                <a href="php/layout.php?page=feed" class="insert-form-link-button primary-color-gradient-button margin-left-1">Annulla</a>
+              </div>
+            </div>
+          
+        </form>
+    </div>
+</div>
+</body>
+</html>

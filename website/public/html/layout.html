@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <title>Flixy - {currentPage}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="http://localhost/flixy/website/public/html" />
+    <script src="https://kit.fontawesome.com/cfeebd4134.js"></script>
+    <link rel="stylesheet" media="all" href="assets/rules.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&amp;display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  </head>
+  <body id="layout-body" class="flex-container flex-content-center flex-wrap document-font primary-bg">
+    <header id="header-container" class="flex-container flex-wrap secondary-bg margin-top-1 margin-left-1 margin-right-1 border-radius-0-3">
+      <div id="title-container" class="flex-container flex-content-center flex-grow-shrink full-height text-align-center highlight-color flex-align-items-center">
+        <a id="header-title" href="./php/layout.php?page=home" class="custom-link">
+        <img id="logo" class="logo-size margin-right-0-5" src="../public/assets/images/icons/logo.png" alt="Flixy Logo"/>
+        </a>
+        <h1 class="font-size-1-7 highlight-color font-weight-bold">Flixy</h1>
+      </div>
+      <nav id="nav-container" class="flex-container flex-align-items-center flex-grow-shrink full-height">
+        <ul id="link-container" class="font-weight-bold font-size-0-938 margin-left-2-5 border-radius-0-3">
+          <li class="margin-left-0-35 margin-right-0-35">
+            <a xml:lang="en" lang="en" aria-label="Vai alla pagina iniziale" href="./php/layout.php?page=home" class="{homeSelected} custom-link-bg-hover mobile-link font-size-0-938 font-weight-bold padding-0-3 border-radius-0-3">
+            Home
+            </a>
+          </li>
+          <li class="margin-left-0-35 margin-right-0-35">
+            <a aria-label="Vai ai tuoi preferiti" href="linkToFavs" class="{favsSelected} custom-link-bg-hover mobile-link font-size-0-938 font-weight-bold padding-0-3 border-radius-0-3">
+            I tuoi preferiti
+            </a>
+          </li>
+          <li class="margin-left-0-35 margin-right-0-35">
+            <a xml:lang="en" lang="en" aria-label="Vai alla pagina feed" href="linkToFeed" class="{feedSelected} custom-link-bg-hover mobile-link font-size-0-938 font-weight-bold padding-0-3 border-radius-0-3">
+            Feed
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div id="search-container" class="flex-container flex-grow-shrink flex-align-items-center">
+        <form id="search-bar" class="flex-container justify-content-center flex-align-items-center secondary-bg border-radius-0-3" method="get">
+          <div class="flex-container flex-align-items-center full-width">
+            <label for="text-input"> Cerca: </label>
+            <input name="page" type="hidden" value="home" />
+            <input name="search" id="text-input" class="flex-grow-10 margin-left-1 font-size-1-7 border-radius-0-3 full-width" type="text" />
+            <button aria-label="Cerca un file multimediale" id="search-button" class="custom-button margin-left-0-5 margin-right-0-5 fas fa-search custom-link-hover font-size-1-7" type="submit"></button>
+          </div>
+        </form>
+      </div>
+      <div id="profile-container" class="flex-container flex-align-items-center flex-grow-shrink">
+        <ul id="profile-links" class="text-align-right">
+          <li>
+            <a id="log-in" class="font-size-0-938 font-weight-normal custom-link" href="link_to_profile_or_log_in">
+            {login_O_username}
+            </a>
+          </li>
+          <li>
+            <a id="sign-up" class="font-size-0-75 font-weight-light custom-link" href="link_to_log_out_or_register">
+            {logout_O_registrazione}
+            </a>
+          </li>
+        </ul>
+        <a aria-label="Link al tuo profilo" href="link_to_profile_or_log_in" class="custom-link">
+        <img id="profile-pic" class="profile-pic-size margin-left-1 margin-right-1" src="profile_photo_url" alt="La tua immagine profilo" />
+        </a>
+      </div>
+    </header>
+    <main id="content-container" class="flex-container flex-content-center full-width padding-bottom-2-5">
+      {content}
+    </main>
+    <footer id="footer-container" class="text-align-center full-width margin-bottom-2 margin-top-2 font-size-0-938 font-weight-light" >
+      <p tabindex="0">Flixy &copy; Un prodotto UNIPD. 2019. Tutti i diritti riservati.</p>
+    </footer>
+  </body>
+</html>

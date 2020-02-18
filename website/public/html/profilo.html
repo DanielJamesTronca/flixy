@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <title>Profilo {username}</title>
+    <meta charset="utf-8" />
+    <base href="http://localhost/flixy/website/public/html" />
+  </head>
+  <body>
+    <div id="profilo-content" class="secondary-bg flex-container flex-direction-row flex-wrap padding-bottom-1">
+      <div id="side_profilo" class="flex-container flex-align-items-center padding-2 flex-direction-col">
+        <img id="avatar" src="avatar_url" alt="Immagine profilo" tabindex="0" />
+        <form class="margin-top-1" action="profile_edit.php" method="post" enctype="multipart/form-data">
+          <div class="groupProfilo text-align-center margin-top-1">
+            <label for="file-upload" class="upload-foto" tabindex="0">
+            <i class="fas fa-camera"></i> Cambia immagine profilo
+            </label>
+            <input id="file-upload" name="avatar" type="file"/>
+          </div>
+          <div class="groupProfilo">
+            <label for="name" class="primary-color" tabindex="0">Nome</label>
+            <input type="text" name="name" id="name" value="{name}" />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          <div class="groupProfilo">
+            <label for="surname" class="primary-color" tabindex="0">Surname</label>
+            <input type="text" name="surname" id="surname" value="{surname}" />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          <div class="groupProfilo">
+            <label for="email" class="primary-color" tabindex="0" aria-label="La tua email è {email}">Email</label>
+            <input disabled="disabled" type="text" name="email" id="email" value="{email}" />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          <div class="groupProfilo">
+            <label for="username" class="primary-color" aria-label="Il tuo username è {username}" tabindex="0">Username </label>
+            <input disabled="disabled" type="text" name="username" id="username" value="{username}" />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+          </div>
+          <div id="bottone_aggiorna" class="content-center">
+            <button type="submit" value="Aggiorna profilo" class="bottone custom-button border-radius-0-3 font-size-1 primary-color-gradient-button"> Aggiorna Profilo </button>
+          </div>
+        </form>
+      </div>
+      <div id="similar" class="flex-container margin-top-2 margin-left-2-5 flex-wrap flex-grow-shrink flex-direction-col">
+        <h1 class="primary-color font-size-2-2 text-align-left contenuti_simili" tabindex="0">I tuoi preferiti</h1>
+        <div id="mobile_adjustmante" class="flex-container flex-grow-shrink flex-content-start flex-wrap">
+          {favouriteList}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

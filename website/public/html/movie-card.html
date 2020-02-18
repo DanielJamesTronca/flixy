@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <title>Movie card</title>
+    <meta charset="utf-8" />
+    <base href="http://localhost/flixy/website/public/html" />
+  </head>
+  <body>
+    <div class="movie-entry secondary-bg margin-right-0-6 margin-left-0-6 margin-top-0-5 margin-bottom-0-5 border-radius-0-5">
+      <a aria-label="Vai alla pagina dettaglio di {movieTitle}" href="linkDettaglioMovie" class="custom-link copertina-size">
+      <img id="copertina" class="border-radius-0-5 copertina-size" src="coverURL" alt="Copertina di {movieTitle}" />
+      </a>
+      <a href="linkDettaglioMovie" tabindex="0" id="title" class="custom-link text-align-center primary-color font-size-1-5 margin-top-0-5 margin-bottom-0-5 flex-container flex-content-center flex-align-items-center">
+      {movieTitle}
+      </a>
+      <span tabindex="0" aria-label="Categoria del film" id="type-name" class="font-weight-normal font-size-0-938 primary-color text-align-center margin-bottom-0-5"> {isMovie} </span>
+      <form method="post" action="/flixy/website/public/php/add_vote.php" class="margin-top-1">
+        <div id="thumbs" class="text-align-center primary-color">
+          <button tabindex="0" aria-label="Dai un voto positivo" name="vote" type="submit" value="like" class="margin-right-0-5 custom-button font-size-2-2 far fa-thumbs-up custom-link-hover {like-selected}">
+          </button>
+          <button tabindex="0" aria-label="Dai un voto negativo" name="vote" type="submit" value="dislike" class="margin-left-0-5 custom-button font-size-2-2 far fa-thumbs-down custom-link-hover {dislike-selected} ">
+          </button>
+          <input type="hidden" value="{movieID}" name="movieID" />
+          <input type="hidden" value="home" name="redirectURL" />
+        </div>
+      </form>
+      <div tabindex="0" id="num-up-down" class="text-align-center primary-color font-size-0-938">
+        <span aria-label="Voti positivi" id="num-up">{likes}</span>
+        <span aria-label="Voti negativi" id="num-down">{dislikes}</span>
+      </div>
+      <div class="text-align-center primary-color {mediaNotFav}">
+        <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
+          <fieldset class="custom-fieldset">
+            <input type="hidden" value="{movieID}" name="movieID" />
+            <input type="hidden" value="home" name="redirectURL" />
+            <input type="hidden" value="1" name="fav" />
+            <button aria-label="Clicca per aggiungere ai preferiti" id="add-fav-icon" class="fas margin-top-0-2 custom-button custom-link-hover fa-heart font-size-1-1"></button>
+            <span class="text-align-center font-size-0-75">Aggiungi ai preferiti</span>
+          </fieldset>
+        </form>
+      </div>
+      <div class="text-align-center primary-color {mediaIsFav}">
+        <form method="post" action="/flixy/website/public/php/toggle_favorite.php">
+          <fieldset class="custom-fieldset">
+            <input type="hidden" value="{movieID}" name="movieID" />
+            <input type="hidden" value="home" name="redirectURL" />
+            <input type="hidden" value="0" name="fav" />
+            <button aria-label="Clicca per togliere dai preferiti" id="rm-fav-icon" class="fas fa-heart margin-top-0-2 custom-button custom-link-hover font-size-1-1 thumb-selected"></button>
+            <span class="text-align-center font-size-0-75">Rimuovi dai preferiti</span>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

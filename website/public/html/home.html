@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <title>Pagina iniziale</title>
+    <meta charset="utf-8" />
+    <base href="http://localhost/flixy/website/public/html" />
+  </head>
+  <body>
+    <div id="home-container" class="primary-bg flex-content-center">
+      <div id="filters-menu" class=" margin-top-2 flex-container flex-content-center flex-align-items-center flex-wrap">
+        <ul id="general-filters" class="text-align-center primary-color">
+          <li class="general-filters-link margin-left-1">
+            <a href="./php/layout.php?page=home&amp;getMovies=latest" class="{latestSelected} custom-link-bg-hover mobile-link font-size-0-938 font-weight-bold custom-link-bg-hover padding-left-1-5 padding-right-1-5 padding-top-0-4 padding-bottom-0-4 border-radius-0-3">
+            Ultimi film
+            </a> 
+          </li>
+          <li class="general-filters-link margin-left-1">
+            <a href="./php/layout.php?page=home&amp;getMovies=mostVotes" class="{mostVotesSelected} custom-link-bg-hover mobile-link font-size-0-938 font-weight-bold custom-link-bg-hover padding-left-1-5 padding-right-1-5 padding-top-0-4 padding-bottom-0-4 border-radius-0-3">
+            I più votati
+            </a> 
+          </li>
+        </ul>
+        <hr class="menu-divider margin-left-1" />
+        <div id="dropdown-select" class=" primary-color text-align-center flex-container flex-align-items-center flex-grow-shrink flex-content-start">
+          <form id="filters-form" method="get" class="flex-container flex-content-start flex-align-items-center">
+            <div id="year-filter" class="margin-left-1">
+              <label id="year-label" for="year-select" class="primary-color margin-left-1">Anno</label>
+              <select name="year-select" id="year-select" class="custom-select margin-left-0-5 primary-color font-size-0-938 font-weight-bold">
+                <option value="All">Tutti gli anni</option>
+                <option>{yearOption}</option>
+              </select>
+            </div>
+            <div id="genre-filter">
+              <label id="genre-label" for="genre-select" class="margin-left-1">Genere</label>
+              <select name="genre-select" id="genre-select" class="custom-select margin-left-0-5 primary-color font-size-0-938 font-weight-bold">
+                <option value="All">Tutti i generi</option>
+                <option>{genreOption}</option>
+              </select>
+            </div>
+            <div id="type-filter">
+              <label id="type-label" for="type-select" class="margin-left-1">Categoria</label>
+              <select name="type-select" id="type-select" class="custom-select margin-left-0-5 primary-color font-size-0-938 font-weight-bold">
+                <option value="All">Tutti i tipi</option>
+                <option>{typeOption}</option>
+              </select>
+            </div>  
+              <button type="submit" name="page" value="home" class="custom-button margin-left-1-5 mobile-link custom-link-bg-hover font-size-0-938 font-weight-bold padding-0-3 border-radius-0-3">
+              Filtra
+              </button>
+          </form>
+        </div>
+        <ul id="nav-add-media" class="{notAnAdmin} text-align-center primary-color flex-container flex-content-center flex-align-items-center">
+          <li class="margin-left-1">
+            <a aria-label="Clicca per aggiungere un nuovo file multimediale" href="php/layout.php?page=formmedia" class="desktop-hidden font-size-0-938 font-weight-bold custom-link custom-link-bg-darker primary-color padding-left-1 padding-right-1 padding-top-0-4 padding-bottom-0-4 border-radius-0-3">
+            Aggiungi media
+            </a>
+            <a aria-label="Clicca per aggiungere un nuovo file multimediale" href="php/layout.php?page=formmedia" class="mobile-hidden font-size-0-938 font-weight-bold custom-link custom-link-bg-darker primary-color padding-left-1 padding-right-1 padding-top-0-4 padding-bottom-0-4 border-radius-0-3">
+            <i class="fa fa-plus"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div id="movies-container" class="flex-container flex-content-center flex-wrap margin-top-2 margin-bottom-2">
+        {movieList}
+      </div>
+    </div>
+  </body>
+</html>
